@@ -73,26 +73,26 @@ class PDFCore {
 public:
 
   PDFCore(SplashColorMode colorMode, int bitmapRowPad,
-	  GBool reverseVideo, SplashColorPtr paperColor);
+   GBool reverseVideo, SplashColorPtr paperColor);
   virtual ~PDFCore();
 
   //----- loadFile / displayPage / displayDest
 
   // Load a new file.  Returns pdfOk or error code.
   virtual int loadFile(GString *fileName, GString *ownerPassword = NULL,
-		       GString *userPassword = NULL);
+         GString *userPassword = NULL);
 
 #ifdef _WIN32
   // Load a new file.  Returns pdfOk or error code.
   virtual int loadFile(wchar_t *fileName, int fileNameLen,
-		       GString *ownerPassword = NULL,
-		       GString *userPassword = NULL);
+         GString *ownerPassword = NULL,
+         GString *userPassword = NULL);
 #endif
 
   // Load a new file, via a Stream instead of a file name.  Returns
   // pdfOk or error code.
   virtual int loadFile(BaseStream *stream, GString *ownerPassword = NULL,
-		       GString *userPassword = NULL);
+         GString *userPassword = NULL);
 
   // Load an already-created PDFDoc object.
   virtual void loadDoc(PDFDoc *docA);
@@ -114,7 +114,7 @@ public:
   // bottom; otherwise, no scrolling is done.  If <addToHist> is set,
   // this page change is added to the history list.
   virtual void displayPage(int page, GBool scrollToTop,
-			   GBool scrollToBottom, GBool addToHist = gTrue);
+      GBool scrollToBottom, GBool addToHist = gTrue);
 
   // Display a link destination.
   virtual void displayDest(LinkDest *dest);
@@ -150,7 +150,7 @@ public:
   virtual void scrollToBottomRight();
   virtual void setZoom(double zoom);
   virtual void zoomToRect(int page, double ulx, double uly,
-			  double lrx, double lry);
+     double lrx, double lry);
   virtual void zoomCentered(double zoom);
   virtual void zoomToCurrentWidth();
   virtual void setRotate(int rotate);
@@ -177,7 +177,7 @@ public:
   // Retrieve the current selection.  This function uses user
   // coordinates.  Returns false if there is no selection.
   GBool getSelection(int *pg, double *ulx, double *uly,
-		     double *lrx, double *lry);
+       double *lrx, double *lry);
   GBool hasSelection();
 
   // Text extraction.
@@ -185,16 +185,16 @@ public:
   GBool getDiscardDiagonalText();
   void setDiscardDiagonalText(GBool discard);
   GString *extractText(int pg, double xMin, double yMin,
-		       double xMax, double yMax);
-  GString *getSelectedText();
+         double xMax, double yMax);
+  GString *getSelectedText(int* page = nullptr); // // int* page added for dsC
 
   //----- find
 
   virtual GBool find(char *s, GBool caseSensitive, GBool next, GBool backward,
-		     GBool wholeWord, GBool onePageOnly);
+       GBool wholeWord, GBool onePageOnly);
   virtual GBool findU(Unicode *u, int len, GBool caseSensitive,
-		      GBool next, GBool backward, GBool wholeWord,
-		      GBool onePageOnly);
+        GBool next, GBool backward, GBool wholeWord,
+        GBool onePageOnly);
 
 
   //----- coordinate conversion
@@ -210,7 +210,7 @@ public:
   GBool cvtDevToWindow(int pg, int xd, int yd, int *xw, int *yw);
   void cvtDevToUser(int pg, int xd, int yd, double *xu, double *yu);
   void getWindowPageRange(int x, int y, int w, int h,
-			  int *firstPage, int *lastPage);
+     int *firstPage, int *lastPage);
 
   //----- password dialog
 
@@ -295,7 +295,7 @@ protected:
   void loadText(int pg);
   void getSelectionBBox(int *wxMin, int *wyMin, int *wxMax, int *wyMax);
   void getSelectRectListBBox(GList *rects, int *wxMin, int *wyMin,
-			     int *wxMax, int *wyMax);
+        int *wxMax, int *wyMax);
   void checkInvalidate(int x, int y, int w, int h);
   void invalidateWholeWindow();
 
@@ -324,7 +324,7 @@ protected:
   int selectStartX,		// for block mode: start point of current
       selectStartY;		//   selection, in device coords
   TextPosition selectStartPos;	// for linear mode: start position of
-				//   current selection
+    //   current selection
 
   PDFHistory			// page history queue
     history[pdfHistorySize];

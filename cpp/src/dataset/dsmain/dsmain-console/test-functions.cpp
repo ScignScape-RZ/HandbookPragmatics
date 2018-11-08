@@ -25,7 +25,7 @@
 #include "PhaonLib/phaon-symbol-scope.h"
 #include "PhaonLib/phaon-function.h"
 
-#include "ScignStage-audio/scignstage-audio-dialog.h"
+#include "ScignStage-ling/scignstage-ling-dialog.h"
 
 
 #include <QTextStream>
@@ -97,20 +97,16 @@ QString test_s_ss(QString s1, QString s2)
  return "s_ss";
 }
 
-void test_msgbox(ScignStage_Audio_Dialog* dlg, QString msg)
+void test_msgbox(ScignStage_Ling_Dialog* dlg, QString msg)
 {
  dlg->test_msgbox(msg);
 }
 
-void play_sample(ScignStage_Audio_Dialog* dlg, int index)
-{
- dlg->play_sample(index);
-}
 
 void init_test_functions(void* origin, Kauvir_Code_Model& kcm,
   Phaon_Channel_Group_Table& table, Phaon_Symbol_Scope& pss)
 {
- QString* satypename = new QString("ScignStage_Audio_Dialog*");
+ QString* satypename = new QString("ScignStage_Ling_Dialog*");
  insert_envv(satypename, origin);
 
  kcm.set_envv_fn(&p_envv);
@@ -136,7 +132,7 @@ void init_test_functions(void* origin, Kauvir_Code_Model& kcm,
 
  {
   g1.add_sigma_carrier(
-    {kcm.get_kcm_type_by_type_name("ScignStage_Audio_Dialog*"), nullptr},
+    {kcm.get_kcm_type_by_type_name("ScignStage_Ling_Dialog*"), nullptr},
      QString()
     );
 
@@ -150,21 +146,21 @@ void init_test_functions(void* origin, Kauvir_Code_Model& kcm,
   g1.clear_all();
  }
 
- {
-  g1.add_sigma_carrier(
-    {kcm.get_kcm_type_by_type_name("ScignStage_Audio_Dialog*"), nullptr},
-     QString()
-    );
+// {
+//  g1.add_sigma_carrier(
+//    {kcm.get_kcm_type_by_type_name("ScignStage_Ling_Dialog*"), nullptr},
+//     QString()
+//    );
 
-  g1.add_lambda_carrier(
-    {kcm.get_kcm_type_by_kauvir_type_object( &type_system->type_object__str() ), nullptr},
-     QString()
-    );
+//  g1.add_lambda_carrier(
+//    {kcm.get_kcm_type_by_kauvir_type_object( &type_system->type_object__str() ), nullptr},
+//     QString()
+//    );
 
-  table.init_phaon_function(g1, pss, "play_sample", 710, &play_sample);
+//  table.init_phaon_function(g1, pss, "play_sample", 710, &play_sample);
 
-  g1.clear_all();
- }
+//  g1.clear_all();
+// }
 
  {
   g1.add_lambda_carrier(

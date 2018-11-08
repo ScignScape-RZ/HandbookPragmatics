@@ -1309,7 +1309,7 @@ GString *PDFCore::extractText(int pg, double xMin, double yMin,
   return text->getText(x0, y0, x1, y1);
 }
 
-GString *PDFCore::getSelectedText() {
+GString *PDFCore::getSelectedText(int* page) {
   SelectRect *rect;
   GString *ret, *s;
   int x0, y0, x1, y1, t, i;
@@ -1321,6 +1321,9 @@ GString *PDFCore::getSelectedText() {
   for (i = 0; i < state->getNumSelectRects(); ++i) {
     rect = state->getSelectRect(i);
     loadText(rect->page);
+    // // dsC
+    if(page)
+      *page = rect->page;
     cvtUserToDev(rect->page, rect->x0, rect->y0, &x0, &y0);
     cvtUserToDev(rect->page, rect->x1, rect->y1, &x1, &y1);
     if (x0 > x1) {

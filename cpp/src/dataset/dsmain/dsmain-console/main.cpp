@@ -67,7 +67,7 @@ int main(int argc, char **argv)
 
 #ifdef USING_XPDF
  XPDF_Bridge xpdf_bridge(argc, argv);
- ScignStage_Ling_Dialog dlg (&xpdf_bridge, &samps);
+ ScignStage_Ling_Dialog dlg (&xpdf_bridge, samps);
 #else
  ScignStage_Ling_Dialog dlg (nullptr, samps);
 #endif

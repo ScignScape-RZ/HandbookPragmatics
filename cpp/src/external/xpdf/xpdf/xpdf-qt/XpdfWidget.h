@@ -70,9 +70,9 @@ public:
     pdfErrOpenFile      =    1,	//!< couldn't open the PDF file
     pdfErrBadCatalog    =    2,	//!< couldn't read the page catalog
     pdfErrDamaged       =    3,	//!< PDF file was damaged and couldn't be
-				//!<   repaired
+    //!<   repaired
     pdfErrEncrypted     =    4,	//!< file was encrypted and password was
-				//!<   incorrect or not supplied
+    //!<   incorrect or not supplied
     pdfErrHighlightFile =    5,	//!< nonexistent or invalid highlight file
     pdfErrBadPrinter    =    6,	//!< invalid printer
     pdfErrPrinting      =    7,	//!< error during printing
@@ -141,8 +141,8 @@ public:
   //! \param reverseVideo sets reverse video at startup
   //! \param parentA the parent QWidget
   XpdfWidget(const QColor &paperColor = QColor(0xff, 0xff, 0xff),
-	     const QColor &matteColor = QColor(0x80, 0x80, 0x80),
-	     bool reverseVideo = false, QWidget *parentA = 0);
+      const QColor &matteColor = QColor(0x80, 0x80, 0x80),
+      bool reverseVideo = false, QWidget *parentA = 0);
 
   //! The XpdfWidget constructor.
   //! \param paperColor the paper background color (which should generally
@@ -154,9 +154,9 @@ public:
   //! This version has the \a parent argument first so it works correctly
   //! with Qt Designer.
   XpdfWidget(QWidget *parentA,
-	     const QColor &paperColor = QColor(0xff, 0xff, 0xff),
-	     const QColor &matteColor = QColor(0x80, 0x80, 0x80),
-	     bool reverseVideo = false);
+      const QColor &paperColor = QColor(0xff, 0xff, 0xff),
+      const QColor &matteColor = QColor(0x80, 0x80, 0x80),
+      bool reverseVideo = false);
 
   //! Destroys the XpdfWidget.
   virtual ~XpdfWidget();
@@ -220,7 +220,7 @@ public:
   //!        and then as the user password
   //! \return \c pdfOk if successful; an error code, otherwise
   ErrorCode loadFile(const QString &fileName,
-		     const QString &password = "");
+       const QString &password = "");
 
   //! Load a PDF file from a memory buffer and display its first page.
   //! \param buffer the PDF file in memory
@@ -229,7 +229,7 @@ public:
   //!        and then as the user password
   //! \return \c pdfOk if successful; an error code otherwise
   ErrorCode loadMem(const char *buffer, unsigned int bufferLength,
-		    const QString &password = "");
+      const QString &password = "");
 
   //! Load a PDF file and return a handle.
 
@@ -249,8 +249,8 @@ public:
   //!        and then as the user password
   //! \return \c pdfOk if successful; an error code, otherwise
   ErrorCode readDoc(XpdfDocHandle *docPtr,
-		    const QString &fileName,
-		    const QString &password = "");
+      const QString &fileName,
+      const QString &password = "");
 
   //! Load a PDF document and display its first page.
   //! This function displays a PDF document handle created by
@@ -379,7 +379,7 @@ public:
   //! factor and scroll position so that the specified rectangle just fits
   //! in the window.
   void zoomToRect(int page, double xMin, double yMin,
-		  double xMax, double yMax);
+    double xMax, double yMax);
 
   //! Set the zoom factor, while maintaining the current center.
   //! Accepts the same zoom values as XpdfWidget::setZoom.
@@ -469,17 +469,17 @@ public:
 
   //! Get the form field's bounding box.
   void getFormFieldBBox(XpdfFormFieldHandle field, int *pageNum,
-			double *xMin, double *yMin,
-			double *xMax, double *yMax);
+   double *xMin, double *yMin,
+   double *xMax, double *yMax);
 
   //! Convert window coordinates to PDF coordinates.  Returns true if
   //! successful, i.e., if the specified point falls on a PDF page.
   bool convertWindowToPDFCoords(int winX, int winY,
-				int *page, double *pdfX, double *pdfY);
+    int *page, double *pdfX, double *pdfY);
 
   //! Convert PDF coordinates to window coordinates.
   void convertPDFToWindowCoords(int page, double pdfX, double pdfY,
-				int *winX, int *winY);
+    int *winX, int *winY);
 
   //! Enable or disable window redraws.
   //! This is useful, e.g., for avoiding extra redraws during window
@@ -497,7 +497,7 @@ public:
   //!
   //! All coordinates are in points (1 point = 1/72 inch).
   void getPageBox(int page, const QString &box,
-		  double *xMin, double *yMin, double *xMax, double *yMax) const;
+    double *xMin, double *yMin, double *xMax, double *yMax) const;
 
   //! Return the width of the specified page.
   //! This function returns the crop box width, measured in points
@@ -524,13 +524,13 @@ public:
   //! coordinates, respectively, and returns true.  If there is no selection,
   //! returns false.
   bool getCurrentSelection(int *page, double *x0, double *y0,
-			   double *x1, double *y1) const;
+      double *x1, double *y1) const;
 
   //! Set the selection.
   //! Sets the current selection to the rectangle with upper-left corner
   //! (\a x0,\a y0) and lower-right corner (\a x1,\a y1) on \a page.
   void setCurrentSelection(int page, double x0, double y0,
-			   double x1, double y1);
+      double x1, double y1);
 
   //! Clear the selection.
   void clearSelection();
@@ -606,7 +606,7 @@ public:
   //! corners (\a x0,\a y0) and (\a x1,\a y1), of page number \a page
   //! to a 24-bit RGB bitmap, at a resolution of \a dpi dots per inch.
   QImage convertRegionToImage(int page, double x0, double y0,
-			      double x1, double y1, double dpi);
+         double x1, double y1, double dpi);
 
   //! Retrieve an embedded thumbnail image.
   //! This function returns the embedded thumbnail image for the
@@ -644,12 +644,12 @@ public:
   //! function.  Returns an empty string if no file is open or if
   //! text extraction is not allowed.
   QString extractText(int page, double x0, double y0,
-		      double x1, double y1);
+        double x1, double y1);
 
   //! Get the currently selected text.
   //! Returns an empty string if there is no selection (or if there is
   //! no text in the selected region).
-  QString getSelectedText();
+  QString getSelectedText(int* page = nullptr); // int* added for dsC ...
 
   //! Copy the current selection to the clipboard.
   void copySelection();
@@ -884,23 +884,23 @@ private slots:
 private:
 
   void setup(const QColor &paperColor, const QColor &matteColor,
-	     bool reverseVideo);
+      bool reverseVideo);
   static void updateCbk(void *data, GString *fileName,
-			int pageNum, int numPages,
-			const char *linkLabel);
+   int pageNum, int numPages,
+   const char *linkLabel);
   static void midPageChangedCbk(void *data, int pageNum);
   static void preLoadCbk(void *data);
   static void postLoadCbk(void *data);
   static void linkCbk(void *data, const char *type,
-		      const char *dest, int page);
+        const char *dest, int page);
   static void selectDoneCbk(void *data);
   static void paintDoneCbk(void *data, bool finished);
   static void tileDoneCbk(void *data);
 
   friend class XpdfViewer;
   bool getLinkTarget(int page, double xx, double yy,
-		     QString &targetFileName, int &targetPage,
-		     QString &targetDest);
+       QString &targetFileName, int &targetPage,
+       QString &targetDest);
 
   int printHDPI, printVDPI;
   bool printCanceled;

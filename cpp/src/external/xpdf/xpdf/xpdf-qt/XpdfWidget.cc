@@ -81,6 +81,12 @@ void XpdfWidget::setup(const QColor &paperColor, const QColor &matteColor,
 
   init();
 
+  setContextMenuPolicy(Qt::CustomContextMenu);
+
+//  connect(this, SIGNAL(customContextMenuRequested(const QPoint&)),
+//    this, SLOT(show_context_menu(const QPoint&)));
+
+
   paperColor2[0] = paperColor.red();
   paperColor2[1] = paperColor.green();
   paperColor2[2] = paperColor.blue();
@@ -1448,9 +1454,9 @@ QString XpdfWidget::extractText(int page, double x0, double y0,
   }
 }
 
-QString XpdfWidget::getSelectedText() {
+QString XpdfWidget::getSelectedText(int* page) {
   try {
-    return core->getSelectedTextQString();
+    return core->getSelectedTextQString(page);
   } catch (GMemException e) {
     return "";
   }

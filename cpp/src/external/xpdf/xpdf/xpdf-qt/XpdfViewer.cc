@@ -52,6 +52,11 @@
 #include "XpdfViewer.h"
 #include "gmempp.h"
 
+#include <QDebug>
+#include <QClipboard>
+
+extern void add_to_data_set(QString qs, int page, int p1);
+
 #include "xpdf-component.h"
 
 //------------------------------------------------------------------------
@@ -2931,6 +2936,29 @@ void XpdfViewer::addTab() {
   else
     pdf = new XpdfWidget(NULL, xpdfc_->getPaperColor(), xpdfc_->getMatteColor(),
         xpdfc_->getReverseVideo());
+
+  connect(pdf, &XpdfWidget::customContextMenuRequested, [pdf, this](const QPoint& p)
+  {
+   qDebug() << p;
+   int page;
+   QString qs = pdf->getSelectedText(&page);
+   QMenu* qm = new QMenu(this);
+   qm->addAction("Add to data set ...", [qs, pdf, page]
+   {
+    add_to_data_set(qs, page, pdf->getMidPage());
+    //qDebug() << qs;
+   });
+   qm->addAction("Copy Selection to Clipboard", [qs]
+   {
+    QApplication::clipboard()->setText(qs);
+   });
+   qm->addAction("Save Selection to File", [qs]
+   {
+
+   });
+   QPoint g = pdf->mapToGlobal(p);
+   qm->popup(g);
+  });
 
 
   pdf->enableHyperlinks(false);

@@ -100,7 +100,7 @@ public:
   void startSelection(int wx, int wy);
   void endSelection(int wx, int wy);
   void mouseMove(int wx, int wy);
-  QString getSelectedTextQString();
+  QString getSelectedTextQString(int* page = nullptr); // // int* page added for dsC
   void copySelection(GBool toClipboard);
 
   //----- hyperlinks
