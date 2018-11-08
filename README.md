@@ -2,7 +2,7 @@
 # Blackwell Handbook of Pragmatics
 ## Data Set and Code Base 
 
-See _The Handbook of Pragmatics_ (http://www.felsemiotica.org/site/wp-content/uploads/2014/10/Horn-Laurence-R.-and-Ward-Gregory-Ed.-The-Handbook-of-Pragmatics.pdf) .
+See _The Handbook of Pragmatics_ (http://www.felsemiotica.org/site/wp-content/uploads/2014/10/Horn-Laurence-R.-and-Ward-Gregory-Ed.-The-Handbook-of-Pragmatics.pdf).
 
 There are several ways to use the code, including several "build strategies".  The quickest option is to use the "`build-quick.pro`" project file in the "`./cpp/projects/qt/qt-multiple/unibuild`" folder.  For most users the best option may be "`build-most.pro`" in the same folder (both versions can be built independently).  The "`quick`" version lacks PDF and TCP features (which is explained via a message box when trying to use these features).
 
