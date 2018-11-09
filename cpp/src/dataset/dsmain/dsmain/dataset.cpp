@@ -7,16 +7,38 @@
 
 #include "dataset.h"
 
+#include "language-sample.h"
+
 #include "textio.h"
+
+#include <QDateTime>
 
 
 USING_KANS(DSM)
 USING_KANS(TextIO)
 
 Dataset::Dataset(QString file)
-  :  file_(file)
+ :  file_(file), chapter_pages_{
+     26, 52, 76, 97, 120, 145, 176,
+     198, 220, 244, 264, 289, 311,
+     338, 367, 388, 406, 430, 450,
+     465, 486, 511, 538, 561, 585,
+     601, 630, 656, 680, 698, 724,
+                  747, 765 }
 {
 
+}
+
+int Dataset::get_chapter_number_from_page(int page)
+{
+ int result = 0;
+ for(int i : chapter_pages_)
+ {
+  if(page < i)
+    return result;
+  ++result;
+ }
+ return 0;
 }
 
 void Dataset::save_raw_file(QString text, int page, int num)
@@ -26,10 +48,30 @@ void Dataset::save_raw_file(QString text, int page, int num)
  save_file(path, text);
 }
 
+void Dataset::get_serialization(QString& text)
+{
+ for(Language_Sample* samp : samples_)
+ {
+  text += samp->get_serialization() + "\n";
+ }
+}
+
+void Dataset::save_to_file()
+{
+ QString text;
+ get_serialization(text);
+ QString dt = QDateTime::currentDateTime().toString("dd-MM-yy--hh-mm");
+ QString path = QString("%1.%2.txt").arg(file_).arg(dt);
+ save_file(path, text);
+}
+
 void Dataset::parse_to_samples(QString text, int page, int num)
 {
  int current_page = page;
- int current_index = index;
+ int current_index = num;
+ QString current_sub_index;
+ QString held_precomment;
+ QString held_postcomment;
  QStringList qsl = text.split("\n");
  for(QString qs : qsl)
  {
@@ -45,6 +87,35 @@ void Dataset::parse_to_samples(QString text, int page, int num)
    current_index = qs.mid(1).toInt();
    continue;
   }
+  if(qs.startsWith("< "))
+  {
+   held_precomment = qs.mid(2).simplified();
+   continue;
+  }
+  if(qs.startsWith("> "))
+  {
+   held_postcomment = qs.mid(2).simplified();
+   continue;
+  }
+  if(qs.size() < 3)
+    continue;
+  if( (qs[1] == '.') || (qs[1] == ')') )
+  {
+   current_sub_index = qs[0];
+   qs = qs.mid(2);
+  }
+  Language_Sample* samp = new Language_Sample(qs.simplified());
+  samp->set_page(current_page);
+  samp->set_index(current_index);
+  samp->set_sub_index(current_sub_index);
+  samp->set_chapter(get_chapter_number_from_page(current_page));
 
+  samp->set_precomment(held_precomment);
+  samp->set_postcomment(held_postcomment);
+
+  held_precomment.clear();
+  held_postcomment.clear();
+
+  samples_.push_back(samp);
  }
 }

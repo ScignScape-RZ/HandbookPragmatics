@@ -17,18 +17,25 @@
 
 KANS_(DSM)
 
+class Language_Sample;
 
 class Dataset
 {
  QString file_;
+ QVector<Language_Sample*> samples_;
+
+ QVector<int> chapter_pages_;
 
 public:
 
  Dataset(QString file);
 
  void save_raw_file(QString text, int page, int num);
-
  void parse_to_samples(QString text, int page, int num);
+ int get_chapter_number_from_page(int page);
+
+ void save_to_file();
+ void get_serialization(QString& text);
 };
 
 

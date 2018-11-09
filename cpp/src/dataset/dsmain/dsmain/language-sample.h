@@ -26,6 +26,9 @@ class Language_Sample
  int chapter_;
  int page_;
 
+ QString precomment_;
+ QString postcomment_;
+
 public:
 
  Language_Sample(QString text);
@@ -36,8 +39,12 @@ public:
  ACCESSORS(int ,chapter)
  ACCESSORS(int ,page)
 
+ ACCESSORS(QString ,precomment)
+ ACCESSORS(QString ,postcomment)
+
  static void read_samples_from_file(QString path, QVector<Language_Sample*>& result);
 
+ QString get_serialization();
 
 };
 

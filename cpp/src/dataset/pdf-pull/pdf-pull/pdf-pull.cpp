@@ -19,13 +19,14 @@
 USING_KANS(DSM)
 
 
-enum class Callbacks { N_A, Save, Parse };
+enum class Callbacks { N_A, Save, Parse, Database_Save };
 
 Callbacks parse_callback(const QString& cmd)
 {
  static QMap<QString, Callbacks> static_map {{
   {"sv", Callbacks::Save},
   {"pr", Callbacks::Parse},
+  {"ds", Callbacks::Database_Save},
  }};
 
  return static_map.value(cmd, Callbacks::N_A);
@@ -59,6 +60,11 @@ void run_dataset_callback(Dataset* ds, QString text, const QString& cmd, int* i,
  case Callbacks::Parse:
   {
    ds->parse_to_samples(text, page, num);
+  }
+  break;
+ case Callbacks::Database_Save:
+  {
+   ds->save_to_file();
   }
   break;
  default:

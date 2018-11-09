@@ -19,6 +19,15 @@ Language_Sample::Language_Sample(QString text)
 
 }
 
+QString Language_Sample::get_serialization()
+{
+ QString result = QString("%1 %2 %3 %4 <%5>%6\n").arg(index_)
+   .arg(sub_index_).arg(chapter_).arg(page_)
+   .arg(precomment_).arg(postcomment_);
+ result += text_;
+ return result;
+}
+
 void Language_Sample::read_samples_from_file(QString path, QVector<Language_Sample*>& result)
 {
  QString text = load_file(path);
@@ -26,6 +35,8 @@ void Language_Sample::read_samples_from_file(QString path, QVector<Language_Samp
  QString loc_code;
  for(QString qs : qsl)
  {
+  QString pre;
+  QString post;
   if(qs.isEmpty())
     continue;
   if(loc_code.isEmpty())
@@ -33,12 +44,30 @@ void Language_Sample::read_samples_from_file(QString path, QVector<Language_Samp
    loc_code = qs.simplified();
    continue;
   }
+  int index = loc_code.indexOf('<');
+  if(index != -1)
+  {
+   QString pp = loc_code.mid(index + 1);
+   loc_code = loc_code.left(index).simplified();
+   int i1 = pp.indexOf('>');
+   if(i1 == -1)
+   {
+    pre = pp;
+   }
+   else
+   {
+    pre = pp.left(i1);
+    post = pp.mid(i1 + 1);
+   }
+  }
   QStringList ls = loc_code.split(' ');
   Language_Sample* samp = new Language_Sample(qs);
   samp->set_index(ls[0].toInt());
   samp->set_sub_index(ls[1]);
   samp->set_chapter(ls[2].toInt());
   samp->set_page(ls[3].toInt());
+  samp->set_precomment(pre);
+  samp->set_postcomment(post);
   loc_code.clear();
   result.push_back(samp);
  }
