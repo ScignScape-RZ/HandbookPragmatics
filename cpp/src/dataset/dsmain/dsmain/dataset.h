@@ -28,7 +28,7 @@ public:
 
  void save_raw_file(QString text, int page, int num);
 
-
+ void parse_to_samples(QString text, int page, int num);
 };
 
 

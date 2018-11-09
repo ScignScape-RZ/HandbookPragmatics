@@ -19,12 +19,13 @@
 USING_KANS(DSM)
 
 
-enum class Callbacks { N_A, Save };
+enum class Callbacks { N_A, Save, Parse };
 
 Callbacks parse_callback(const QString& cmd)
 {
  static QMap<QString, Callbacks> static_map {{
   {"sv", Callbacks::Save},
+  {"pr", Callbacks::Parse},
  }};
 
  return static_map.value(cmd, Callbacks::N_A);
@@ -32,26 +33,32 @@ Callbacks parse_callback(const QString& cmd)
 
 void run_dataset_callback(Dataset* ds, QString text, const QString& cmd, int* i, QString& qs)
 {
+ int page = 0;
+ int num = 0;
+ QRegularExpression prx("@(\\d+)");
+ QRegularExpression nrx("\#(\\d+)");
+ QRegularExpressionMatch prxm;
+ QRegularExpressionMatch nrxm;
+ if(text.indexOf(prx, 0, &prxm) != -1)
+ {
+  page = prxm.captured(1).toInt();
+ }
+ if(text.indexOf(nrx, 0, &nrxm) != -1)
+ {
+  num = nrxm.captured(1).toInt();
+ }
+
  Callbacks cb = parse_callback(cmd.toLower());
  switch (cb)
  {
  case Callbacks::Save:
   {
-   int page = 0;
-   int num = 0;
-   QRegularExpression prx("@(\\d+)");
-   QRegularExpression nrx("\#(\\d+)");
-   QRegularExpressionMatch prxm;
-   QRegularExpressionMatch nrxm;
-   if(text.indexOf(prx, 0, &prxm) != -1)
-   {
-    page = prxm.captured(1).toInt();
-   }
-   if(text.indexOf(nrx, 0, &nrxm) != -1)
-   {
-    num = nrxm.captured(1).toInt();
-   }
    ds->save_raw_file(text, page, num);
+  }
+  break;
+ case Callbacks::Parse:
+  {
+   ds->parse_to_samples(text, page, num);
   }
   break;
  default:
