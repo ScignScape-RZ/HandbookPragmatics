@@ -8,15 +8,18 @@
 #include "pdf-pull/qlispconsole-dialog.h"
 #include "pdf-pull/qlispconsole.h"
 
+#include "pdf-pull/pdf-pull.h"
+
 #include <QApplication>
 
 
 int main(int argc, char *argv[])
 {
  QApplication qapp(argc, argv);
- QLispConsole* main_console = QLispConsole::getInstance();
- QLispConsole_Dialog* qld = new QLispConsole_Dialog("", main_console);
- qld->show();
+ add_to_data_set("test", 1);
+// QLispConsole* main_console = QLispConsole::getInstance();
+// QLispConsole_Dialog* qld = new QLispConsole_Dialog("", main_console);
+// qld->show();
  qapp.exec();
  return 0;
 }

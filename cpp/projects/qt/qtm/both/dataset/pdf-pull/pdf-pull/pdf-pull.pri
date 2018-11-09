@@ -8,15 +8,12 @@ include(../build-group.pri)
 
 INCLUDEPATH += $$SRC_DIR
 
+INCLUDEPATH += $$DSMAIN_SRC_GROUP_DIR
+
 QT += widgets
 
 DEFINES += CAON_DEBUG
 DEFINES += RELAE_LABEL_NODES
-
-
-INCLUDEPATH += $$RZ_KAUVIR_SRC_GROUP_DIR \
-  $$RZ_KAUVIR_SRC_GROUP_DIR/rz-graph-core  $$RZ_KAUVIR_SRC_GROUP_DIR/rz-graph-token  \
-  $$RELAE_SRC_GROUP_DIR  $$KAUVIR_KCM_SRC_GROUP_DIR
 
 
 CONFIG += no_keywords
@@ -24,7 +21,7 @@ CONFIG += no_keywords
 DEFINES += USE_KANS
 DEFINES += USE_RZNS
 
-
+DEFINES += DEFAULT_TEMP_DATASET_FILE=\\\"$$ROOT_DIR/data/temp/data.txt\\\"
 
 HEADERS += \
   $$SRC_DIR/pdf-pull.h \
@@ -39,6 +36,7 @@ SOURCES += \
   $$SRC_DIR/qconsole.cpp \
 
 
+LIBS += -L$$TARGETSDIR -ldsmain
 
 message(choice: $$CPP_ROOT_DIR/targets/$$CHOICE_CODE/$$PROJECT_SET--$$PROJECT_GROUP--$$PROJECT_NAME)
 mkpath($$CPP_ROOT_DIR/targets/$$CHOICE_CODE/$$PROJECT_SET--$$PROJECT_GROUP--$$PROJECT_NAME)

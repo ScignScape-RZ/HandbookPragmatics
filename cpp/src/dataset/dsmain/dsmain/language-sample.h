@@ -44,4 +44,4 @@ public:
 
 _KANS(DSM)
 
-#endif // AUDIO_SAMPLE__H
+#endif // LANGUAGE_SAMPLE__H

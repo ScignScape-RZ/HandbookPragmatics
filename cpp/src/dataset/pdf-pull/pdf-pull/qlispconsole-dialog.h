@@ -89,6 +89,8 @@ public:
 
  void log_command(QStringList* list, QString* cmd);
 
+ QString get_current_text();
+
  ~QLispConsole_Dialog();
 
  //void close_button_clicked();

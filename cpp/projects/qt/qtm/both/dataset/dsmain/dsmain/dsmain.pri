@@ -34,10 +34,12 @@ DEFINES += USE_RZNS
 
 HEADERS += \
   $$SRC_DIR/language-sample.h \
+  $$SRC_DIR/dataset.h \
 
 
 SOURCES += \
   $$SRC_DIR/language-sample.cpp \
+  $$SRC_DIR/dataset.cpp \
 
 
 message(choice: $$CPP_ROOT_DIR/targets/$$CHOICE_CODE/$$PROJECT_SET--$$PROJECT_GROUP--$$PROJECT_NAME)

@@ -125,6 +125,11 @@ QLispConsole_Dialog::QLispConsole_Dialog(QString text,
 
 }
 
+QString QLispConsole_Dialog::get_current_text()
+{
+ return main_text_edit_->toPlainText();
+}
+
 void QLispConsole_Dialog::log_command(QStringList* list, QString* cmd)
 {
  cmd_log_text_edit_->document()->setPlainText(list->join("\n"));
