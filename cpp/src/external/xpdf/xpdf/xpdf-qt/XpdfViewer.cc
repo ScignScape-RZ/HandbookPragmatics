@@ -55,7 +55,7 @@
 #include <QDebug>
 #include <QClipboard>
 
-extern void add_to_data_set(QString qs, int page, int p1);
+extern void add_to_data_set(QString qs, int page);
 
 #include "xpdf-component.h"
 
@@ -2939,23 +2939,49 @@ void XpdfViewer::addTab() {
 
   connect(pdf, &XpdfWidget::customContextMenuRequested, [pdf, this](const QPoint& p)
   {
-   qDebug() << p;
+   static QString held;
    int page;
    QString qs = pdf->getSelectedText(&page);
+
+   bool _held = !held.isEmpty();
+   bool _qs = !qs.isEmpty();
+
    QMenu* qm = new QMenu(this);
-   qm->addAction("Add to data set ...", [qs, pdf, page]
+   if(_qs) qm->addAction("Add to data set ...", [held, qs, pdf, page]
    {
-    add_to_data_set(qs, page, pdf->getMidPage());
+    add_to_data_set(held + qs, page);
+    held.clear();
     //qDebug() << qs;
    });
-   qm->addAction("Copy Selection to Clipboard", [qs]
+   if(_qs && !_held) qm->addAction("Hold", [qs]
+   {
+    held = qs;
+   });
+   if(_qs && _held) qm->addAction("Hold (add)", [qs]
+   {
+    held += qs;
+   });
+   if(_qs && _held) qm->addAction("Hold (replace)", [qs]
+   {
+    held = qs;
+   });
+   if(_held) qm->addAction("Unhold", []
+   {
+    held.clear();
+   });
+   if(_qs) qm->addAction("Copy Selection to Clipboard", [qs]
    {
     QApplication::clipboard()->setText(qs);
    });
-   qm->addAction("Save Selection to File", [qs]
+   if(!_qs && !_held) qm->addAction("Load default file", [pdf]
    {
-
+    pdf->loadFile(DEFAULT_PDF_FILE);
    });
+
+//   qm->addAction("Save Selection to File", [qs]
+//   {
+
+//   });
    QPoint g = pdf->mapToGlobal(p);
    qm->popup(g);
   });

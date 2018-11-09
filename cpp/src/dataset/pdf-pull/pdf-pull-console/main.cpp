@@ -5,19 +5,18 @@
 //           http://www.boost.org/LICENSE_1_0.txt)
 
 
-#include <QString>
-#include <QDebug>
+#include "pdf-pull/qlispconsole-dialog.h"
+#include "pdf-pull/qlispconsole.h"
+
+#include <QApplication>
 
 
-
-#include "qlispconsole-dialog.h"
-#include "qlispconsole.h"
-
-
-void add_to_data_set(QString qs, int page)
+int main(int argc, char *argv[])
 {
- QString text = QString("@%1 # %2").arg(page).arg(qs);
+ QApplication qapp(argc, argv);
  QLispConsole* main_console = QLispConsole::getInstance();
- QLispConsole_Dialog* qld = new QLispConsole_Dialog(text, main_console);
+ QLispConsole_Dialog* qld = new QLispConsole_Dialog("", main_console);
  qld->show();
+ qapp.exec();
+ return 0;
 }

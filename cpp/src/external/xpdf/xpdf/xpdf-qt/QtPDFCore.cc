@@ -429,6 +429,9 @@ QString QtPDFCore::getSelectedTextQString(int* page) {
   QChar c;
   int i;
 
+  // // dsC
+  if(!doc) return "";
+
   if (!doc->okToCopy()) {
     return "";
   }
