@@ -1,0 +1,12 @@
+@33 
+#5one-sided two-sided 
+> "...at least 3..." "...exactly 3..." 
+a. Pat has 3 children.
+> "...some if not all..." "...some but not all..."
+b. You ate some of the cake.
+>  "...at least ..." "... but not certain..." 
+c. It's possible she'll win.
+> "...and perhaps both" "...but not both"
+d. He's a knave or a fool.
+>  "...at least warm..." "...but not hot"
+e. It's warm.  

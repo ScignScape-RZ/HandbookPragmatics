@@ -1,0 +1,15 @@
+1 a 1 27 <>
+Even KEN knows it's unethical.
+1 b 1 27 <[in a recommendation letter for a philosophy position]>
+Jones dresses well and writes grammatical English.
+1 c 1 27 <>
+The cat is in the hamper or under the bed.
+
+
+1 a* 29 682
+Vanity is the quicksand of reason.
+1 b* 29 682
+Wit is the salt of conversation.
+1 c* 29 682
+Money is the root of evil.
+

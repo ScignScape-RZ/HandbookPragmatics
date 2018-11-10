@@ -43,8 +43,9 @@ int Dataset::get_chapter_number_from_page(int page)
 
 void Dataset::save_raw_file(QString text, int page, int num)
 {
- QString path = QString("%1.%2.%3.txt").arg(file_)
-   .arg(page).arg(num);
+ QString dt = QDateTime::currentDateTime().toString("dd-MM-yy--hh-mm");
+ QString path = QString("%1.%2.%3.%4.txt").arg(file_)
+   .arg(page).arg(num).arg(dt);
  save_file(path, text);
 }
 
@@ -103,6 +104,11 @@ void Dataset::parse_to_samples(QString text, int page, int num)
   {
    current_sub_index = qs[0];
    qs = qs.mid(2);
+  }
+  else if( (qs[2] == '.') || (qs[2] == ')') )
+  {
+   current_sub_index = qs.left(2);
+   qs = qs.mid(3);
   }
   Language_Sample* samp = new Language_Sample(qs.simplified());
   samp->set_page(current_page);
