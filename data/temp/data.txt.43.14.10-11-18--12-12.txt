@@ -1,0 +1,7 @@
+@43 
+#14
+A. Did many of the guests leave?
+< ?
+B1. No, all of them. 
+B2. Yes, (in fact) all of them.
+ 

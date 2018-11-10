@@ -28,6 +28,7 @@ class Language_Sample
 
  QString precomment_;
  QString postcomment_;
+ QString alternate_;
 
 public:
 
@@ -41,6 +42,7 @@ public:
 
  ACCESSORS(QString ,precomment)
  ACCESSORS(QString ,postcomment)
+ ACCESSORS(QString ,alternate)
 
  static void read_samples_from_file(QString path, QVector<Language_Sample*>& result);
 

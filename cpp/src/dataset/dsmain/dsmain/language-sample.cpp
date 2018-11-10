@@ -24,6 +24,10 @@ QString Language_Sample::get_serialization()
  QString result = QString("%1 %2 %3 %4 <%5>%6\n").arg(index_)
    .arg(sub_index_).arg(chapter_).arg(page_)
    .arg(precomment_).arg(postcomment_);
+ if(!alternate_.isEmpty())
+ {
+  result += QString("/ %1\n").arg(alternate_);
+ }
  result += text_;
  return result;
 }
@@ -33,12 +37,18 @@ void Language_Sample::read_samples_from_file(QString path, QVector<Language_Samp
  QString text = load_file(path);
  QStringList qsl = text.split('\n');
  QString loc_code;
+ QString alternate;
  for(QString qs : qsl)
  {
   QString pre;
   QString post;
   if(qs.isEmpty())
     continue;
+  if(qs.startsWith('/'))
+  {
+   alternate = qs.mid(2).simplified();
+   continue;
+  }
   if(loc_code.isEmpty())
   {
    loc_code = qs.simplified();
@@ -68,6 +78,11 @@ void Language_Sample::read_samples_from_file(QString path, QVector<Language_Samp
   samp->set_page(ls[3].toInt());
   samp->set_precomment(pre);
   samp->set_postcomment(post);
+  if(!alternate.isEmpty())
+  {
+   samp->set_alternate(alternate);
+   alternate.clear();
+  }
   loc_code.clear();
   result.push_back(samp);
  }

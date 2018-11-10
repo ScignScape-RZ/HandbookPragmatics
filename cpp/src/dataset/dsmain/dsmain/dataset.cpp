@@ -73,6 +73,7 @@ void Dataset::parse_to_samples(QString text, int page, int num)
  QString current_sub_index;
  QString held_precomment;
  QString held_postcomment;
+ QString held_alternate;
  QStringList qsl = text.split("\n");
  for(QString qs : qsl)
  {
@@ -98,6 +99,11 @@ void Dataset::parse_to_samples(QString text, int page, int num)
    held_postcomment = qs.mid(2).simplified();
    continue;
   }
+  if(qs.startsWith("/ "))
+  {
+   held_alternate = qs.mid(2).simplified();
+   continue;
+  }
   if(qs.size() < 3)
     continue;
   if( (qs[1] == '.') || (qs[1] == ')') )
@@ -110,6 +116,11 @@ void Dataset::parse_to_samples(QString text, int page, int num)
    current_sub_index = qs.left(2);
    qs = qs.mid(3);
   }
+  else if( (qs[3] == '.') || (qs[3] == ')') )
+  {
+   current_sub_index = qs.left(3);
+   qs = qs.mid(4);
+  }
   Language_Sample* samp = new Language_Sample(qs.simplified());
   samp->set_page(current_page);
   samp->set_index(current_index);
@@ -118,6 +129,12 @@ void Dataset::parse_to_samples(QString text, int page, int num)
 
   samp->set_precomment(held_precomment);
   samp->set_postcomment(held_postcomment);
+
+  if(!held_alternate.isEmpty())
+  {
+   samp->set_alternate(held_alternate);
+   held_alternate.clear();
+  }
 
   held_precomment.clear();
   held_postcomment.clear();

@@ -1,0 +1,56 @@
+10 a1 1 40 <>
+He got the machine to stop.
+10 a2 1 40 <>
+He stopped the machine.
+10 b1 1 40 <>
+Her blouse was pale red.
+10 b2 1 40 <>
+Her blouse was pink.
+10 c1 1 40 <>
+She wants her to win.
+10 c2 1 40 <>
+She wants PRO to win.
+10 d1 1 40 <>
+I am going to marry you.
+10 d2 1 40 <>
+I will marry you.
+10 e1 1 40 <>(the jail, the school)
+My brother went to the church.
+10 e2 1 40 <>(jail, school)
+My brother went to church.
+10 f1 1 40 <>
+It's not impossible that you will solve the problem.
+10 f2 1 40 <>
+It's possible that you will solve the problem.
+10 g1 1 40 <>
+That's my father's wife.
+10 g2 1 40 <>
+That's my mother.
+11 a 1 41 <>
+They got married and (they) had a child.
+11 b 1 41 <>
+They had a child and (they) got married.
+11 c 1 41 <>
+They got married and then (they) had a child.
+12 a 1 42 <>
+If they got married and had a child, their parents will be pleased, but if they had a child and got married their parents will not be pleased.
+12 b 1 42 <>
+They didn't get married and have a child; they had a child and got married.
+12 c 1 42 <>
+It's more acceptable to get married and have a child than to have a child and get married.
+13 A 1 43 <>
+Do you have two children?
+13 B1 1 43 <>
+No, three.
+13 B2 1 43 <?>
+Yes, (in fact) three.
+14 A 1 43 <>
+Did many of the guests leave?
+14 B1 1 43 <?>
+No, all of them.
+14 B2 1 43 <>
+Yes, (in fact) all of them.
+15 a 1 43 <#>
+Neither of us liked the movie -- she adored it and I hated it.
+15 b 1 43 <>
+Neither of us has three kids -- she has two and I have four.
