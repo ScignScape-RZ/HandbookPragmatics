@@ -56,6 +56,9 @@ struct PDFHistory {
 
 #define pdfHistorySize 50
 
+// //  dsC
+#include <QVector>
+
 //------------------------------------------------------------------------
 // SelectMode
 //------------------------------------------------------------------------
@@ -194,7 +197,7 @@ public:
        GBool wholeWord, GBool onePageOnly);
   virtual GBool findU(Unicode *u, int len, GBool caseSensitive,
         GBool next, GBool backward, GBool wholeWord,
-        GBool onePageOnly);
+        GBool onePageOnly, QVector<Unicode*>* us = nullptr); // //  dsC
 
 
   //----- coordinate conversion

@@ -804,11 +804,13 @@ GBool QtPDFCore::find(char *s, GBool caseSensitive, GBool next,
   return gTrue;
 }
 
+
+// // dsC: paren_pattern
 GBool QtPDFCore::findU(Unicode *u, int len, GBool caseSensitive,
          GBool next, GBool backward,
-         GBool wholeWord, GBool onePageOnly) {
+         GBool wholeWord, GBool onePageOnly, QVector<Unicode*>* us) {
   if (!PDFCore::findU(u, len, caseSensitive, next,
-        backward, wholeWord, onePageOnly)) {
+        backward, wholeWord, onePageOnly, us)) {
     return gFalse;
   }
 #ifndef NO_TEXT_SELECT

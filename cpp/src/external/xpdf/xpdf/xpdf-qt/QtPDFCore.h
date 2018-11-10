@@ -116,7 +116,7 @@ public:
        GBool backward, GBool wholeWord, GBool onePageOnly);
   virtual GBool findU(Unicode *u, int len, GBool caseSensitive,
         GBool next, GBool backward,
-        GBool wholeWord, GBool onePageOnly);
+        GBool wholeWord, GBool onePageOnly, QVector<Unicode*>* us = nullptr); // // dsC
 
   //----- password dialog
 

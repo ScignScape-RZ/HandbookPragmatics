@@ -55,6 +55,11 @@
 // Time (in ms) between incremental updates.
 #define incrementalUpdateInterval 100
 
+// //  dsC
+#include <QQueue>
+#include <QDebug>
+
+
 //------------------------------------------------------------------------
 
 QMutex XpdfWidget::initMutex;
@@ -1480,16 +1485,65 @@ bool XpdfWidget::find(const QString &text, int flags) {
     }
     len = text.length();
     u = (Unicode *)gmallocn(len, sizeof(Unicode));
+
+    QVector<Unicode*> qv;
+    QQueue<Unicode*> qe;
+    QVector<Unicode*>* us = nullptr;
+
     for (i = 0; i < len; ++i) {
       u[i] = (Unicode)text[i].unicode();
     }
+
+    bool opo = flags & findOnePageOnly;
+
+    if(flags & find_with_paren_pattern)
+    {
+     opo = true;
+     for(int _i = 0; _i < 10; ++_i)
+     {
+      QString _text = QString::number(i);
+      Unicode* _u = (Unicode *)gmallocn(len + 1, sizeof(Unicode));
+      _u[0] = (Unicode)_text[0].unicode();
+      for(int j = 0; j < len; ++j)
+      {
+       _u[j + 1] = u[j];
+      }
+      qe.enqueue(_u);
+     }
+     qv = qe.toVector();
+     us = &qv;
+    }
+
+
     ret = (bool)core->findU(u, len,
        (flags & findCaseSensitive) ? gTrue : gFalse,
        (flags & findNext) ? gTrue : gFalse,
        (flags & findBackward) ? gTrue : gFalse,
        (flags & findWholeWord) ? gTrue : gFalse,
-       (flags & findOnePageOnly) ? gTrue : gFalse);
+       (flags & findOnePageOnly) ? gTrue : gFalse
+       ,us // dsC
+      );
     gfree(u);
+
+    while(!qe.isEmpty())
+    {
+     Unicode* _u = qe.dequeue();
+     gfree(_u);
+    }
+
+    // //dsC
+    if(ret)
+    {
+     if(flags & find_with_paren_pattern)
+     {
+      qDebug() << "found: " << getSelectedText();
+     }
+    }
+    else if(flags & find_with_paren_pattern)
+    {
+     //adv page ...
+    }
+
     return ret;
   } catch (GMemException e) {
     return false;

@@ -33,6 +33,7 @@
 #include "TileCompositor.h"
 #include "PDFCore.h"
 
+
 //------------------------------------------------------------------------
 // PDFCore
 //------------------------------------------------------------------------
@@ -1352,7 +1353,7 @@ GBool PDFCore::find(char *s, GBool caseSensitive, GBool next, GBool backward,
     u[i] = (Unicode)(s[i] & 0xff);
   }
 
-  ret = findU(u, len, caseSensitive, next, backward, wholeWord, onePageOnly);
+  ret = findU(u, len, caseSensitive, next, backward, wholeWord, onePageOnly); // dsC
 
   gfree(u);
   return ret;
@@ -1360,7 +1361,7 @@ GBool PDFCore::find(char *s, GBool caseSensitive, GBool next, GBool backward,
 
 GBool PDFCore::findU(Unicode *u, int len, GBool caseSensitive,
        GBool next, GBool backward, GBool wholeWord,
-       GBool onePageOnly) {
+       GBool onePageOnly, QVector<Unicode*>* us) { // // dsC
   TextOutputDev *textOut;
   SelectRect *rect;
   double xMin, yMin, xMax, yMax;
@@ -1408,7 +1409,53 @@ GBool PDFCore::findU(Unicode *u, int len, GBool caseSensitive,
     startAtTop = gTrue;
   }
   loadText(pg);
-  if (text->findText(u, len, startAtTop, gTrue, startAtLast, gFalse,
+
+  if(us)
+  {
+   int count = 0;
+   for(Unicode* _u : *us)
+   {
+    double _xMin, _yMin, _xMax, _yMax;
+    if (text->findText(_u, len, startAtTop, gTrue, startAtLast, gFalse,
+           caseSensitive, backward, wholeWord,
+           &_xMin, &_yMin, &_xMax, &_yMax))
+    {
+     ++count;
+     if(count == 1)
+     {
+      xMin = _xMin;
+      yMin = _yMin;
+      xMax = _xMax;
+      yMax = _yMax;
+      continue;
+     }
+     if(backward)
+     {
+      // //  assume can't be on same line ...
+      if(yMax < _yMax)
+      {
+       xMin = _xMin;
+       yMin = _yMin;
+       xMax = _xMax;
+       yMax = _yMax;
+      }
+     }
+     else
+     {
+      if(_yMax < yMax)
+      {
+       xMin = _xMin;
+       yMin = _yMin;
+       xMax = _xMax;
+       yMax = _yMax;
+      }
+     }
+    }
+   }
+   if(count)
+     goto found;
+  }
+  else if (text->findText(u, len, startAtTop, gTrue, startAtLast, gFalse,
        caseSensitive, backward, wholeWord,
        &xMin, &yMin, &xMax, &yMax)) {
     goto found;

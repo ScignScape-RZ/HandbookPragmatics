@@ -115,6 +115,10 @@ public:
   static const int findOnePageOnly   = 0x00000008;
   //! limit the search to whole words
   static const int findWholeWord     = 0x00000010;
+
+  // //  dsC
+  static const int find_with_paren_pattern     = 0x00000020;
+
   //@}
 
   //! Initialize the XpdfWidget class, reading a configuration file.

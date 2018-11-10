@@ -1174,6 +1174,7 @@ void XpdfViewer::cmdFindFirst(GString *args[], int nArgs, QInputEvent *event) {
   if (!currentTab->pdf->find(findEdit->text(), flags)) {
     showFindError();
   }
+
 }
 
 void XpdfViewer::cmdFindNext(GString *args[], int nArgs, QInputEvent *event) {
@@ -1187,6 +1188,17 @@ void XpdfViewer::cmdFindNext(GString *args[], int nArgs, QInputEvent *event) {
   if (findWholeWordsAction->isChecked()) {
     flags |= XpdfWidget::findWholeWord;
   }
+
+  // //  dsC
+  if(find_)
+  {
+   flags |= XpdfWidget::find_with_paren_pattern;
+   if (!currentTab->pdf->find(")", flags))
+   {
+     showFindError();
+   }
+  }
+  else
   if (!currentTab->pdf->find(findEdit->text(), flags)) {
     showFindError();
   }
@@ -2650,6 +2662,17 @@ void XpdfViewer::createToolBar() {
   findCaseSensitiveAction->setCheckable(true);
   findWholeWordsAction = findSettingsMenu->addAction("whole words");
   findWholeWordsAction->setCheckable(true);
+
+  // // dsC
+  find_ = 0;
+  QAction* find_paren_pattern_action = findSettingsMenu->addAction("use paren pattern");
+  find_paren_pattern_action->setCheckable(true);
+  connect(find_paren_pattern_action, &QAction::toggled,
+          [this](bool b)
+  {
+   find_ = b;
+  });
+
   addToolBarMenuButton(QIcon(":/findSettings-button"),
          "change find settings", findSettingsMenu);
 }

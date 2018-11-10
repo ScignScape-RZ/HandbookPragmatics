@@ -368,7 +368,10 @@ private:
   static XpdfViewerCmd cmdTab[];
 
   XpdfApp *app;
+
+  // // dsC
   Xpdf_Component* xpdfc_;
+  int find_;
 
   // menu
   QMenuBar *mainMenu;
