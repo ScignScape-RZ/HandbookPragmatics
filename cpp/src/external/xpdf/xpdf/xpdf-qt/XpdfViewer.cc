@@ -1190,13 +1190,32 @@ void XpdfViewer::cmdFindNext(GString *args[], int nArgs, QInputEvent *event) {
   }
 
   // //  dsC
-  if(find_)
+  if(find_ != -1)
   {
+   int n = 0;
+   QString nn = findEdit->text();
+   if(!nn.isEmpty())
+     n = nn.toInt();
+   int fnd = n? n: find_ + 1;
    flags |= XpdfWidget::find_with_paren_pattern;
-   if (!currentTab->pdf->find(")", flags))
-   {
-     showFindError();
-   }
+   QString srch = QString("%1)").arg(fnd);
+   qDebug() << "looking for " << srch;
+
+//   for(int fwd = 0; fwd < 10; ++ fwd)
+//   {
+//    if(fwd)
+//      qDebug() << "Forward pages " << fwd;
+    if(currentTab->pdf->find(srch, flags))
+    {
+     find_ = fnd;
+     //break;
+    }
+    else
+    {
+     //--find_;
+     //showFindError();
+    }
+//   }
   }
   else
   if (!currentTab->pdf->find(findEdit->text(), flags)) {
@@ -1206,6 +1225,15 @@ void XpdfViewer::cmdFindNext(GString *args[], int nArgs, QInputEvent *event) {
 
 void XpdfViewer::cmdFindPrevious(GString *args[], int nArgs,
      QInputEvent *event) {
+
+ // //  dsC
+ if(find_ != -1)
+ {
+  if(findEdit->text().isEmpty())
+    --find_;
+  cmdFindNext(args, nArgs, event);
+ }
+
   int flags;
 
   clearFindError();
@@ -2667,10 +2695,11 @@ void XpdfViewer::createToolBar() {
   find_ = 0;
   QAction* find_paren_pattern_action = findSettingsMenu->addAction("use paren pattern");
   find_paren_pattern_action->setCheckable(true);
+  find_paren_pattern_action->setChecked(true);
   connect(find_paren_pattern_action, &QAction::toggled,
           [this](bool b)
   {
-   find_ = b;
+   find_ = b? 0:-1;
   });
 
   addToolBarMenuButton(QIcon(":/findSettings-button"),

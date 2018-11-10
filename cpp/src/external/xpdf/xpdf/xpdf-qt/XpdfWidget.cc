@@ -1475,7 +1475,11 @@ void XpdfWidget::copySelection() {
 }
 
 bool XpdfWidget::find(const QString &text, int flags) {
-  Unicode *u;
+
+ QString txt = text;
+
+
+ Unicode *u;
   bool ret;
   int len, i;
 
@@ -1483,7 +1487,7 @@ bool XpdfWidget::find(const QString &text, int flags) {
     if (!core->getDoc()) {
       return false;
     }
-    len = text.length();
+    len = txt.length();
     u = (Unicode *)gmallocn(len, sizeof(Unicode));
 
     QVector<Unicode*> qv;
@@ -1491,12 +1495,13 @@ bool XpdfWidget::find(const QString &text, int flags) {
     QVector<Unicode*>* us = nullptr;
 
     for (i = 0; i < len; ++i) {
-      u[i] = (Unicode)text[i].unicode();
+      u[i] = (Unicode)txt[i].unicode();
     }
 
     bool opo = flags & findOnePageOnly;
     bool nxt = flags & findNext;
 
+#ifdef HIDE
     if(flags & find_with_paren_pattern)
     {
      opo = true;
@@ -1511,7 +1516,7 @@ bool XpdfWidget::find(const QString &text, int flags) {
 //       _u[j + 1] = u[j];
 //      }
 
-      QString _text = text; //QString::number(i) + text;
+      QString _text = QString::number(i) + text;
       int _len = _text.size();
       Unicode* _u = (Unicode *)gmallocn(_len, sizeof(Unicode));
       for(int j = 0; j < _len; ++j)
@@ -1524,7 +1529,7 @@ bool XpdfWidget::find(const QString &text, int flags) {
      qv = qe.toVector();
      //us = &qv;
     }
-
+#endif
 
     ret = (bool)core->findU(u, len,
        (flags & findCaseSensitive) ? gTrue : gFalse,
@@ -1536,6 +1541,7 @@ bool XpdfWidget::find(const QString &text, int flags) {
       );
     gfree(u);
 
+#ifdef HIDE
     while(!qe.isEmpty())
     {
      Unicode* _u = qe.dequeue();
@@ -1554,17 +1560,18 @@ bool XpdfWidget::find(const QString &text, int flags) {
     {
      if(flags & findBackward)
      {
-      qDebug() << "not found; to previous page";
+      //qDebug() << "not found; to previous page";
       //adv page ...
       core->gotoPrevPage(1, true, false);
      }
      else
      {
-      qDebug() << "not found; to next page";
+      //qDebug() << "not found; to next page";
       core->gotoNextPage(1, true);
      }
 
     }
+#endif
 
     return ret;
   } catch (GMemException e) {
