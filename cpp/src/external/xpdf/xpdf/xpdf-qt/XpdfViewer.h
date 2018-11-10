@@ -372,6 +372,7 @@ private:
   // // dsC
   Xpdf_Component* xpdfc_;
   int find_;
+  int last_hold_page_;
 
   // menu
   QMenuBar *mainMenu;

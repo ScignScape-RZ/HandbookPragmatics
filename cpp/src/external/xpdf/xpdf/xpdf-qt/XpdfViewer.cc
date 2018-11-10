@@ -1177,11 +1177,45 @@ void XpdfViewer::cmdFindFirst(GString *args[], int nArgs, QInputEvent *event) {
 
 }
 
+int get_chapter_number_from_page(int page, int& next)
+{
+ QVector<int> chapter_pages {{
+   26, 52, 76, 97, 120, 145, 176,
+   198, 220, 244, 264, 289, 311,
+   338, 367, 388, 406, 430, 450,
+   465, 486, 511, 538, 561, 585,
+   601, 630, 656, 680, 698, 724,
+                747, 765
+ }};
+ int result = 0;
+ for(int i : chapter_pages)
+ {
+  if(page < i)
+  {
+   next = i;
+   return result;
+  }
+  ++result;
+ }
+ return 0;
+}
+
 void XpdfViewer::cmdFindNext(GString *args[], int nArgs, QInputEvent *event) {
   int flags;
 
   clearFindError();
+
+  // // dsC
+  if(last_hold_page_)
+  {
+   flags = 0;
+   last_hold_page_ = 0;
+  }
+  else
   flags = XpdfWidget::findNext;
+
+
+
   if (findCaseSensitiveAction->isChecked()) {
     flags |= XpdfWidget::findCaseSensitive;
   }
@@ -1192,6 +1226,10 @@ void XpdfViewer::cmdFindNext(GString *args[], int nArgs, QInputEvent *event) {
   // //  dsC
   if(find_ != -1)
   {
+   int nxt_pg;
+   int pg = currentTab->pdf->core->getPageNum();
+   int cn = get_chapter_number_from_page(pg, nxt_pg);
+
    int n = 0;
    QString nn = findEdit->text();
    if(!nn.isEmpty())
@@ -1199,22 +1237,38 @@ void XpdfViewer::cmdFindNext(GString *args[], int nArgs, QInputEvent *event) {
    int fnd = n? n: find_ + 1;
    flags |= XpdfWidget::find_with_paren_pattern;
    QString srch = QString("%1)").arg(fnd);
-   qDebug() << "looking for " << srch;
+   qDebug() << "looking for " << srch <<
+     " (chapter " << cn << " page " << pg;
 
 //   for(int fwd = 0; fwd < 10; ++ fwd)
 //   {
 //    if(fwd)
 //      qDebug() << "Forward pages " << fwd;
-    if(currentTab->pdf->find(srch, flags))
+   if(currentTab->pdf->find(srch, flags))
+   {
+    int _nxt_pg;
+    int _pg = currentTab->pdf->core->getPageNum();
+    int _cn = get_chapter_number_from_page(_pg, _nxt_pg);
+    if(_cn > cn)
     {
-     find_ = fnd;
-     //break;
+     qDebug() << "to next chapter ...";
+     find_ = 0;
+     last_hold_page_ = pg;
+     for(int p = _pg; p >= nxt_pg; --p)
+       currentTab->pdf->core->gotoPrevPage(1, true, false);
     }
     else
     {
+     find_ = fnd;
+    }
+     //break;
+   }
+   else
+   {
+
      //--find_;
      //showFindError();
-    }
+   }
 //   }
   }
   else
@@ -2692,6 +2746,7 @@ void XpdfViewer::createToolBar() {
   findWholeWordsAction->setCheckable(true);
 
   // // dsC
+  last_hold_page_ = 0;
   find_ = 0;
   QAction* find_paren_pattern_action = findSettingsMenu->addAction("use paren pattern");
   find_paren_pattern_action->setCheckable(true);
