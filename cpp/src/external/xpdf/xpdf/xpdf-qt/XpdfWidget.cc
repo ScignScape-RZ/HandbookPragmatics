@@ -1495,32 +1495,43 @@ bool XpdfWidget::find(const QString &text, int flags) {
     }
 
     bool opo = flags & findOnePageOnly;
+    bool nxt = flags & findNext;
 
     if(flags & find_with_paren_pattern)
     {
      opo = true;
-     for(int _i = 0; _i < 10; ++_i)
+     nxt = false;
+     for(int _i = 0; _i < 1; ++_i)//_i < 10; ++_i)
      {
-      QString _text = QString::number(i);
-      Unicode* _u = (Unicode *)gmallocn(len + 1, sizeof(Unicode));
-      _u[0] = (Unicode)_text[0].unicode();
-      for(int j = 0; j < len; ++j)
+//      QString _text = QString::number(i);
+//      Unicode* _u = (Unicode *)gmallocn(len + 1, sizeof(Unicode));
+//      _u[0] = (Unicode)_text[0].unicode();
+//      for(int j = 0; j < len; ++j)
+//      {
+//       _u[j + 1] = u[j];
+//      }
+
+      QString _text = text; //QString::number(i) + text;
+      int _len = _text.size();
+      Unicode* _u = (Unicode *)gmallocn(_len, sizeof(Unicode));
+      for(int j = 0; j < _len; ++j)
       {
-       _u[j + 1] = u[j];
+       _u[j] = (Unicode)_text[j].unicode();
       }
+
       qe.enqueue(_u);
      }
      qv = qe.toVector();
-     us = &qv;
+     //us = &qv;
     }
 
 
     ret = (bool)core->findU(u, len,
        (flags & findCaseSensitive) ? gTrue : gFalse,
-       (flags & findNext) ? gTrue : gFalse,
+       nxt,
        (flags & findBackward) ? gTrue : gFalse,
        (flags & findWholeWord) ? gTrue : gFalse,
-       (flags & findOnePageOnly) ? gTrue : gFalse
+       opo // (flags & findOnePageOnly) ? gTrue : gFalse
        ,us // dsC
       );
     gfree(u);
@@ -1541,7 +1552,18 @@ bool XpdfWidget::find(const QString &text, int flags) {
     }
     else if(flags & find_with_paren_pattern)
     {
-     //adv page ...
+     if(flags & findBackward)
+     {
+      qDebug() << "not found; to previous page";
+      //adv page ...
+      core->gotoPrevPage(1, true, false);
+     }
+     else
+     {
+      qDebug() << "not found; to next page";
+      core->gotoNextPage(1, true);
+     }
+
     }
 
     return ret;
