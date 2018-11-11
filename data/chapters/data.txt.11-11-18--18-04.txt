@@ -1,0 +1,44 @@
+1 _ 9 222 <>
+Please hand me some lilacs.
+2 a' 9 223 <A>
+Where's the ham sandwich?
+2 b' 9 223 <B>
+He's sitting at table 20.
+3 _ 9 223 <>
+I ordered a ham sandwich, too.
+4 _ 9 226 <>
+If a farmer owns a donkey, he always uses it to plow his fields.
+5 _ 9 226 <>
+Most farmers that own a donkey use it to plow their fields
+6 _ 9 227 <>
+It had to be fed extra grain during plowing season last spring.
+7 a 9 227 <>
+A farmer owns a donkey.
+7 b 9 227 <>
+He uses it to plow his fields.
+9 a 9 233 <A>
+I need to catch the 1:20 to Philadelphia.
+9 b 9 233 <A>
+Where's it leaving from?
+9 c 9 233 <B>
+Platform 7.
+9 d 9 233 <A>
+Where do I get a ticket?
+9 e 9 233 <B>
+From the booth at the far right end of the hall.
+11 a 9 236 <>
+I'm hungry.
+11 b 9 236 <>
+Let's go to the Fuji Gardens.
+12 a 9 236 <>
+We don't want orange juice.
+12 b 9 236 <>
+We want apple juice.
+13 a 9 236 <>
+I love to collect classic automobiles.
+13 b 9 236 <>
+My favorite car is my 1899 Duryea.
+14 a 9 236 <>
+Go jogging with me this afternoon.
+14 b 9 236 <>
+You'll be full of energy.

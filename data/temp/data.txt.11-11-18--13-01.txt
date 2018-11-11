@@ -1,0 +1,28 @@
+1 a' 8 198 <A>
+We are now passing the oldest winery in the region.
+1 b' 8 198 <B>
+Why?
+3 a' 8 200 <A>
+Who called?
+3 b' 8 200 <B>
+Pat said SHE called.
+4 a' 8 200 <A>
+Did you order the chicken or the pork?
+4 b' 8 200 <B>
+It was the PORK that I ordered.
+5 a 8 201 <>
+Who did the Red Sox play?
+5 b 8 201 <>
+The Red Sox played the YANKEES.
+5 c 8 201 <#>
+The RED SOX played the Yankees.
+5 d 8 201 <#>
+I love baseball.
+0 _ 8 203 <>
+My sister, she's a high school teacher.
+9 _ 8 203 <>
+That book you borrowed, are you finished reading it yet?
+10 _ 8 203 <>
+My work, I'm going crazy.
+11 _ 8 203 <>
+The Red Sox, did they play the Yankees?

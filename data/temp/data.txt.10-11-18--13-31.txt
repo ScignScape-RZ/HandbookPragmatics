@@ -1,0 +1,4 @@
+17 a 1 44 <>
+John and Mary are married, but not to each other.
+17 b 1 44 <>
+They had a child and got married, but not necessarily in that order.

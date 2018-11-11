@@ -1,0 +1,12 @@
+1 a' 8 198 <A>
+We are now passing the oldest winery in the region.
+1 b' 8 198 <B>
+Why?
+3 a' 8 200 <A>
+Who called?
+3 b' 8 200 <B>
+Pat said SHE called.
+4 a' 8 200 <A>
+Did you order the chicken or the pork?
+4 b' 8 200 <B>
+It was the PORK that I ordered.

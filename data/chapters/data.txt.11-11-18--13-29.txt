@@ -1,0 +1,105 @@
+1 a' 8 198 <A>
+We are now passing the oldest winery in the region.
+1 b' 8 198 <B>
+Why?
+3 a' 8 200 <A>
+Who called?
+3 b' 8 200 <B>
+Pat said SHE called.
+4 a' 8 200 <A>
+Did you order the chicken or the pork?
+4 b' 8 200 <B>
+It was the PORK that I ordered.
+5 a 8 201 <>
+Who did the Red Sox play?
+5 b 8 201 <>
+The Red Sox played the YANKEES.
+5 c 8 201 <#>
+The RED SOX played the Yankees.
+5 d 8 201 <#>
+I love baseball.
+0 _ 8 203 <>
+My sister, she's a high school teacher.
+9 _ 8 203 <>
+That book you borrowed, are you finished reading it yet?
+10 _ 8 203 <>
+My work, I'm going crazy.
+11 _ 8 203 <>
+The Red Sox, did they play the Yankees?
+12 a 8 203 <>
+The window, it's still open.
+12 b 8 203 <*>
+A window, it's still open.
+13 _ 8 204 <>
+An old preacher down there, they augured under the grave where his wife was buried.
+14 a' 8 204 <A>
+Do you know who called the meeting?
+14 b1 8 204 <B1>
+BILL called the meeting.
+14 b2 8 204 <B2>
+It was BILL who called the meeting.
+15 _ 8 205 <>
+Every time we get together I'm the one who has to organize things, but this time BILL called the meeting.
+16 _ 8 205 <>
+We have to get rid of some of these clothes. That COAT you're wearing I think we can give to the Salvation ARMY.
+17 a' 8 205 <A>
+Who made all this great food?
+17 b' 8 205 <B>
+BILL made the CURRY.
+18 a' 8 206 <A>
+Which of these clothes do you think we should give to the Salvation Army?
+18 b' 8 206 <B>
+/ That COAT you're wearing.
+That COAT you're wearing (I think we can give away).
+21 _ 8 207 <>
+Nazis tear down antiwar posters.
+22 a 8 208 <>
+Fred ate the beans.
+22 b 8 208 <>
+The beans, Fred ate.
+22 c 8 208 <>
+It was the beans that Fred ate.
+22 d 8 208 <>
+The beans, Fred ate them.
+22 e 8 208 <>
+Fred ate them, the beans.
+23 _ 8 209 <[Beginning of a newspaper article]>
+It was just about 50 years ago that Henry Ford gave us the weekend. On September 25, 1926, in a somewhat shocking move for that time, he decided to establish a 40-hour work week, giving his employees two days off instead of one.
+24 _ 8 209 <>
+The federal government is dealing with AIDS as if the virus was a problem that didn't travel along interstate highways and was none of its business. It's this lethal national inertia in the face of the most devastating epidemic of the late 20th century that finally prompted one congressman to strike out on his own.
+25 _ 8 210 <>
+Most middle-class Americans, when they look at the costs plus the benefits, they're going to be much better off.
+26 _ 8 210 <>
+Any company, if they're worth 150 million dollars, you don't need to think of...
+25 _ 8 211 <25'>
+(As for) Middle-class Americans, when most of them look at the costs plus the benefits, they're going to be much better off.
+26 _ 8 211 <26'>
+(As for) Companies, if any one of them is worth 150 million dollars, you don't need to think of. . .
+30 a 8 213 <>
+The King of France is BALD.
+30 b 8 213 <>
+The King of FRANCE is bald.
+31 a 8 213 <>(no dogless people allowed)
+DOGS must be carried.
+31 b 8 213 <>(if you have a dog with you, you must carry it)
+Dogs must be CARRIED.
+32 a 8 213 <>(no final sonorants)
+Only voiceless OBSTRUENTS occur in word final position.
+32 b 8 213 <>(final sonorants ok)
+Only VOICELESS obstruents occur in word final position.
+33 a 8 213 <>(the tickets were a mistake)
+Clyde gave me the TICKETS by mistake.
+33 b 8 213 <>(giving ME the tickets was a mistake)
+Clyde gave ME the tickets by mistake.
+34 a 8 213 <>(there were no larger demonstrations anywhere)
+The largest demonstrations took place in PRAGUE in November 1989.
+34 b 8 213 <>(there may have been larger demonstrations in Budapest at that time)
+The largest demonstrations took place in Prague in NOVEMBER 1989.
+35 _ 8 214 <>
+The largest demonstrations took place in [sc.prague] in NOVEMBER (in) 1989.
+36 a 8 215 <>
+What's Jane doing?
+36 b 8 215 <>
+Jane's walking her DOG.
+36 c 8 215 <>
+As for Jane, she's walking her DOG.

@@ -1,0 +1,30 @@
+6 _ 6 148 <>
+That wasn't A reason I left Pittsburgh, it was THE reason.
+7 _ 6 149 <>
+The king of France is bald.
+8 _ 6 149 <>
+The youngest student in the class got the best grade.
+10 _ 6 152 <>
+The author of Waverley is Scott.
+12 _ 6 154 <>
+Yesterday the dog got into a fight with a dog. The dogs were snarling and snapping at each other for half an hour. I'll have to see to it that the dog doesn't get near that dog again.
+13 a 6 154 <>
+Towards evening we came to the bank of a river.
+13 b 6 154 <>
+The boy scribbled on the living-room wall.
+13 c 6 154 <>
+John was hit on the arm.
+14 a 6 154 <#>
+The bank of the Thames is the personal property of the Queen.
+14 b 6 154 <#>
+Mary painted the living room wall.
+15  _ 6 155 <#>
+He scribbled on a living-room wall.
+15 _ 6 155 <#>
+He scribbled on a living-room wall.
+16 a 6 155 <>
+There were the same people at both conferences.
+16 b 6 155 <>
+There was the usual crowd at the beach.
+16 c 6 155 <>
+There was the stupidest article on the reading list.
