@@ -1,0 +1,64 @@
+1 a 14 338 <>
+Then John hit Bill.
+1 b 14 338 <>
+Then Johni hit his roommate.
+1 c 14 338 <>
+Then Bill's roommate hit him.
+1 a 14 338 <>
+Then John hit Bill.
+1 b 14 338 <>
+Then John hit his roommate.
+1 c 14 338 <>
+Then Bill's roommate hit him.
+2 a 14 338 <>
+Then Bill was hit by John.
+2 b 14 338 <>
+Then Billj was hit by his roommate.
+2 c 14 338 <??*>
+Then John's roommate was hit by him.
+7 a 14 341 <>
+Then I hit John.
+7 b 14 341 <??*>
+Then John was hit by me.
+8 a 14 341 <>
+Mary had quite an experience at the party she went to last week. She slapped a drunken reporter on the face.
+8 b 14 341 <*(ls)>
+Mary had quite an experience at the party she went to last night. A drunken reporter was slapped on the face by her.
+9 a 14 341 <>
+Mary had quite an experience at the party she went to last night. She met a New York Times reporter.
+9 b 14 341 <*(ls)>
+Mary had quite an experience at the party she went to last night. A New York Times reporter met her.
+9 c 14 341 <>
+Mary had quite an experience at the party she went to last night. A New York Times reporter asked her about her occupation.
+10 a 14 342 <>
+John and Mary met.
+10 b 14 342 <>
+Mary and John met.
+10 c 14 342 <>
+John met Mary.
+10 d 14 342 <>
+Mary met John.
+12 a 14 343 <>
+John told Mary that Jane was seriously sick.
+12 b 14 343 <>
+Mary heard from John that Jane was seriously sick.
+13 a 14 343 <>
+John sent Mary a Valentine's Day present.
+13 b 14 343 <>
+Mary received from John a Valentine's Day present.
+14 a 14 343 <>
+I told Mary that Jane was seriously sick.
+14 b 14 343 <??>
+Mary heard from me that Jane was seriously sick
+15 a 14 343 <>
+I sent Mary a Valentine's Day present.
+15 b 14 343 <??>
+Mary received from me a Valentine's Day present.
+16 a 14 343 <>
+John told Mary what she had told him two days before.
+16 b 14 343 <>
+John told Mary what he had heard from her two days before.
+16 c 14 343 <>
+Mary heard from John what she had told him two days before.
+16 d 14 343 <??>
+Mary heard from John what he had heard from her two days before.

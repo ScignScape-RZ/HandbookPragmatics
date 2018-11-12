@@ -1,0 +1,22 @@
+5 a 13 313 <>
+Handel admired himself.
+5 b 13 313 <>
+Handel admired him.
+5 c 13 313 <>
+Handel admired Handel.
+11 a 13 316 <>
+George W. Bush saw a picture of himself in The New York Times.
+11 a` 13 316 <>
+George W. Bush saw a picture of him in The New York Times.
+11 b 13 316 <>
+Yan is building a wall of pragmatics books around himself.
+11 b` 13 316 <>
+Yan is building a wall of pragmatics books around him.
+11 c 13 316 <>
+Pavarotti and Domingo adore each other's performances.
+11 c` 13 316 <>
+Pavarotti and Domingo adore each their performances.
+11 d 13 316 <>
+Pavarotti said that tenors like himself would not sing operas like that.
+11 d` 13 316 <>
+Pavarotti said that tenors like him would not sing operas like that.

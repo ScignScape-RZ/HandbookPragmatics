@@ -1,0 +1,62 @@
+5 a 13 313 <>
+Handel admired himself.
+5 b 13 313 <>
+Handel admired him.
+5 c 13 313 <>
+Handel admired Handel.
+11 a 13 316 <>
+George W. Bush saw a picture of himself in The New York Times.
+11 a` 13 316 <>
+George W. Bush saw a picture of him in The New York Times.
+11 b 13 316 <>
+Yan is building a wall of pragmatics books around himself.
+11 b` 13 316 <>
+Yan is building a wall of pragmatics books around him.
+11 c 13 316 <>
+Pavarotti and Domingo adore each other's performances.
+11 c` 13 316 <>
+Pavarotti and Domingo adore each their performances.
+11 d 13 316 <>
+Pavarotti said that tenors like himself would not sing operas like that.
+11 d` 13 316 <>
+Pavarotti said that tenors like him would not sing operas like that.
+21 a' 13 319 <>
+Everyone has finally realized that Oscar is incompetent.
+21 b' 13 319 <>
+Even he has finally realized that Oscar is incompetent.
+22 a 13 319 <*>
+Oscar is sad. He thinks that Oscar is incompetent.
+22 b 13 319 <>
+He's doing what John always does.
+25 a 13 322 <>
+Some of my friends love Christmas carols.
+25 b 13 322 <>
+I believe that John loves Christmas carols.
+27 a 13 322 <>
+John pressed the spring and the drawer opened.
+27 a1 13 322 <>
+John first pressed the spring and then the drawer opened
+27 a2 13 322 <>
+John pressed the spring and therefore the drawer opened
+27 a3 13 322 <>
+John pressed the spring in order to cause the drawer to open
+27 b 13 322 <>
+If you let me have a free Beethoven, I'll buy five Mozarts.
+27 b1 13 322 <>
+If and only if you let me have a free Beethoven, will I buy five Mozarts
+29 a 13 323 <>
+The train comes frequently.
+29 b 13 323 <>
+The train comes not infrequently.
+35 a 13 325 <>
+Handel adored his music.
+35 b 13 325 <>
+He adored Handel's music.
+36 a 13 325 <>
+The rose on the windowsill has come to blossom. The flower is beautiful.
+36 b 13 325 <>
+The flower on the windowsill has come to blossom. The rose is beautiful.
+50 a' 13 332 <*>
+John said that heself is a basketball fan.
+50 b' 13 332 <>
+John said that he is a basketball fan.

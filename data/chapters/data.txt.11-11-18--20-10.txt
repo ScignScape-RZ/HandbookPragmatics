@@ -1,0 +1,224 @@
+1 a 14 338 <>
+Then John hit Bill.
+1 b 14 338 <>
+Then Johni hit his roommate.
+1 c 14 338 <>
+Then Bill's roommate hit him.
+1 a 14 338 <>
+Then John hit Bill.
+1 b 14 338 <>
+Then John hit his roommate.
+1 c 14 338 <>
+Then Bill's roommate hit him.
+2 a 14 338 <>
+Then Bill was hit by John.
+2 b 14 338 <>
+Then Billj was hit by his roommate.
+2 c 14 338 <??*>
+Then John's roommate was hit by him.
+7 a 14 341 <>
+Then I hit John.
+7 b 14 341 <??*>
+Then John was hit by me.
+8 a 14 341 <>
+Mary had quite an experience at the party she went to last week. She slapped a drunken reporter on the face.
+8 b 14 341 <*(ls)>
+Mary had quite an experience at the party she went to last night. A drunken reporter was slapped on the face by her.
+9 a 14 341 <>
+Mary had quite an experience at the party she went to last night. She met a New York Times reporter.
+9 b 14 341 <*(ls)>
+Mary had quite an experience at the party she went to last night. A New York Times reporter met her.
+9 c 14 341 <>
+Mary had quite an experience at the party she went to last night. A New York Times reporter asked her about her occupation.
+10 a 14 342 <>
+John and Mary met.
+10 b 14 342 <>
+Mary and John met.
+10 c 14 342 <>
+John met Mary.
+10 d 14 342 <>
+Mary met John.
+12 a 14 343 <>
+John told Mary that Jane was seriously sick.
+12 b 14 343 <>
+Mary heard from John that Jane was seriously sick.
+13 a 14 343 <>
+John sent Mary a Valentine's Day present.
+13 b 14 343 <>
+Mary received from John a Valentine's Day present.
+14 a 14 343 <>
+I told Mary that Jane was seriously sick.
+14 b 14 343 <??>
+Mary heard from me that Jane was seriously sick
+15 a 14 343 <>
+I sent Mary a Valentine's Day present.
+15 b 14 343 <??>
+Mary received from me a Valentine's Day present.
+16 a 14 343 <>
+John told Mary what she had told him two days before.
+16 b 14 343 <>
+John told Mary what he had heard from her two days before.
+16 c 14 343 <>
+Mary heard from John what she had told him two days before.
+16 d 14 343 <??>
+Mary heard from John what he had heard from her two days before.
+18 a' 14 344 <A>
+John says he hasn't met you before.
+18 b' 14 344 <B>
+That's not correct. He met me last year at Mary's party.
+20 a 14 345 <>
+John read War and Peace last night.
+20 b 14 345 <??/*>
+War and Peace was read by John last night.
+22 a 14 345 <>
+War and Peace was written by Tolstoy.
+22 b 14 345 <>
+War and Peace has been read by millions of people all over the world.
+22 c 14 345 <>
+War and Peace has been read even by Bill.
+23 a 14 346 <>
+Whales are mammals.
+23 b 14 346 <>
+Mammals include whales.
+25 a 14 346 <>
+John and his brother went to Paris.
+25 b 14 346 <*>
+John's brother and he/John went to Paris.
+25 b` 14 346 <>
+John's brother and John went to Paris.
+28 a 14 347 <>
+I saw John and a policeman walking together yesterday.
+28 b 14 347 <??>
+I saw a policeman and John walking together yesterday.
+29 a 14 347 <>
+I saw you and a policeman walking together yesterday.
+29 b 14 347 <??>
+I saw a policeman and you walking together yesterday.
+30 a 14 347 <>
+John and someone else will be there.
+30 b 14 347 <*>
+Someone else and John will be there.
+31 a 14 347 <??>
+I and John are good friends.
+31 b 14 347 <>
+John and I are good friends.
+34 a 14 348 <*>
+At the gate were John's brother and John smiling at me.
+34 a` 14 348 <>
+At the gate were John's brother and he smiling at me.
+34 b 14 348 <>
+At the top of the rank list were John's brother and John in that order.
+35 a 14 348 <>
+John gave a book to the girl.
+35 b 14 348 <>
+John gave the book to a girl.
+36 a 14 348 <>
+John gave the girl a book.
+36 b 14 348 <??>
+John gave a girl the book.
+38 a 14 349 <>
+John criticized himself.
+38 b 14 349 <>
+Harvard overextended itself in natural sciences in the sixties.
+39 a 14 350 <>
+John wrote to his friends about himself.
+39 b 14 350 <*>
+Harvard wrote to its alumni about itself.
+40 a 14 350 <>
+John talked to Mary about himself.
+40 b 14 350 <?/??>
+Mary talked to Bill about himself.
+41 b 14 350 <?/??/*>
+I talked to Bill about himself.
+42 a 14 350 <?/??>
+John talked to Mary about herself.
+42 b 14 350 <*>
+John talked about Mary to herself.
+43 _ 14 351 <??/*>
+John discussed Mary with herself.
+44 a 14 351 <>
+Mary cost John a picture of himself in the paper.
+44 b 14 351 <*>
+Mary cost John a picture of herself in the paper.
+45 a 14 352 <>
+John said, "I am a genius".
+45 b 14 352 <>
+John said that he was a genius.
+46 a 14 352 <>
+John said to Mary, "You are a genius".
+46 b 14 352 <>
+John said to Mary that she was a genius.
+47 a 14 352 <>
+John said about Mary, "Mary is a genius".
+47 a` 14 352 <>
+John said about Mary, "She is a genius".
+47 b 14 352 <>
+John said about Mary that she was a genius.
+48 a 14 352 <*>
+Johni said, "John is a genius".
+48 b 14 352 <*>
+John said to Mary, "Mary is a genius".
+52 a 14 353 <>
+The remark that Churchill was vain was often made about him.
+52 b 14 353 <*>
+The remark that Churchill was vain was often made to him.
+54 a 14 353 <>
+The allegation that John was a spy was vehemently denied by him.
+54 b 14 353 <*>
+The claim that John was a genius was made by him.
+56 a 14 354 <*>
+People often made about him the remark that Churchill was vain.
+56 b 14 354 <*>
+He vehemently denied the allegation that John was vain
+61 a 14 355 <*>
+Which claim that John was asleep was he willing to discuss?
+61 b 14 355 <>
+Which claim that John made did he later deny?
+63 a 14 356 <*>
+John hates John's mother.
+63 a 14 356 <*>
+He hates John's mother.
+63 b 14 356 <*>
+John hated the man that John shared an office with.
+63 b 14 356 <*>
+He hated the man that John shared an office with.
+63 c 14 356 <*>
+John thinks that John is a genius.
+63 c 14 356 <*>
+He thinks that John is a genius.
+65 _ 14 356 <*>
+He was willing to discuss which claim that John was asleep.
+67 _ 14 356 <*>
+He did later deny the claim that John made.
+70 a 14 357 <??*>
+Which pictures of John did he like?
+70 b 14 357 <>
+Which pictures near John did he look at?
+72 a 14 358 <>
+Whose allegation that John was less than truthful did he refute vehemently?
+72 b 14 358 <>
+Whose opinion that Weld was unfit for the ambassadorial appointment did he try to refute vehemently?
+72 c 14 358 <>
+Whose claim that the Senator had violated the campaign finance regulation did he dismiss as politically motivated?
+72 d 14 358 <>
+Which psychiatrist's view that John was schizophrenic did he try to get expunged from the trial records?
+73 a 14 358 <>
+Which witness's attack on John did he try to get expunged from the trial records?
+73 b 14 358 <>
+Which artist's portrait of Nixon do you think he liked best?
+73 c 14 358 <>
+Whose criticism of John did he choose to ignore?
+74 a 14 359 <>
+Which doctor's evaluation of John's physical fitness did he use when he applied to NASA for space training?
+74 b 14 359 <>
+Which psychiatrist's evaluation of John's mental state did he try to get expunged from the trial records?
+75 a 14 359 <*>
+Which claim that John had helped develop new technologies did he make at last year's national convention?
+75 b 14 359 <>
+Which claim that John made did he later deny?
+72 a 14 359 <>
+Whose allegation that John was less than truthful did he refute vehemently?
+81 a 14 362 <*>
+He looked at pictures near himself.
+81 b 14 362 <*>
+He did look at pictures near himself.

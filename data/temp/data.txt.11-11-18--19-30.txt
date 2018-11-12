@@ -1,0 +1,32 @@
+1 a 14 338 <>
+Then John hit Bill.
+1 b 14 338 <>
+Then Johni hit his roommate.
+1 c 14 338 <>
+Then Bill's roommate hit him.
+1 a 14 338 <>
+Then John hit Bill.
+1 b 14 338 <>
+Then John hit his roommate.
+1 c 14 338 <>
+Then Bill's roommate hit him.
+2 a 14 338 <>
+Then Bill was hit by John.
+2 b 14 338 <>
+Then Billj was hit by his roommate.
+2 c 14 338 <??*>
+Then John's roommate was hit by him.
+7 a 14 341 <>
+Then I hit John.
+7 b 14 341 <??*>
+Then John was hit by me.
+8 a 14 341 <>
+Mary had quite an experience at the party she went to last week. She slapped a drunken reporter on the face.
+8 b 14 341 <*(ls)>
+Mary had quite an experience at the party she went to last night. A drunken reporter was slapped on the face by her.
+9 a 14 341 <>
+Mary had quite an experience at the party she went to last night. She met a New York Times reporter.
+9 b 14 341 <*(ls)>
+Mary had quite an experience at the party she went to last night. A New York Times reporter met her.
+9 c 14 341 <>
+Mary had quite an experience at the party she went to last night. A New York Times reporter asked her about her occupation.

@@ -1,0 +1,14 @@
+1 a 11 264 <>
+George W. Bush wanted to satisfy the right wing of his party. He introduced an initiative to allow government funding for faith-based charitable organizations.
+1 b 11 264 <?>
+George W. Bush wanted to satisfy the right wing of his party. He smirked a lot.
+2 _ 11 264 <>
+Actually, many on the right are against the initiative because they worry that government interference will affect the independence of religious organizations.
+3 a 11 265 <>
+Dick is worried about defense spending. George is concerned with education policy.
+3 b 11 265 <?>
+Dick is worried about defense spending. George smirks a lot.
+4 a 11 265 <>
+George delivered his tax plan to Congress. The Senate scheduled a debate for next week.
+4 b 11 265 <?>
+George delivered his tax plan to Congress. The Senate scheduled hearings into former President Clinton's pardon of Marc Rich.

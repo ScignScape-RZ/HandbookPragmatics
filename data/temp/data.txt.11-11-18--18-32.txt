@@ -1,0 +1,64 @@
+0 _ 10 245 <>
+Oscar is here but he has forgotten his calculator.
+2 a 10 246 <>
+Oscar is here.
+2 b 10 246 <>
+Oscar has forgotten his calculator.
+3 _ 10 246 <>
+They don't drink wine. So I have bought some beer and lemonade.
+4 a 10 246 <>
+They don't drink wine.
+4 b 10 246 <>
+I have bought some beer.
+8 _ 10 247 <[the hearer has arrived home laden with parcels]>
+So you've spent all your money.
+11 _ 10 248 <>
+Sheila is rich but she is unhappy.
+12 _ 10 248 <(I suggest that this contrasts)>
+Sheila is rich and she is unhappy.
+14 _ 10 249 <>
+That's not my sister but my mother.
+15 _ 10 250 <>
+Anne said that Sheila is rich but she is unhappy.
+16 a 10 252 <>
+Stanley can open Oscar's safe.
+16 b 10 252 <>
+He knows the combination.
+17 _ 10 254 <>
+Stanley spends the whole day inside. In complete contrast, Oscar only comes in for meals.
+18 _ 10 254 <>
+Oscar has already eaten. But nevertheless I'll leave him some milk.
+19 _ 10 256 <>
+She was never really happy here. So she's leaving.
+20 a' 10 256 <A>
+She'll be better off in a new place.
+20 b' 10 256 <B>
+So she's leaving?
+21 _ 10 257 <>
+I have received the e-mail, but it's in Dutch.
+22 _ 10 257 <?(ls)>
+I have received the e-mail. ?Nevertheless it's in Dutch.
+23 _ 10 257 <>
+Her husband is in hospital. Yet she's seeing other men.
+24 _ 10 257 <>
+Her husband is in hospital and she's seeing other men.
+25 _ 10 257 <>
+Her husband is in hospital. But she's seeing other men.
+26 _ 10 257 <>
+Her husband is in hospital. Nevertheless she's seeing other men.
+27 _ 10 260 <>
+Oscar knocked the vase and it broke.
+28 a' 10 260 <A>
+Did Oscar break the vase?
+28 b' 10 260 <B>[fall-rise nuclear tones in both clauses]
+WELL | the VASE BROKE | and HE knocked it.
+29 a' 10 260 <A>
+All linguists can spell
+29 b' 10 260 <B>[fall-rise nuclear tones in both clauses]
+STANLEY can't SPELL | and HE'S A LINGUIST.
+30 a' 10 261 <A>
+Where did you put my pen?
+30 b' 10 261 <B>
+Oscar's just brought in a mouse.
+31 _ 10 262 <>
+There's nothing in your wallet. So you've spent all your money.
