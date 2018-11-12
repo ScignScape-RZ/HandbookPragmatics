@@ -1,0 +1,243 @@
+1 a 18 433 <>
+The bank was robbed by two young men with extensive facial scars.
+1 b 18 433 <>
+My bike was taken between 3:00 and 5:30 on Monday.
+1 c 18 433 <>
+Over 20,000 copies of the book were sold before it was discovered that pages 285 and 286 were missing.
+1 d 18 433 <>
+Do you know where the February Scientific American is? It was thrown out.
+2 a 18 433 <>
+He was interrogated for three hours.
+2 b 18 433 <>
+He was awarded a Pulitzer Prize for that photograph.
+2 c 18 433 <>
+The evidence was destroyed in the fire.
+2 d 18 433 <>
+This idea has been attacked as simplistic and naive.
+3 a 18 433 <#>
+A car hit your dog, but he's OK now.
+3 b 18 433 <>
+Your dog was hit by a car this afternoon, but he's OK now.
+4 a 18 433 <>
+He expects that he will win.
+4 b 18 433 <>
+He expects to win.
+5 a 18 433 <>
+I know that it's raining.
+5 b 18 433 <>
+I know it's raining.
+6 _ 18 434 <>
+The committee money disappeared from the safe that day, and Lee came home with a new jacket that night, but I don't believe or intend to imply that the two events have anything to do with each other.
+7 a 18 434 <>
+The Celtics play the Bucks tomorrow.
+7 b 18 434 <>
+The Celtics are going to play the Bucks tomorrow.
+8 _ 18 434 <>
+The Celtics crush the Bucks tomorrow.
+9 a 18 434 <>
+Sandy arrives tomorrow, so we'll have to clean up the guest-room.
+9 b1 18 434 <A>
+What's on the docket for tomorrow?
+9 b2 18 434 <B>
+Well, Sandy arrives, so I have to go to the airport.
+10 a' 18 434 <A>
+What's new?
+10 b' 18 434 <B #>
+My sister comes in from Seattle, so I'm getting ready to go to the airport.
+11 a 18 435 <#>
+The Celtics win tomorrow, but it's not preordained or fixed; there's an off chance the Pistons might beat them.
+11 b 18 435 <>
+The Celtics win tomorrow, if Benny got the fix in and explained to the players on the other team what would happen to them if they didn't lose.
+12 a 18 436 <>
+I bet it'll float if you throw it in the lake.
+12 b 18 436 <>
+It'll float if you throw it in the lake, I bet.
+13 a 18 436 <>
+That Sandy thought it was Tuesday is obvious.
+13 b 18 436 <>
+It's obvious that Sandy thought it was Tuesday.
+14 a 18 436 <>
+Someone who said the girls were supposed to bring two quarts of potato salad called.
+14 b 18 436 <>
+Someone called who said the girls were supposed to bring two quarts of potato salad.
+15 a 18 436 <>
+Win this one for the Gipper.
+15 a` 18 436 <>
+Win this one for the me.
+15 b 18 436 <>
+Win me Gipper this one.
+15 b` 18 436 <#>
+Win the Gipper this one.
+16 a 18 436 <>
+It seemed to MacArthur that Patton was the greatest general in history.
+16 a` 18 436 <>
+It seemed to MacArthur that Julius Caesar was the greatest general in history.
+16 b 18 436 <>
+Patton seemed to MacArthur to be the greatest general in history.
+16 b` 18 436 <#>
+Julius Caesar seemed to MacArthur to be the greatest general in history.
+16 c 18 436 <>
+Eks asked that Sandy leave.
+16 d 18 436 <>
+Eks asked Sandy to leave
+16 e 18 436 <>
+Eks allowed Dale to examine Dana.
+16 f 18 436 <>
+Eks allowed Dale to be examined by Dana.
+17 a 18 437 <>
+It looks like Stalin's been dead for years.
+17 b 18 437 <#>
+Stalin looks like he's been dead for years.
+18 a 18 437 <>
+I don't think Sandy will arrive until Monday.
+18 b 18 437 <>
+I think Sandy won't arrive until Monday.
+19 a 18 437 <>
+Dana doesn't want to wash dishes.
+19 b 18 437 <>
+Dana wants to not wash dishes.
+20 a 18 437 <>
+I didn't see anyone there.
+20 b 18 437 <>
+I saw no one there.
+21 a 18 438 <>
+... if there are some apples on the table
+21 b 18 438 <>
+... if there are any apples on the table
+22 a 18 438 <>
+Does Bill want some spinach?
+22 b 18 438 <>
+Does Bill want any spinach?
+23 a 18 438 <>
+If you eat some bread, I'll cook hamburgers all week.
+23 b 18 438 <>
+If you eat any bread, I'll cook hamburgers all week.
+24 a 18 438 <>
+Do you think Bo spent a red cent on that?
+24 b 18 438 <>
+Do you think Bo ate a bite?
+24 c 18 438 <>
+Do you think Bo knows bupkes?
+24 d 18 438 <>
+Do you think Bo bothered to RSVP?
+25 a 18 438 <>
+She wants to know who did I appoint.
+25 b 18 438 <#>
+She already knows who did I appoint.
+25 c 18 438 <>
+She already knows who I appointed.
+26 a 18 438 <>
+John broke something, but he won't say what.
+26 b 18 438 <#>
+John broke something, and he said what.
+26 c 18 438 <>
+John broke something, and he said what he broke.
+27 a 18 439 <>
+It never occurred to me to wonder who did she appoint.
+27 b 18 439 <>
+John went somewhere with my car, and you know where.
+28 _ 18 439 <>
+John [stressted] ate the cookies.
+29 a 18 440 <>
+Eks delivered a rug to Aitchberg.
+29 b 18 440 <>
+A rug was delivered to Aitchberg by Eks.
+29 c 18 440 <>
+/ There was a rug delivered (to Aitchberg) (by Eks).
+There was a rug delivered to Aitchberg, by Eks.
+29 d 18 440 <>
+A rug, Eks delivered to Aitchberg.
+29 e 18 440 <>
+It was a rug that Eks delivered to Aitchberg.
+29 f 18 440 <>
+What Eks delivered to Aitchberg was a rug.
+29 g 18 440 <>
+And deliver a rug to Aitchberg, Eks did.
+30 a 18 440 <>
+Finding typographical errors is never simple.
+30 b 18 440 <>
+It is never simple to find typographical errors.
+30 c 18 440 <>
+Typographical errors are never simple to find.
+30 d 18 440 <>
+Simple to find, typographical errors are not.
+31 a 18 440 <>
+Eks met a woman who said she was the Princess Anastasia's governess at Treno's.
+31 b 18 440 <>
+At Treno's, Eks met a woman who said she was the Princess Anastasia's governess.
+31 c 18 440 <>
+Eks met at Treno's a woman who said she was the Princess Anastasia's governess.
+31 d 18 440 <>
+Eks met her at Treno's, that woman who said she was the Princess Anastasia's governess.
+31 e 18 440 <>
+That woman who said she was the Princess Anastasia's governess, Eks met her at Treno's.
+32 a 18 440 <>
+The little bunny scampered into its hole.
+32 b 18 440 <>
+Into its hole, the little bunny scampered.
+32 c 18 440 <>
+Into its hole scampered the little bunny.
+33 _ 18 441 <>
+An Eastern bloc embassy official gave Eks six full-size oriental rugs, and directed him to give them to the senators who had been most cooperative. One of these rugs Eks delivered to Senator Aitchberg.
+34 _ 18 441 <>
+FBI agents suspected both Eks and Aitchberg of trafficking in cocaine, and had been tailing them for months. In March, they learned from an informant that six oriental rugs concealing 20 pounds of cocaine each had come through JFK airport, and as Exhibit B indicates, one of these rugs Eks delivered to Aitchberg.
+35 _ 18 441 <??(ls.)>
+Eks and Aitchberg played golf together regularly. An oriental rug Eks delivered to Aitchberg one day.
+36 a 18 442 <>
+Attached to it, as always, is an application blank for next year's license.
+36 b 18 442 <>
+Jerome and Rita Arkoff and Tom and Fanny Irwin were in the front row. Back of the Arkoffs and Irwins were William Lesser and Patrick Degan, and between them and slightly to the rear was Saul Panzer.
+36 c 18 442 <>
+At issue is Section 1401(a) of the Controlled Substances Act.
+37 a 18 442 <>
+In a little white house lived two rabbits.
+37 b 18 442 <>
+Competing with the screamers for popularity are the phone-in programs, an adaptation of two rural American pastimes -- listening in on the party-line and speaking at the town meeting.
+37 c 18 442 <>
+The grounds were lavishly furnished with ceramic, stone, and wrought-metal sculpture. There were an enormous stainless steel frog and two tiny elves in the foyer of the guest house, and outside stood a little angel.
+38 a 18 443 <>
+Then at the darkest hour dawned deliverance. Through the revolving doors swept Tom Pulsifer.
+38 b 18 443 <>
+One night there was a tap on the window. Mrs. Rabbit peeped through the window. Outside stood a little angel.
+38 c 18 443 <>
+Dumble vanished and in his place rose a dark, angry cloud of bees. They flew straight at the soldiers' faces, and from the soldiers came yells of anguish, of sorrow, and of despair.
+39 a 18 443 <>
+Whether Kim will visit museums in France and Dana will go to concerts in Vienna, or Dana will visit museums in France and Kim will go to concerts in Vienna is unclear.
+39 b 18 443 <>
+It is unclear whether Kim will visit museums in France and Dana will go to concerts in Vienna, or Dana will visit museums in France and Kim will go to concerts in Vienna.
+40 a 18 443 <>
+Dana attributed a poem in which intuitions were compared to anemones and academic theories were described as battlements to Coleridge.
+40 b 18 443 <>
+Dana attributed to Coleridge a poem in which intuitions were compared to anemones and academic theories were described as battlements.
+41 a 18 444 <>
+But they attributed to Blake The Rise and Fall of the Roman Empire.
+41 a` 18 444 <?>
+But they attributed to Blake The Rise and Fall of the Typee.
+41 b 18 444 <>
+The district attorney considers indictable Montgomery J. Jingleheimer-Smith III.
+41 b` 18 444 <?>
+The district attorney considers indictable Rose Budd.
+41 c 18 444 <>
+The committee has attributed to Margaret Thatcher an extraordinary poem.
+41 c` 18 444 <?>
+The committee has attributed to Margaret Thatcher an extraordinary the 27-line poem.
+42 _ 18 444 <#>
+Did you beware of John?
+43 a 18 444 <#>
+We need a registrar who can beware of phony addresses.
+43 b 18 444 <>
+We need a registrar who will beware of phony addresses
+44 a 18 445 <>
+Jo isn't interested in sports, and Bo couldn't tell a zone press from a fast break either.
+44 b 18 445 <#>
+Jo isn't interested in knitting, and Bo couldn't tell a zone press from a fast break either.
+45 a 18 445 <>
+Do you have any idea how much that cost?
+45 b 18 445 <>
+Why paint your house purple?
+46 a 18 445 <>
+Any idea how much that cost?
+46 b 18 445 <>
+Why do you paint your house purple?
+25 b, 18 446 <#>
+She already knows who did I appoint.

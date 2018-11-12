@@ -1,0 +1,8 @@
+1 a 17 406 <>
+George claimed he won the electoral vote, and Al, the popular vote.
+1 b 17 406 <>
+George claimed he won the electoral vote, and Al did too.
+1 c 17 406 <>
+George claimed he won the electoral vote, and Al did so too.
+1 d 17 406 <>
+George claimed he won the electoral vote, and Al did it too.

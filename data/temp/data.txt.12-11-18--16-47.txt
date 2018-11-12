@@ -1,0 +1,176 @@
+1 a 23 541 <>
+The Smiths aren't inviting anybody important. They invited L+H* Lorraine.
+1 b 23 541 <>
+The Smiths aren't inviting anybody important. They invited L*+H Lorraine.
+2 a' 23 542 <A>
+No German has ever won the Luce Prize.
+2 b' 23 542 <B>
+H+!H* Joachim's from Germany.
+3 a' 23 546 <>
+Anna frightened the woman | with the gun.
+3 b' 23 546 <>
+Anna frightened | the woman with the gun.
+4 a' 23 546 <>
+Mary knows many languages you know.
+4 b' 23 546 <>
+Mary knows many languages | you know.
+5 a' 23 546 <>
+The animal that usually fights the lion is missing.
+5 b' 23 546 <>
+The animal that usually fights | the lion | is missing.
+6 a' 23 546 <>
+My brother who is a writer needs a new job.
+6 b' 23 546 <>
+My brother | who is a writer | needs a new job.
+7 a' 23 546 <>
+John laughed | at the party.
+7 b' 23 546 <>
+John laughed at | the party.
+8 a' 23 546 <>
+If you need me | when you get there call me.
+8 b' 23 546 <>
+If you need me when you get there | call me.
+9 a' 23 547 <>
+This collar is dangerous to younger | dogs and cats.
+9 b' 23 547 <>
+This collar is dangerous to younger dogs | and cats.
+10 a' 23 547 <>
+Stir in rice wine | and seasonings.
+10 b' 23 547 <>
+Stir in rice | wine | and seasonings.
+11 a' 23 547 <>
+We only suspected | they all knew that a burglary had been committed.
+11 b' 23 547 <>
+We only suspected | they all knew | that a burglary had been committed
+12 _ 23 547 <>
+WE only SUSPECTED | THEY all KNEW | that a BURGLARY had been committed.
+13 a' 23 547 <>
+GERMAN teachers
+13 b' 23 547 <>
+German TEACHERS
+14 a' 23 547 <>
+LEAVE in the LIMO
+14 b' 23 547 <>
+Leave IN the REFERENCE
+15 _ 23 547 <>
+I didn't shoot AT him, I shot PAST him.
+16 a 23 548 <>
+John only introduced Mary to Sue.
+16 b 23 548 <>
+John only introduced MARY to Sue.
+16 c 23 548 <>
+John only introduced Mary to SUE.
+17 a 23 549 <>
+Most ships pass through the lock at night.
+17 b 23 549 <I1>
+When do ships go through the lock?
+17 b` 23 549 <I2>
+Most ships pass through the lock at NIGHT.
+17 c 23 549 <I1>
+What do ships do at night?
+17 c` 23 549 <I2>
+Most ships pass through the LOCK at night.
+18 a 23 549 <>
+Londoners most often go to Brighton.
+18 b 23 549 <I1>
+Who goes to Brighton?
+18 b` 23 549 <I2>
+LONDONERS most often go to Brighton.
+18 c 23 549 <I1>
+Where do Londoners go on vacation?
+18 c` 23 549 <I2>
+Londoners most often go to BRIGHTON.
+19 a 23 549 <>
+Dogs must be carried.
+19 b 23 549 <>
+DOGS must be carried.
+19 c 23 549 <>
+Dogs must be CARRIED.
+20 a 23 549 <>
+It's ODD that Clyde married Bertha.
+20 b 23 549 <>
+It's odd that CLYDE married Bertha.
+20 c 23 549 <>
+It's odd that Clyde MARRIED Bertha.
+20 d 23 549 <>
+It's odd that Clyde married BERTHA.
+21 a 23 550 <>
+This time HARRY didn't cause our defeat.
+21 b 23 550 <>
+This time Harry didn't CAUSE our defeat.
+21 c 23 550 <>
+This time Harry didn't cause our DEFEAT.
+22 a 23 550 <>
+Bill doesn't drink because he's unhappy.
+22 b 23 550 <>
+Bill doesn't drink | because he's unhappy.
+23 a 23 551 <>
+John called Bill a Republican and then he insulted him.
+23 b 23 551 <>
+John called Bill a Republican and then HE insulted HIM.
+24 a 23 552 <>
+John likes his colleagues and so does Sue.
+24 b 23 552 <>
+John likes HIS colleagues and so does Sue.
+25 a' 23 552 <>
+Susan gave Betsy a pet hamster.
+25 b' 23 552 <>
+She reminded her such hamsters were quite shy.
+25 c' 23 552 <>
+She asked Betsy whether she liked the gift.
+25 d' 23 552 <>
+And SHE said yes, she did.
+25 e' 23 552 <>
+She'd always wanted a pet hamster.
+26 a 23 553 <>
+The SENATE BREAKS for LUNCH at NOON, so I HEADED to the CAFETERIA to GET my STORY.
+26 b 23 553 <>
+There are SENATORS, and there are THIN senators.
+26 c 23 553 <>
+For SENATORS, LUNCH at the cafeteria is FREE. For REPORTERS, it's not.
+26 d 23 553 <>
+But CAFETERIA food is CAFETERIA food.
+27 a 23 555 <>
+Now, Bill is a vegetarian.
+27 b 23 555 <>
+Now Bill is a vegetarian.
+27 c 23 555 <>
+NOW Bill is a vegetarian.
+28 a 23 556 <>
+The number is {{L-H%}}: 555-1212.
+28 b 23 556 <>
+Open the carton {{L-H%}}. Now remove the monitor carefully.
+29 a' 23 556 <>
+The Johnsons are solid citizens.
+29 b' 23 556 <>
+They {{H*}} pay their {{H*}} taxes {{H-L%}}.
+29 c' 23 556 <>
+They {{H* attend {{H*}} PTA meetings {{H-L%}}.
+29 d' 23 556 <>
+They're just good people.
+30 _ 23 557 <I1>
+Did you finish those slides?
+30 a 23 557 <I2>
+{{L*+H}} Sort of {{L-H%}}.
+30 b 23 557 <I1>
+{{L*+H}} Sort of {{L-H%}}.
+31 _ 23 557 <>
+The {{L*}} blackboard's painted {{H*}} orange.
+32 a 23 557 <>
+{{H*}} Today we're {{!H*}} going to {{!H*}} look at the {{!H*}} population of {{!H*}} Ghana {{L-L%}}.
+32 b 23 557 <>
+{{H*}} This is {{!H*}} how you {{!H*}} heat the {{!H*}} soup {{L-L%}}.
+33 a' 23 558 <A>
+Can you tell me the time?
+33 b1 23 558 <B>
+Yes.
+33 b2 23 558 <B>
+It's four o'clock.
+34 a 23 558 <>
+I like grapefruit.
+34 b 23 558 <>
+I like grapefruit?
+35 a 23 558 <>
+Would you stop hitting Gwendolyn?
+35 b 23 558 <>
+Why don't you move to California?

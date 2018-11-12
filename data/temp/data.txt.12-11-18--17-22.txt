@@ -1,0 +1,12 @@
+3 a' 25 586 <Mother:>
+Why don't you put it in the wastebasket?
+3 b' 25 586 <Sally (2;0):>
+Throw away?
+4 a' 25 586 <Mother (in car):>
+I'm cold.
+4 b' 25 586 <Child (3;3):>
+I already shut the window.
+13 a' 25 593 <>I want you to.
+Would you like to play on the train?
+13 b' 25 593 <>I'll let you.
+Would you like to play on the train?

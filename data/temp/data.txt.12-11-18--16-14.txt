@@ -1,0 +1,58 @@
+1 _ 22 511 <>
+The tones sounded impure because the hem was torn.
+2 a 22 512 <>
+Should we take the lion back to the zoo?
+2 b 22 512 <>
+Should we take the bus back to the zoo?
+3 a 22 512 <>
+I see the tree.
+3 b 22 512 <>
+I see what you're getting at.
+7 a 22 521 <>
+If you mow the lawn, I'll give you $5.
+7 b 22 521 <>
+If you don't mow the lawn, I won't give you $5.
+7 c 22 521 <>
+If and only if you mow the lawn, I'll give you $5.
+9 a 22 521 <>
+If John quits, he will be replaced.
+9 b 22 521 <>
+If John doesn't quit, he won't be replaced.
+9 c 22 521 <>
+If and only if John quits, he will be replaced.
+10 a 22 522 <>
+If you're in Toronto, you are in Canada.
+10 b 22 522 <>
+If you're not in Toronto, you're not in Canada.
+10 c 22 522 <>
+If and only if you're in Toronto, you are in Canada.
+14 a 22 525 <>
+Black Bart killed the sheriff.
+14 b 22 525 <>
+Black Bart caused the sheriff to die.
+12 a 22 523 <>
+I'm not unhappy
+12 b 22 523 <>
+It isn't the case that I'm unhappy
+12 c 22 523 <>
+I'm neither happy nor unhappy
+12 d 22 523 <>(but not quite as happy as using the expression "happy" would suggest)
+I'm rather happy
+12 e 22 523 <>
+I'm not unhappy, in fact I'm happy
+15 a 22 526 <>
+I ate pork
+15 a` 22 526 <?>
+I ate pig
+15 b 22 526 <>
+Some people do not eat beef
+15 b` 22 526 <?>
+Some people do not eat cow
+15 c 22 526 <>
+The table is made of wood
+15 c` 22 526 <?>
+The table is made of tree
+16 a' 22 526 <>
+Hindus are forbidden to eat cow
+16 b' 22 526 <?>
+Hindus are forbidden to eat beef
