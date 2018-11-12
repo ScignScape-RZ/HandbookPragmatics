@@ -1,0 +1,66 @@
+1 _ 15 369 <>
+Murdoch bought a newspaper last week.
+2 _ 15 369 <(pointing at a newspaper)>
+Murdoch bought that last week.
+3 _ 15 369 <>
+I am parked out back.
+4 _ 15 370 <>
+We are parked out back.
+5 _ 15 370 <>
+I am parked out back and have been waiting for 15 minutes.
+6 _ 15 370 <*>
+I am parked out back and may not start.
+7 _ 15 370 <>
+Who is the ham sandwich?
+8 _ 15 370 <>
+The ham sandwich is at table seven.
+11 _ 15 372 <?>
+I was once driven by Yogi Berra.
+12 _ 15 372 <?>
+I'm in the second crate on the right.
+13 _ 15 372 <>
+Ringo was hit in the fender by a truck when he was momentarily distracted by a motorcycle.
+14 _ 15 372 <?>
+Ringo was hit in the fender by a truck two days after he died.
+15 _ 15 373 <>
+Proust is on the top shelf.
+16 _ 15 373 <(the newspaper)>
+The Chronicle opposed the highway project.
+17 _ 15 373 <>
+We were eating chicken on tables made of oak.
+18 _ 15 374 <>
+Obstinacy is usually a mistake.
+19 _ 15 374 <>
+Her obstinacy surprised us.
+20 a' 15 375 <?>
+?We fried the chicken in safflower.
+20 b' 15 375 <?>
+?We fried the chicken in olive.
+20 c' 15 375 <?>
+?We fried the chicken in corn.
+21 a' 15 375 <?>
+I enjoy a glass of orange with my breakfast.
+21 b' 15 375 <?>
+I enjoy a glass of pear with my breakfast.
+21 c' 15 375 <?>
+I enjoy a glass of apple with my breakfast.
+22 _ 15 375 <>
+She owns two Picassos and a Renoir.
+23 _ 15 375 <>
+The sale racks at the store were full of Jill Sanders.
+24 a' 15 375 <?>
+We listened to a lovely Scarlatti.
+24 a' 15 375 <?>
+We listened to a lovely Steven Sondheim.
+25 a' 15 375 <>
+I love to curl up with a good Agatha Christie.
+25 a' 15 375 <>
+I love to curl up with a good Simenon.
+25 a' 15 375 <?>
+I love to curl up with a good Italo Calvino.
+25 a' 15 375 <?>
+I love to curl up with a good Dostoyevsky.
+26 a' 15 375 <>
+One of my favorite Hitchcocks is playing at the Bijou.
+26 b' 15 375 <?>
+One of my favorite Renoirs is playing at the Bijou.

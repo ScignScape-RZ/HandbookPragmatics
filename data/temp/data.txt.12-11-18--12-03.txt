@@ -1,0 +1,4 @@
+1 _ 15 369 <>
+Murdoch bought a newspaper last week.
+2 _ 15 369 <(pointing at a newspaper)>
+Murdoch bought that last week.
