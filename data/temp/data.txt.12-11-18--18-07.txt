@@ -1,0 +1,20 @@
+2 _ 29 687 <>
+The Boston Marathon will take place next week. Max thought the winner received $100, but it turns out there won't be any prize money.
+3 _ 29 687 <>
+My friends were under the impression that I was running a lottery in my garage. Max thought the winner received $100. But they were all wrong -- there was no lottery.
+5 _ 29 689 <>
+Sue believes Luke has a child and that Luke's child will visit her.
+6 _ 0 0 <>
+In France, Watergate wouldn't have done Nixon any harm.
+7 a 29 691 <>
+In France, Watergate wouldn't have done Nixon any harm because Nixon is loved by the French.
+7 b 29 691 <>
+In France, Watergate wouldn't have done Nixon any harm because French presidents are not affected by US scandals.
+7 c 29 691 <>
+In France, Watergate wouldn't have done Nixon any harm because spying on American political parties is supported by public opinion.
+7 d 29 691 <>
+In France, Watergate wouldn't have done Nixon any harm because he would never have been elected president in the first place.
+8 _ 29 694 <>
+The crook paid them with fake money.
+9 _ 29 694 <>
+The crook thought he was paying them with fake money, but in fact it was the new European currency.

@@ -1,0 +1,48 @@
+1 a' 28 658 <X>
+How is Mary feeling after her first year at university?
+1 b' 28 658 <Y>
+She didn't get enough units and can't continue.
+4 a' 28 661 <A>
+Have you heard Alfred Brendel's version of The Moonlight Sonata?
+4 b' 28 661 <B>
+Yes. It made me realize I should never try to play it.
+5 a 28 662 <>
+She has a brain.
+5 a` 28 662 <>
+She has a brain -- she's very smart.
+5 b 28 662 <>
+It's going to take time for these wounds to heal.
+5 b` 28 662 <>
+It's going to take considerable time for these wounds to heal.
+5 c 28 662 <>
+I've had a shower.
+5 c 28 662 <>
+c` I've had a shower today.
+5 d 28 662 <>
+It's snowing.
+5 d` 28 662 <>
+It's snowing here.
+5 e 28 662 <>
+Mary gave John a pen and he wrote down her address.
+5 e` 28 662 <>
+Mary gave John a pen and and then he wrote down her address with the pen.
+5 f 28 662 <>
+Sam left Jane and she became very depressed.
+5 f` 28 662 <>
+Sam left Jane and as a result she became very depressed.
+7 _ 28 664 <>
+Only 22,000 miles. Like new.
+9 a 28 665 <>
+He was upset but he wasn't upset.
+10 a 28 665 <>
+There is a rectangle of lawn at the back.
+10 b 28 665 <>
+This steak is raw.
+10 c 28 665 <>
+On Classic FM, we play continuous classics.
+10 d 28 665 <>
+Mary is a bulldozer.
+11 a' 28 666 <A>
+Let's go to a movie. I've heard Sense and Sensibility is good. Are you interested in seeing it?
+11 b' 28 666 <B>
+Costume dramas are usually boring.

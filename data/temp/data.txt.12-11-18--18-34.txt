@@ -1,0 +1,144 @@
+1 _ 30 698 <>
+We do not know much about this part of the brain, which plays such an important role in our lives, but we will see in the next chapter . . .
+2 _ 30 699 <>
+Fred won't order shrimp, let alone Louise, squid.
+3 _ 30 700 <>
+Him be a doctor!?
+4 a 30 700 <>
+It's not good, but superb.
+4 b 30 700 <#>
+It's not good, but it is superb.
+4 c 30 700 <>
+He's more negligent than vicious.
+4 d 30 700 <>
+He's more negligent than he is vicious.
+4 e 30 700 <>
+His negligence exceeds his viciousness.
+7  30 702 <A>
+a' Did Louise order squid?
+7 b' 30 702 <B>
+Are you kidding? Fred didn't even order shrimp, let alone Louise, squid.
+10 _ 30 703 <#>
+She doesn't have an odd number of books, let alone 75.
+11 _ 30 703 <>
+She didn't get an odd-numbered ticket, let alone 75.
+12 a 30 704 <>
+You couldn't get a poor man to wash your car for $10 let alone a rich man to wax your truck for $5.
+12 b 30 704 <>
+You couldn't get a poor man to wash your car, let alone a rich man to wax your truck, for $10, let alone for $5.
+12 c 30 704 <>
+You couldn't get a poor man, let alone a rich man, to wash your car for $10, let alone wax your truck for $5.
+12 d 30 704 <>
+You couldn't get a poor man, let alone a rich man, to wash, let alone (to) wax, your car, let alone (your) truck, for $10, let alone (for) $5.
+12 a 30 704 <>
+You couldn't get a poor man to wash your car for $10 let alone a rich man to wax your truck for $5.
+12 b 30 704 <>
+You couldn't get a poor man to wash your car, let alone a rich man to wax your truck, for $10, let alone for $5.
+12 c 30 704 <>
+You couldn't get a poor man, let alone a rich man, to wash your car for $10, let alone wax your truck for $5.
+12 d 30 704 <>
+You couldn't get a poor man, let alone a rich man, to wash, let alone (to) wax, your car, let alone (your) truck, for $10, let alone (for) $5.
+12 d` 30 704 <>
+You couldn't get a poor man, let alone a rich man, to wash, let alone wax, your car, let alone truck, for $10, let alone $5.
+13 a 30 704 <>[if not others]
+She has invited at least Sarah and James.
+13 b 30 704 <>[if not more than five]
+At least five students passed.
+13 c 30 704 <>[if not outraged]
+He'll be at least irritated.
+13 d 30 704 <>[if not seriously so]
+He's at least slightly depressed.
+13 e 30 704 <>[if not ruin it altogether]
+That will at least damage it.
+14 a 30 705 <>
+In that big trainwreck at least several people were saved.
+14 b 30 705 <>
+In that big trainwreck at least several people were killed.
+14 c 30 705 <>
+At least in that big trainwreck several people were saved.
+14 d 30 705 <>
+At least in that big trainwreck several people were killed.
+15 a 30 705 <>
+Well, I didn't get an A, but I didn't do too badly either. At least I got an A-.
+15 b 30 705 <>
+At least I got an A-.
+16 a 30 705 <>
+Mary is at home -- at least John's car is in the driveway.
+16 b 30 705 <>
+Mary is at home -- at least I think so.
+16 c 30 705 <>
+Mary is at home -- at least that's what Sue said.
+16 d 30 705 <>
+Mary will help me -- at least on the first draft.
+16 d` 30 705 <>
+Mary will help me -- at least if it doesn't rain.
+16 d`1 30 705 <>
+Mary will help me -- at least when I've finished the outline.
+17 _ 30 706 <>
+Mary doesn't collect Norwegian pottery, let alone Austrian prints.
+18 a 30 706 <>
+Mr. Smith and Mr. Jones love Mrs. Jones and Mrs. Smith, respectively.
+18 b 30 706 <>
+Mr. Smith loves Mrs. Jones and Mr. Jones loves Mrs. Smith.
+18 c 30 706 <>
+Mr. Smith and Mr. Jones love their respective wives.
+18 d 30 706 <>
+Mr. Smith loves Mrs. Smith and Mr. Jones loves Mrs. Jones.
+19 a 30 707 <>
+The three brightest students scored 95, 99, and 96, respectively.
+19 b 30 707 <>
+Clarence, Florence, and Terrence got the three highest grades, respectively.
+19 c 30 707 <>
+The three brightest students got the three highest grades, respectively.
+20 a 30 707 <>
+Many senators represent their respective states well.
+20 b 30 707 <*>
+Many senators represent their states well, respectively.
+20 c 30 707 <>
+Senators Jones and Smith represent their respective states well.
+20 d 30 707 <*>
+Senators Jones and Smith represent their states well, respectively.
+21 a 30 708 <>
+The horses finishing in the money were Augustus, Brutus, and Cassius, respectively.
+21 b 30 708 <*>
+The horses finishing out of the money were Xerxes, Yerkes, and Zippo, respectively.
+22 a 30 708 <>
+Many senators represent their states well.
+22 b 30 708 <>
+Senators Jones and Smith represent their states well.
+23 _ 30 708 <??>
+Clarence, Florence, and Terrence got the respective scores of 95, 99, and 96.
+24 a 30 708 <>
+Billy Martin and Tony La Russa are known for their volatility and charm, respectively.
+24 b 30 708 <?>
+Billy Martin and Tony La Russa are known for their respective volatility and charm.
+25 _ 30 708 <>
+Twelve generals and admirals from the United States, the Soviet Union and their respective allies . . . met for two days of discussions.
+26 _ 30 709 <>
+Two rock stars and their respective entourages can fill a small stadium.
+27 _ 30 709 <>
+The secretaries emailed their respective mayors
+28 _ 30 709 <>
+The secretaries emailed their respective mayors, and vice versa.
+29 _ 30 709 <>
+Every boy loves his mother.
+30 _ 30 709 <>
+Every boy loves his mother, and vice versa.
+31 _ 30 710 <>
+The Joneses don't like their next-door neighbors, but we do, and vice versa.
+32 _ 30 710 <>
+The King of France is not bald . . . because there is no King of France.
+33 a 30 711 <>
+This is not tasty, it's delicious.
+33 b 30 711 <>
+Her name's not Andre, it's Andrea.
+33 c 30 711 <>
+We're not dealing with a rare phenomena here, we're dealing with a rare phenomenon.
+33 d 30 711 <>
+Your Aunt May is not taking a pee, she's going to the bathroom.
+34 a 30 711 <*>
+John didn't manage to solve any of the problems, he managed to solve all of them.
+34 a` 30 711 <>
+John didn't manage to solve some of the problems, he managed to solve all of them.
+34 b 30 711 <>
+I wouldn't rather walk, but I'm willing to.

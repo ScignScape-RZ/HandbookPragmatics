@@ -1,0 +1,76 @@
+1 _ 30 698 <>
+We do not know much about this part of the brain, which plays such an important role in our lives, but we will see in the next chapter . . .
+2 _ 30 699 <>
+Fred won't order shrimp, let alone Louise, squid.
+3 _ 30 700 <>
+Him be a doctor!?
+4 a 30 700 <>
+It's not good, but superb.
+4 b 30 700 <#>
+It's not good, but it is superb.
+4 c 30 700 <>
+He's more negligent than vicious.
+4 d 30 700 <>
+He's more negligent than he is vicious.
+4 e 30 700 <>
+His negligence exceeds his viciousness.
+7  30 702 <A>
+a' Did Louise order squid?
+7 b' 30 702 <B>
+Are you kidding? Fred didn't even order shrimp, let alone Louise, squid.
+10 _ 30 703 <#>
+She doesn't have an odd number of books, let alone 75.
+11 _ 30 703 <>
+She didn't get an odd-numbered ticket, let alone 75.
+12 a 30 704 <>
+You couldn't get a poor man to wash your car for $10 let alone a rich man to wax your truck for $5.
+12 b 30 704 <>
+You couldn't get a poor man to wash your car, let alone a rich man to wax your truck, for $10, let alone for $5.
+12 c 30 704 <>
+You couldn't get a poor man, let alone a rich man, to wash your car for $10, let alone wax your truck for $5.
+12 d 30 704 <>
+You couldn't get a poor man, let alone a rich man, to wash, let alone (to) wax, your car, let alone (your) truck, for $10, let alone (for) $5.
+12 a 30 704 <>
+You couldn't get a poor man to wash your car for $10 let alone a rich man to wax your truck for $5.
+12 b 30 704 <>
+You couldn't get a poor man to wash your car, let alone a rich man to wax your truck, for $10, let alone for $5.
+12 c 30 704 <>
+You couldn't get a poor man, let alone a rich man, to wash your car for $10, let alone wax your truck for $5.
+12 d 30 704 <>
+You couldn't get a poor man, let alone a rich man, to wash, let alone (to) wax, your car, let alone (your) truck, for $10, let alone (for) $5.
+12 d` 30 704 <>
+You couldn't get a poor man, let alone a rich man, to wash, let alone wax, your car, let alone truck, for $10, let alone $5.
+13 a 30 704 <>[if not others]
+She has invited at least Sarah and James.
+13 b 30 704 <>[if not more than five]
+At least five students passed.
+13 c 30 704 <>[if not outraged]
+He'll be at least irritated.
+13 d 30 704 <>[if not seriously so]
+He's at least slightly depressed.
+13 e 30 704 <>[if not ruin it altogether]
+That will at least damage it.
+14 a 30 705 <>
+In that big trainwreck at least several people were saved.
+14 b 30 705 <>
+In that big trainwreck at least several people were killed.
+14 c 30 705 <>
+At least in that big trainwreck several people were saved.
+14 d 30 705 <>
+At least in that big trainwreck several people were killed.
+15 a 30 705 <>
+Well, I didn't get an A, but I didn't do too badly either. At least I got an A-.
+15 b 30 705 <>
+At least I got an A-.
+16 a 30 705 <>
+Mary is at home -- at least John's car is in the driveway.
+16 b 30 705 <>
+Mary is at home -- at least I think so.
+16 c 30 705 <>
+Mary is at home -- at least that's what Sue said.
+16 d 30 705 <>
+Mary will help me -- at least on the first draft.
+16 d` 30 705 <>
+Mary will help me -- at least if it doesn't rain.
+16 d`1 30 705 <>
+Mary will help me -- at least when I've finished the outline.
