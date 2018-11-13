@@ -1,0 +1,45 @@
+
+1 a 4 100 <>
+The most famous drummer for the Beatles wrote War and Peace.
+1 b 4 100 <>
+Jimmy Smits's boyhood hero wrote War and Peace.
+1 c 4 100 <>
+That man over there wrote War and Peace.
+2 _ 4 100 <>
+Someone wrote War and Peace.
+1 a 4 100 <>
+The most famous drummer for the Beatles wrote War and Peace.
+1 b 4 100 <>
+Jimmy Smits's boyhood hero wrote War and Peace.
+1 c 4 100 <>
+That man over there wrote War and Peace.
+2 _ 4 100 <>
+Someone wrote War and Peace.
+3 a 4 100 <>
+Ringo Starr is a stage-name.
+3 b 4 100 <>
+The most famous drummer of the Beatles is a stage-name.
+3 c 4 100 <>
+Richard Starkey's more famous alias is a stage-name.
+4 a 4 101 <>
+James believes that Ringo Starr is a solo singer.
+4 b 4 101 <>
+James believes that the Beatles' most famous drummer is a solo singer.
+5 a 4 101 <>
+James believes that [()] is a solo singer.
+6 a 4 102 <>
+The Beatles' most famous drummer is Ringo Starr.
+6 b 4 102 <>
+Ringo Starr is Ringo Starr.
+8 a 4 102 <>
+James believes that S1 is a solo singer.
+8 b 4 102 <>
+James believes that S2 is a solo singer.
+13 a 4 106 <>
+James believes that Ringo Starr is a solo singer.
+13 b 4 106 <>
+James believes that the Beatles' most famous drummer is a solo singer.
+16 a 4 113 <>
+Always do today what you could put off till tomorrow.
+16 b 4 113 <(Said, frustrated at where I put my glasses, again)>
+Darn, they always seem to be over there, never over here!

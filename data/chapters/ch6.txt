@@ -1,0 +1,128 @@
+6 _ 6 148 <>
+That wasn't A reason I left Pittsburgh, it was THE reason.
+7 _ 6 149 <>
+The king of France is bald.
+8 _ 6 149 <>
+The youngest student in the class got the best grade.
+10 _ 6 152 <>
+The author of Waverley is Scott.
+12 _ 6 154 <>
+Yesterday the dog got into a fight with a dog. The dogs were snarling and snapping at each other for half an hour. I'll have to see to it that the dog doesn't get near that dog again.
+13 a 6 154 <>
+Towards evening we came to the bank of a river.
+13 b 6 154 <>
+The boy scribbled on the living-room wall.
+13 c 6 154 <>
+John was hit on the arm.
+14 a 6 154 <#>
+The bank of the Thames is the personal property of the Queen.
+14 b 6 154 <#>
+Mary painted the living room wall.
+15  _ 6 155 <#>
+He scribbled on a living-room wall.
+15 _ 6 155 <#>
+He scribbled on a living-room wall.
+16 a 6 155 <>
+There were the same people at both conferences.
+16 b 6 155 <>
+There was the usual crowd at the beach.
+16 c 6 155 <>
+There was the stupidest article on the reading list.
+17 _ 6 156 <>
+Any man who owns a donkey beats it.
+18 _ 6 156 <>
+A woman sat with a cat on her lap. She stroked the cat and it purred.
+19 a# 6 158 <>
+Harold bought a first house he looked at.
+19 a 6 158 <>
+Harold bought the first house he looked at.
+19 b# 6 158 <>
+The instructor assigned some most difficult exercises she could find.
+19 b 6 158 <>
+The instructor assigned the most difficult exercises she could find.
+19 c# 6 158 <>
+In her talk, Baldwin introduced a notion that syntactic structure is derivable from pragmatic principles.
+19 c 6 158 <>
+In her talk, Baldwin introduced the notion that syntactic structure is derivable from pragmatic principles.
+20 a 6 158 <>
+What's wrong with Bill? Oh, the woman he went out with last night was nasty to him.
+20 b 6 158 <>
+If you're going into the bedroom, would you mind bringing back the big bag of potato chips that I left on the bed?
+20 c 6 158 <>
+Mary's gone for a spin in the car she just bought.
+21 _ 6 160 <>
+There is this huge boulder sitting in the driveway.
+23 a 6 161 <>
+There is a wolf at the door.
+23 b 6 161 <*>
+There is the wolf at the door.
+24 a 6 161 <>
+There are some/several/many/few wolves at the door.
+24 b 6 161 <*>
+There are most/all/those/Betty's wolves at the door.
+25 a 6 162 <>
+I would like some ("sm") apple sauce.
+25 b 6 162 <>
+There weren't many students in class this morning.
+26 a 6 162 <>
+Some (of the) apple sauce was put in special bowls.
+26 b 6 162 <>
+Many (of the) students objected to their grades after class.
+27 a 6 162 <*>
+Sm salesmen are intelligent.
+27 b 6 162 <>
+Some (of the) salesmen (but not others) are intelligent.
+28 a 6 162 <>
+Salesmen are intelligent.
+28 b 6 162 <>
+Salesmen are knocking on the door.
+29 a 6 162 <>
+There are salesmen {knocking on the door/*intelligent}.
+29 b 6 162 <*>
+There were some (of the) participants waiting outside.
+31 a 6 163 <>
+Every unicorn exists.
+31 b 6 163 <>
+Neither unicorn exists.
+31 c 6 163 <>
+Many unicorns exist.
+32 a 6 164 <#>
+There is every unicorn.
+32 b 6 164 <#>
+There is neither unicorn.
+32 c 6 164 <>
+There are many unicorns.
+33 a 6 164 <>
+There is a girl who knows you interested in this problem.
+33 b 6 164 <*>
+I met a girl who knows you interested in this problem.
+34 _ 6 164 <>
+Look, there were either zero or else more than zero students there at the time. Now which is it?
+37 a 6 165 <>
+Some student is a vegetarian.
+37 b 6 165 <>
+Some student who is a vegetarian exists
+38 a 6 165 <>
+Every student is a vegetarian.
+38 b 6 165 <>
+Every student who is a vegetarian exists.
+40 a 6 167 <>
+All of John's children are bald.
+40 b 6 167 <>
+All trespassers will be prosecuted.
+41 a 6 167 <>
+I talked with a logician.
+41 b 6 167 <>
+Some of my friends speak French.
+42 _ 6 168 <>
+A student in the syntax class cheated on the final exam.
+43 _ 6 169 <>
+Smith's murderer is insane.
+44 _ 6 169 <>
+John would like to marry a girl his parents don't approve of.
+45 a 6 169 <>
+John succeeded in marrying a girl his parents don't approve of.
+45 b 6 169 <>
+John married a girl his parents don't approve of.
+46 _ 6 170 <>
+Mary talked to a logician.

@@ -1,0 +1,31 @@
+18 a 1 45 <>
+If Annie got married and had a baby, her grandfather will be happy.
+18 b 1 45 <>
+If Annie had a baby and got married, her grandfather will not be happy.
+20 a 1 46 <>
+If some of my friends come to the party, I'll be happy -- but if all of them do, I'll be in trouble.
+20 b 1 46 <>
+/ If it's warm, we'll lie out in the sun. But if it's {very warm/hot}, we'll go inside and sit in front of the air-conditioner.
+If it's warm, we'll lie out in the sun. But if it's hot, we'll go inside and sit in front of the air-conditioner.
+20 c 1 46 <>
+If you're convicted of a felony, you'll spend at least a year in jail. And if you're convicted of murder, you'll be executed.
+20 d 1 46 <>
+If you're injured, the paramedics will take you to the nearest trauma center. But if you're fatally injured, you'll be taken to the morgue.
+21 a 1 46 <>
+Because he drank three beers and drove home, he went to jail.
+21 b 1 46 <>
+Because he earns $40,000, he can't afford a house in Palo Alto.
+21 c 1 46 <>
+Because he's such a fine friend, I've struck him off my list.
+21 d 1 46 <>
+Because the police recovered some of the missing gold, they will later recover it all.
+22 _ 1 46 <>
+/ Because the police recovered some of the gold, the thieves are expected to return later #(for the rest).
+Because the police recovered some of the gold, the thieves are expected to return later.
+23 a 1 47 <#>
+/ Because it's warm out [i.e. because it's warm but not hot], you should still wear a long-sleeved shirt.
+Because it's warm out you should still wear a long-sleeved shirt.
+23 b 1 47 <#>
+/ Because you ate some of your spinach [i.e. and not all], you don't get dessert.
+Because you ate some of your spinach, you don't get dessert.
+

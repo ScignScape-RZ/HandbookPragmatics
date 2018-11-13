@@ -1,0 +1,16 @@
+1 _ 21 503 <>
+Henry had sex and got infected.
+2 _ 21 503 <>
+Henry got infected and had sex.
+3 a 21 503 <>
+If Henry had sex and got infected, he needs a doctor.
+3 b 21 503 <>
+If Henry got infected and had sex, he needs a lawyer
+4 _ 21 503 <>
+It's worse to get infected and have sex than to have sex and get infected.
+5 _ 21 504 <>
+Max is in Miami or he's in Palm Beach.
+6 _ 21 504 <>
+Max is in Miami or his wife Minnie will hire a lawyer.
+7 _ 21 506 <>
+Phil took a pill last night at 11 p.m., and it relieved his migraine.

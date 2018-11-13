@@ -1,0 +1,24 @@
+1 _ 32 747 <>
+John drove down the street in a car.
+2 _ 32 747 <>
+John drove down a street in Chicago.
+8 a' 32 753 <A>
+How is John doing on his new job at the bank?
+8 b' 32 753 <B>
+Quite well. He likes his colleagues and he hasn't embezzled any money yet.
+12 _ 32 756 <>
+The Boston office called.
+13 _ 32 756 <>
+The plane taxied to the terminal.
+14 _ 32 758 <>
+The police prohibited the women from demonstrating. They feared violence.
+15 _ 32 759 <>
+The police prohibited the women from demonstrating, because they feared violence.
+16 _ 32 759 <>
+The police prohibited the women from demonstrating, because they advocated violence.
+18 a' 32 761 <A>
+Your Johnny is certainly acting up today, isn't he?
+18 b' 32 761 <>
+Boys will be boys.
+22 _ 32 763 <>
+John has three children.

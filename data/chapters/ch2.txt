@@ -1,0 +1,5 @@
+
+9 a' 2 70 <I am asked by someone whom I just met>
+Are you going to lunch?
+9 b' 2 70 <I reply>
+No, I've got to pick up my sister.

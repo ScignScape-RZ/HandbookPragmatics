@@ -1,0 +1,22 @@
+1 _ 26 603 <>
+Can you pass the salt?
+2 a' 26 603 <A>
+I was wanting to make some arrangements for a trip that I'm going to be taking uh to LA uh beginning of the week after next.
+2 b' 26 603 <B>
+OK uh let me pull up your profile and I'll be right with you here.
+2 c' 26 603 <B [pause]>
+And you said you wanted to travel next week?
+2 d' 26 603 <A>
+Uh, yes.
+10 _ 26 617 <>
+Oh so you're from the Midwest too.
+11 _ 26 618 <>
+So you can steady it.
+12 _ 26 618 <>
+You really rough it then.
+13 _ 26 618 <>
+That's good.
+14 _ 26 618 <>
+Oh that's nice.
+15 _ 26 618 <>
+It's great.

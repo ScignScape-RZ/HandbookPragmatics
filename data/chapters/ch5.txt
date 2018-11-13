@@ -1,0 +1,36 @@
+3 _ 5 124 <>(said of man entering the room)
+He is my father
+4 _ 5 124 <>(said ear cocked to a slamming door)
+Someone is comingr
+5 _ 5 124 <>(said pointing chin to kitchen)
+The funny noise is our antiquated dishwashing machine
+6 _ 5 124 <>(said looking at a picture)
+What a great picture!
+7 _ 5 124 <>
+The editor's sign for "delete" is [followed by written demonstration]
+8 _ 5 124 <>
+He is a bit [index finger to forehead, indicating "mad"]
+9 _ 5 124 <>(said by the chairman)
+The chairman hereby resigns
+10 _ 5 124 <>(said walking through the Taj Mahal). (after Nunberg 1993)
+He obviously had plenty of money
+11 _ 5 131 <>(exophoric: book available in the physical context)
+Give me that book
+12 _ 5 131 <>(exophoric gestural: requires gesture or presentation of finger)
+I hurt this finger
+13 _ 5 131 <>(exophoric symbolic: does not require gesture)
+I like this city
+14 _ 5 131 <>(gestural contrastive)
+I broke this tooth first and then that one next
+15 _ 5 131 <>(transposed)
+He looked down and saw the gun: this was the murder weapon, he realized
+16 _ 5 131 <>(discourse deictic)
+"You are wrong". That's exactly what she said.
+17 _ 5 131 <>(discourse deictic)
+It sounded like this: whoosh.
+18 _ 5 131 <>(anaphoric)
+The cowboy entered. This man was not someone to mess with.
+19 _ 5 131 <>(empathetic)
+He went and hit that bastard.
+20 _ 5 131 <>(recognitional)
+Do you remember that holiday we spent in the rain in Devon?

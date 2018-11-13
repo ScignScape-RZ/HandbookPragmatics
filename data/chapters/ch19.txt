@@ -1,0 +1,134 @@
+1 _ 19 450 <>
+She gave him an apple.
+2 _ 19 450 <>
+She gave an apple to him.
+3 a 19 451 <>
+Chris sent them a package.
+3 b 19 451 <*>
+Chris sent that place a package.
+4 a' 19 451 <>
+Chris sent a package to them.
+4 b' 19 451 <>
+Chris sent a package to to that place.
+6 _ 19 452 <>
+It was a giraffe that the mouse saw.
+7 _ 19 452 <>
+The giraffe, the mouse saw it.
+8 _ 19 452 <>
+The giraffe, the mouse saw
+9 a 19 455 <>
+What happened? Her SON is sick.
+9 b 19 455 <>
+What happened? Her BIKE broke down.
+9 c 19 455 <>
+What happened? My SHOULDER hurts.
+9 d 19 455 <>
+What happened? ZACH called.
+9 e 19 455 <>
+What happened? Her HUSBAND left her.
+12 _ 19 456 <??>
+Who did Chris give the book?
+13 _ 19 456 <?*>
+It is that girl that Chris gave the book.
+14 _ 19 456 <>
+What did Pat give Chris?
+15 _ 19 456 <>
+It is that book that Pat gave Chris.
+16 _ 19 457 <>
+Pat was given the book by Chris.
+17 _ 19 457 <??>
+The book was given Pat by Chris.
+18 _ 19 457 <>
+She had an idea for a project. She's going to use three groups of mice. One, she'll feed them mouse chow, just the regular stuff they make for mice. Another she'll feed them veggies. And the third, she'll feed junk food.
+9 a 19 458 <>
+The chef-in-training chopped and diced all afternoon.
+9 b 19 458 <>
+Tigers only kill at night.
+9 c 19 458 <>
+Pat gave and gave, but Chris just took and took.
+21 _ 19 458 <>
+Pat gave and gave but Chris just took and took.
+22 _ 19 458 <>
+He was always opposed to the idea of murder, but in the middle of the battlefield, he had no trouble killing.
+23 _ 19 459 <>
+She picked up her carving knife and began to chop.
+24 _ 19 459 <>
+Why would they give this creep a light prison term!? He murdered!
+25 _ 19 459 <>
+She could steal but she could not rob.
+28 a 19 460 <#>
+The house was built.
+28 b 19 460 <>
+The house was built last year.
+29 a 19 460 <#>
+The car drives.
+29 b1 19 460 <>
+The car drives like a boat.
+29 b2 19 460 <>
+The car drives like a easily.
+29 b3 19 460 <>
+The car drives like a 365 days a year.
+29 b4 19 460 <>
+The car drives like a only in the summertime.
+30 a 19 461 <>
+The house will be built.
+30 b 19 461 <>
+The house has been built.
+31 a 19 461 <>
+The house might be built.
+31 b 19 461 <>
+The house should be built.
+32 _ 19 461 <>
+The house wasn't built.
+33 _ 19 461 <>
+The house WAS built
+34 a 19 461 <>(not the garage)
+The HOUSE was built.
+34 b 19 461 <>(not just designed)
+The house was BUILT.
+35 _ 19 461 <>
+This cake was microwaved.
+36 _ 19 461 <>
+These diamonds were synthesized.
+37 _ 19 462 <>
+That car doesn't drive.
+38 _ 19 462 <>
+These red sports cars DO drive, don't they?
+39 a` 19 462 <A>
+How do you close this purse?
+39 b1 19 462 <B>
+It snaps.
+39 b2 19 462 <B>
+It zips.
+39 b3 19 462 <B>
+It buttons.
+40 a` 19 462 <A>
+Where do we enter the secret passageway?
+40 b' 19 462 <B>
+The bookshelf opens.
+41 a 19 462 <#>
+Pat dresses.
+41 b 19 462 <>
+Pat dresses stylishly.
+42 a 19 462 <*>
+Pat behaved to Chris.
+42 b 19 462 <>
+Pat behaved badly to Chris.
+43 a 19 463 <>(to mean that Pat dresses up and looks good)
+Pat DRESSES!
+43 b 19 463 <>
+Pat doesn't dress.
+43 c 19 463 <>
+Pat dresses first thing in the morning.
+43 c` 19 463 <>
+Pat dresses in the middle of the night.
+44 a 19 463 <*>
+Pat behaved to Chris, but not to Sam.
+44 b 19 463 <*>
+Pat BEHAVED TO Chris.
+44 c 19 463 <*>
+Pat doesn't behave to Chris.
+44 d 19 463 <*>
+Pat behaves to Chris first thing in the morning.
+44 d` 19 463 <>
+Pat behaves to Chris first thing in the morning in the middle of the night/only on Tuesdays.

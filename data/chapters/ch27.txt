@@ -1,0 +1,14 @@
+2 _ 27 632 <>
+We are serving meat.
+3 _ 27 632 <>
+We are serving chicken.
+4 _ 27 632 <>
+Either we are serving chicken or (7squared - 3) is not 46.
+11 a 27 638 <Peter>
+Did John pay back the money he owed you?
+11 b 27 638 <Mary>
+No. He forgot to go to the bank.
+13 a 27 642 <Peter>
+What do you think of Martin's latest novel?
+13 b 27 642 <Mary>
+It puts me to sleep.

@@ -1,0 +1,14 @@
+1 _ 12 290 <>
+America's most frequent service to Asia
+2 _ 12 290 <>
+Fast relief for arthritic pain
+3 _ 12 290 <>
+From the sun-soaked mountains of Colombia
+4 a 12 291 <>
+John is running
+4 b 12 291 <>
+Is John running?
+4 c 12 291 <>
+Run, John!
+5 _ 12 292 <>
+Mr. Tonstain has neat handwriting, and he usually arrives on time for class. Yours, J. A. Koorb.

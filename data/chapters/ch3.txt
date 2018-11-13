@@ -1,0 +1,17 @@
+
+6 a 3 90 <>cf. *Alfred claimed that the book was written by Fred and herself.
+Nancy claimed that the book was written by Fred and herself.
+6 b 3 90 <>/*herself
+This book was written by Fred and myself
+7 _ 3 90 <>
+I won't eat any because, frankly, it's terrible.
+9 _ 3 92 <>
+/ I'd like you to (please) take out the garbage.
+I'd like you to take out the garbage.
+10 _ 3 92 <>
+/ Can you (please) take out the garbage?
+Can you take out the garbage?
+11 _ 3 93 <?>
+I desire for you to please take out the garbage
+12 _ 3 93 <?>
+Are you able to please take out the garbage

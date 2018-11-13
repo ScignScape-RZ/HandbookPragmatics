@@ -1,0 +1,13 @@
+9 a' 16 395 <Maggie>
+You fancy it yourself do you?
+9 b' 16 395 <Julia>
+What, the men's doubles?
+9 c' 16 395 <Maggie>
+Yeah.
+9 d' 16 395 <Julia>
+Well more than the singles, yes.
+11 _ 16 397 <Announcer>
+Seventy-two degrees Celsius. I beg your pardon. Seven- teen degrees Celsius. Seventy-two would be a little warm.
+25 _ 16 403 <[1.08 sec] between big cake>
+/ They wheel a big table in, with a big with a big cake on it, and the girl, jumps up.
+They wheel a big table in, with a big cake on it, and the girl, jumps up.
