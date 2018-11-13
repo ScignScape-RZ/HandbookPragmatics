@@ -17,6 +17,7 @@
 
 KANS_(DSM)
 
+class Language_Sample_Group;
 
 class Language_Sample
 {
@@ -29,6 +30,14 @@ class Language_Sample
  QString precomment_;
  QString postcomment_;
  QString alternate_;
+
+ QString speaker_;
+
+ Language_Sample_Group* group_;
+
+ QString amark_;
+
+ int get_group_id();
 
 public:
 
@@ -43,6 +52,8 @@ public:
  ACCESSORS(QString ,precomment)
  ACCESSORS(QString ,postcomment)
  ACCESSORS(QString ,alternate)
+ ACCESSORS(QString ,speaker)
+ ACCESSORS(QString ,amark)
 
  static void read_samples_from_file(QString path, QVector<Language_Sample*>& result);
 

@@ -21,12 +21,14 @@ int main(int argc, char* argv[])
  Dataset ds (DATA_FOLDER "/chapters/all.txt");
  QVector<Language_Sample*>& samps = ds.samples();
 
- for(int i = 1; i <= 32; ++i)
- {
-  qDebug() << i;
-  QString path = QString(DATA_FOLDER "/chapters/ch%1.txt").arg(i);
-  Language_Sample::read_samples_from_file(path, samps);
- }
+// for(int i = 1; i <= 32; ++i)
+// {
+//  qDebug() << i;
+//  QString path = QString(DATA_FOLDER "/chapters/ch%1.txt").arg(i);
+//  Language_Sample::read_samples_from_file(path, samps);
+// }
+
+ Language_Sample::read_samples_from_file(DATA_FOLDER "/chapters/all.txt", samps);
 
  ds.save_to_file();
 
