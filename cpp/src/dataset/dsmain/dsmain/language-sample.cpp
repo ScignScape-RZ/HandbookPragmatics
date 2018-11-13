@@ -7,6 +7,8 @@
 
 #include "language-sample.h"
 
+#include <QDebug>
+
 #include "textio.h"
 
 
@@ -70,6 +72,7 @@ void Language_Sample::read_samples_from_file(QString path, QVector<Language_Samp
     post = pp.mid(i1 + 1);
    }
   }
+  //qDebug() << "lc: " << loc_code;
   QStringList ls = loc_code.split(' ');
   Language_Sample* samp = new Language_Sample(qs);
   samp->set_index(ls[0].toInt());

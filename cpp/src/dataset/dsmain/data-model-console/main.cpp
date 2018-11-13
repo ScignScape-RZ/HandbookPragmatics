@@ -10,15 +10,28 @@
 
 #include "dsmain/language-sample.h"
 
+#include "dsmain/dataset.h"
+
 #include "kans.h"
 
 USING_KANS(DSM)
 
 int main(int argc, char* argv[])
 {
- QVector<Language_Sample*> samps;
+ Dataset ds (DATA_FOLDER "/chapters/all.txt");
+ QVector<Language_Sample*>& samps = ds.samples();
 
- Language_Sample::read_samples_from_file(DATA_FOLDER "/data.txt", samps);
+ for(int i = 1; i <= 32; ++i)
+ {
+  qDebug() << i;
+  QString path = QString(DATA_FOLDER "/chapters/ch%1.txt").arg(i);
+  Language_Sample::read_samples_from_file(path, samps);
+ }
+
+ ds.save_to_file();
+
+
+
 
  return 0;
 }

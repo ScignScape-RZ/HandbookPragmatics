@@ -16,10 +16,10 @@ But keep in mind that no matter which type of equipment you choose, a weight-tra
 They certainly had a lot to talk about and talk they did.
 11 _ 7 182 <AP>
 Interrogative do should then be classed as a popular idiom. Popular it may indeed have been, but I doubt the different origin.
-12  7 182 <Customer>
-a' Can I get a bagel?
-12  7 182 <Waitress>
-b' No, sorry. We're out of bagels. A bran muffin I can give you.
+12 a' 7 182 <Customer>
+Can I get a bagel?
+12 b' 7 182 <Waitress>
+No, sorry. We're out of bagels. A bran muffin I can give you.
 13 a' 7 182 <A>
 Can I get a bagel?
 13 b' 7 182 <B>

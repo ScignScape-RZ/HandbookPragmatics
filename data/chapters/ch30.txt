@@ -14,8 +14,8 @@ He's more negligent than vicious.
 He's more negligent than he is vicious.
 4 e 30 700 <>
 His negligence exceeds his viciousness.
-7  30 702 <A>
-a' Did Louise order squid?
+7 a' 30 702 <A>
+Did Louise order squid?
 7 b' 30 702 <B>
 Are you kidding? Fred didn't even order shrimp, let alone Louise, squid.
 10 _ 30 703 <#>

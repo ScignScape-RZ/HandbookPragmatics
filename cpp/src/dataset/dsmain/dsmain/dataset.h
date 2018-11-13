@@ -30,6 +30,8 @@ public:
 
  Dataset(QString file);
 
+ ACCESSORS__RGET(QVector<Language_Sample*> ,samples)
+
  void save_raw_file(QString text, int page, int num);
  void parse_to_samples(QString text, int page, int num);
  int get_chapter_number_from_page(int page);
