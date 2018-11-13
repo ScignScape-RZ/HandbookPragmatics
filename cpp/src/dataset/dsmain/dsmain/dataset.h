@@ -13,11 +13,12 @@
 
 #include <QVector>
 #include <QString>
-
+#include <QMap>
 
 KANS_(DSM)
 
 class Language_Sample;
+class Language_Sample_Group;
 
 class Dataset
 {
@@ -26,18 +27,25 @@ class Dataset
 
  QVector<int> chapter_pages_;
 
+ QMap<QString, Language_Sample_Group*> groups_by_text_;
+ typedef QMap<QString, Language_Sample_Group*> groups_by_text_type;
+
+ QVector<Language_Sample_Group*> groups_;
+
 public:
 
  Dataset(QString file);
 
  ACCESSORS__RGET(QVector<Language_Sample*> ,samples)
+ ACCESSORS__RGET(groups_by_text_type ,groups)
+ ACCESSORS__RGET(QVector<Language_Sample_Group*> ,groups)
 
  void save_raw_file(QString text, int page, int num);
  void parse_to_samples(QString text, int page, int num);
  int get_chapter_number_from_page(int page);
 
  void save_to_file();
- void get_serialization(QString& text);
+ void get_serialization(QString& text, QString& gtext);
 };
 
 

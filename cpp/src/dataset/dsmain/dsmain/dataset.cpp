@@ -9,6 +9,8 @@
 
 #include "language-sample.h"
 
+#include "language-sample-group.h"
+
 #include "textio.h"
 
 #include <QDateTime>
@@ -49,21 +51,51 @@ void Dataset::save_raw_file(QString text, int page, int num)
  save_file(path, text);
 }
 
-void Dataset::get_serialization(QString& text)
+void Dataset::get_serialization(QString& text, QString& gtext)
 {
  for(Language_Sample* samp : samples_)
  {
   text += samp->get_serialization() + "\n";
  }
+
+ for(Language_Sample_Group* g : groups_)
+ {
+  gtext += g->get_serialization();
+ }
+
+
+// QMap<int, Language_Sample_Group*> gm;
+// int sz = groups_.size();
+// QMapIterator<QString, Language_Sample_Group*> it(groups_);
+// while(it.hasNext())
+// {
+//  it.next();
+//  Language_Sample_Group* g = it.value();
+//  int id = g->id();
+//  gm[id] = g;
+// }
+
+// for(int i = 0; i < sz; ++i)
+// {
+//  Language_Sample_Group* g = gm[i + 1];
+//  gtext += g->get_serialization();
+// }
+
+
 }
 
 void Dataset::save_to_file()
 {
  QString text;
- get_serialization(text);
+ QString gtext;
+ get_serialization(text, gtext);
  QString dt = QDateTime::currentDateTime().toString("dd-MM-yy--hh-mm");
  QString path = QString("%1.%2.txt").arg(file_).arg(dt);
  save_file(path, text);
+
+ QString gpath = QString("%1.%2.g.txt").arg(file_).arg(dt);
+ save_file(gpath, gtext);
+
 }
 
 void Dataset::parse_to_samples(QString text, int page, int num)

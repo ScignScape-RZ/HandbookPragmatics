@@ -53,9 +53,13 @@ public:
  ACCESSORS(QString ,postcomment)
  ACCESSORS(QString ,alternate)
  ACCESSORS(QString ,speaker)
+
+ ACCESSORS(Language_Sample_Group* ,group)
  ACCESSORS(QString ,amark)
 
- static void read_samples_from_file(QString path, QVector<Language_Sample*>& result);
+ static void read_samples_from_file(QString path,
+   QVector<Language_Sample*>& result,
+  QMap<QString, Language_Sample_Group*>& groups);
 
  QString get_serialization();
 

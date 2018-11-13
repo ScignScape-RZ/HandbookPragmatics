@@ -28,7 +28,10 @@ int main(int argc, char* argv[])
 //  Language_Sample::read_samples_from_file(path, samps);
 // }
 
- Language_Sample::read_samples_from_file(DATA_FOLDER "/chapters/all.txt", samps);
+ QMap<QString, Language_Sample_Group*>& groups = ds.groups();
+
+ Language_Sample::read_samples_from_file
+   (DATA_FOLDER "/chapters/all.txt", samps, groups);
 
  ds.save_to_file();
 

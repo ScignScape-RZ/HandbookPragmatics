@@ -7,6 +7,8 @@
 
 #include "language-sample.h"
 
+#include "language-sample-group.h"
+
 #include <QDebug>
 
 #include "textio.h"
@@ -25,7 +27,7 @@ int Language_Sample::get_group_id()
 {
  if(group_)
  {
-  return 0;
+  return group_->id();
  }
  return 0;
 }
@@ -62,7 +64,9 @@ QString Language_Sample::get_serialization()
  return result;
 }
 
-void Language_Sample::read_samples_from_file(QString path, QVector<Language_Sample*>& result)
+void Language_Sample::read_samples_from_file
+(QString path, QVector<Language_Sample*>& result,
+ QMap<QString, Language_Sample_Group*>& groups)
 {
  QString text = load_file(path);
  QStringList qsl = text.split('\n');
@@ -71,6 +75,11 @@ void Language_Sample::read_samples_from_file(QString path, QVector<Language_Samp
  QString speaker;
  QString amark;
 
+
+
+ int group_count = 0;
+ int gid = 0;
+
  for(QString qs : qsl)
  {
   QString pre;
@@ -78,6 +87,11 @@ void Language_Sample::read_samples_from_file(QString path, QVector<Language_Samp
 
   if(qs.isEmpty())
     continue;
+  if(qs.startsWith('#'))
+  {
+   gid = qs.mid(2).simplified().toInt();
+   continue;
+  }
   if(qs.startsWith('/'))
   {
    alternate = qs.mid(2).simplified();
@@ -190,11 +204,35 @@ void Language_Sample::read_samples_from_file(QString path, QVector<Language_Samp
 
   //qDebug() << "lc: " << loc_code;
   QStringList ls = loc_code.split(' ');
+
   Language_Sample* samp = new Language_Sample(qs);
+
   samp->set_index(ls[0].toInt());
   samp->set_sub_index(ls[1]);
   samp->set_chapter(ls[2].toInt());
   samp->set_page(ls[3].toInt());
+
+  if(gid)
+  {
+
+  }
+  else
+  {
+   QString tid = QString("%1-%2-%3")
+     .arg(samp->chapter()).arg(samp->page())
+     .arg(samp->index());
+   Language_Sample_Group* g = groups.value(tid);
+   if(!g)
+   {
+    ++group_count;
+    g = new Language_Sample_Group(group_count, tid);
+    groups[tid] = g;
+    g->set_chapter(samp->chapter());
+    g->set_page(samp->page());
+   }
+   samp->set_group(g);
+  }
+
   samp->set_precomment(pre);
   samp->set_postcomment(post);
   if(!alternate.isEmpty())
