@@ -42,6 +42,10 @@ public:
 
  QString get_serialization();
 
+ static void read_groups_from_file(QString path,
+  QVector<Language_Sample_Group*>& result);
+
+
 };
 
 

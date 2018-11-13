@@ -31,3 +31,45 @@ QString Language_Sample_Group::get_serialization()
 
  return result;
 }
+
+void Language_Sample_Group::read_groups_from_file(QString path,
+ QVector<Language_Sample_Group*>& result)
+{
+ QString text = load_file(path);
+ QStringList qsl = text.split('\n');
+
+ for(QString qs : qsl)
+ {
+  if(qs.isEmpty())
+    continue;
+
+  QString tid;
+  QString cl;
+
+  int index = qs.indexOf('<');
+  if(index != -1)
+  {
+   QString tc = qs.mid(index + 1);
+   qs = qs.left(index).simplified();
+   int i1 = tc.indexOf('>');
+   if(i1 == -1)
+   {
+    tid = tc;
+   }
+   else
+   {
+    cl = tc.left(i1);
+    tid = tc.mid(i1 + 1);
+   }
+  }
+
+  QStringList ls = qs.split(' ');
+
+  Language_Sample_Group* g = new Language_Sample_Group(ls[0].toInt(), tid);
+
+  g->set_chapter(ls[1].toInt());
+  g->set_page(ls[2].toInt());
+  result.push_back(g);
+
+ }
+}

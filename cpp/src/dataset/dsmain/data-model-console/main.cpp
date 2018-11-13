@@ -10,6 +10,8 @@
 
 #include "dsmain/language-sample.h"
 
+#include "dsmain/language-sample-group.h"
+
 #include "dsmain/dataset.h"
 
 #include "kans.h"
@@ -28,7 +30,12 @@ int main(int argc, char* argv[])
 //  Language_Sample::read_samples_from_file(path, samps);
 // }
 
- QMap<QString, Language_Sample_Group*>& groups = ds.groups();
+// QMap<QString, Language_Sample_Group*>& groups = ds.groups();
+
+ QVector<Language_Sample_Group*>& groups = ds.groups();
+ Language_Sample_Group::read_groups_from_file
+   (DATA_FOLDER "/chapters/all.g.txt", groups);
+
 
  Language_Sample::read_samples_from_file
    (DATA_FOLDER "/chapters/all.txt", samps, groups);

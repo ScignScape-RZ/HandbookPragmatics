@@ -37,7 +37,7 @@ public:
  Dataset(QString file);
 
  ACCESSORS__RGET(QVector<Language_Sample*> ,samples)
- ACCESSORS__RGET(groups_by_text_type ,groups)
+ ACCESSORS__RGET(groups_by_text_type ,groups_by_text)
  ACCESSORS__RGET(QVector<Language_Sample_Group*> ,groups)
 
  void save_raw_file(QString text, int page, int num);

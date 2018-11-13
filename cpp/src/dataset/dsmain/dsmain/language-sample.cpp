@@ -66,7 +66,7 @@ QString Language_Sample::get_serialization()
 
 void Language_Sample::read_samples_from_file
 (QString path, QVector<Language_Sample*>& result,
- QMap<QString, Language_Sample_Group*>& groups)
+ QVector<Language_Sample_Group*>& groups)
 {
  QString text = load_file(path);
  QStringList qsl = text.split('\n');
@@ -82,9 +82,6 @@ void Language_Sample::read_samples_from_file
 
  for(QString qs : qsl)
  {
-  QString pre;
-  QString post;
-
   if(qs.isEmpty())
     continue;
   if(qs.startsWith('#'))
@@ -112,6 +109,10 @@ void Language_Sample::read_samples_from_file
    loc_code = qs.simplified();
    continue;
   }
+
+  QString pre;
+  QString post;
+
   int index = loc_code.indexOf('<');
   if(index != -1)
   {
@@ -214,23 +215,28 @@ void Language_Sample::read_samples_from_file
 
   if(gid)
   {
-
+   Language_Sample_Group* g = groups[gid - 1];
+   samp->set_group(g);
   }
   else
   {
    QString tid = QString("%1-%2-%3")
-     .arg(samp->chapter()).arg(samp->page())
-     .arg(samp->index());
-   Language_Sample_Group* g = groups.value(tid);
-   if(!g)
-   {
-    ++group_count;
-    g = new Language_Sample_Group(group_count, tid);
-    groups[tid] = g;
-    g->set_chapter(samp->chapter());
-    g->set_page(samp->page());
-   }
-   samp->set_group(g);
+        .arg(samp->chapter()).arg(samp->page())
+        .arg(samp->index());
+   qDebug() << "group missing: " << tid;
+//   QString tid = QString("%1-%2-%3")
+//     .arg(samp->chapter()).arg(samp->page())
+//     .arg(samp->index());
+//   Language_Sample_Group* g = groups.value(tid);
+//   if(!g)
+//   {
+//    ++group_count;
+//    g = new Language_Sample_Group(group_count, tid);
+//    groups[tid] = g;
+//    g->set_chapter(samp->chapter());
+//    g->set_page(samp->page());
+//   }
+//   samp->set_group(g);
   }
 
   samp->set_precomment(pre);

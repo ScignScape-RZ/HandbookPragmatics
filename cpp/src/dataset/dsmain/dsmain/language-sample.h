@@ -59,7 +59,7 @@ public:
 
  static void read_samples_from_file(QString path,
    QVector<Language_Sample*>& result,
-  QMap<QString, Language_Sample_Group*>& groups);
+  QVector<Language_Sample_Group*>& groups);
 
  QString get_serialization();
 
