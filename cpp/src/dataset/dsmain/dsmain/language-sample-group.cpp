@@ -24,7 +24,7 @@ Language_Sample_Group::Language_Sample_Group(int id, QString text_id)
 }
 
 
-QString Language_Sample_Group::get_serialization()
+QString Language_Sample_Group::get_serialization(int& rgc)
 {
  QString result = QString("%1 %2 %3 %4 <%5>%6\n").arg(id_)
    .arg(rg_id_).arg(chapter_).arg(page_)
@@ -32,7 +32,14 @@ QString Language_Sample_Group::get_serialization()
 
  if(ref_group_)
  {
-  result.prepend(QString("+%1\n").arg(ref_group_->id()));
+  int rgi = ref_group_->id();
+  if(rgi == id_)
+  {
+   ++rgc;
+   result.prepend(QString("=%1\n").arg(rgc));
+  }
+  else
+    result.prepend(QString("+%1\n").arg(rgi));
  }
 
 
@@ -46,6 +53,7 @@ void Language_Sample_Group::read_groups_from_file(QString path,
  QStringList qsl = text.split('\n');
 
  int rid = 0;
+ int hrid = 0;
 
  for(QString qs : qsl)
  {
@@ -56,6 +64,12 @@ void Language_Sample_Group::read_groups_from_file(QString path,
   {
    rid = qs.mid(1).toInt();
    continue;
+  }
+
+  if(qs.startsWith('='))
+  {
+   hrid = qs.mid(1).toInt();
+   continue; // for now ...
   }
 
   QString tid;
@@ -82,7 +96,21 @@ void Language_Sample_Group::read_groups_from_file(QString path,
 
   Language_Sample_Group* g = new Language_Sample_Group(ls[0].toInt(), tid);
 
-  g->set_rg_id(ls[1].toInt());
+  int rgid = ls[1].toInt();
+  if(hrid)
+  {
+   if(rgid && (rgid != hrid))
+   {
+    qDebug() << QString("conflicting rgid: %1, %2").arg(hrid).arg(rgid);
+   }
+   g->set_rg_id(hrid);
+   hrid = 0;
+  }
+  else
+    g->set_rg_id(rgid);
+
+
+
   g->set_chapter(ls[2].toInt());
   g->set_page(ls[3].toInt());
 

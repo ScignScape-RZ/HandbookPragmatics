@@ -38,6 +38,11 @@ QString Language_Sample::get_serialization()
    .arg(sub_index_).arg(chapter_).arg(page_)
    .arg(precomment_).arg(postcomment_);
 
+ if(!ser_pre_.isEmpty())
+ {
+  result.prepend(ser_pre_ + "\n");
+ }
+
  int gid = get_group_id();
  if(gid)
  {
@@ -74,6 +79,7 @@ void Language_Sample::read_samples_from_file
  QString alternate;
  QString speaker;
  QString amark;
+ QString ser_pre;
 
  Language_Sample_Group* current_ref_group = nullptr;
  bool awaiting_ref_group = false;
@@ -89,11 +95,13 @@ void Language_Sample::read_samples_from_file
 
   if(qs == "--")
   {
+   ser_pre = qs;
    current_ref_group = nullptr;
    continue;
   }
   if(qs.startsWith('+'))
   {
+   ser_pre = qs;
    if(qs == "++")
    {
     current_ref_group = nullptr;
@@ -234,6 +242,12 @@ void Language_Sample::read_samples_from_file
   samp->set_sub_index(ls[1]);
   samp->set_chapter(ls[2].toInt());
   samp->set_page(ls[3].toInt());
+
+  if(!ser_pre.isEmpty())
+  {
+   samp->set_ser_pre(ser_pre);
+   ser_pre.clear();
+  }
 
   if(gid)
   {

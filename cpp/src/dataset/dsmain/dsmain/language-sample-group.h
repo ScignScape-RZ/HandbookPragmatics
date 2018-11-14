@@ -45,7 +45,7 @@ public:
  ACCESSORS(Language_Sample_Group* ,ref_group)
  ACCESSORS(int ,rg_id)
 
- QString get_serialization();
+ QString get_serialization(int& rgc);
 
  static void read_groups_from_file(QString path,
   QVector<Language_Sample_Group*>& result);

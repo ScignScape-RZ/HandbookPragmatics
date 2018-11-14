@@ -1,4 +1,0 @@
-18 a 1 45 <>
-If Annie got married and had a baby, her grandfather will be happy.
-18 b 1 45 <>
-If Annie had a baby and got married, her grandfather will not be happy.

@@ -37,6 +37,8 @@ class Language_Sample
 
  QString amark_;
 
+ QString ser_pre_;
+
  int get_group_id();
 
 public:
@@ -56,6 +58,8 @@ public:
 
  ACCESSORS(Language_Sample_Group* ,group)
  ACCESSORS(QString ,amark)
+
+ ACCESSORS(QString ,ser_pre)
 
  static void read_samples_from_file(QString path,
    QVector<Language_Sample*>& result,

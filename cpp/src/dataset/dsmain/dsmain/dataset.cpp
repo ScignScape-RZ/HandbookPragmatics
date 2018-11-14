@@ -58,9 +58,10 @@ void Dataset::get_serialization(QString& text, QString& gtext)
   text += samp->get_serialization() + "\n";
  }
 
+ int rgc = 0;
  for(Language_Sample_Group* g : groups_)
  {
-  gtext += g->get_serialization();
+  gtext += g->get_serialization(rgc);
  }
 
 

@@ -1,8 +1,0 @@
-@27 # counterpart:
-(1)a. Even KEN knows it's unethical.
-a. Ken is the least likely [of a contextually invoked set] to know it's unethical.
-b. [in a recommendation letter for a philosophy position]
-      Jones dresses well and writes grammatical English.
-b. Jones is no good at philosophy.
-c. The cat is in the hamper or under the bed.
-c. I don't know for a fact that the cat is under the bed.
