@@ -25,6 +25,8 @@ class Language_Sample_Group : QVector<Language_Sample*>
  int chapter_;
  int page_;
 
+ int rg_id_;
+
  QString classification_;
  QString text_id_;
 
@@ -41,6 +43,7 @@ public:
  ACCESSORS(QString ,text_id)
  ACCESSORS(QString ,classification)
  ACCESSORS(Language_Sample_Group* ,ref_group)
+ ACCESSORS(int ,rg_id)
 
  QString get_serialization();
 
