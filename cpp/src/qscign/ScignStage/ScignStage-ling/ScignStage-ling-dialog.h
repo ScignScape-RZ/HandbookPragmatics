@@ -31,7 +31,8 @@
 #include "kans.h"
 
 KANS_CLASS_DECLARE(DSM ,Language_Sample)
-
+KANS_CLASS_DECLARE(DSM ,Language_Sample_Group)
+KANS_CLASS_DECLARE(DSM, Dataset)
 
 USING_KANS(DSM)
 
@@ -60,6 +61,7 @@ class XPDF_Bridge;
 
 KANS_CLASS_DECLARE(PhaonLib ,Phaon_Runner)
 USING_KANS(PhaonLib)
+
 
 QSNS_(ScignStage)
 _QSNS(ScignStage)
@@ -101,6 +103,7 @@ class ScignStage_Ling_Dialog : public QDialog
  XPDF_Bridge* xpdf_bridge_;
 
  QVector<Language_Sample*>* samples_;
+ QVector<Language_Sample_Group*>* groups_;
 
  void chapter_to_string(QString& result, bool wl);
  void group_to_string(QString& result, bool wl);
@@ -169,7 +172,7 @@ public:
 
 
  ScignStage_Ling_Dialog(XPDF_Bridge* xpdf_bridge,
-   QVector<Language_Sample*>& samps, QWidget* parent = nullptr);
+   Dataset& ds, QWidget* parent = nullptr);
 
  ~ScignStage_Ling_Dialog();
 

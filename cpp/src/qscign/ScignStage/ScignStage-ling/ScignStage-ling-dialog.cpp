@@ -75,6 +75,8 @@
 #include "kauvir-code-model/kcm-channel-group.h"
 #include "kauvir-code-model/kauvir-code-model.h"
 
+#include "dsmain/dataset.h"
+
 #include "textio.h"
 
 USING_KANS(TextIO)
@@ -85,9 +87,9 @@ USING_KANS(Phaon)
 
 
 ScignStage_Ling_Dialog::ScignStage_Ling_Dialog(XPDF_Bridge* xpdf_bridge,
-  QVector<Language_Sample*>& samps,
+  Dataset& ds,
   QWidget* parent)
-  : QDialog(parent), xpdf_bridge_(xpdf_bridge), samples_(&samps),
+  : QDialog(parent), xpdf_bridge_(xpdf_bridge),
     last_sample_(nullptr),
     last_highlight_(nullptr), xpdf_process_(nullptr), tcp_server_(nullptr),
     phr_(nullptr), phr_init_function_(nullptr), screenshot_function_(nullptr),
@@ -95,6 +97,9 @@ ScignStage_Ling_Dialog::ScignStage_Ling_Dialog(XPDF_Bridge* xpdf_bridge,
     current_index_(-1), max_index_(0), current_volume_(50)
 {
  // // setup RZW
+
+ samples_ = &ds.samples();
+ groups_ = &ds.groups();
 
  button_box_ = new QDialogButtonBox(this);
 

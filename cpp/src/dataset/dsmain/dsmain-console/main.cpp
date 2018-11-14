@@ -43,6 +43,10 @@
 #include "PhaonLib/phaon-symbol-scope.h"
 #include "test-functions.h"
 
+#include "dsmain/language-sample-group.h"
+
+#include "dsmain/dataset.h"
+
 #include "kans.h"
 
 #include <QThread>
@@ -60,16 +64,23 @@ USING_QSNS(ScignStage)
 int main(int argc, char **argv)
 {
  QApplication qapp(argc, argv);
+ Dataset ds (DATA_FOLDER "/chapters/all.txt");
+ QVector<Language_Sample*>& samps = ds.samples();
 
- QVector<Language_Sample*> samps;
+ QVector<Language_Sample_Group*>& groups = ds.groups();
+ Language_Sample_Group::read_groups_from_file
+   (DATA_FOLDER "/chapters/all.g.txt", groups);
 
- Language_Sample::read_samples_from_file(DATA_FOLDER "/data.txt", samps);
+ Language_Sample::read_samples_from_file
+   (DATA_FOLDER "/chapters/all.txt", samps, groups);
+
+
 
 #ifdef USING_XPDF
  XPDF_Bridge xpdf_bridge(argc, argv);
- ScignStage_Ling_Dialog dlg (&xpdf_bridge, samps);
+ ScignStage_Ling_Dialog dlg (&xpdf_bridge, ds);
 #else
- ScignStage_Ling_Dialog dlg (nullptr, samps);
+ ScignStage_Ling_Dialog dlg (nullptr, ds);
 #endif
 
 #ifdef USING_KPH
