@@ -33,6 +33,8 @@
 #include <QPlainTextEdit>
 #include <QTextStream>
 
+#include <QTreeWidget>
+
 #include <QtMultimedia/QMediaPlayer>
 
 #include <QPainter>
@@ -64,6 +66,7 @@
 #include <QListWidget>
 
 #include "dsmain/language-sample.h"
+#include "dsmain/language-sample-group.h"
 
 #include "xpdf-bridge.h"
 
@@ -172,6 +175,8 @@ ScignStage_Ling_Dialog::ScignStage_Ling_Dialog(XPDF_Bridge* xpdf_bridge,
  main_frame_->setContextMenuPolicy(Qt::CustomContextMenu);
 
  main_grid_layout_ = new QGridLayout;
+ main_tree_layout_ = new QVBoxLayout;
+ main_tree_widget_ = new QTreeWidget(this);
 
  int r = 0;
 
@@ -189,29 +194,78 @@ ScignStage_Ling_Dialog::ScignStage_Ling_Dialog(XPDF_Bridge* xpdf_bridge,
   ++cc;
  }
 
- for(Language_Sample* samp : *samples_)
+ main_tree_widget_->setColumnCount(1);
+
+// for(Language_Sample* samp : *samples_)
+// {
+//  QLabel* lbl = new QLabel(samp->text(), this);
+//  sample_to_label_map_[samp] = {lbl, r};
+
+//  main_grid_layout_->addWidget(lbl, r + 1, 0);
+
+//  main_grid_layout_->addWidget(new QLabel(
+//    QString::number(samp->index()) + samp->sub_index()),
+//    r + 1, 1);
+
+//  main_grid_layout_->addWidget(new QLabel(
+//    QString::number(samp->chapter())),
+//    r + 1, 2);
+
+//  main_grid_layout_->addWidget(new QLabel(
+//    QString::number(samp->page())),
+//    r + 1, 3);
+
+//  ++r;
+// }
+
+// QList<QTreeWidgetItem *> items;
+// int i = 0;
+
+ QStringList labels;
+ labels << "Text" << "Ch" << "Page";
+
+ main_tree_widget_->setColumnCount(3);
+ main_tree_widget_->setHeaderLabels(labels);
+
+// for(int i = 0; i < 6; ++i)
+// {
+//  QStringList qsl;
+//  for(int j = 0; j < 3; ++j)
+//  {
+//   QString qs = QString("item: %1 %2").arg(i).arg(j);
+//   qsl.push_back(qs);
+//  }
+//  QTreeWidgetItem* twi = new QTreeWidgetItem((QTreeWidget*) nullptr,
+//   qsl);
+//  main_tree_widget_->addTopLevelItem(twi);
+// }
+
+
+
+ for(Language_Sample_Group* group : *groups_)
  {
-  QLabel* lbl = new QLabel(samp->text(), this);
-  sample_to_label_map_[samp] = {lbl, r};
+  QString ft = group->first_sample_text();
+  if(ft.isEmpty())
+    continue;
+  QStringList qsl;// = group->all_sample_text();
+  qsl.push_back(ft);
+  qsl.push_back(QString::number(group->first()->chapter()));
+  qsl.push_back(QString::number(group->first()->page()));
 
-  main_grid_layout_->addWidget(lbl, r + 1, 0);
-
-  main_grid_layout_->addWidget(new QLabel(
-    QString::number(samp->index()) + samp->sub_index()),
-    r + 1, 1);
-
-  main_grid_layout_->addWidget(new QLabel(
-    QString::number(samp->chapter())),
-    r + 1, 2);
-
-  main_grid_layout_->addWidget(new QLabel(
-    QString::number(samp->page())),
-    r + 1, 3);
-
-  ++r;
+  QTreeWidgetItem* twi = new QTreeWidgetItem((QTreeWidget*) nullptr,
+    qsl);
+  main_tree_widget_->addTopLevelItem(twi);
+  //items.append(twi);
  }
 
- main_frame_->setLayout(main_grid_layout_);
+// main_tree_widget_->insertTopLevelItems(0, items);
+// main_tree_widget_->insertTopLevelItems(1, items);
+
+ main_tree_layout_->addLayout(main_grid_layout_);
+
+ main_tree_layout_->addWidget(main_tree_widget_);
+
+ main_frame_->setLayout(main_tree_layout_);
 
  grid_scroll_area_ = new QScrollArea(this);
  grid_scroll_area_->setWidget(main_frame_);

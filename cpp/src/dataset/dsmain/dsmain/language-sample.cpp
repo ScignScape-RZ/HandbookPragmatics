@@ -32,6 +32,17 @@ int Language_Sample::get_group_id()
  return 0;
 }
 
+Language_Sample_Group* Language_Sample::get_ref_group()
+{
+ if(group_)
+ {
+  if(group_->ref_group())
+    return group_->ref_group();
+  return group_;
+ }
+ return nullptr;
+}
+
 QString Language_Sample::get_serialization()
 {
  QString result = QString("%1 %2 %3 %4 <%5>%6\n").arg(index_)
@@ -268,7 +279,6 @@ void Language_Sample::read_samples_from_file
    {
     g->set_ref_group(current_ref_group);
    }
-
   }
   else
   {
@@ -290,6 +300,8 @@ void Language_Sample::read_samples_from_file
 //   }
 //   samp->set_group(g);
   }
+
+  samp->get_ref_group()->push_back(samp);
 
   samp->set_precomment(pre);
   samp->set_postcomment(post);

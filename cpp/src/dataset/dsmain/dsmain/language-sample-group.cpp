@@ -7,6 +7,8 @@
 
 #include "language-sample-group.h"
 
+#include "language-sample.h"
+
 #include <QDebug>
 
 #include "textio.h"
@@ -23,6 +25,22 @@ Language_Sample_Group::Language_Sample_Group(int id, QString text_id)
 
 }
 
+QString Language_Sample_Group::first_sample_text()
+{
+ if(isEmpty())
+   return QString();
+ return first()->text();
+}
+
+QStringList Language_Sample_Group::all_sample_text()
+{
+ QStringList result;
+ for(Language_Sample* samp : *this)
+ {
+  result << samp->text();
+ }
+ return result;
+}
 
 QString Language_Sample_Group::get_serialization(int& rgc)
 {

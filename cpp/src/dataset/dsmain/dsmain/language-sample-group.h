@@ -19,7 +19,7 @@ KANS_(DSM)
 
 class Language_Sample;
 
-class Language_Sample_Group : QVector<Language_Sample*>
+class Language_Sample_Group : public QVector<Language_Sample*>
 {
  int id_;
  int chapter_;
@@ -50,6 +50,8 @@ public:
  static void read_groups_from_file(QString path,
   QVector<Language_Sample_Group*>& result);
 
+ QStringList all_sample_text();
+ QString first_sample_text();
 
 };
 

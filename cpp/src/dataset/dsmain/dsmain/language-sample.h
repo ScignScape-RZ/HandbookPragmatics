@@ -67,6 +67,8 @@ public:
 
  QString get_serialization();
 
+ Language_Sample_Group* get_ref_group();
+
 };
 
 

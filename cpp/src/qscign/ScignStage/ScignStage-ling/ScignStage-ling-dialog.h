@@ -54,6 +54,7 @@ class QGridLayout;
 class QMediaPlayer;
 class QProcess;
 class QTcpServer;
+class QTreeWidget;
 
 class ScignStage_Clickable_Label;
 
@@ -96,6 +97,9 @@ class ScignStage_Ling_Dialog : public QDialog
 
  QScrollArea* grid_scroll_area_;
  QFrame* main_frame_;
+
+ QTreeWidget* main_tree_widget_;
+ QVBoxLayout* main_tree_layout_;
  QGridLayout* main_grid_layout_;
 
  NAV_Ling1D_Panel* nav_panel_;
