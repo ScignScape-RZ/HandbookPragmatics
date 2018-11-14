@@ -17,7 +17,7 @@ USING_KANS(TextIO)
 
 Language_Sample_Group::Language_Sample_Group(int id, QString text_id)
   :  id_(id),
-    text_id_(text_id), chapter_(0), page_(0)
+    text_id_(text_id), chapter_(0), page_(0), ref_group_(nullptr)
 {
 
 }
@@ -29,6 +29,12 @@ QString Language_Sample_Group::get_serialization()
    .arg(chapter_).arg(page_)
    .arg(classification_).arg(text_id_);
 
+ if(ref_group_)
+ {
+  result.prepend(QString("\n+%1").arg(ref_group_->id()));
+ }
+
+
  return result;
 }
 
@@ -38,10 +44,18 @@ void Language_Sample_Group::read_groups_from_file(QString path,
  QString text = load_file(path);
  QStringList qsl = text.split('\n');
 
+ int rid = 0;
+
  for(QString qs : qsl)
  {
   if(qs.isEmpty())
     continue;
+
+  if(qs.startsWith('+'))
+  {
+   rid = qs.mid(1).toInt();
+   continue;
+  }
 
   QString tid;
   QString cl;
@@ -69,6 +83,12 @@ void Language_Sample_Group::read_groups_from_file(QString path,
 
   g->set_chapter(ls[1].toInt());
   g->set_page(ls[2].toInt());
+
+  if(rid)
+  {
+   g->set_ref_group(result[rid - 1]);
+   rid = 0;
+  }
   result.push_back(g);
 
  }

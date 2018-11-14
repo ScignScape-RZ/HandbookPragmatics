@@ -75,7 +75,9 @@ void Language_Sample::read_samples_from_file
  QString speaker;
  QString amark;
 
-
+ Language_Sample_Group* current_ref_group = nullptr;
+ bool awaiting_ref_group = false;
+ int ref_group_id = 0;
 
  int group_count = 0;
  int gid = 0;
@@ -84,6 +86,26 @@ void Language_Sample::read_samples_from_file
  {
   if(qs.isEmpty())
     continue;
+
+  if(qs == "--")
+  {
+   current_ref_group = nullptr;
+   continue;
+  }
+  if(qs.startsWith('+'))
+  {
+   if(qs == "++")
+   {
+    current_ref_group = nullptr;
+    awaiting_ref_group = true;
+   }
+   else
+   {
+    ref_group_id = qs.mid(1).toInt();
+   }
+   continue;
+  }
+
   if(qs.startsWith('#'))
   {
    gid = qs.mid(2).simplified().toInt();
@@ -217,6 +239,22 @@ void Language_Sample::read_samples_from_file
   {
    Language_Sample_Group* g = groups[gid - 1];
    samp->set_group(g);
+
+   if(awaiting_ref_group)
+   {
+    current_ref_group = g;
+    awaiting_ref_group = false;
+   }
+   else if(ref_group_id)
+   {
+    g->set_ref_group(groups[ref_group_id - 1]);
+    ref_group_id = 0;
+   }
+   else if(current_ref_group)
+   {
+    g->set_ref_group(current_ref_group);
+   }
+
   }
   else
   {
