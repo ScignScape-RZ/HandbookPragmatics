@@ -166,133 +166,97 @@ ScignStage_Ling_Dialog::ScignStage_Ling_Dialog(XPDF_Bridge* xpdf_bridge,
  middle_layout_ = new QHBoxLayout;
 
  // //   Foreground
- main_frame_ = new QFrame(this);
 
- main_frame_->setMinimumHeight(250);
-
- main_frame_->setMinimumWidth(300);
-
- main_frame_->setContextMenuPolicy(Qt::CustomContextMenu);
-
- main_grid_layout_ = new QGridLayout;
- main_tree_layout_ = new QVBoxLayout;
  main_tree_widget_ = new QTreeWidget(this);
 
  int r = 0;
 
  QStringList headers {
-  "Index",
-  "Chapter",
-  "Page"
+  "Text",
+  "Label",
+  "Page",
+  "Chapter"
  };
 
- int cc = 1;
- for(QString h : headers)
- {
-  QLabel* lbl = new QLabel(h, this);
-  main_grid_layout_->addWidget(lbl, 0, cc);
-  ++cc;
- }
 
- main_tree_widget_->setColumnCount(1);
+ main_tree_widget_->setColumnCount(4);
+ main_tree_widget_->setHeaderLabels(headers);
 
-// for(Language_Sample* samp : *samples_)
-// {
-//  QLabel* lbl = new QLabel(samp->text(), this);
-//  sample_to_label_map_[samp] = {lbl, r};
-
-//  main_grid_layout_->addWidget(lbl, r + 1, 0);
-
-//  main_grid_layout_->addWidget(new QLabel(
-//    QString::number(samp->index()) + samp->sub_index()),
-//    r + 1, 1);
-
-//  main_grid_layout_->addWidget(new QLabel(
-//    QString::number(samp->chapter())),
-//    r + 1, 2);
-
-//  main_grid_layout_->addWidget(new QLabel(
-//    QString::number(samp->page())),
-//    r + 1, 3);
-
-//  ++r;
-// }
-
-// QList<QTreeWidgetItem *> items;
-// int i = 0;
-
- QStringList labels;
- labels << "Text" << "Ch" << "Page";
-
- main_tree_widget_->setColumnCount(3);
- main_tree_widget_->setHeaderLabels(labels);
-
-// for(int i = 0; i < 6; ++i)
-// {
-//  QStringList qsl;
-//  for(int j = 0; j < 3; ++j)
-//  {
-//   QString qs = QString("item: %1 %2").arg(i).arg(j);
-//   qsl.push_back(qs);
-//  }
-//  QTreeWidgetItem* twi = new QTreeWidgetItem((QTreeWidget*) nullptr,
-//   qsl);
-//  main_tree_widget_->addTopLevelItem(twi);
-// }
-
+ main_tree_widget_->setColumnWidth(0, 500);
+ main_tree_widget_->setColumnWidth(1, 40);
+ main_tree_widget_->setColumnWidth(2, 35);
+ main_tree_widget_->setColumnWidth(3, 15);
 
 
  for(Language_Sample_Group* group : *groups_)
  {
-  QString ft = group->first_sample_text();
-  if(ft.isEmpty())
+  QString mt = group->get_main_text();
+  if(mt.isEmpty())
     continue;
-  QStringList qsl;// = group->all_sample_text();
-  qsl.push_back(ft);
-  qsl.push_back(QString::number(group->first()->chapter()));
+
+  QStringList qsl; // = group->all_sample_text();
+
+  qsl.push_back(mt);
+  qsl.push_back(QString::number(group->first()->index()));
   qsl.push_back(QString::number(group->first()->page()));
+  qsl.push_back(QString::number(group->first()->chapter()));
 
   QTreeWidgetItem* twi = new QTreeWidgetItem((QTreeWidget*) nullptr,
     qsl);
+
+  for(Language_Sample* samp: *group)
+  {
+   QStringList qsl; // = group->all_sample_text();
+   qsl.push_back(samp->text());
+
+   QString si;
+   QString sbi = samp->sub_index();
+
+   if(sbi.endsWith('\''))
+   {
+    si = "(none)";
+   }
+   else
+   {
+    sbi.replace('/', '\'');
+    si = QString("%1%2").arg(samp->index())
+      .arg(sbi);
+   }
+
+   qsl.push_back(si);
+   qsl.push_back(QString::number(samp->chapter()));
+   qsl.push_back(QString::number(samp->page()));
+   QTreeWidgetItem* stwi = new QTreeWidgetItem((QTreeWidget*) nullptr,
+     qsl);
+   twi->addChild(stwi);
+  }
+
+
   main_tree_widget_->addTopLevelItem(twi);
   //items.append(twi);
  }
 
-// main_tree_widget_->insertTopLevelItems(0, items);
-// main_tree_widget_->insertTopLevelItems(1, items);
+ middle_layout_->addWidget(main_tree_widget_);
 
- main_tree_layout_->addLayout(main_grid_layout_);
-
- main_tree_layout_->addWidget(main_tree_widget_);
-
- main_frame_->setLayout(main_tree_layout_);
-
- grid_scroll_area_ = new QScrollArea(this);
- grid_scroll_area_->setWidget(main_frame_);
-
- grid_scroll_area_->setMaximumHeight(200);
-
- middle_layout_->addWidget(grid_scroll_area_);
-
- connect(main_frame_, &QTableWidget::customContextMenuRequested, [this](const QPoint& qp)
+ connect(main_tree_widget_, &QTableWidget::customContextMenuRequested, [this](const QPoint& qp)
  {
   qDebug() << qp;
 
-  QWidget* qw = QApplication::widgetAt(main_frame_->mapToGlobal(qp));
+  QWidget* qw = QApplication::widgetAt(main_tree_widget_->mapToGlobal(qp));
 
   if(qw)
   {
-   if(qw->parent() == main_frame_)
-   {
-    int i = main_grid_layout_->indexOf(qw);
-    if(i != -1)
-    {
-     int r, c, rs, cs;
-     main_grid_layout_->getItemPosition(i, &r, &c, &rs, &cs);
-     run_message_by_grid_position(qp, r, c);
+//   if(qw->parent() == main_frame_)
+//   {
+//    int i = main_grid_layout_->indexOf(qw);
+//    if(i != -1)
+//    {
+//     int r, c, rs, cs;
+//     main_grid_layout_->getItemPosition(i, &r, &c, &rs, &cs);
+//     run_message_by_grid_position(qp, r, c);
 
-    }
-   }
+//    }
+//   }
   }
 
  });
@@ -398,7 +362,7 @@ void ScignStage_Ling_Dialog::run_sample_context_menu(const QPoint& p,
  QMenu* qm = new QMenu(this);
  qm->addAction("Play ...", play_fn);
  qm->addAction("Copy Path to Clipboard", copy_fn);
- QPoint g = main_frame_->mapToGlobal(p);
+ QPoint g = main_tree_widget_->mapToGlobal(p);
  qm->popup(g);
 }
 
@@ -626,3 +590,73 @@ void ScignStage_Ling_Dialog::accept()
 {
  Q_EMIT(accepted(this));
 }
+
+
+//main_frame_ = new QFrame(this);
+
+//main_frame_->setMinimumHeight(250);
+
+//main_frame_->setMinimumWidth(300);
+
+//main_frame_->setContextMenuPolicy(Qt::CustomContextMenu);
+
+//main_grid_layout_ = new QGridLayout;
+//main_tree_layout_ = new QVBoxLayout;
+// int cc = 1;
+// for(QString h : headers)
+// {
+//  QLabel* lbl = new QLabel(h, this);
+//  main_grid_layout_->addWidget(lbl, 0, cc);
+//  ++cc;
+// }
+
+// for(Language_Sample* samp : *samples_)
+// {
+//  QLabel* lbl = new QLabel(samp->text(), this);
+//  sample_to_label_map_[samp] = {lbl, r};
+
+//  main_grid_layout_->addWidget(lbl, r + 1, 0);
+
+//  main_grid_layout_->addWidget(new QLabel(
+//    QString::number(samp->index()) + samp->sub_index()),
+//    r + 1, 1);
+
+//  main_grid_layout_->addWidget(new QLabel(
+//    QString::number(samp->chapter())),
+//    r + 1, 2);
+
+//  main_grid_layout_->addWidget(new QLabel(
+//    QString::number(samp->page())),
+//    r + 1, 3);
+
+//  ++r;
+// }
+
+// QList<QTreeWidgetItem *> items;
+// int i = 0;
+
+// for(int i = 0; i < 6; ++i)
+// {
+//  QStringList qsl;
+//  for(int j = 0; j < 3; ++j)
+//  {
+//   QString qs = QString("item: %1 %2").arg(i).arg(j);
+//   qsl.push_back(qs);
+//  }
+//  QTreeWidgetItem* twi = new QTreeWidgetItem((QTreeWidget*) nullptr,
+//   qsl);
+//  main_tree_widget_->addTopLevelItem(twi);
+// }
+// main_tree_widget_->insertTopLevelItems(0, items);
+// main_tree_widget_->insertTopLevelItems(1, items);
+
+ //main_tree_layout_->addLayout(main_grid_layout_);
+
+// main_tree_layout_->addWidget(main_tree_widget_);
+
+// main_frame_->setLayout(main_tree_layout_);
+
+// tree_scroll_area_ = new QScrollArea(this);
+// tree_scroll_area_->setWidget(main_frame_);
+
+// tree_scroll_area_->setMaximumHeight(200);

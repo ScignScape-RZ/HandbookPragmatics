@@ -95,12 +95,13 @@ class ScignStage_Ling_Dialog : public QDialog
  QPushButton* scignstage_button_;
 
 
- QScrollArea* grid_scroll_area_;
- QFrame* main_frame_;
+// QScrollArea* tree_scroll_area_;
+// QFrame* main_frame_;
 
  QTreeWidget* main_tree_widget_;
- QVBoxLayout* main_tree_layout_;
- QGridLayout* main_grid_layout_;
+// QVBoxLayout* main_tree_layout_;
+
+ //QGridLayout* main_grid_layout_;
 
  NAV_Ling1D_Panel* nav_panel_;
 

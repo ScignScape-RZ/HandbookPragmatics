@@ -3,7 +3,7 @@
 Even KEN knows it's unethical.
 1 a/ 1 26 <>
 # 1
-Ken is the least likely to know it’s unethical.
+Ken is the least likely to know it's unethical.
 1 b 1 26 <[in a recommendation letter for a philosophy position]>
 # 1
 Jones dresses well and writes grammatical English.
@@ -15,15 +15,15 @@ Jones is no good at philosophy.
 The cat is in the hamper or under the bed.
 1 c/ 1 26 <>
 # 1
-I don’t know for a fact that the cat is under the bed.
+I don't know for a fact that the cat is under the bed.
 6 a 1 33 <>
 # 2
 : I1
-It’s not WARM, it’s HOT!
+It's not WARM, it's HOT!
 6 b 1 33 <>
 # 2
 : I2
-You’re right, it’s not warm. It’s HOT!
+You're right, it's not warm. It's HOT!
 10 a1 1 40 <>
 # 3
 He got the machine to stop.

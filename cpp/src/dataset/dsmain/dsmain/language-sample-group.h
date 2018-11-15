@@ -32,6 +32,8 @@ class Language_Sample_Group : public QVector<Language_Sample*>
 
  Language_Sample_Group* ref_group_;
 
+ QString main_text_;
+
 public:
 
  Language_Sample_Group(int id, QString text_id);
@@ -44,6 +46,7 @@ public:
  ACCESSORS(QString ,classification)
  ACCESSORS(Language_Sample_Group* ,ref_group)
  ACCESSORS(int ,rg_id)
+ ACCESSORS(QString ,main_text)
 
  QString get_serialization(int& rgc);
 
@@ -52,6 +55,8 @@ public:
 
  QStringList all_sample_text();
  QString first_sample_text();
+
+ QString get_main_text();
 
 };
 

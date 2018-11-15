@@ -25,6 +25,13 @@ Language_Sample_Group::Language_Sample_Group(int id, QString text_id)
 
 }
 
+QString Language_Sample_Group::get_main_text()
+{
+ if(main_text_.isEmpty())
+   return first_sample_text();
+ return main_text_;
+}
+
 QString Language_Sample_Group::first_sample_text()
 {
  if(isEmpty())
@@ -60,6 +67,11 @@ QString Language_Sample_Group::get_serialization(int& rgc)
     result.prepend(QString("+%1\n").arg(rgi));
  }
 
+ if(!main_text_.isEmpty())
+ {
+  result.prepend(QString("$ %1\n").arg(main_text_));
+ }
+
 
  return result;
 }
@@ -73,10 +85,18 @@ void Language_Sample_Group::read_groups_from_file(QString path,
  int rid = 0;
  int hrid = 0;
 
+ QString mtext;
+
  for(QString qs : qsl)
  {
   if(qs.isEmpty())
     continue;
+
+  if(qs.startsWith('$'))
+  {
+   mtext = qs.mid(2);
+   continue;
+  }
 
   if(qs.startsWith('+'))
   {
@@ -136,6 +156,12 @@ void Language_Sample_Group::read_groups_from_file(QString path,
   {
    g->set_ref_group(result[rid - 1]);
    rid = 0;
+  }
+
+  if(!mtext.isEmpty())
+  {
+   g->set_main_text(mtext);
+   mtext.clear();
   }
   result.push_back(g);
 
