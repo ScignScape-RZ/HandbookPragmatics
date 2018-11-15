@@ -97,7 +97,8 @@ ScignStage_Ling_Dialog::ScignStage_Ling_Dialog(XPDF_Bridge* xpdf_bridge,
     last_highlight_(nullptr), xpdf_process_(nullptr), tcp_server_(nullptr),
     phr_(nullptr), phr_init_function_(nullptr), screenshot_function_(nullptr),
     current_tcp_msecs_(0), xpdf_port_(0),
-    current_index_(-1), max_index_(0), current_volume_(50)
+    current_index_(-1), max_index_(0),
+    current_volume_(50), current_group_index_(-1), current_open_group_(nullptr)
 {
  // // setup RZW
 
@@ -204,6 +205,8 @@ ScignStage_Ling_Dialog::ScignStage_Ling_Dialog(XPDF_Bridge* xpdf_bridge,
   QTreeWidgetItem* twi = new QTreeWidgetItem((QTreeWidget*) nullptr,
     qsl);
 
+  twi_by_group_[group] = twi;
+
   for(Language_Sample* samp: *group)
   {
    QStringList qsl; // = group->all_sample_text();
@@ -305,6 +308,41 @@ ScignStage_Ling_Dialog::ScignStage_Ling_Dialog(XPDF_Bridge* xpdf_bridge,
 #endif // USING_XPDF
 
 }
+
+
+void ScignStage_Ling_Dialog::handle_sample_down()
+{
+ if(current_open_group_)
+ {
+  twi_by_group_[current_open_group_]->setExpanded(false);
+ }
+ while(true)
+ {
+  if(current_group_index_ == -1)
+    current_group_index_ = 0;
+  else if(current_group_index_ == groups_->size())
+    current_group_index_ = 0;
+  else
+    ++current_group_index_;
+
+  Language_Sample_Group* g  = groups_->at(current_group_index_);
+
+  if(QTreeWidgetItem* twi = twi_by_group_.value(g))
+  {
+   current_open_group_ = g;
+   twi->setExpanded(true);
+
+   // ensure last subitem is visible
+   QTreeWidgetItem* stwi = twi->child(twi->childCount() - 1);
+   main_tree_widget_->scrollToItem(stwi);
+   main_tree_widget_->scrollToItem(twi);
+   break;
+  }
+ }
+
+
+}
+
 
 void ScignStage_Ling_Dialog::handle_take_screenshot_requested()
 {

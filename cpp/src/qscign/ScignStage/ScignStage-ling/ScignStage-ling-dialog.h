@@ -55,6 +55,7 @@ class QMediaPlayer;
 class QProcess;
 class QTcpServer;
 class QTreeWidget;
+class QTreeWidgetItem;
 
 class ScignStage_Clickable_Label;
 
@@ -142,6 +143,11 @@ class ScignStage_Ling_Dialog : public QDialog
  std::function<void(Phaon_Runner&)> phr_init_function_;
  std::function<void()> screenshot_function_;
 
+ int current_group_index_;
+ Language_Sample_Group* current_open_group_;
+
+ QMap<Language_Sample_Group*, QTreeWidgetItem*> twi_by_group_;
+
  bool xpdf_is_ready();
  void check_phr();
 
@@ -203,6 +209,8 @@ public Q_SLOTS:
  void cancel();
 
  void activate_tcp_requested();
+
+ void handle_sample_down();
 
 
 };
