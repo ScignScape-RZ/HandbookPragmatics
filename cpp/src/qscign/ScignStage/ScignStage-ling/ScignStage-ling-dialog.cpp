@@ -98,7 +98,8 @@ ScignStage_Ling_Dialog::ScignStage_Ling_Dialog(XPDF_Bridge* xpdf_bridge,
     phr_(nullptr), phr_init_function_(nullptr), screenshot_function_(nullptr),
     current_tcp_msecs_(0), xpdf_port_(0),
     current_index_(-1), max_index_(0),
-    current_volume_(50), current_group_index_(-1), current_open_group_(nullptr)
+    current_volume_(50), current_group_index_(-1),
+    current_open_group_(nullptr), no_auto_expand_(nullptr)
 {
  // // setup RZW
 
@@ -290,6 +291,11 @@ ScignStage_Ling_Dialog::ScignStage_Ling_Dialog(XPDF_Bridge* xpdf_bridge,
  connect(nav_panel_, SIGNAL(volume_change_requested(int)),
    this, SLOT(handle_volume_change_requested(int)));
 
+ connect(nav_panel_, &NAV_Ling1D_Panel::auto_expand_changed, [this](bool b)
+ {
+  no_auto_expand_ = b?nullptr:nav_panel_;
+ });
+
  main_layout_->addWidget(nav_panel_);
 
 
@@ -331,12 +337,12 @@ void ScignStage_Ling_Dialog::handle_sample_down()
   if(QTreeWidgetItem* twi = twi_by_group_.value(g))
   {
    current_open_group_ = g;
-   twi->setExpanded(true);
 
    // ensure last subitem is visible
    QTreeWidgetItem* stwi = twi->child(twi->childCount() - 1);
    main_tree_widget_->scrollToItem(stwi);
    main_tree_widget_->scrollToItem(twi);
+   twi->setExpanded(!(bool)no_auto_expand_);
    break;
   }
  }
@@ -362,12 +368,12 @@ void ScignStage_Ling_Dialog::handle_sample_up()
   if(QTreeWidgetItem* twi = twi_by_group_.value(g))
   {
    current_open_group_ = g;
-   twi->setExpanded(true);
 
    // ensure last subitem is visible
    QTreeWidgetItem* stwi = twi->child(twi->childCount() - 1);
    main_tree_widget_->scrollToItem(stwi);
    main_tree_widget_->scrollToItem(twi);
+   twi->setExpanded(!(bool)no_auto_expand_);
    break;
   }
  }

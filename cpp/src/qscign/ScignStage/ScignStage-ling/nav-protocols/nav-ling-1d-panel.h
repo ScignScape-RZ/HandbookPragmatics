@@ -75,8 +75,8 @@ class NAV_Ling1D_Panel : public QFrame
  QLabel* sample_first_label_;
  QPushButton* sample_first_button_;
 
- QLabel* sample_review_label_;
- QPushButton* sample_review_button_;
+ QLabel* auto_expand_label_;
+ QPushButton* auto_expand_button_;
 
  QVBoxLayout* first_layout_;
  QVBoxLayout* review_layout_;
@@ -136,6 +136,9 @@ Q_SIGNALS:
  void sample_down_requested();
  void sample_first_requested();
  void sample_review_requested();
+
+
+ void auto_expand_changed(bool);
 
 
 public Q_SLOTS:

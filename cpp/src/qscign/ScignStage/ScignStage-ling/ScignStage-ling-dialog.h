@@ -148,6 +148,8 @@ class ScignStage_Ling_Dialog : public QDialog
 
  QMap<Language_Sample_Group*, QTreeWidgetItem*> twi_by_group_;
 
+ void* no_auto_expand_;
+
  bool xpdf_is_ready();
  void check_phr();
 

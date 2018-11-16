@@ -59,14 +59,27 @@ NAV_Ling1D_Panel::NAV_Ling1D_Panel(int vmn, int vmx, int v, QWidget* parent)
  sample_down_button_ = new QPushButton(this);
 
  sample_first_button_ = new QPushButton(this);
- sample_review_button_ = new QPushButton(this);
+ auto_expand_button_ = new QPushButton("ON",this);
 
 
  sample_up_button_->setIcon(QIcon(DEFAULT_ICON_FOLDER "/Gtk-go-up.svg"));
  sample_down_button_->setIcon(QIcon(DEFAULT_ICON_FOLDER "/Gtk-go-down.svg"));
 
  sample_first_button_->setIcon(QIcon(DEFAULT_ICON_FOLDER "/Arrow-leftup-small.svg"));
- sample_review_button_->setIcon(QIcon(DEFAULT_ICON_FOLDER "/Arrow-complex-left.svg"));
+
+ //auto_expand_button_->setIcon(QIcon(DEFAULT_ICON_FOLDER "/Arrow-complex-left.svg"));
+ auto_expand_button_->setCheckable(true);
+ auto_expand_button_->setChecked(true);
+ auto_expand_button_->setStyleSheet(colorful_toggle_button_style_sheet_());
+
+ connect(auto_expand_button_, &QPushButton::toggled,
+   [this](bool b)
+ {
+  auto_expand_button_->setText(b?"ON":"OFF");
+ });
+
+ connect(auto_expand_button_, SIGNAL(toggled(bool)),
+   this, SIGNAL(auto_expand_changed(bool)));
 
 
  peer_up_button_ = new QPushButton(this);
@@ -91,7 +104,7 @@ NAV_Ling1D_Panel::NAV_Ling1D_Panel(int vmn, int vmx, int v, QWidget* parent)
  connect(sample_first_button_, SIGNAL(clicked()),
    this, SIGNAL(sample_first_requested()));
 
- connect(sample_review_button_, SIGNAL(clicked()),
+ connect(auto_expand_button_, SIGNAL(clicked()),
    this, SIGNAL(sample_review_requested()));
 
  navigation_buttons_up_down_layout_ = new QVBoxLayout;
@@ -143,10 +156,10 @@ NAV_Ling1D_Panel::NAV_Ling1D_Panel(int vmn, int vmx, int v, QWidget* parent)
  first_review_layout_->addStretch();
 
  review_layout_ = new QVBoxLayout;
- sample_review_label_ = new QLabel("Replay", this);
+ auto_expand_label_ = new QLabel("Auto Expand", this);
  review_layout_->addStretch();
- review_layout_->addWidget(sample_review_label_);
- review_layout_->addWidget(sample_review_button_);
+ review_layout_->addWidget(auto_expand_label_);
+ review_layout_->addWidget(auto_expand_button_);
  review_layout_->addStretch();
 
  first_review_layout_->addLayout(review_layout_);
