@@ -151,6 +151,9 @@ class ScignStage_Ling_Dialog : public QDialog
  void* no_auto_expand_;
  int current_peer_index_;
 
+ int current_chapter_number_;
+ QMap<int, QPair<int, int>> chapter_groups_first_last_;
+
  bool xpdf_is_ready();
  void check_phr();
 
@@ -204,6 +207,7 @@ public:
  void view_sample(int index);
 
 
+
 Q_SIGNALS:
  void canceled(QDialog*);
  void accepted(QDialog*);
@@ -225,6 +229,12 @@ public Q_SLOTS:
 
  void handle_peer_down();
  void handle_peer_up();
+
+ void handle_chapter_down();
+ void handle_chapter_up();
+
+ void handle_chapter_start();
+ void handle_chapter_end();
 
 };
 

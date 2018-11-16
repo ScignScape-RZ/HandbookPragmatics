@@ -68,6 +68,9 @@ class NAV_Ling1D_Panel : public QFrame
  QPushButton* peer_up_button_;
  QPushButton* peer_down_button_;
 
+ QPushButton* chapter_up_button_;
+ QPushButton* chapter_down_button_;
+
  QVBoxLayout* first_review_note_layout_;
  QHBoxLayout* first_review_layout_;
  QLabel* first_review_label_;
@@ -89,6 +92,12 @@ class NAV_Ling1D_Panel : public QFrame
 
  QGroupBox* peer_up_down_group_box_;
  QButtonGroup* peer_up_down_button_group_;
+
+
+ QVBoxLayout* chapter_up_down_layout_;
+
+ QGroupBox* chapter_up_down_group_box_;
+ QButtonGroup* chapter_up_down_button_group_;
 
  QHBoxLayout* volume_layout_;
 
@@ -131,6 +140,10 @@ Q_SIGNALS:
 
  void peer_up_requested();
  void peer_down_requested();
+
+ void chapter_up_requested();
+ void chapter_down_requested();
+
 
  void sample_up_requested();
  void sample_down_requested();

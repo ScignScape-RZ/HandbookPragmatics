@@ -3549,7 +3549,7 @@ My friends were under the impression that I was running a lottery in my garage. 
 5 _ 29 689 <>
 # 550
 Sue believes Luke has a child and that Luke's child will visit her.
-6 _ 0 0 <>
+6 _ 29 690 <>
 # 551
 In France, Watergate wouldn't have done Nixon any harm.
 7 a 29 691 <>

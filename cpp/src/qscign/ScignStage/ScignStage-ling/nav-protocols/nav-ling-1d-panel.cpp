@@ -70,6 +70,7 @@ NAV_Ling1D_Panel::NAV_Ling1D_Panel(int vmn, int vmx, int v, QWidget* parent)
  //auto_expand_button_->setIcon(QIcon(DEFAULT_ICON_FOLDER "/Arrow-complex-left.svg"));
  auto_expand_button_->setCheckable(true);
  auto_expand_button_->setChecked(true);
+ auto_expand_button_->setMaximumWidth(50);
  auto_expand_button_->setStyleSheet(colorful_toggle_button_style_sheet_());
 
  connect(auto_expand_button_, &QPushButton::toggled,
@@ -95,6 +96,20 @@ NAV_Ling1D_Panel::NAV_Ling1D_Panel(int vmn, int vmx, int v, QWidget* parent)
    this, SIGNAL(peer_down_requested()));
 
 
+ chapter_up_button_ = new QPushButton(this);
+ chapter_down_button_ = new QPushButton(this);
+
+ chapter_up_button_->setIcon(QIcon(DEFAULT_ICON_FOLDER "/Gtk-go-up.svg"));
+ chapter_down_button_->setIcon(QIcon(DEFAULT_ICON_FOLDER "/Gtk-go-down.svg"));
+
+ connect(chapter_up_button_, SIGNAL(clicked()),
+   this, SIGNAL(chapter_up_requested()));
+
+ connect(chapter_down_button_, SIGNAL(clicked()),
+   this, SIGNAL(chapter_down_requested()));
+
+
+
  connect(sample_up_button_, SIGNAL(clicked()),
    this, SIGNAL(sample_up_requested()));
 
@@ -113,7 +128,7 @@ NAV_Ling1D_Panel::NAV_Ling1D_Panel(int vmn, int vmx, int v, QWidget* parent)
  navigation_buttons_up_down_layout_->addWidget(sample_down_button_);
 
 
- up_down_group_box_ = new QGroupBox("Play Up/Down", this);
+ up_down_group_box_ = new QGroupBox("Examples Up/Down", this);
  up_down_button_group_ = new QButtonGroup(this);
 
  up_down_button_group_->addButton(sample_up_button_);
@@ -139,6 +154,26 @@ NAV_Ling1D_Panel::NAV_Ling1D_Panel(int vmn, int vmx, int v, QWidget* parent)
  peer_up_down_group_box_->setLayout(peer_up_down_layout_);
 
  navigation_layout_->addWidget(peer_up_down_group_box_);
+
+
+ chapter_up_down_layout_ = new QVBoxLayout;
+
+ chapter_up_down_layout_->addWidget(chapter_up_button_);
+ chapter_up_down_layout_->addWidget(chapter_down_button_);
+
+
+ chapter_up_down_group_box_ = new QGroupBox("Chapter Up/Down", this);
+ chapter_up_down_button_group_ = new QButtonGroup(this);
+
+
+ chapter_up_down_button_group_->addButton(chapter_up_button_);
+ chapter_up_down_button_group_->addButton(chapter_down_button_);
+
+ chapter_up_down_group_box_->setLayout(chapter_up_down_layout_);
+
+ navigation_layout_->addWidget(chapter_up_down_group_box_);
+
+
 
  first_review_note_layout_ = new QVBoxLayout;
  first_review_layout_ = new QHBoxLayout;
@@ -167,7 +202,8 @@ NAV_Ling1D_Panel::NAV_Ling1D_Panel(int vmn, int vmx, int v, QWidget* parent)
 
  first_review_note_layout_->addLayout(first_review_layout_);
 
- first_review_label_ = new QLabel("Note: Peer means samples with the same text", this);
+ first_review_label_ = new QLabel("Note: Scroll via \"Peer\" to highlight "
+   "variations in each group.", this);
 
  first_review_note_layout_->addWidget(first_review_label_);
 

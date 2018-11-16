@@ -50,6 +50,9 @@ public:
 
  QString get_serialization(int& rgc);
 
+ QString get_form();
+ QString get_issue();
+
  static void read_groups_from_file(QString path,
   QVector<Language_Sample_Group*>& result);
 

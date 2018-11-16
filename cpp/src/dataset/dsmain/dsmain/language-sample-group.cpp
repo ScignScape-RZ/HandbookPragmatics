@@ -76,6 +76,30 @@ QString Language_Sample_Group::get_serialization(int& rgc)
  return result;
 }
 
+QString Language_Sample_Group::get_form()
+{
+ if(classification_.isEmpty())
+   return "Text";
+ int index = classification_.indexOf(':');
+ if(index == -1)
+ {
+  return classification_;
+ }
+ return classification_.left(index);
+}
+
+QString Language_Sample_Group::get_issue()
+{
+ if(classification_.isEmpty())
+   return "(N_A)";
+ int index = classification_.indexOf(':');
+ if(index == -1)
+ {
+  return "(N_A)";
+ }
+ return classification_.mid(index + 1);
+}
+
 void Language_Sample_Group::read_groups_from_file(QString path,
  QVector<Language_Sample_Group*>& result)
 {

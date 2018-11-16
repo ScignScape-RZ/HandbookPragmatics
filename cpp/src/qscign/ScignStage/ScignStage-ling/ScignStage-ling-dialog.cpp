@@ -100,7 +100,8 @@ ScignStage_Ling_Dialog::ScignStage_Ling_Dialog(XPDF_Bridge* xpdf_bridge,
     current_index_(-1), max_index_(0),
     current_volume_(50), current_group_index_(-1),
     current_open_group_(nullptr),
-    no_auto_expand_(nullptr), current_peer_index_(0)
+    no_auto_expand_(nullptr),
+    current_peer_index_(0), current_chapter_number_(0)
 {
  // // setup RZW
 
@@ -176,23 +177,31 @@ ScignStage_Ling_Dialog::ScignStage_Ling_Dialog(XPDF_Bridge* xpdf_bridge,
 
  QStringList headers {
   "Text",
-  "Label",
+  "Form",
+  "#",
+  "Issue",
   "Page",
   "Chapter"
  };
 
 
- main_tree_widget_->setColumnCount(4);
+ main_tree_widget_->setColumnCount(6);
  main_tree_widget_->setHeaderLabels(headers);
 
- main_tree_widget_->setColumnWidth(0, 500);
- main_tree_widget_->setColumnWidth(1, 40);
- main_tree_widget_->setColumnWidth(2, 35);
- main_tree_widget_->setColumnWidth(3, 15);
+ main_tree_widget_->setColumnWidth(0, 400);
+ main_tree_widget_->setColumnWidth(1, 45);
+ main_tree_widget_->setColumnWidth(2, 20);
+ main_tree_widget_->setColumnWidth(3, 45);
+ main_tree_widget_->setColumnWidth(4, 35);
+ main_tree_widget_->setColumnWidth(5, 50);
 
+ main_tree_widget_->header()->setStretchLastSection(false);
+ main_tree_widget_->header()->setSectionResizeMode(0, QHeaderView::Stretch);
 
+ int c = 0;
  for(Language_Sample_Group* group : *groups_)
  {
+  ++c;
   QString mt = group->get_main_text();
   if(mt.isEmpty())
     continue;
@@ -200,9 +209,21 @@ ScignStage_Ling_Dialog::ScignStage_Ling_Dialog(XPDF_Bridge* xpdf_bridge,
   QStringList qsl; // = group->all_sample_text();
 
   qsl.push_back(mt);
+
+  qsl.push_back(group->get_form());
   qsl.push_back(QString::number(group->first()->index()));
+  qsl.push_back(group->get_issue());
+
   qsl.push_back(QString::number(group->first()->page()));
-  qsl.push_back(QString::number(group->first()->chapter()));
+
+  int chn = group->first()->chapter();
+  qsl.push_back(QString::number(chn));
+
+  QPair<int, int>& pr = chapter_groups_first_last_[chn];
+  if(!pr.first)
+    pr.first = c;
+  pr.second = c;
+
 
   QTreeWidgetItem* twi = new QTreeWidgetItem((QTreeWidget*) nullptr,
     qsl);
@@ -214,6 +235,7 @@ ScignStage_Ling_Dialog::ScignStage_Ling_Dialog(XPDF_Bridge* xpdf_bridge,
    QStringList qsl; // = group->all_sample_text();
    qsl.push_back(samp->text());
 
+   qsl.push_back(QString());
    QString si;
    QString sbi = samp->sub_index();
 
@@ -224,13 +246,17 @@ ScignStage_Ling_Dialog::ScignStage_Ling_Dialog(XPDF_Bridge* xpdf_bridge,
    else
    {
     sbi.replace('/', '\'');
+    sbi.replace('_', "");
     si = QString("%1%2").arg(samp->index())
       .arg(sbi);
    }
 
    qsl.push_back(si);
-   qsl.push_back(QString::number(samp->chapter()));
+
+   qsl.push_back(QString());
    qsl.push_back(QString::number(samp->page()));
+   qsl.push_back(QString::number(samp->chapter()));
+
    QTreeWidgetItem* stwi = new QTreeWidgetItem((QTreeWidget*) nullptr,
      qsl);
    twi->addChild(stwi);
@@ -243,7 +269,7 @@ ScignStage_Ling_Dialog::ScignStage_Ling_Dialog(XPDF_Bridge* xpdf_bridge,
 
  middle_layout_->addWidget(main_tree_widget_);
 
- connect(main_tree_widget_, &QTableWidget::customContextMenuRequested, [this](const QPoint& qp)
+ connect(main_tree_widget_, &QTreeWidget::customContextMenuRequested, [this](const QPoint& qp)
  {
   qDebug() << qp;
 
@@ -282,6 +308,12 @@ ScignStage_Ling_Dialog::ScignStage_Ling_Dialog(XPDF_Bridge* xpdf_bridge,
  connect(nav_panel_, SIGNAL(peer_down_requested()),
    this, SLOT(handle_peer_down()));
 
+ connect(nav_panel_, SIGNAL(chapter_up_requested()),
+   this, SLOT(handle_chapter_up()));
+
+ connect(nav_panel_, SIGNAL(chapter_down_requested()),
+   this, SLOT(handle_chapter_down()));
+
  connect(nav_panel_, SIGNAL(sample_first_requested()),
    this, SLOT(handle_sample_first()));
 
@@ -318,13 +350,13 @@ ScignStage_Ling_Dialog::ScignStage_Ling_Dialog(XPDF_Bridge* xpdf_bridge,
 
 void ScignStage_Ling_Dialog::set_group_foreground(QTreeWidgetItem* twi)
 {
- for(int i = 0; i < 4; ++i)
+ for(int i = 0; i < 6; ++i)
    twi->setForeground(i, QBrush("darkRed"));
 }
 
 void ScignStage_Ling_Dialog::clear_group_foreground(QTreeWidgetItem* twi)
 {
- for(int i = 0; i < 4; ++i)
+ for(int i = 0; i < 6; ++i)
    twi->setForeground(i, QBrush("black"));
 }
 
@@ -338,6 +370,24 @@ void ScignStage_Ling_Dialog::clear_child_group_foreground(QTreeWidgetItem* twi)
  clear_group_foreground(twi->child(current_peer_index_ - 1));
 }
 
+void ScignStage_Ling_Dialog::handle_chapter_start()
+{
+ if(current_open_group_)
+ {
+  QTreeWidgetItem* twi = twi_by_group_[current_open_group_];
+  twi->setExpanded(false);
+  clear_group_foreground(twi);
+  if(current_peer_index_)
+  {
+   clear_child_group_foreground(twi);
+   current_peer_index_ = 0;
+  }
+ }
+ if(!current_chapter_number_)
+   current_chapter_number_ = 1;
+ current_group_index_ = chapter_groups_first_last_[current_chapter_number_].first - 2;
+ handle_sample_down();
+}
 
 void ScignStage_Ling_Dialog::handle_sample_down()
 {
@@ -367,6 +417,8 @@ void ScignStage_Ling_Dialog::handle_sample_down()
   {
    current_open_group_ = g;
 
+   current_chapter_number_ = g->chapter();
+
    // ensure last subitem is visible
    QTreeWidgetItem* stwi = twi->child(twi->childCount() - 1);
    main_tree_widget_->scrollToItem(stwi);
@@ -378,6 +430,11 @@ void ScignStage_Ling_Dialog::handle_sample_down()
    break;
   }
  }
+}
+
+void ScignStage_Ling_Dialog::handle_chapter_end()
+{
+
 }
 
 void ScignStage_Ling_Dialog::handle_sample_up()
@@ -459,8 +516,71 @@ void ScignStage_Ling_Dialog::handle_peer_up()
   --current_peer_index_;
  }
  set_child_group_foreground(twi);
-
 }
+
+void ScignStage_Ling_Dialog::handle_chapter_down()
+{
+ while(true)
+ {
+  if(current_chapter_number_ == 0)
+    current_chapter_number_ = 1;
+  else
+  {
+   Language_Sample_Group* g  = groups_->constLast();
+   if(current_chapter_number_ == g->chapter())
+     current_chapter_number_ = 1;
+   else
+     ++current_chapter_number_;
+  }
+  if(chapter_groups_first_last_.contains(current_chapter_number_))
+  {
+   handle_chapter_start();
+   break;
+  }
+ }
+
+
+//   handle_sample_first();
+// else
+// {
+//  current_group_index_ = chapter_groups_first_last_[current_chapter_number_].second - 1;
+//  handle_sample_down();
+// }
+}
+
+void ScignStage_Ling_Dialog::handle_chapter_up()
+{
+ while(true)
+ {
+  if(current_chapter_number_ == 0 || current_chapter_number_ == 1)
+  {
+   Language_Sample_Group* g  = groups_->constLast();
+   current_chapter_number_ = g->chapter();
+  }
+  else
+    --current_chapter_number_;
+  if(chapter_groups_first_last_.contains(current_chapter_number_))
+  {
+   handle_chapter_start();
+   break;
+  }
+ }
+
+// if(current_chapter_number_ == 1 || current_chapter_number_ == 0)
+// {
+//  Language_Sample_Group* g  = groups_->constLast();
+//  current_group_index_ = chapter_groups_first_last_[g->chapter()].second - 1;
+//  handle_sample_down();
+// }
+// else
+// {
+//  current_group_index_ = chapter_groups_first_last_[current_chapter_number_].first - 1;
+//  handle_sample_up();
+// }
+}
+
+
+
 
 void ScignStage_Ling_Dialog::handle_sample_first()
 {
