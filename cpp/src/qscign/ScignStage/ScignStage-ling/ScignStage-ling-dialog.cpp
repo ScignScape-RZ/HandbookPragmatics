@@ -314,15 +314,15 @@ ScignStage_Ling_Dialog::ScignStage_Ling_Dialog(XPDF_Bridge* xpdf_bridge,
  connect(nav_panel_, SIGNAL(chapter_down_requested()),
    this, SLOT(handle_chapter_down()));
 
+
+ connect(nav_panel_, SIGNAL(chapter_start_requested()),
+   this, SLOT(handle_chapter_start()));
+
+ connect(nav_panel_, SIGNAL(chapter_end_requested()),
+   this, SLOT(handle_chapter_end()));
+
  connect(nav_panel_, SIGNAL(sample_first_requested()),
    this, SLOT(handle_sample_first()));
-
- connect(nav_panel_, SIGNAL(sample_replay_requested()),
-   this, SLOT(handle_sample_replay()));
-
-
- connect(nav_panel_, SIGNAL(volume_change_requested(int)),
-   this, SLOT(handle_volume_change_requested(int)));
 
  connect(nav_panel_, &NAV_Ling1D_Panel::auto_expand_changed, [this](bool b)
  {
@@ -434,7 +434,21 @@ void ScignStage_Ling_Dialog::handle_sample_down()
 
 void ScignStage_Ling_Dialog::handle_chapter_end()
 {
-
+ if(current_open_group_)
+ {
+  QTreeWidgetItem* twi = twi_by_group_[current_open_group_];
+  twi->setExpanded(false);
+  clear_group_foreground(twi);
+  if(current_peer_index_)
+  {
+   clear_child_group_foreground(twi);
+   current_peer_index_ = 0;
+  }
+ }
+ if(!current_chapter_number_)
+   current_chapter_number_ = 1;
+ current_group_index_ = chapter_groups_first_last_[current_chapter_number_].second - 2;
+ handle_sample_down();
 }
 
 void ScignStage_Ling_Dialog::handle_sample_up()
@@ -478,6 +492,8 @@ void ScignStage_Ling_Dialog::handle_sample_up()
 
 void ScignStage_Ling_Dialog::handle_peer_down()
 {
+ if(!current_open_group_)
+   handle_sample_down();
  QTreeWidgetItem* twi = twi_by_group_.value(current_open_group_);
  if(current_peer_index_ == 0)
  {
@@ -499,6 +515,8 @@ void ScignStage_Ling_Dialog::handle_peer_down()
 
 void ScignStage_Ling_Dialog::handle_peer_up()
 {
+ if(!current_open_group_)
+   handle_sample_down();
  QTreeWidgetItem* twi = twi_by_group_.value(current_open_group_);
  if(current_peer_index_ == 0)
  {

@@ -71,6 +71,9 @@ class NAV_Ling1D_Panel : public QFrame
  QPushButton* chapter_up_button_;
  QPushButton* chapter_down_button_;
 
+ QPushButton* chapter_start_button_;
+ QPushButton* chapter_end_button_;
+
  QVBoxLayout* first_review_note_layout_;
  QHBoxLayout* first_review_layout_;
  QLabel* first_review_label_;
@@ -95,28 +98,27 @@ class NAV_Ling1D_Panel : public QFrame
 
 
  QVBoxLayout* chapter_up_down_layout_;
-
  QGroupBox* chapter_up_down_group_box_;
  QButtonGroup* chapter_up_down_button_group_;
 
- QHBoxLayout* volume_layout_;
+ QVBoxLayout* chapter_se_layout_;
+ QGroupBox* chapter_se_group_box_;
+ QButtonGroup* chapter_se_button_group_;
 
-
-
+// QHBoxLayout* volume_layout_;
  QVBoxLayout* zoom_sample_distractor_layout_;
  QHBoxLayout* sample_distractor_layout_;
 
  QLabel* sample_label_;
  QLineEdit* sample_line_edit_;
- QLabel* distractor_label_;
- QLineEdit* distractor_line_edit_;
 
- QSlider* volume_slider_;
 
- qreal old_zoom_slider_value_;
+// QSlider* volume_slider_;
 
- int volume_min_;
- int volume_max_;
+// qreal old_zoom_slider_value_;
+
+// int volume_min_;
+// int volume_max_;
 
 public:
 
@@ -125,7 +127,6 @@ public:
  ~NAV_Ling1D_Panel();
 
  void set_sample_text(int r);
- void set_distractor_text(QString qs);
 
 Q_SIGNALS:
 
@@ -144,6 +145,8 @@ Q_SIGNALS:
  void chapter_up_requested();
  void chapter_down_requested();
 
+ void chapter_start_requested();
+ void chapter_end_requested();
 
  void sample_up_requested();
  void sample_down_requested();
@@ -156,8 +159,8 @@ Q_SIGNALS:
 
 public Q_SLOTS:
 
- void zoom_slider_value_changed(int);
- void volume_slider_value_changed(int);
+// void zoom_slider_value_changed(int);
+// void volume_slider_value_changed(int);
 
 };
 

@@ -22,8 +22,7 @@
 USING_QSNS(ScignStage)
 
 NAV_Ling1D_Panel::NAV_Ling1D_Panel(int vmn, int vmx, int v, QWidget* parent)
-  :  QFrame(parent), old_zoom_slider_value_(1), volume_min_(vmn),
-    volume_max_(vmx)
+  :  QFrame(parent)
 {
  main_layout_ = new QVBoxLayout;
  navigation_layout_ = new QHBoxLayout;
@@ -36,22 +35,12 @@ NAV_Ling1D_Panel::NAV_Ling1D_Panel(int vmn, int vmx, int v, QWidget* parent)
  sample_line_edit_->setPlaceholderText("?");
  sample_line_edit_->setMaximumWidth(30);
 
- distractor_label_ = new QLabel("distractor:", this);
- distractor_line_edit_ = new QLineEdit(this);
- distractor_line_edit_->setPlaceholderText("?");
- distractor_line_edit_->setMaximumWidth(100);
-
  sample_distractor_layout_->addWidget(sample_label_);
  sample_distractor_layout_->addWidget(sample_line_edit_);
-
- sample_distractor_layout_->addWidget(distractor_label_);
- sample_distractor_layout_->addWidget(distractor_line_edit_);
 
  navigation_layout_ = new QHBoxLayout;
 
  zoom_sample_distractor_layout_ = new QVBoxLayout;
-
- volume_layout_ = new QHBoxLayout;
 
  zoom_sample_distractor_layout_->addLayout(sample_distractor_layout_);
 
@@ -70,7 +59,11 @@ NAV_Ling1D_Panel::NAV_Ling1D_Panel(int vmn, int vmx, int v, QWidget* parent)
  //auto_expand_button_->setIcon(QIcon(DEFAULT_ICON_FOLDER "/Arrow-complex-left.svg"));
  auto_expand_button_->setCheckable(true);
  auto_expand_button_->setChecked(true);
- auto_expand_button_->setMaximumWidth(50);
+// auto_expand_button_->setMaximumWidth(35);
+// auto_expand_button_->setMinimumWidth(35);
+
+ //auto_expand_button_->setStyleSheet("QPushButton{max-width:35;}");
+
  auto_expand_button_->setStyleSheet(colorful_toggle_button_style_sheet_());
 
  connect(auto_expand_button_, &QPushButton::toggled,
@@ -94,6 +87,21 @@ NAV_Ling1D_Panel::NAV_Ling1D_Panel(int vmn, int vmx, int v, QWidget* parent)
 
  connect(peer_down_button_, SIGNAL(clicked()),
    this, SIGNAL(peer_down_requested()));
+
+
+ chapter_start_button_ = new QPushButton(this);
+ chapter_end_button_ = new QPushButton(this);
+
+ chapter_start_button_->setIcon(QIcon(DEFAULT_ICON_FOLDER "/Gtk-go-up.svg"));
+ chapter_end_button_->setIcon(QIcon(DEFAULT_ICON_FOLDER "/Gtk-go-down.svg"));
+
+ connect(chapter_start_button_, SIGNAL(clicked()),
+   this, SIGNAL(chapter_start_requested()));
+
+ connect(chapter_end_button_, SIGNAL(clicked()),
+   this, SIGNAL(chapter_end_requested()));
+
+
 
 
  chapter_up_button_ = new QPushButton(this);
@@ -156,6 +164,25 @@ NAV_Ling1D_Panel::NAV_Ling1D_Panel(int vmn, int vmx, int v, QWidget* parent)
  navigation_layout_->addWidget(peer_up_down_group_box_);
 
 
+ chapter_se_layout_ = new QVBoxLayout;
+
+ chapter_se_layout_->addWidget(chapter_start_button_);
+ chapter_se_layout_->addWidget(chapter_end_button_);
+
+
+ chapter_se_group_box_ = new QGroupBox("Chapter Start/End", this);
+ chapter_se_button_group_ = new QButtonGroup(this);
+
+
+ chapter_se_button_group_->addButton(chapter_start_button_);
+ chapter_se_button_group_->addButton(chapter_end_button_);
+
+ chapter_se_group_box_->setLayout(chapter_se_layout_);
+
+ navigation_layout_->addWidget(chapter_se_group_box_);
+
+
+
  chapter_up_down_layout_ = new QVBoxLayout;
 
  chapter_up_down_layout_->addWidget(chapter_up_button_);
@@ -210,28 +237,6 @@ NAV_Ling1D_Panel::NAV_Ling1D_Panel(int vmn, int vmx, int v, QWidget* parent)
  navigation_layout_->addLayout(first_review_note_layout_);
 
 
- QLabel* volume_label = new QLabel("Volume:", this);
-
- volume_layout_->addWidget(volume_label);
-
- volume_slider_ = new QSlider(Qt::Horizontal, this);
-
- volume_slider_->setMinimum(volume_min_);
- volume_slider_->setMaximum(volume_max_);
- volume_slider_->setValue(v);
-
- connect(volume_slider_, SIGNAL(valueChanged(int)), this,
-   SLOT(volume_slider_value_changed(int)));
-
- volume_layout_->addStretch();
-
- volume_layout_->addWidget(volume_slider_);
-
- volume_layout_->addStretch();
-
- zoom_sample_distractor_layout_->addLayout(volume_layout_);
-
-
  navigation_layout_->addLayout(zoom_sample_distractor_layout_);
 
  navigation_layout_->addStretch();
@@ -250,27 +255,4 @@ NAV_Ling1D_Panel::~NAV_Ling1D_Panel()
 void NAV_Ling1D_Panel::set_sample_text(int r)
 {
  sample_line_edit_->setText(QString::number(r));
-}
-
-void NAV_Ling1D_Panel::set_distractor_text(QString qs)
-{
- distractor_line_edit_->setText(qs);
-}
-
-void NAV_Ling1D_Panel::volume_slider_value_changed(int val)
-{
- Q_EMIT(volume_change_requested(val));
-
-}
-
-void NAV_Ling1D_Panel::zoom_slider_value_changed(int val)
-{
- int diff = val - old_zoom_slider_value_;
- old_zoom_slider_value_ = val;
- int max = volume_slider_->maximum();
-
- qreal ratio = 1 + ((qreal)diff)/((qreal)max);
-
- Q_EMIT(scale_ratio_change_requested(ratio));
-
 }
