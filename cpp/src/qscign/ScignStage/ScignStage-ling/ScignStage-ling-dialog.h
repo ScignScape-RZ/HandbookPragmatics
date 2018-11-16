@@ -149,6 +149,7 @@ class ScignStage_Ling_Dialog : public QDialog
  QMap<Language_Sample_Group*, QTreeWidgetItem*> twi_by_group_;
 
  void* no_auto_expand_;
+ int current_peer_index_;
 
  bool xpdf_is_ready();
  void check_phr();
@@ -166,6 +167,12 @@ class ScignStage_Ling_Dialog : public QDialog
  QString load_about_file(QString name);
 
  bool ask_pdf_proceed(QString name);
+
+ void set_group_foreground(QTreeWidgetItem* twi);
+ void clear_group_foreground(QTreeWidgetItem* twi);
+
+ void set_child_group_foreground(QTreeWidgetItem* twi);
+ void clear_child_group_foreground(QTreeWidgetItem* twi);
 
  void run_chapter_message(const QPoint& p, int col);
  void run_group_message(const QPoint& p, int col);
@@ -215,6 +222,9 @@ public Q_SLOTS:
  void handle_sample_down();
  void handle_sample_up();
  void handle_sample_first();
+
+ void handle_peer_down();
+ void handle_peer_up();
 
 };
 

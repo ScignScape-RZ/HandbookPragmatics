@@ -99,7 +99,8 @@ ScignStage_Ling_Dialog::ScignStage_Ling_Dialog(XPDF_Bridge* xpdf_bridge,
     current_tcp_msecs_(0), xpdf_port_(0),
     current_index_(-1), max_index_(0),
     current_volume_(50), current_group_index_(-1),
-    current_open_group_(nullptr), no_auto_expand_(nullptr)
+    current_open_group_(nullptr),
+    no_auto_expand_(nullptr), current_peer_index_(0)
 {
  // // setup RZW
 
@@ -315,13 +316,41 @@ ScignStage_Ling_Dialog::ScignStage_Ling_Dialog(XPDF_Bridge* xpdf_bridge,
 
 }
 
+void ScignStage_Ling_Dialog::set_group_foreground(QTreeWidgetItem* twi)
+{
+ for(int i = 0; i < 4; ++i)
+   twi->setForeground(i, QBrush("darkRed"));
+}
+
+void ScignStage_Ling_Dialog::clear_group_foreground(QTreeWidgetItem* twi)
+{
+ for(int i = 0; i < 4; ++i)
+   twi->setForeground(i, QBrush("black"));
+}
+
+void ScignStage_Ling_Dialog::set_child_group_foreground(QTreeWidgetItem* twi)
+{
+ set_group_foreground(twi->child(current_peer_index_ - 1));
+}
+
+void ScignStage_Ling_Dialog::clear_child_group_foreground(QTreeWidgetItem* twi)
+{
+ clear_group_foreground(twi->child(current_peer_index_ - 1));
+}
 
 
 void ScignStage_Ling_Dialog::handle_sample_down()
 {
  if(current_open_group_)
  {
-  twi_by_group_[current_open_group_]->setExpanded(false);
+  QTreeWidgetItem* twi = twi_by_group_[current_open_group_];
+  twi->setExpanded(false);
+  clear_group_foreground(twi);
+  if(current_peer_index_)
+  {
+   clear_child_group_foreground(twi);
+   current_peer_index_ = 0;
+  }
  }
  while(true)
  {
@@ -343,6 +372,9 @@ void ScignStage_Ling_Dialog::handle_sample_down()
    main_tree_widget_->scrollToItem(stwi);
    main_tree_widget_->scrollToItem(twi);
    twi->setExpanded(!(bool)no_auto_expand_);
+   set_group_foreground(twi_by_group_[current_open_group_]);
+    //twi->setForeground(0, QBrush("darkRed"));
+   //twi->setStyleSheet("QTreeWidget#treeWidget::item{background:yellow;}");
    break;
   }
  }
@@ -352,7 +384,14 @@ void ScignStage_Ling_Dialog::handle_sample_up()
 {
  if(current_open_group_)
  {
-  twi_by_group_[current_open_group_]->setExpanded(false);
+  QTreeWidgetItem* twi = twi_by_group_[current_open_group_];
+  twi->setExpanded(false);
+  clear_group_foreground(twi);
+  if(current_peer_index_)
+  {
+   clear_child_group_foreground(twi);
+   current_peer_index_ = 0;
+  }
  }
  while(true)
  {
@@ -374,9 +413,53 @@ void ScignStage_Ling_Dialog::handle_sample_up()
    main_tree_widget_->scrollToItem(stwi);
    main_tree_widget_->scrollToItem(twi);
    twi->setExpanded(!(bool)no_auto_expand_);
+   set_group_foreground(twi_by_group_[current_open_group_]);
    break;
   }
  }
+}
+
+void ScignStage_Ling_Dialog::handle_peer_down()
+{
+ QTreeWidgetItem* twi = twi_by_group_.value(current_open_group_);
+ if(current_peer_index_ == 0)
+ {
+  clear_group_foreground(twi);
+  current_peer_index_ = 1;
+ }
+ else if(current_peer_index_ == twi->childCount())
+ {
+  clear_child_group_foreground(twi);
+  current_peer_index_ = 1;
+ }
+ else
+ {
+  clear_child_group_foreground(twi);
+  ++current_peer_index_;
+ }
+ set_child_group_foreground(twi);
+}
+
+void ScignStage_Ling_Dialog::handle_peer_up()
+{
+ QTreeWidgetItem* twi = twi_by_group_.value(current_open_group_);
+ if(current_peer_index_ == 0)
+ {
+  clear_group_foreground(twi);
+  current_peer_index_ = twi->childCount();
+ }
+ else if(current_peer_index_ == 1)
+ {
+  clear_child_group_foreground(twi);
+  current_peer_index_ = twi->childCount();
+ }
+ else
+ {
+  clear_child_group_foreground(twi);
+  --current_peer_index_;
+ }
+ set_child_group_foreground(twi);
+
 }
 
 void ScignStage_Ling_Dialog::handle_sample_first()
