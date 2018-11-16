@@ -211,7 +211,8 @@ public Q_SLOTS:
  void activate_tcp_requested();
 
  void handle_sample_down();
-
+ void handle_sample_up();
+ void handle_sample_first();
 
 };
 

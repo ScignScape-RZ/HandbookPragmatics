@@ -310,6 +310,7 @@ ScignStage_Ling_Dialog::ScignStage_Ling_Dialog(XPDF_Bridge* xpdf_bridge,
 }
 
 
+
 void ScignStage_Ling_Dialog::handle_sample_down()
 {
  if(current_open_group_)
@@ -320,7 +321,7 @@ void ScignStage_Ling_Dialog::handle_sample_down()
  {
   if(current_group_index_ == -1)
     current_group_index_ = 0;
-  else if(current_group_index_ == groups_->size())
+  else if(current_group_index_ == groups_->size() - 1)
     current_group_index_ = 0;
   else
     ++current_group_index_;
@@ -339,9 +340,45 @@ void ScignStage_Ling_Dialog::handle_sample_down()
    break;
   }
  }
-
-
 }
+
+void ScignStage_Ling_Dialog::handle_sample_up()
+{
+ if(current_open_group_)
+ {
+  twi_by_group_[current_open_group_]->setExpanded(false);
+ }
+ while(true)
+ {
+  if(current_group_index_ == -1)
+    current_group_index_ = groups_->size() - 1;
+  else if(current_group_index_ == 0)
+    current_group_index_ = groups_->size() - 1;
+  else
+    --current_group_index_;
+
+  Language_Sample_Group* g  = groups_->at(current_group_index_);
+
+  if(QTreeWidgetItem* twi = twi_by_group_.value(g))
+  {
+   current_open_group_ = g;
+   twi->setExpanded(true);
+
+   // ensure last subitem is visible
+   QTreeWidgetItem* stwi = twi->child(twi->childCount() - 1);
+   main_tree_widget_->scrollToItem(stwi);
+   main_tree_widget_->scrollToItem(twi);
+   break;
+  }
+ }
+}
+
+void ScignStage_Ling_Dialog::handle_sample_first()
+{
+ current_group_index_ = groups_->size() - 1;
+ handle_sample_down();
+}
+
 
 
 void ScignStage_Ling_Dialog::handle_take_screenshot_requested()
