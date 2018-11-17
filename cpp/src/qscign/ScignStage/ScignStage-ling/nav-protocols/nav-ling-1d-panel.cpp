@@ -28,22 +28,6 @@ NAV_Ling1D_Panel::NAV_Ling1D_Panel(int vmn, int vmx, int v, QWidget* parent)
 
  navigation_layout_ = new QHBoxLayout;
 
-// zoom_sample_distractor_layout_ = new QVBoxLayout;
-// sample_distractor_layout_ = new QHBoxLayout;
-
-// sample_label_ = new QLabel("sample:", this);
-// sample_line_edit_ = new QLineEdit(this);
-// sample_line_edit_->setPlaceholderText("?");
-// sample_line_edit_->setMaximumWidth(30);
-
-// sample_distractor_layout_->addWidget(sample_label_);
-// sample_distractor_layout_->addWidget(sample_line_edit_);
-
- example_up_down_layout_ = new QVBoxLayout;
-
-// zoom_sample_distractor_layout_ = new QVBoxLayout;
-// zoom_sample_distractor_layout_->addLayout(sample_distractor_layout_);
-
  filtered_up_button_ = new QPushButton(this);
  filtered_down_button_ = new QPushButton(this);
 
@@ -61,13 +45,8 @@ NAV_Ling1D_Panel::NAV_Ling1D_Panel(int vmn, int vmx, int v, QWidget* parent)
 
  sample_first_button_->setIcon(QIcon(DEFAULT_ICON_FOLDER "/Arrow-leftup-small.svg"));
 
- //auto_expand_button_->setIcon(QIcon(DEFAULT_ICON_FOLDER "/Arrow-complex-left.svg"));
  auto_expand_button_->setCheckable(true);
  auto_expand_button_->setChecked(true);
-// auto_expand_button_->setMaximumWidth(35);
-// auto_expand_button_->setMinimumWidth(35);
-
- //auto_expand_button_->setStyleSheet("QPushButton{max-width:35;}");
 
  auto_expand_button_->setStyleSheet(colorful_toggle_button_style_sheet_());
 
@@ -93,6 +72,11 @@ NAV_Ling1D_Panel::NAV_Ling1D_Panel(int vmn, int vmx, int v, QWidget* parent)
  connect(peer_down_button_, SIGNAL(clicked()),
    this, SIGNAL(peer_down_requested()));
 
+ connect(filtered_down_button_, SIGNAL(clicked()),
+   this, SIGNAL(filtered_down_requested()));
+
+ connect(filtered_up_button_, SIGNAL(clicked()),
+   this, SIGNAL(filtered_up_requested()));
 
  chapter_start_button_ = new QPushButton(this);
  chapter_end_button_ = new QPushButton(this);
@@ -139,7 +123,7 @@ NAV_Ling1D_Panel::NAV_Ling1D_Panel(int vmn, int vmx, int v, QWidget* parent)
 
  filter_up_down_layout_->addWidget(filtered_up_button_);
  filter_up_down_layout_->addWidget(filtered_down_button_);
-
+ filter_up_down_layout_->addStretch();
 
  filter_up_down_group_box_ = new QGroupBox("Filtered Up/Down", this);
  filter_up_down_button_group_ = new QButtonGroup(this);
@@ -153,9 +137,9 @@ NAV_Ling1D_Panel::NAV_Ling1D_Panel(int vmn, int vmx, int v, QWidget* parent)
 
  example_up_down_layout_ = new QVBoxLayout;
 
- example_up_down_layout_->addWidget(filtered_up_button_);
- example_up_down_layout_->addWidget(filtered_down_button_);
-
+ example_up_down_layout_->addWidget(sample_up_button_);
+ example_up_down_layout_->addWidget(sample_down_button_);
+ example_up_down_layout_->addStretch();
 
  example_up_down_group_box_ = new QGroupBox("Examples Up/Down", this);
  example_up_down_button_group_ = new QButtonGroup(this);
@@ -171,7 +155,7 @@ NAV_Ling1D_Panel::NAV_Ling1D_Panel(int vmn, int vmx, int v, QWidget* parent)
 
  peer_up_down_layout_->addWidget(peer_up_button_);
  peer_up_down_layout_->addWidget(peer_down_button_);
-
+ peer_up_down_layout_->addStretch();
 
  peer_up_down_group_box_ = new QGroupBox("Peer Up/Down", this);
  peer_up_down_button_group_ = new QButtonGroup(this);
@@ -189,7 +173,7 @@ NAV_Ling1D_Panel::NAV_Ling1D_Panel(int vmn, int vmx, int v, QWidget* parent)
 
  chapter_se_layout_->addWidget(chapter_start_button_);
  chapter_se_layout_->addWidget(chapter_end_button_);
-
+ chapter_se_layout_->addStretch();
 
  chapter_se_group_box_ = new QGroupBox("Chapter Start/End", this);
  chapter_se_button_group_ = new QButtonGroup(this);
@@ -208,7 +192,7 @@ NAV_Ling1D_Panel::NAV_Ling1D_Panel(int vmn, int vmx, int v, QWidget* parent)
 
  chapter_up_down_layout_->addWidget(chapter_up_button_);
  chapter_up_down_layout_->addWidget(chapter_down_button_);
-
+ chapter_up_down_layout_->addStretch();
 
  chapter_up_down_group_box_ = new QGroupBox("Chapter Up/Down", this);
  chapter_up_down_button_group_ = new QButtonGroup(this);
@@ -223,40 +207,40 @@ NAV_Ling1D_Panel::NAV_Ling1D_Panel(int vmn, int vmx, int v, QWidget* parent)
 
 
 
- first_review_note_layout_ = new QVBoxLayout;
- first_review_layout_ = new QHBoxLayout;
+ //first_auto_expand_note_layout_ = new QVBoxLayout;
+ first_auto_expand_layout_ = new QVBoxLayout;
 
- first_layout_ = new QVBoxLayout;
- sample_first_label_ = new QLabel("First", this);
- first_layout_->addStretch();
- first_layout_->addWidget(sample_first_label_);
+ first_layout_ = new QHBoxLayout;
+ first_label_ = new QLabel("First", this);
+ //first_layout_->addStretch();
+ //sample_first_button_->setText("First");
+ first_layout_->addWidget(first_label_);
  first_layout_->addWidget(sample_first_button_);
  first_layout_->addStretch();
 
- first_review_layout_->addStretch();
- first_review_layout_->addLayout(first_layout_);
+ //first_auto_expand_layout_->addStretch();
+ first_auto_expand_layout_->addLayout(first_layout_);
+ first_auto_expand_layout_->addStretch();
 
- first_review_layout_->addStretch();
-
- review_layout_ = new QVBoxLayout;
+ auto_expand_layout_ = new QVBoxLayout;
  auto_expand_label_ = new QLabel("Auto Expand", this);
- review_layout_->addStretch();
- review_layout_->addWidget(auto_expand_label_);
- review_layout_->addWidget(auto_expand_button_);
- review_layout_->addStretch();
+ auto_expand_layout_->addStretch();
+ auto_expand_layout_->addWidget(auto_expand_label_);
+ auto_expand_layout_->addWidget(auto_expand_button_);
+ auto_expand_layout_->addStretch();
 
- first_review_layout_->addLayout(review_layout_);
- first_review_layout_->addStretch();
+ first_auto_expand_layout_->addLayout(auto_expand_layout_);
+ first_auto_expand_layout_->addStretch();
 
- first_review_note_layout_->addLayout(first_review_layout_);
+ //first_auto_expand_note_layout_->addLayout(first_auto_expand_layout_);
 
- first_review_label_ = new QLabel("Note: Scroll via \"Peer\" to highlight "
-   "variations in each group.", this);
+// first_auto_expand_label_ = new QLabel("Note: Scroll via \"Peer\" to highlight "
+//   "variations in each group.", this);
+// first_auto_expand_note_layout_->addWidget(first_auto_expand_label_);
 
- first_review_note_layout_->addWidget(first_review_label_);
-
- navigation_layout_->addLayout(first_review_note_layout_);
-
+ navigation_layout_->addStretch();
+ navigation_layout_->addLayout(first_auto_expand_layout_);
+ navigation_layout_->addStretch();
 
  //navigation_layout_->addLayout(zoom_sample_distractor_layout_);
 

@@ -53,6 +53,8 @@ public:
  QString get_form();
  QString get_issue();
 
+ bool match_classification(const QSet<QString>& qset);
+
  void check_set_form(QString f);
 
  static void read_groups_from_file(QString path,

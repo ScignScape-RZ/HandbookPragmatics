@@ -88,6 +88,19 @@ QString Language_Sample_Group::get_form()
  return classification_.left(index);
 }
 
+bool Language_Sample_Group::match_classification(const QSet<QString>& qset)
+{
+ if(classification_.isEmpty())
+   return qset.contains("Text");
+ int index = classification_.indexOf(':');
+ if(index == -1)
+ {
+  return qset.contains(classification_);
+ }
+ return qset.contains(classification_.left(index))
+   && qset.contains(classification_.mid(index + 1));
+}
+
 QString Language_Sample_Group::get_issue()
 {
  if(classification_.isEmpty())

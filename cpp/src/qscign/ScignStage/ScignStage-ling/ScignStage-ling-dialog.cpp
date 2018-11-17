@@ -101,7 +101,8 @@ ScignStage_Ling_Dialog::ScignStage_Ling_Dialog(XPDF_Bridge* xpdf_bridge,
     current_volume_(50), current_group_index_(-1),
     current_open_group_(nullptr),
     no_auto_expand_(nullptr),
-    current_peer_index_(0), current_chapter_number_(0)
+    current_peer_index_(0),
+    current_chapter_number_(0)
 {
  // // setup RZW
 
@@ -123,14 +124,18 @@ ScignStage_Ling_Dialog::ScignStage_Ling_Dialog(XPDF_Bridge* xpdf_bridge,
  int fcolmax = 2;
  int icolmax = 4;
 
+ filter_forms_button_group_ = new QButtonGroup(this);
+ filter_forms_button_group_->setExclusive(false);
  {
   int c = 0;
   for(QString f: forms_)
   {
+   current_filters_.insert(f);
    QCheckBox* cb = new QCheckBox(f, this);
    cb->setChecked(true);
    filter_forms_grid_layout_->addWidget(cb,
      c / fcolmax, c % fcolmax);
+   filter_forms_button_group_->addButton(cb);
    ++c;
   }
  }
@@ -138,14 +143,19 @@ ScignStage_Ling_Dialog::ScignStage_Ling_Dialog(XPDF_Bridge* xpdf_bridge,
    filter_forms_grid_layout_->setColumnStretch(i, 0);
  //filter_forms_grid_layout_->setColumnStretch(fcolmax, 1);
 
+
+ filter_issues_button_group_ = new QButtonGroup(this);
+ filter_issues_button_group_->setExclusive(false);
  {
   int c = 0;
   for(QString i: issues_)
   {
+   current_filters_.insert(i);
    QCheckBox* cb = new QCheckBox(i, this);
    cb->setChecked(true);
    filter_issues_grid_layout_->addWidget(cb, c / icolmax,
      c % icolmax);
+   filter_issues_button_group_->addButton(cb);
    ++c;
   }
  }
@@ -153,6 +163,15 @@ ScignStage_Ling_Dialog::ScignStage_Ling_Dialog(XPDF_Bridge* xpdf_bridge,
  for(int i = 0; i < icolmax; ++i)
    filter_issues_grid_layout_->setColumnStretch(i, 0);
  //filter_issues_grid_layout_->setColumnStretch(icolmax, 1);
+
+ connect(filter_issues_button_group_,
+   SIGNAL(buttonToggled(QAbstractButton*,bool)), this,
+   SLOT(checked_label_change(QAbstractButton*,bool)));
+
+ connect(filter_forms_button_group_,
+   SIGNAL(buttonToggled(QAbstractButton*,bool)), this,
+   SLOT(checked_label_change(QAbstractButton*,bool)));
+
 
  button_box_ = new QDialogButtonBox(this);
 
@@ -364,6 +383,12 @@ ScignStage_Ling_Dialog::ScignStage_Ling_Dialog(XPDF_Bridge* xpdf_bridge,
 
  nav_panel_ = new NAV_Ling1D_Panel(0, 100, 50, this);
 
+ connect(nav_panel_, SIGNAL(filtered_up_requested()),
+   this, SLOT(handle_filtered_up()));
+
+ connect(nav_panel_, SIGNAL(filtered_down_requested()),
+   this, SLOT(handle_filtered_down()));
+
  connect(nav_panel_, SIGNAL(sample_up_requested()),
    this, SLOT(handle_sample_up()));
 
@@ -416,6 +441,34 @@ ScignStage_Ling_Dialog::ScignStage_Ling_Dialog(XPDF_Bridge* xpdf_bridge,
 
 }
 
+void ScignStage_Ling_Dialog::checked_label_change(QAbstractButton* qab, bool checked)
+{
+ if(checked)
+ {
+  current_filters_.insert(qab->text());
+ }
+ else
+ {
+  current_filters_.remove(qab->text());
+ }
+}
+
+void ScignStage_Ling_Dialog::handle_filtered_down()
+{
+ if(current_open_group_)
+   find_sample_down(current_open_group_, &current_filters_);
+ else
+   find_sample_down(groups_->constLast(), &current_filters_);
+}
+
+void ScignStage_Ling_Dialog::handle_filtered_up()
+{
+ if(current_open_group_)
+   find_sample_up(current_open_group_, &current_filters_);
+ else
+   find_sample_up(groups_->first(), &current_filters_);
+}
+
 void ScignStage_Ling_Dialog::set_group_foreground(QTreeWidgetItem* twi)
 {
  for(int i = 0; i < 6; ++i)
@@ -459,17 +512,13 @@ void ScignStage_Ling_Dialog::handle_chapter_start()
 
 void ScignStage_Ling_Dialog::handle_sample_down()
 {
- if(current_open_group_)
- {
-  QTreeWidgetItem* twi = twi_by_group_[current_open_group_];
-  twi->setExpanded(false);
-  clear_group_foreground(twi);
-  if(current_peer_index_)
-  {
-   clear_child_group_foreground(twi);
-   current_peer_index_ = 0;
-  }
- }
+ find_sample_down(nullptr, nullptr);
+}
+
+
+void ScignStage_Ling_Dialog::find_sample_down(Language_Sample_Group* start,
+  QSet<QString>* temp_filters)
+{
  while(true)
  {
   if(current_group_index_ == -1)
@@ -481,8 +530,36 @@ void ScignStage_Ling_Dialog::handle_sample_down()
 
   Language_Sample_Group* g  = groups_->at(current_group_index_);
 
+
   if(QTreeWidgetItem* twi = twi_by_group_.value(g))
   {
+   if(temp_filters)
+   {
+    if(g == start)
+    {
+     // // i.e. all way round
+     QMessageBox::information(this, "No More",
+                              "NM");
+     return;
+    }
+    if(!g->match_classification(*temp_filters))
+    {
+     continue;
+    }
+   }
+
+   if(current_open_group_)
+   {
+    QTreeWidgetItem* twi = twi_by_group_[current_open_group_];
+    twi->setExpanded(false);
+    clear_group_foreground(twi);
+    if(current_peer_index_)
+    {
+     clear_child_group_foreground(twi);
+     current_peer_index_ = 0;
+    }
+   }
+
    current_open_group_ = g;
 
    current_chapter_number_ = g->chapter();
@@ -521,17 +598,12 @@ void ScignStage_Ling_Dialog::handle_chapter_end()
 
 void ScignStage_Ling_Dialog::handle_sample_up()
 {
- if(current_open_group_)
- {
-  QTreeWidgetItem* twi = twi_by_group_[current_open_group_];
-  twi->setExpanded(false);
-  clear_group_foreground(twi);
-  if(current_peer_index_)
-  {
-   clear_child_group_foreground(twi);
-   current_peer_index_ = 0;
-  }
- }
+ find_sample_up(nullptr, nullptr);
+}
+
+void ScignStage_Ling_Dialog::find_sample_up(Language_Sample_Group* start,
+  QSet<QString>* temp_filters)
+{
  while(true)
  {
   if(current_group_index_ == -1)
@@ -545,6 +617,33 @@ void ScignStage_Ling_Dialog::handle_sample_up()
 
   if(QTreeWidgetItem* twi = twi_by_group_.value(g))
   {
+   if(temp_filters)
+   {
+    if(g == start)
+    {
+     // // i.e. all way round
+     QMessageBox::information(this, "No More",
+                              "NM");
+     return;
+    }
+    if(!g->match_classification(*temp_filters))
+    {
+     continue;
+    }
+   }
+
+   if(current_open_group_)
+   {
+    QTreeWidgetItem* twi = twi_by_group_[current_open_group_];
+    twi->setExpanded(false);
+    clear_group_foreground(twi);
+    if(current_peer_index_)
+    {
+     clear_child_group_foreground(twi);
+     current_peer_index_ = 0;
+    }
+   }
+
    current_open_group_ = g;
 
    // ensure last subitem is visible

@@ -76,18 +76,18 @@ class NAV_Ling1D_Panel : public QFrame
  QPushButton* chapter_start_button_;
  QPushButton* chapter_end_button_;
 
- QVBoxLayout* first_review_note_layout_;
- QHBoxLayout* first_review_layout_;
- QLabel* first_review_label_;
+// QVBoxLayout* first_auto_expand_note_layout_;
+ QVBoxLayout* first_auto_expand_layout_;
+ //QLabel* first_auto_expand_label_;
 
- QLabel* sample_first_label_;
+ QLabel* first_label_;
  QPushButton* sample_first_button_;
 
  QLabel* auto_expand_label_;
  QPushButton* auto_expand_button_;
 
- QVBoxLayout* first_layout_;
- QVBoxLayout* review_layout_;
+ QHBoxLayout* first_layout_;
+ QVBoxLayout* auto_expand_layout_;
 
 
  QVBoxLayout* filter_up_down_layout_;
@@ -148,6 +148,9 @@ Q_SIGNALS:
  void peer_up_requested();
  void peer_down_requested();
 
+ void filtered_up_requested();
+ void filtered_down_requested();
+
  void chapter_up_requested();
  void chapter_down_requested();
 
@@ -157,8 +160,6 @@ Q_SIGNALS:
  void sample_up_requested();
  void sample_down_requested();
  void sample_first_requested();
- void sample_review_requested();
-
 
  void auto_expand_changed(bool);
 

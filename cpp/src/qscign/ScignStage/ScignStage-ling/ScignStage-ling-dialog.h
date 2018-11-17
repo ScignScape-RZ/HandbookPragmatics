@@ -56,6 +56,7 @@ class QProcess;
 class QTcpServer;
 class QTreeWidget;
 class QTreeWidgetItem;
+class QAbstractButton;
 
 class ScignStage_Clickable_Label;
 
@@ -97,6 +98,9 @@ class ScignStage_Ling_Dialog : public QDialog
  QGridLayout* filter_forms_grid_layout_;
  QGridLayout* filter_issues_grid_layout_;
 
+ QButtonGroup* filter_forms_button_group_;
+ QButtonGroup* filter_issues_button_group_;
+
  QGroupBox* filter_forms_group_box_;
  QGroupBox* filter_issues_group_box_;
 
@@ -117,6 +121,11 @@ class ScignStage_Ling_Dialog : public QDialog
 
  QVector<Language_Sample*>* samples_;
  QVector<Language_Sample_Group*>* groups_;
+
+ //QSet<QString>* temp_filters_;
+
+ QSet<QString> current_filters_;
+
 
  void chapter_to_string(QString& result, bool wl);
  void group_to_string(QString& result, bool wl);
@@ -213,7 +222,11 @@ public:
  void test_msgbox(QString msg);
  void view_sample(int index);
 
+ void find_sample_down(Language_Sample_Group* start,
+   QSet<QString>* temp_filters);
 
+ void find_sample_up(Language_Sample_Group* start,
+   QSet<QString>* temp_filters);
 
 Q_SIGNALS:
  void canceled(QDialog*);
@@ -221,6 +234,8 @@ Q_SIGNALS:
  void take_screenshot_requested();
 
 public Q_SLOTS:
+
+ void checked_label_change(QAbstractButton* qab, bool checked);
 
  void handle_xpdf_is_ready();
  void handle_take_screenshot_requested();
@@ -232,7 +247,11 @@ public Q_SLOTS:
 
  void handle_sample_down();
  void handle_sample_up();
+
  void handle_sample_first();
+
+ void handle_filtered_down();
+ void handle_filtered_up();
 
  void handle_peer_down();
  void handle_peer_up();
