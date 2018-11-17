@@ -108,6 +108,52 @@ ScignStage_Ling_Dialog::ScignStage_Ling_Dialog(XPDF_Bridge* xpdf_bridge,
  samples_ = &ds.samples();
  groups_ = &ds.groups();
 
+ filter_forms_grid_layout_ = new QGridLayout;
+ filter_issues_grid_layout_ = new QGridLayout;
+
+ issues_ = ds.issues();
+ forms_ = ds.forms();
+
+// QLabel* forms_label = new QLabel("Filter Forms: ", this);
+// filters_grid_layout_->addWidget(forms_label, 0, 0);
+
+// QLabel* issues_label = new QLabel("Filter Issues: ", this);
+// filters_grid_layout_->addWidget(issues_label, 1, 0);
+
+ int fcolmax = 2;
+ int icolmax = 4;
+
+ {
+  int c = 0;
+  for(QString f: forms_)
+  {
+   QCheckBox* cb = new QCheckBox(f, this);
+   cb->setChecked(true);
+   filter_forms_grid_layout_->addWidget(cb,
+     c / fcolmax, c % fcolmax);
+   ++c;
+  }
+ }
+ for(int i = 0; i < fcolmax; ++i)
+   filter_forms_grid_layout_->setColumnStretch(i, 0);
+ //filter_forms_grid_layout_->setColumnStretch(fcolmax, 1);
+
+ {
+  int c = 0;
+  for(QString i: issues_)
+  {
+   QCheckBox* cb = new QCheckBox(i, this);
+   cb->setChecked(true);
+   filter_issues_grid_layout_->addWidget(cb, c / icolmax,
+     c % icolmax);
+   ++c;
+  }
+ }
+
+ for(int i = 0; i < icolmax; ++i)
+   filter_issues_grid_layout_->setColumnStretch(i, 0);
+ //filter_issues_grid_layout_->setColumnStretch(icolmax, 1);
+
  button_box_ = new QDialogButtonBox(this);
 
  button_ok_ = new QPushButton("OK");
@@ -144,7 +190,7 @@ ScignStage_Ling_Dialog::ScignStage_Ling_Dialog(XPDF_Bridge* xpdf_bridge,
  main_layout_ = new QVBoxLayout;
 
 
- top_buttons_layout_ = new QHBoxLayout;
+ //top_buttons_layout_ = new QHBoxLayout;
 
  take_screenshot_button_ = new QPushButton("Screenshot", this);
 
@@ -159,13 +205,35 @@ ScignStage_Ling_Dialog::ScignStage_Ling_Dialog(XPDF_Bridge* xpdf_bridge,
  connect(activate_tcp_button_, SIGNAL(clicked()),
    this, SLOT(activate_tcp_requested()));
 
- top_buttons_layout_->addStretch();
+// top_buttons_layout_->addStretch();
 
- top_buttons_layout_->addWidget(activate_tcp_button_);
+// top_buttons_layout_->addWidget(activate_tcp_button_);
 
- top_buttons_layout_->addWidget(take_screenshot_button_);
+// top_buttons_layout_->addWidget(take_screenshot_button_);
 
- main_layout_->addLayout(top_buttons_layout_);
+// main_layout_->addLayout(top_buttons_layout_);
+
+ filters_layout_ = new QHBoxLayout;
+
+ filter_forms_group_box_ = new QGroupBox(
+   "Filter Forms", this);
+
+ filter_issues_group_box_ = new QGroupBox(
+    "Filter Issues", this);
+
+ filter_forms_group_box_->setLayout(filter_forms_grid_layout_);
+ filter_issues_group_box_->setLayout(filter_issues_grid_layout_);
+
+
+ filters_layout_->addWidget(filter_forms_group_box_);
+ filters_layout_->addWidget(filter_issues_group_box_);
+ filters_layout_->addStretch();
+
+ filters_layout_->addWidget(activate_tcp_button_);
+
+ filters_layout_->addWidget(take_screenshot_button_);
+
+ main_layout_->addLayout(filters_layout_);
 
  middle_layout_ = new QHBoxLayout;
 

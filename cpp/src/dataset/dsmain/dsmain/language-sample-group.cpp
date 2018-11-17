@@ -100,6 +100,18 @@ QString Language_Sample_Group::get_issue()
  return classification_.mid(index + 1);
 }
 
+void Language_Sample_Group::check_set_form(QString f)
+{
+ if(classification_.isEmpty())
+ {
+  classification_ = f;
+ }
+ else if(classification_.startsWith("?:"))
+ {
+  classification_.replace(0, 1, f);
+ }
+}
+
 void Language_Sample_Group::read_groups_from_file(QString path,
  QVector<Language_Sample_Group*>& result)
 {

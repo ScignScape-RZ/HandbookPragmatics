@@ -320,6 +320,14 @@ void Language_Sample::read_samples_from_file
    samp->set_amark(amark);
    amark.clear();
   }
+
+
+  if(!samp->speaker().isEmpty())
+  {
+   samp->get_ref_group()->check_set_form("Dialog");
+  }
+
+
   loc_code.clear();
   result.push_back(samp);
  }

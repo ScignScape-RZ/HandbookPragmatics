@@ -28,7 +28,10 @@ Dataset::Dataset(QString file)
      601, 630, 656, 680, 698, 724,
                   747, 765 }
 {
-
+ forms_ = QStringList{{"Text", "Dialog", "Intonation", "Paragraph"}};
+ issues_ = QStringList{{"Ambiguity", "Context", "Logic",
+            "Scope", "Polarity", "Belief",
+            "Convention", "Idioms"}};
 }
 
 int Dataset::get_chapter_number_from_page(int page)

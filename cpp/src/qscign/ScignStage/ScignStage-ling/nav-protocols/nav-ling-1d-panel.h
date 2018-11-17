@@ -61,9 +61,11 @@ class NAV_Ling1D_Panel : public QFrame
 
  ScignStage_Image_Tile* current_sample_;
 
+ QPushButton* filtered_up_button_;
+ QPushButton* filtered_down_button_;
+
  QPushButton* sample_up_button_;
  QPushButton* sample_down_button_;
-
 
  QPushButton* peer_up_button_;
  QPushButton* peer_down_button_;
@@ -86,13 +88,17 @@ class NAV_Ling1D_Panel : public QFrame
 
  QVBoxLayout* first_layout_;
  QVBoxLayout* review_layout_;
- QVBoxLayout* navigation_buttons_up_down_layout_;
 
- QGroupBox* up_down_group_box_;
- QButtonGroup* up_down_button_group_;
+
+ QVBoxLayout* filter_up_down_layout_;
+ QGroupBox* filter_up_down_group_box_;
+ QButtonGroup* filter_up_down_button_group_;
+
+ QVBoxLayout* example_up_down_layout_;
+ QGroupBox* example_up_down_group_box_;
+ QButtonGroup* example_up_down_button_group_;
 
  QVBoxLayout* peer_up_down_layout_;
-
  QGroupBox* peer_up_down_group_box_;
  QButtonGroup* peer_up_down_button_group_;
 
@@ -105,12 +111,12 @@ class NAV_Ling1D_Panel : public QFrame
  QGroupBox* chapter_se_group_box_;
  QButtonGroup* chapter_se_button_group_;
 
-// QHBoxLayout* volume_layout_;
- QVBoxLayout* zoom_sample_distractor_layout_;
- QHBoxLayout* sample_distractor_layout_;
 
- QLabel* sample_label_;
- QLineEdit* sample_line_edit_;
+// QVBoxLayout* zoom_sample_distractor_layout_;
+// QHBoxLayout* sample_distractor_layout_;
+
+// QLabel* sample_label_;
+// QLineEdit* sample_line_edit_;
 
 
 // QSlider* volume_slider_;

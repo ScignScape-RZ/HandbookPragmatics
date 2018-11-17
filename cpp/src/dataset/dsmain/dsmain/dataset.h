@@ -32,6 +32,9 @@ class Dataset
 
  QVector<Language_Sample_Group*> groups_;
 
+ QStringList issues_;
+ QStringList forms_;
+
 public:
 
  Dataset(QString file);
@@ -39,6 +42,9 @@ public:
  ACCESSORS__RGET(QVector<Language_Sample*> ,samples)
  ACCESSORS__RGET(groups_by_text_type ,groups_by_text)
  ACCESSORS__RGET(QVector<Language_Sample_Group*> ,groups)
+
+ ACCESSORS__RGET(QStringList ,issues)
+ ACCESSORS__RGET(QStringList ,forms)
 
  void save_raw_file(QString text, int page, int num);
  void parse_to_samples(QString text, int page, int num);

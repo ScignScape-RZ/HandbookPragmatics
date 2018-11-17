@@ -53,6 +53,8 @@ public:
  QString get_form();
  QString get_issue();
 
+ void check_set_form(QString f);
+
  static void read_groups_from_file(QString path,
   QVector<Language_Sample_Group*>& result);
 

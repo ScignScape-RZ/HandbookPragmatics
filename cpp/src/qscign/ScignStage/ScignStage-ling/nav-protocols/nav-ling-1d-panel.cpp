@@ -25,24 +25,27 @@ NAV_Ling1D_Panel::NAV_Ling1D_Panel(int vmn, int vmx, int v, QWidget* parent)
   :  QFrame(parent)
 {
  main_layout_ = new QVBoxLayout;
- navigation_layout_ = new QHBoxLayout;
-
- zoom_sample_distractor_layout_ = new QVBoxLayout;
- sample_distractor_layout_ = new QHBoxLayout;
-
- sample_label_ = new QLabel("sample:", this);
- sample_line_edit_ = new QLineEdit(this);
- sample_line_edit_->setPlaceholderText("?");
- sample_line_edit_->setMaximumWidth(30);
-
- sample_distractor_layout_->addWidget(sample_label_);
- sample_distractor_layout_->addWidget(sample_line_edit_);
 
  navigation_layout_ = new QHBoxLayout;
 
- zoom_sample_distractor_layout_ = new QVBoxLayout;
+// zoom_sample_distractor_layout_ = new QVBoxLayout;
+// sample_distractor_layout_ = new QHBoxLayout;
 
- zoom_sample_distractor_layout_->addLayout(sample_distractor_layout_);
+// sample_label_ = new QLabel("sample:", this);
+// sample_line_edit_ = new QLineEdit(this);
+// sample_line_edit_->setPlaceholderText("?");
+// sample_line_edit_->setMaximumWidth(30);
+
+// sample_distractor_layout_->addWidget(sample_label_);
+// sample_distractor_layout_->addWidget(sample_line_edit_);
+
+ example_up_down_layout_ = new QVBoxLayout;
+
+// zoom_sample_distractor_layout_ = new QVBoxLayout;
+// zoom_sample_distractor_layout_->addLayout(sample_distractor_layout_);
+
+ filtered_up_button_ = new QPushButton(this);
+ filtered_down_button_ = new QPushButton(this);
 
  sample_up_button_ = new QPushButton(this);
  sample_down_button_ = new QPushButton(this);
@@ -50,6 +53,8 @@ NAV_Ling1D_Panel::NAV_Ling1D_Panel(int vmn, int vmx, int v, QWidget* parent)
  sample_first_button_ = new QPushButton(this);
  auto_expand_button_ = new QPushButton("ON",this);
 
+ filtered_up_button_->setIcon(QIcon(DEFAULT_ICON_FOLDER "/Gtk-go-up.svg"));
+ filtered_down_button_->setIcon(QIcon(DEFAULT_ICON_FOLDER "/Gtk-go-down.svg"));
 
  sample_up_button_->setIcon(QIcon(DEFAULT_ICON_FOLDER "/Gtk-go-up.svg"));
  sample_down_button_->setIcon(QIcon(DEFAULT_ICON_FOLDER "/Gtk-go-down.svg"));
@@ -130,21 +135,37 @@ NAV_Ling1D_Panel::NAV_Ling1D_Panel(int vmn, int vmx, int v, QWidget* parent)
  connect(auto_expand_button_, SIGNAL(clicked()),
    this, SIGNAL(sample_review_requested()));
 
- navigation_buttons_up_down_layout_ = new QVBoxLayout;
+ filter_up_down_layout_ = new QVBoxLayout;
 
- navigation_buttons_up_down_layout_->addWidget(sample_up_button_);
- navigation_buttons_up_down_layout_->addWidget(sample_down_button_);
+ filter_up_down_layout_->addWidget(filtered_up_button_);
+ filter_up_down_layout_->addWidget(filtered_down_button_);
 
 
- up_down_group_box_ = new QGroupBox("Examples Up/Down", this);
- up_down_button_group_ = new QButtonGroup(this);
+ filter_up_down_group_box_ = new QGroupBox("Filtered Up/Down", this);
+ filter_up_down_button_group_ = new QButtonGroup(this);
 
- up_down_button_group_->addButton(sample_up_button_);
- up_down_button_group_->addButton(sample_down_button_);
+ filter_up_down_button_group_->addButton(filtered_up_button_);
+ filter_up_down_button_group_->addButton(filtered_down_button_);
 
- up_down_group_box_->setLayout(navigation_buttons_up_down_layout_);
+ filter_up_down_group_box_->setLayout(filter_up_down_layout_);
 
- navigation_layout_->addWidget(up_down_group_box_);
+ navigation_layout_->addWidget(filter_up_down_group_box_);
+
+ example_up_down_layout_ = new QVBoxLayout;
+
+ example_up_down_layout_->addWidget(filtered_up_button_);
+ example_up_down_layout_->addWidget(filtered_down_button_);
+
+
+ example_up_down_group_box_ = new QGroupBox("Examples Up/Down", this);
+ example_up_down_button_group_ = new QButtonGroup(this);
+
+ example_up_down_button_group_->addButton(sample_up_button_);
+ example_up_down_button_group_->addButton(sample_down_button_);
+
+ example_up_down_group_box_->setLayout(example_up_down_layout_);
+
+ navigation_layout_->addWidget(example_up_down_group_box_);
 
  peer_up_down_layout_ = new QVBoxLayout;
 
@@ -237,7 +258,7 @@ NAV_Ling1D_Panel::NAV_Ling1D_Panel(int vmn, int vmx, int v, QWidget* parent)
  navigation_layout_->addLayout(first_review_note_layout_);
 
 
- navigation_layout_->addLayout(zoom_sample_distractor_layout_);
+ //navigation_layout_->addLayout(zoom_sample_distractor_layout_);
 
  navigation_layout_->addStretch();
 
@@ -254,5 +275,5 @@ NAV_Ling1D_Panel::~NAV_Ling1D_Panel()
 
 void NAV_Ling1D_Panel::set_sample_text(int r)
 {
- sample_line_edit_->setText(QString::number(r));
+ //sample_line_edit_->setText(QString::number(r));
 }

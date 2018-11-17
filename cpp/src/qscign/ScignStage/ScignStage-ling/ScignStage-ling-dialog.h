@@ -87,14 +87,21 @@ class ScignStage_Ling_Dialog : public QDialog
 
 
  // //  "Pseudo" Toolbar ...
- QHBoxLayout* top_buttons_layout_;
+ //QHBoxLayout* top_buttons_layout_;
 
  QPushButton* activate_tcp_button_;
 
  QPushButton* take_screenshot_button_;
 
- QPushButton* scignstage_button_;
+ QHBoxLayout* filters_layout_;
+ QGridLayout* filter_forms_grid_layout_;
+ QGridLayout* filter_issues_grid_layout_;
 
+ QGroupBox* filter_forms_group_box_;
+ QGroupBox* filter_issues_group_box_;
+
+ QStringList issues_;
+ QStringList forms_;
 
 // QScrollArea* tree_scroll_area_;
 // QFrame* main_frame_;
