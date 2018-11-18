@@ -211,12 +211,23 @@ class ScignStage_Ling_Dialog : public QDialog
  void run_group_message(const QPoint& p, int col);
 
  void check_expand(QTreeWidgetItem* twi);
+ void highlight(QTreeWidgetItem* twi,
+   Language_Sample_Group* g, int* index = nullptr);
+
+ void highlight(QTreeWidgetItem* twi,
+   int* index)
+ {
+  highlight(twi, nullptr, index);
+ }
+
+
 
 
  void run_group_context_menu(const QPoint& p, int page, QString text,
    QStringList texts,
    std::function<void(int)> pdf_fn, std::function<void(QString)> copy_fn,
-     std::function<void(QStringList)> copies_fn);
+     std::function<void(QStringList)> copies_fn,
+     std::function<void()> highlight_fn);
 
  void run_sample_context_menu(const QPoint& p, int page, QString text,
    std::function<void(int)> pdf_fn, std::function<void(QString)> copy_fn);

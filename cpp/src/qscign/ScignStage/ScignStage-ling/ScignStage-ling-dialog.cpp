@@ -494,29 +494,14 @@ ScignStage_Ling_Dialog::ScignStage_Ling_Dialog(XPDF_Bridge* xpdf_bridge,
     {
      QClipboard* clipboard = QApplication::clipboard();
      clipboard->setText(qsl.join('\n'));
+    },
+    [this, twi]()
+    {
+     highlight(twi, &current_group_index_);
     }
     );
-
    }
-
-
-
   }
-
-
-//   if(qw->parent() == main_frame_)
-//   {
-//    int i = main_grid_layout_->indexOf(qw);
-//    if(i != -1)
-//    {
-//     int r, c, rs, cs;
-//     main_grid_layout_->getItemPosition(i, &r, &c, &rs, &cs);
-//     run_message_by_grid_position(qp, r, c);
-
-//    }
-//   }
-
-
  });
 
  main_layout_->addLayout(middle_layout_);
@@ -580,6 +565,41 @@ ScignStage_Ling_Dialog::ScignStage_Ling_Dialog(XPDF_Bridge* xpdf_bridge,
     this, SLOT(handle_xpdf_is_ready()));
  }
 #endif // USING_XPDF
+
+}
+
+void ScignStage_Ling_Dialog::highlight(QTreeWidgetItem* twi,
+  Language_Sample_Group* g, int* index)
+{
+ if(current_open_group_)
+ {
+  QTreeWidgetItem* twi = twi_by_group_[current_open_group_];
+  twi->setExpanded(false);
+  clear_group_foreground(twi);
+  if(current_peer_index_)
+  {
+   clear_child_group_foreground(twi);
+   current_peer_index_ = 0;
+  }
+ }
+ if(!g)
+ {
+  g = twi->data(0, Qt::UserRole).value<Language_Sample_Group*>();
+  if(index)
+    *index = g->id() - 1;
+ }
+ current_open_group_ = g;
+ show_full_sentence(g);
+
+ current_chapter_number_ = g->chapter();
+
+ // ensure last subitem is visible
+ QTreeWidgetItem* stwi = twi->child(twi->childCount() - 1);
+ main_tree_widget_->scrollToItem(stwi);
+ main_tree_widget_->scrollToItem(twi);
+ check_expand(twi);
+
+ set_group_foreground(twi_by_group_[current_open_group_]);
 
 }
 
@@ -674,7 +694,7 @@ void ScignStage_Ling_Dialog::show_full_sentence(Language_Sample_Group* g)
 
 void ScignStage_Ling_Dialog::show_full_sentence(Language_Sample* samp)
 {
- full_sentence_pre_label_->setText(samp->precomment());
+ full_sentence_pre_label_->setText(samp->pre_with_mark());
  if(show_original_version_button_->isChecked())
    full_sentence_plain_text_edit_->setPlainText(samp->alternate_or_text());
  else
@@ -713,34 +733,36 @@ void ScignStage_Ling_Dialog::find_sample_down(Language_Sample_Group* start,
      continue;
     }
    }
-
-   if(current_open_group_)
-   {
-    QTreeWidgetItem* twi = twi_by_group_[current_open_group_];
-    twi->setExpanded(false);
-    clear_group_foreground(twi);
-    if(current_peer_index_)
-    {
-     clear_child_group_foreground(twi);
-     current_peer_index_ = 0;
-    }
-   }
-
-   current_open_group_ = g;
-   show_full_sentence(g);
-
-   current_chapter_number_ = g->chapter();
-
-   // ensure last subitem is visible
-   QTreeWidgetItem* stwi = twi->child(twi->childCount() - 1);
-   main_tree_widget_->scrollToItem(stwi);
-   main_tree_widget_->scrollToItem(twi);
-   check_expand(twi);
-
-   set_group_foreground(twi_by_group_[current_open_group_]);
-    //twi->setForeground(0, QBrush("darkRed"));
-   //twi->setStyleSheet("QTreeWidget#treeWidget::item{background:yellow;}");
+   highlight(twi, g);
    break;
+
+//   if(current_open_group_)
+//   {
+//    QTreeWidgetItem* twi = twi_by_group_[current_open_group_];
+//    twi->setExpanded(false);
+//    clear_group_foreground(twi);
+//    if(current_peer_index_)
+//    {
+//     clear_child_group_foreground(twi);
+//     current_peer_index_ = 0;
+//    }
+//   }
+
+//   current_open_group_ = g;
+//   show_full_sentence(g);
+
+//   current_chapter_number_ = g->chapter();
+
+//   // ensure last subitem is visible
+//   QTreeWidgetItem* stwi = twi->child(twi->childCount() - 1);
+//   main_tree_widget_->scrollToItem(stwi);
+//   main_tree_widget_->scrollToItem(twi);
+//   check_expand(twi);
+
+//   set_group_foreground(twi_by_group_[current_open_group_]);
+//    //twi->setForeground(0, QBrush("darkRed"));
+//   //twi->setStyleSheet("QTreeWidget#treeWidget::item{background:yellow;}");
+//   break;
   }
  }
 }
@@ -819,28 +841,31 @@ void ScignStage_Ling_Dialog::find_sample_up(Language_Sample_Group* start,
     }
    }
 
-   if(current_open_group_)
-   {
-    QTreeWidgetItem* twi = twi_by_group_[current_open_group_];
-    twi->setExpanded(false);
-    clear_group_foreground(twi);
-    if(current_peer_index_)
-    {
-     clear_child_group_foreground(twi);
-     current_peer_index_ = 0;
-    }
-   }
-
-   current_open_group_ = g;
-   show_full_sentence(g);
-
-   // ensure last subitem is visible
-   QTreeWidgetItem* stwi = twi->child(twi->childCount() - 1);
-   main_tree_widget_->scrollToItem(stwi);
-   main_tree_widget_->scrollToItem(twi);
-   check_expand(twi);
-   set_group_foreground(twi_by_group_[current_open_group_]);
+   highlight(twi, g);
    break;
+
+//   if(current_open_group_)
+//   {
+//    QTreeWidgetItem* twi = twi_by_group_[current_open_group_];
+//    twi->setExpanded(false);
+//    clear_group_foreground(twi);
+//    if(current_peer_index_)
+//    {
+//     clear_child_group_foreground(twi);
+//     current_peer_index_ = 0;
+//    }
+//   }
+
+//   current_open_group_ = g;
+//   show_full_sentence(g);
+
+//   // ensure last subitem is visible
+//   QTreeWidgetItem* stwi = twi->child(twi->childCount() - 1);
+//   main_tree_widget_->scrollToItem(stwi);
+//   main_tree_widget_->scrollToItem(twi);
+//   check_expand(twi);
+//   set_group_foreground(twi_by_group_[current_open_group_]);
+//   break;
   }
  }
 }
@@ -1005,7 +1030,8 @@ void ScignStage_Ling_Dialog::save_to_user_select_file(QString text)
 void ScignStage_Ling_Dialog::run_group_context_menu(const QPoint& p, int page, QString text,
   QStringList texts, std::function<void(int)> pdf_fn,
   std::function<void(QString)> copy_fn,
-  std::function<void(QStringList)> copies_fn)
+  std::function<void(QStringList)> copies_fn,
+  std::function<void()> highlight_fn)
 {
  QMenu* qm = new QMenu(this);
  qm->addAction("Show in Document (requires XPDF)",
@@ -1014,6 +1040,8 @@ void ScignStage_Ling_Dialog::run_group_context_menu(const QPoint& p, int page, Q
    [text, copy_fn](){copy_fn(text);});
  qm->addAction("Copy Samples to Clipboard",
    [texts, copies_fn](){copies_fn(texts);});
+ qm->addAction("Highlight (scroll from here)",
+   [highlight_fn](){highlight_fn();});
  QPoint g = main_tree_widget_->mapToGlobal(p);
  qm->popup(g);
 }

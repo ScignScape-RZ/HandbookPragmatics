@@ -67,6 +67,7 @@ public:
 
  QString get_serialization();
  QString alternate_or_text();
+ QString pre_with_mark();
 
  Language_Sample_Group* get_ref_group();
 

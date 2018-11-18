@@ -23,6 +23,15 @@ Language_Sample::Language_Sample(QString text)
 
 }
 
+QString Language_Sample::pre_with_mark()
+{
+ if(amark_.isEmpty())
+   return precomment_;
+ if(precomment_.isEmpty())
+   return amark_;
+ return QString("%1 %2").arg(amark_).arg(postcomment_);
+}
+
 QString Language_Sample::alternate_or_text()
 {
  if(alternate_.isEmpty())

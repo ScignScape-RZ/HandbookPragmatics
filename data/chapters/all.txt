@@ -91,14 +91,16 @@ Do you have two children?
 13 B1 1 43 <>
 # 6
 No, three.
-13 B2 1 43 <?>
+13 B2 1 43 <>
 # 6
+? ?
 Yes, (in fact) three.
 14 A 1 43 <>
 # 7
 Did many of the guests leave?
-14 B1 1 43 <?>
+14 B1 1 43 <>
 # 7
+? ?
 No, all of them.
 14 B2 1 43 <>
 # 7
