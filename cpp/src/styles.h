@@ -151,6 +151,16 @@ inline QString colorful_toggle_button_quiet_style_sheet_()
  "stop:1 #A64166"
  ");"
  "}"
+
+ "QPushButton:checked:hover {"
+ "border:1px solid #EFE7F7;"
+ "background-color: qlineargradient("
+ "x1:0, y1:0, x2:0, y2:1,"
+ "stop:0 #C5D8FA,"
+ "stop:0.5 #E95289,"
+ "stop:1 #A64166"
+ ");"
+ "}"
  ;
 }
 
@@ -315,7 +325,7 @@ inline  QString colorful_toggle_button_style_sheet_()
 {
  return
 
- //"QPushButton{max-width: 35px;}"
+ // "QPushButton{max-width: 25px;}"
 
 
    "QPushButton:hover {background:rgb(150,240,190); "

@@ -127,13 +127,18 @@ class ScignStage_Ling_Dialog : public QDialog
 
  QSet<QString> current_filters_;
 
+ QHBoxLayout* full_sentence_layout_;
  QSplitter* full_sentence_splitter_;
  QLabel* full_sentence_pre_label_;
  QLabel* full_sentence_post_label_;
- QLabel* full_sentence_label_;
+ QPlainTextEdit* full_sentence_plain_text_edit_;
 
- void set_full_sentence(Language_Sample_Group* g);
- void set_full_sentence(Language_Sample* samp);
+ QVBoxLayout* show_original_version_layout_;
+ QPushButton* show_original_version_button_;
+ QGroupBox* show_original_version_group_box_;
+
+ void show_full_sentence(Language_Sample_Group* g);
+ void show_full_sentence(Language_Sample* samp);
 
  void chapter_to_string(QString& result, bool wl);
  void group_to_string(QString& result, bool wl);
@@ -142,7 +147,7 @@ class ScignStage_Ling_Dialog : public QDialog
 
  QMap<Language_Sample*, QPair<QLabel*, int> > sample_to_label_map_;
 
- Language_Sample* last_sample_;
+ Language_Sample* current_sample_;
 
  int current_index_;
 
@@ -205,7 +210,7 @@ class ScignStage_Ling_Dialog : public QDialog
  void run_chapter_message(const QPoint& p, int col);
  void run_group_message(const QPoint& p, int col);
 
- void check_expand(QTreeWidgetItem* stwi);
+ void check_expand(QTreeWidgetItem* twi);
 
 
  void run_about_context_menu(const QPoint& p, int col, std::function<void()> about_fn,

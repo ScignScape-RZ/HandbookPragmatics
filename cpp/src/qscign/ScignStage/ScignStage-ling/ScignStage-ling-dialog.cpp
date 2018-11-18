@@ -95,7 +95,7 @@ ScignStage_Ling_Dialog::ScignStage_Ling_Dialog(XPDF_Bridge* xpdf_bridge,
   Dataset& ds,
   QWidget* parent)
   : QDialog(parent), xpdf_bridge_(xpdf_bridge),
-    last_sample_(nullptr),
+    current_sample_(nullptr),
     last_highlight_(nullptr), xpdf_process_(nullptr), tcp_server_(nullptr),
     phr_(nullptr), phr_init_function_(nullptr), screenshot_function_(nullptr),
     current_tcp_msecs_(0), xpdf_port_(0),
@@ -256,19 +256,65 @@ ScignStage_Ling_Dialog::ScignStage_Ling_Dialog(XPDF_Bridge* xpdf_bridge,
 
  main_layout_->addLayout(filters_layout_);
 
+ full_sentence_layout_ = new QHBoxLayout;
+
  full_sentence_splitter_ = new QSplitter(this);
  full_sentence_pre_label_ = new QLabel("pre", this);
  full_sentence_post_label_ = new QLabel("post", this);
- full_sentence_label_ = new QLabel("main", this);
+ full_sentence_plain_text_edit_ = new QPlainTextEdit("main", this);
  full_sentence_splitter_->addWidget(full_sentence_pre_label_);
- full_sentence_splitter_->addWidget(full_sentence_label_);
+ full_sentence_splitter_->addWidget(full_sentence_plain_text_edit_);
  full_sentence_splitter_->addWidget(full_sentence_post_label_);
 
+ show_original_version_button_ = new QPushButton("OFF", this);
+ show_original_version_button_->setStyleSheet(
+   colorful_toggle_button_style_sheet_() + "QPushButton{max-width: 35px;}");
+
+ show_original_version_button_->setToolTip("Set to ON");
+
+ show_original_version_group_box_ = new QGroupBox("Show Original", this);
+ show_original_version_layout_ = new QVBoxLayout;
+ show_original_version_layout_->addWidget(show_original_version_button_);
+ show_original_version_group_box_->setLayout(show_original_version_layout_);
+
+ show_original_version_button_->setCheckable(true);
+ connect(show_original_version_button_, &QPushButton::toggled,
+   [this](bool checked)
+ {
+  if(checked)
+  {
+   show_original_version_button_->setText("ON");
+   show_original_version_button_->setToolTip("Set to OFF");
+
+   if(current_sample_)
+     full_sentence_plain_text_edit_->setPlainText(current_sample_->alternate_or_text());
+  }
+  else
+  {
+   show_original_version_button_->setText("OFF");
+   show_original_version_button_->setToolTip("Set to ON");
+
+   if(current_sample_)
+     full_sentence_plain_text_edit_->setPlainText(current_sample_->text());
+  }
+
+ });
+
+ show_original_version_group_box_->setMaximumWidth(90);
+
+ full_sentence_layout_->addWidget(full_sentence_splitter_);
+ full_sentence_layout_->addWidget(show_original_version_group_box_);
+
  full_sentence_pre_label_->setStyleSheet("QLabel{background:yellow}");
- full_sentence_label_->setStyleSheet("QLabel{background:white}");
+
+ full_sentence_plain_text_edit_->setStyleSheet("QLabel{background:white}");
+ full_sentence_plain_text_edit_->setMaximumHeight(20);
+ //full_sentence_plain_text_edit_->setMaximumWidth(200);
  full_sentence_post_label_->setStyleSheet("QLabel{background:pink}");
 
- main_layout_->addWidget(full_sentence_splitter_);
+ full_sentence_splitter_->setSizes({1, 10, 1});
+
+ main_layout_->addLayout(full_sentence_layout_);
 
  middle_layout_ = new QHBoxLayout;
 
@@ -375,7 +421,20 @@ ScignStage_Ling_Dialog::ScignStage_Ling_Dialog(XPDF_Bridge* xpdf_bridge,
      qsl);
    twi->addChild(stwi);
 
-   stwi->setData(0, Qt::UserRole, QVariant(qMetaTypeId<Language_Sample*>(), samp));
+   int mid = qMetaTypeId<Language_Sample*>();
+
+//   QVariant qvar = QVariant::fromValue(static_cast<void*>(samp));
+
+//   stwi->setData(0, Qt::UserRole, qvar);
+
+//   Language_Sample* ls = static_cast<Language_Sample*>
+//     (stwi->data(0, Qt::UserRole).value<void*>());
+
+//      QVariant qvar = QVariant::fromValue(samp);
+
+      stwi->setData(0, Qt::UserRole, QVariant::fromValue(samp));
+
+      //Language_Sample* ls = stwi->data(0, Qt::UserRole).value<Language_Sample*>();
 
    if(!sp.isEmpty())
    {
@@ -457,6 +516,8 @@ ScignStage_Ling_Dialog::ScignStage_Ling_Dialog(XPDF_Bridge* xpdf_bridge,
  connect(nav_panel_, &NAV_Ling1D_Panel::auto_expand_changed, [this](bool b)
  {
   no_auto_expand_ = b?nullptr:nav_panel_;
+  if(current_open_group_)
+    check_expand(twi_by_group_[current_open_group_]);
  });
 
  main_layout_->addWidget(nav_panel_);
@@ -522,7 +583,8 @@ void ScignStage_Ling_Dialog::set_full_sentence_from_child(QTreeWidgetItem* twi)
 {
  QTreeWidgetItem* stwi = twi->child(current_peer_index_ - 1);
  Language_Sample* samp = stwi->data(0, Qt::UserRole).value<Language_Sample*>();
- set_full_sentence(samp);
+ show_full_sentence(samp);
+ current_sample_ = samp;
 }
 
 void ScignStage_Ling_Dialog::set_child_group_foreground(QTreeWidgetItem* twi)
@@ -559,17 +621,20 @@ void ScignStage_Ling_Dialog::handle_sample_down()
  find_sample_down(nullptr, nullptr);
 }
 
-void ScignStage_Ling_Dialog::set_full_sentence(Language_Sample_Group* g)
+void ScignStage_Ling_Dialog::show_full_sentence(Language_Sample_Group* g)
 {
  full_sentence_pre_label_->setText(QString());
- full_sentence_label_->setText(g->get_main_text());
+ full_sentence_plain_text_edit_->setPlainText(g->get_main_text());
  full_sentence_post_label_->setText(QString());
 }
 
-void ScignStage_Ling_Dialog::set_full_sentence(Language_Sample* samp)
+void ScignStage_Ling_Dialog::show_full_sentence(Language_Sample* samp)
 {
  full_sentence_pre_label_->setText(samp->precomment());
- full_sentence_label_->setText(samp->alternate_or_text());
+ if(show_original_version_button_->isChecked())
+   full_sentence_plain_text_edit_->setPlainText(samp->alternate_or_text());
+ else
+   full_sentence_plain_text_edit_->setPlainText(samp->text());
  full_sentence_post_label_->setText(samp->postcomment());
 }
 
@@ -618,7 +683,7 @@ void ScignStage_Ling_Dialog::find_sample_down(Language_Sample_Group* start,
    }
 
    current_open_group_ = g;
-   set_full_sentence(g);
+   show_full_sentence(g);
 
    current_chapter_number_ = g->chapter();
 
@@ -639,7 +704,10 @@ void ScignStage_Ling_Dialog::find_sample_down(Language_Sample_Group* start,
 void ScignStage_Ling_Dialog::check_expand(QTreeWidgetItem* twi)
 {
  if(no_auto_expand_)
-   return;
+ {
+  twi->setExpanded(false);
+  return;
+ }
  twi->setExpanded(true);
  int cc = twi->childCount();
  while(cc)
@@ -720,7 +788,7 @@ void ScignStage_Ling_Dialog::find_sample_up(Language_Sample_Group* start,
    }
 
    current_open_group_ = g;
-   set_full_sentence(g);
+   show_full_sentence(g);
 
    // ensure last subitem is visible
    QTreeWidgetItem* stwi = twi->child(twi->childCount() - 1);

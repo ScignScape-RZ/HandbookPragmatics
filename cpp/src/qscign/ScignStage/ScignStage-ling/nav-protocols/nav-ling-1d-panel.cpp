@@ -48,12 +48,16 @@ NAV_Ling1D_Panel::NAV_Ling1D_Panel(int vmn, int vmx, int v, QWidget* parent)
  auto_expand_button_->setCheckable(true);
  auto_expand_button_->setChecked(true);
 
- auto_expand_button_->setStyleSheet(colorful_toggle_button_style_sheet_());
+ auto_expand_button_->setStyleSheet(
+   colorful_toggle_button_quiet_style_sheet_() + "QPushButton{max-width: 35px;}");
+
+ auto_expand_button_->setToolTip("Set to OFF");
 
  connect(auto_expand_button_, &QPushButton::toggled,
    [this](bool b)
  {
   auto_expand_button_->setText(b?"ON":"OFF");
+  auto_expand_button_->setToolTip(b?"Set to OFF":"Set to ON");
  });
 
  connect(auto_expand_button_, SIGNAL(toggled(bool)),
