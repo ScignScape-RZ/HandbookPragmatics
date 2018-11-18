@@ -213,11 +213,13 @@ class ScignStage_Ling_Dialog : public QDialog
  void check_expand(QTreeWidgetItem* twi);
 
 
- void run_about_context_menu(const QPoint& p, int col, std::function<void()> about_fn,
-    std::function<void()> copy_fn, std::function<void()> save_fn);
+ void run_group_context_menu(const QPoint& p, int page, QString text,
+   QStringList texts,
+   std::function<void(int)> pdf_fn, std::function<void(QString)> copy_fn,
+     std::function<void(QStringList)> copies_fn);
 
- void run_sample_context_menu(const QPoint& p, std::function<void()> play_fn,
-    std::function<void()> copy_fn);
+ void run_sample_context_menu(const QPoint& p, int page, QString text,
+   std::function<void(int)> pdf_fn, std::function<void(QString)> copy_fn);
 
 
  void run_message_by_grid_position(const QPoint& p, int r, int c);

@@ -89,7 +89,7 @@ USING_KANS(Phaon)
 //USING_QSNS(ScignStage)
 
 Q_DECLARE_METATYPE(Language_Sample*)
-
+Q_DECLARE_METATYPE(Language_Sample_Group*)
 
 ScignStage_Ling_Dialog::ScignStage_Ling_Dialog(XPDF_Bridge* xpdf_bridge,
   Dataset& ds,
@@ -378,6 +378,8 @@ ScignStage_Ling_Dialog::ScignStage_Ling_Dialog(XPDF_Bridge* xpdf_bridge,
     qsl);
 
   twi_by_group_[group] = twi;
+  twi->setData(0, Qt::UserRole, QVariant::fromValue(group));
+
 
   for(Language_Sample* samp: *group)
   {
@@ -420,22 +422,7 @@ ScignStage_Ling_Dialog::ScignStage_Ling_Dialog(XPDF_Bridge* xpdf_bridge,
    QTreeWidgetItem* stwi = new QTreeWidgetItem((QTreeWidget*) nullptr,
      qsl);
    twi->addChild(stwi);
-
-   int mid = qMetaTypeId<Language_Sample*>();
-
-//   QVariant qvar = QVariant::fromValue(static_cast<void*>(samp));
-
-//   stwi->setData(0, Qt::UserRole, qvar);
-
-//   Language_Sample* ls = static_cast<Language_Sample*>
-//     (stwi->data(0, Qt::UserRole).value<void*>());
-
-//      QVariant qvar = QVariant::fromValue(samp);
-
-      stwi->setData(0, Qt::UserRole, QVariant::fromValue(samp));
-
-      //Language_Sample* ls = stwi->data(0, Qt::UserRole).value<Language_Sample*>();
-
+   stwi->setData(0, Qt::UserRole, QVariant::fromValue(samp));
    if(!sp.isEmpty())
    {
     QStringList qsl; // = group->all_sample_text();
@@ -452,14 +439,71 @@ ScignStage_Ling_Dialog::ScignStage_Ling_Dialog(XPDF_Bridge* xpdf_bridge,
 
  middle_layout_->addWidget(main_tree_widget_);
 
+ main_tree_widget_->setContextMenuPolicy(Qt::CustomContextMenu);
+
  connect(main_tree_widget_, &QTreeWidget::customContextMenuRequested, [this](const QPoint& qp)
  {
-  qDebug() << qp;
-
-  QWidget* qw = QApplication::widgetAt(main_tree_widget_->mapToGlobal(qp));
-
-  if(qw)
+  QTreeWidgetItem* twi = main_tree_widget_->itemAt(qp);
+  if(twi)
   {
+   int page;
+   QString text;
+   QStringList qsl;
+   if(twi->parent())
+   {
+    // //  for the double-nested cases (e.g. Dialogs)
+    if(twi->parent()->parent())
+      twi = twi->parent();
+    Language_Sample* ls
+      = twi->data(0, Qt::UserRole).value<Language_Sample*>();
+    page = ls->page();
+    text = ls->text();
+   }
+   else
+   {
+    Language_Sample_Group* lsg
+      = twi->data(0, Qt::UserRole).value<Language_Sample_Group*>();
+    page = lsg->page();
+    text = lsg->get_main_text();
+    qsl = lsg->all_sample_text();
+   }
+   if(qsl.isEmpty())
+   {
+    run_sample_context_menu(qp, page, text, [this](int page)
+    {
+     open_pdf_file(ABOUT_FILE_FOLDER "/main.pdf", page);
+    },
+    [](QString s)
+    {
+     QClipboard* clipboard = QApplication::clipboard();
+     clipboard->setText(s);
+    });
+   }
+   else
+   {
+    run_group_context_menu(qp, page, text, qsl, [this](int page)
+    {
+     open_pdf_file(ABOUT_FILE_FOLDER "/main.pdf", page);
+    },
+    [](QString s)
+    {
+     QClipboard* clipboard = QApplication::clipboard();
+     clipboard->setText(s);
+    },
+    [](QStringList qsl)
+    {
+     QClipboard* clipboard = QApplication::clipboard();
+     clipboard->setText(qsl.join('\n'));
+    }
+    );
+
+   }
+
+
+
+  }
+
+
 //   if(qw->parent() == main_frame_)
 //   {
 //    int i = main_grid_layout_->indexOf(qw);
@@ -471,7 +515,7 @@ ScignStage_Ling_Dialog::ScignStage_Ling_Dialog(XPDF_Bridge* xpdf_bridge,
 
 //    }
 //   }
-  }
+
 
  });
 
@@ -958,25 +1002,30 @@ void ScignStage_Ling_Dialog::save_to_user_select_file(QString text)
  }
 }
 
-void ScignStage_Ling_Dialog::run_about_context_menu(const QPoint& p, int col,
-  std::function<void()> about_fn,
-  std::function<void()> copy_fn,  std::function<void()> save_fn)
+void ScignStage_Ling_Dialog::run_group_context_menu(const QPoint& p, int page, QString text,
+  QStringList texts, std::function<void(int)> pdf_fn,
+  std::function<void(QString)> copy_fn,
+  std::function<void(QStringList)> copies_fn)
 {
  QMenu* qm = new QMenu(this);
- qm->addAction("About ...", about_fn);
- qm->addAction("Copy Data to Clipboard", copy_fn);
- qm->addAction("Save Data to File", save_fn);
- QPoint g = mapToGlobal(p);
+ qm->addAction("Show in Document (requires XPDF)",
+   [page, pdf_fn](){pdf_fn(page);});
+ qm->addAction("Copy Text to Clipboard",
+   [text, copy_fn](){copy_fn(text);});
+ qm->addAction("Copy Samples to Clipboard",
+   [texts, copies_fn](){copies_fn(texts);});
+ QPoint g = main_tree_widget_->mapToGlobal(p);
  qm->popup(g);
 }
 
-void ScignStage_Ling_Dialog::run_sample_context_menu(const QPoint& p,
-   std::function<void()> play_fn,
-   std::function<void()> copy_fn)
+void ScignStage_Ling_Dialog::run_sample_context_menu(const QPoint& p, int page, QString text,
+  std::function<void(int)> pdf_fn, std::function<void(QString)> copy_fn)
 {
  QMenu* qm = new QMenu(this);
- qm->addAction("Play ...", play_fn);
- qm->addAction("Copy Path to Clipboard", copy_fn);
+ qm->addAction("Show in Document (requires XPDF)",
+   [page, pdf_fn](){pdf_fn(page);});
+ qm->addAction("Copy Text to Clipboard",
+   [text, copy_fn](){copy_fn(text);});
  QPoint g = main_tree_widget_->mapToGlobal(p);
  qm->popup(g);
 }
