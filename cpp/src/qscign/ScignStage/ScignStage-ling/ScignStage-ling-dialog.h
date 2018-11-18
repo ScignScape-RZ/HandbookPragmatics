@@ -57,6 +57,7 @@ class QTcpServer;
 class QTreeWidget;
 class QTreeWidgetItem;
 class QAbstractButton;
+class QSplitter;
 
 class ScignStage_Clickable_Label;
 
@@ -126,6 +127,13 @@ class ScignStage_Ling_Dialog : public QDialog
 
  QSet<QString> current_filters_;
 
+ QSplitter* full_sentence_splitter_;
+ QLabel* full_sentence_pre_label_;
+ QLabel* full_sentence_post_label_;
+ QLabel* full_sentence_label_;
+
+ void set_full_sentence(Language_Sample_Group* g);
+ void set_full_sentence(Language_Sample* samp);
 
  void chapter_to_string(QString& result, bool wl);
  void group_to_string(QString& result, bool wl);
@@ -190,11 +198,14 @@ class ScignStage_Ling_Dialog : public QDialog
  void set_group_foreground(QTreeWidgetItem* twi);
  void clear_group_foreground(QTreeWidgetItem* twi);
 
+ void set_full_sentence_from_child(QTreeWidgetItem* twi);
  void set_child_group_foreground(QTreeWidgetItem* twi);
  void clear_child_group_foreground(QTreeWidgetItem* twi);
 
  void run_chapter_message(const QPoint& p, int col);
  void run_group_message(const QPoint& p, int col);
+
+ void check_expand(QTreeWidgetItem* stwi);
 
 
  void run_about_context_menu(const QPoint& p, int col, std::function<void()> about_fn,

@@ -88,6 +88,8 @@ USING_KANS(Phaon)
 
 //USING_QSNS(ScignStage)
 
+Q_DECLARE_METATYPE(Language_Sample*)
+
 
 ScignStage_Ling_Dialog::ScignStage_Ling_Dialog(XPDF_Bridge* xpdf_bridge,
   Dataset& ds,
@@ -254,6 +256,20 @@ ScignStage_Ling_Dialog::ScignStage_Ling_Dialog(XPDF_Bridge* xpdf_bridge,
 
  main_layout_->addLayout(filters_layout_);
 
+ full_sentence_splitter_ = new QSplitter(this);
+ full_sentence_pre_label_ = new QLabel("pre", this);
+ full_sentence_post_label_ = new QLabel("post", this);
+ full_sentence_label_ = new QLabel("main", this);
+ full_sentence_splitter_->addWidget(full_sentence_pre_label_);
+ full_sentence_splitter_->addWidget(full_sentence_label_);
+ full_sentence_splitter_->addWidget(full_sentence_post_label_);
+
+ full_sentence_pre_label_->setStyleSheet("QLabel{background:yellow}");
+ full_sentence_label_->setStyleSheet("QLabel{background:white}");
+ full_sentence_post_label_->setStyleSheet("QLabel{background:pink}");
+
+ main_layout_->addWidget(full_sentence_splitter_);
+
  middle_layout_ = new QHBoxLayout;
 
  // //   Foreground
@@ -320,7 +336,18 @@ ScignStage_Ling_Dialog::ScignStage_Ling_Dialog(XPDF_Bridge* xpdf_bridge,
   for(Language_Sample* samp: *group)
   {
    QStringList qsl; // = group->all_sample_text();
-   qsl.push_back(samp->text());
+
+   QString sp = samp->speaker();
+
+   if(sp == "I1")
+      sp = "1";
+   else if(sp == "I2")
+      sp = "2";
+
+   if(sp.isEmpty())
+     qsl.push_back(samp->text());
+   else
+     qsl.push_back(QString("Speaker %1:").arg(sp));
 
    qsl.push_back(QString());
    QString si;
@@ -347,8 +374,18 @@ ScignStage_Ling_Dialog::ScignStage_Ling_Dialog(XPDF_Bridge* xpdf_bridge,
    QTreeWidgetItem* stwi = new QTreeWidgetItem((QTreeWidget*) nullptr,
      qsl);
    twi->addChild(stwi);
-  }
 
+   stwi->setData(0, Qt::UserRole, QVariant(qMetaTypeId<Language_Sample*>(), samp));
+
+   if(!sp.isEmpty())
+   {
+    QStringList qsl; // = group->all_sample_text();
+    qsl.push_back(samp->text());
+    QTreeWidgetItem* sstwi = new QTreeWidgetItem((QTreeWidget*) nullptr,
+      qsl);
+    stwi->addChild(sstwi);
+   }
+  }
 
   main_tree_widget_->addTopLevelItem(twi);
   //items.append(twi);
@@ -481,6 +518,13 @@ void ScignStage_Ling_Dialog::clear_group_foreground(QTreeWidgetItem* twi)
    twi->setForeground(i, QBrush("black"));
 }
 
+void ScignStage_Ling_Dialog::set_full_sentence_from_child(QTreeWidgetItem* twi)
+{
+ QTreeWidgetItem* stwi = twi->child(current_peer_index_ - 1);
+ Language_Sample* samp = stwi->data(0, Qt::UserRole).value<Language_Sample*>();
+ set_full_sentence(samp);
+}
+
 void ScignStage_Ling_Dialog::set_child_group_foreground(QTreeWidgetItem* twi)
 {
  set_group_foreground(twi->child(current_peer_index_ - 1));
@@ -515,6 +559,19 @@ void ScignStage_Ling_Dialog::handle_sample_down()
  find_sample_down(nullptr, nullptr);
 }
 
+void ScignStage_Ling_Dialog::set_full_sentence(Language_Sample_Group* g)
+{
+ full_sentence_pre_label_->setText(QString());
+ full_sentence_label_->setText(g->get_main_text());
+ full_sentence_post_label_->setText(QString());
+}
+
+void ScignStage_Ling_Dialog::set_full_sentence(Language_Sample* samp)
+{
+ full_sentence_pre_label_->setText(samp->precomment());
+ full_sentence_label_->setText(samp->alternate_or_text());
+ full_sentence_post_label_->setText(samp->postcomment());
+}
 
 void ScignStage_Ling_Dialog::find_sample_down(Language_Sample_Group* start,
   QSet<QString>* temp_filters)
@@ -561,6 +618,7 @@ void ScignStage_Ling_Dialog::find_sample_down(Language_Sample_Group* start,
    }
 
    current_open_group_ = g;
+   set_full_sentence(g);
 
    current_chapter_number_ = g->chapter();
 
@@ -568,7 +626,8 @@ void ScignStage_Ling_Dialog::find_sample_down(Language_Sample_Group* start,
    QTreeWidgetItem* stwi = twi->child(twi->childCount() - 1);
    main_tree_widget_->scrollToItem(stwi);
    main_tree_widget_->scrollToItem(twi);
-   twi->setExpanded(!(bool)no_auto_expand_);
+   check_expand(twi);
+
    set_group_foreground(twi_by_group_[current_open_group_]);
     //twi->setForeground(0, QBrush("darkRed"));
    //twi->setStyleSheet("QTreeWidget#treeWidget::item{background:yellow;}");
@@ -576,6 +635,22 @@ void ScignStage_Ling_Dialog::find_sample_down(Language_Sample_Group* start,
   }
  }
 }
+
+void ScignStage_Ling_Dialog::check_expand(QTreeWidgetItem* twi)
+{
+ if(no_auto_expand_)
+   return;
+ twi->setExpanded(true);
+ int cc = twi->childCount();
+ while(cc)
+ {
+  --cc;
+  QTreeWidgetItem* stwi = twi->child(cc);
+  stwi->setExpanded(true);
+ }
+
+}
+
 
 void ScignStage_Ling_Dialog::handle_chapter_end()
 {
@@ -645,12 +720,13 @@ void ScignStage_Ling_Dialog::find_sample_up(Language_Sample_Group* start,
    }
 
    current_open_group_ = g;
+   set_full_sentence(g);
 
    // ensure last subitem is visible
    QTreeWidgetItem* stwi = twi->child(twi->childCount() - 1);
    main_tree_widget_->scrollToItem(stwi);
    main_tree_widget_->scrollToItem(twi);
-   twi->setExpanded(!(bool)no_auto_expand_);
+   check_expand(twi);
    set_group_foreground(twi_by_group_[current_open_group_]);
    break;
   }
@@ -677,6 +753,7 @@ void ScignStage_Ling_Dialog::handle_peer_down()
   clear_child_group_foreground(twi);
   ++current_peer_index_;
  }
+ set_full_sentence_from_child(twi);
  set_child_group_foreground(twi);
 }
 
@@ -700,6 +777,7 @@ void ScignStage_Ling_Dialog::handle_peer_up()
   clear_child_group_foreground(twi);
   --current_peer_index_;
  }
+ set_full_sentence_from_child(twi);
  set_child_group_foreground(twi);
 }
 

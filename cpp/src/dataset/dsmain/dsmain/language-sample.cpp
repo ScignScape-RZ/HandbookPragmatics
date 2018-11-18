@@ -23,6 +23,13 @@ Language_Sample::Language_Sample(QString text)
 
 }
 
+QString Language_Sample::alternate_or_text()
+{
+ if(alternate_.isEmpty())
+   return text_;
+ return alternate_;
+}
+
 int Language_Sample::get_group_id()
 {
  if(group_)
