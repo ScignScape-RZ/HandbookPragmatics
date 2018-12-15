@@ -43,6 +43,8 @@ class QPlainTextEdit;
 class QBoxLayout;
 class QButtonGroup;
 class QGroupBox;
+class QTableWidget;
+class QTableWidgetItem;
 
 class QCheckBox;
 
@@ -60,6 +62,14 @@ class Lexpair_Dialog : public QDialog
 
  QButtonGroup* sentence_button_group_;
 
+ QGridLayout* sxpr_layout_;
+ QPushButton* sxpr_mode_button_;
+ QPushButton* sxpr_clear_button_;
+ QPushButton* left_paren_button_;
+ QPushButton* right_paren_button_;
+ QPushButton* sxpr_read_button_;
+ QLineEdit* sxpr_line_edit_;
+
  QVBoxLayout* main_layout_;
 
  qint8 left_id_;
@@ -67,12 +77,36 @@ class Lexpair_Dialog : public QDialog
 
  QStringList sentence_;
 
+ QTableWidget* pair_list_;
+
  void clear_buttons();
 
- QMap<QPair<quint8, quint8>, QPair<QString, QString>> pairs_;
+ struct Pair_Row
+ {
+  QTableWidgetItem* twi;
+  QString left;
+  QString right;
+  QString mid;
+ };
+
+ struct Pair_Triple
+ {
+  quint8 left;
+  quint8 right;
+  quint8 mid;
+
+  QPair<quint8, QPair<quint8, quint8>> to_pr_pr() const
+  {
+   return {left, {right, mid}};
+  }
+ };
+
+ QMap<Pair_Triple, Pair_Row> pairs_;
+
+ int pairs_count_;
 
  void set_button_width(QPushButton* btn);
- void check_pair();
+ void check_pair(qint8 id);
 
 
 public:
@@ -80,7 +114,15 @@ public:
  Lexpair_Dialog(QStringList sent, QWidget* parent);
  ~Lexpair_Dialog();
 
+ static QStringList split(QString qs)
+ {
+  return qs.simplified().split(' ');
+ }
 
+ friend operator< (const Pair_Triple& lhs, const Pair_Triple& rhs)
+ {
+  return lhs.to_pr_pr() < rhs.to_pr_pr();
+ }
 
 Q_SIGNALS:
 

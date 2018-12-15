@@ -28,7 +28,7 @@
 #include <QLineEdit>
 #include <QGroupBox>
 
-#include <QTreeWidget>
+#include <QTableWidget>
 
 #include <QDirIterator>
 
@@ -49,7 +49,7 @@
 
 
 Lexpair_Dialog::Lexpair_Dialog(QStringList sent, QWidget* parent)
-  : QDialog(parent), left_id_(0), right_id_(0)
+  : QDialog(parent), left_id_(0), right_id_(0), pairs_count_(0)
 {
  sentence_ = sent;
 
@@ -95,6 +95,9 @@ Lexpair_Dialog::Lexpair_Dialog(QStringList sent, QWidget* parent)
   QPushButton* b = new QPushButton(qs, this);
   set_button_width(b);
   b->setCheckable(true);
+  //b->setFocusPolicy(Qt::);
+  b->setAutoDefault(false);
+  b->setDefault(false);
   sentence_button_group_->addButton(b);
   sentence_layout_->addWidget(b);
  }
@@ -109,48 +112,109 @@ Lexpair_Dialog::Lexpair_Dialog(QStringList sent, QWidget* parent)
   if(left_id_ == id)
   {
    left_id_ = 0;
+   right_id_ = 0;
   }
   else if(left_id_ == 0)
   {
    left_id_ = id;
   }
-  else
+  else if(right_id_ == 0)
   {
    right_id_ = id;
-   check_pair();
+  }
+  else
+  {
+   check_pair(id);
   }
  });
 
  sentence_layout_->addStretch();
 
  main_layout_->addLayout(sentence_layout_);
+
+ sxpr_layout_ = new QGridLayout;
+
+ sxpr_mode_button_ = new QPushButton("SXPR\nMode", this);
+ sxpr_layout_->addWidget(sxpr_mode_button_, 0, 0, 2, 1);
+
+ sxpr_clear_button_ = new QPushButton("Clear", this);
+ sxpr_layout_->addWidget(sxpr_clear_button_, 0, 1);
+
+ left_paren_button_ = new QPushButton("(", this);
+ sxpr_layout_->addWidget(left_paren_button_, 0, 2);
+
+ right_paren_button_ = new QPushButton(")", this);
+ sxpr_layout_->addWidget(right_paren_button_, 0, 3);
+
+ sxpr_read_button_ = new QPushButton("Read", this);
+ sxpr_layout_->addWidget(sxpr_read_button_, 0, 4);
+
+ sxpr_line_edit_ = new QLineEdit(this);
+ sxpr_layout_->addWidget(sxpr_line_edit_, 1, 1, 1, 5);
+
+ //sxpr_layout_->setColumnStretch(5, 1);
+
+ main_layout_->addLayout(sxpr_layout_);
+
+ pair_list_ = new QTableWidget(this);
+
+ pair_list_->setColumnCount(6);
+
+ pair_list_->setHorizontalHeaderLabels({"", "Left Expectation",
+   "Right Expectation", "Link Description", "Rewind", "Lambda"});
+
+ main_layout_->addWidget(pair_list_);
+
  main_layout_->addWidget(button_box_);
 
  setLayout(main_layout_);
 }
 
 
-void Lexpair_Dialog::check_pair()
+void Lexpair_Dialog::check_pair(qint8 id)
 {
- auto it = pairs_.find({left_id_, right_id_});
+ auto it = pairs_.find({left_id_, right_id_, id});
  if(it == pairs_.end())
  {
   QString sl = sentence_.at(-left_id_-2);
   QString sr = sentence_.at(-right_id_-2);
-  pairs_[{left_id_, right_id_}]  = {sl, sr};
+  QString sm = sentence_.at(-id-2);
+
+  //pairs_[{left_id_, right_id_}]  = {nullptr, sl, sr};
+  //qDebug() << QStringList{sl, sr};
+
+  QTableWidgetItem* twi = new QTableWidgetItem(QString(
+    "%1 %2 (%3)").arg(sl).arg(sr).arg(sm));
+
+  pairs_[{left_id_, right_id_, id}]  = {twi, sl, sr};
+  pair_list_->setRowCount(pairs_count_ + 1);
+  pair_list_->setItem(pairs_count_, 0, twi);
+  ++pairs_count_;
  }
  else
  {
-  QString sl = (*it).first;
-  QString sr = (*it).second;
+  QTableWidgetItem* twi = (*it).twi;
+  QString sl = (*it).left;
+  QString sr = (*it).right;
+  qDebug() << QStringList{sl, sr};
+  //twi->setSelected(true);
+  //twi->row();
+  pair_list_->selectRow(twi->row());
+  //.sethighlighted();
+  //twi->setCheckState(Qt::Checked);
  }
  left_id_ = 0;
  right_id_ = 0;
+ clear_buttons();
 }
 
 void Lexpair_Dialog::clear_buttons()
 {
-
+ QSignalBlocker qsb(sentence_button_group_);
+ for(QAbstractButton* b : sentence_button_group_->buttons())
+ {
+  b->setChecked(false);
+ }
 }
 
 void Lexpair_Dialog::set_button_width(QPushButton* button)
