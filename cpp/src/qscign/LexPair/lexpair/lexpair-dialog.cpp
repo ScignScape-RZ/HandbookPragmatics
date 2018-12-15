@@ -49,8 +49,10 @@
 
 
 Lexpair_Dialog::Lexpair_Dialog(QStringList sent, QWidget* parent)
-  : QDialog(parent)
+  : QDialog(parent), left_id_(0), right_id_(0)
 {
+ sentence_ = sent;
+
  button_box_ = new QDialogButtonBox(this);
 
  button_ok_ = new QPushButton("OK");
@@ -86,6 +88,8 @@ Lexpair_Dialog::Lexpair_Dialog(QStringList sent, QWidget* parent)
 
  sentence_button_group_ = new QButtonGroup(this);
 
+ sentence_button_group_->setExclusive(false);
+
  for(QString qs : sent)
  {
   QPushButton* b = new QPushButton(qs, this);
@@ -95,12 +99,58 @@ Lexpair_Dialog::Lexpair_Dialog(QStringList sent, QWidget* parent)
   sentence_layout_->addWidget(b);
  }
 
+ connect(sentence_button_group_,
+   QOverload<int, bool>::of(&QButtonGroup::buttonToggled),
+   [this](int id, bool checked)
+ {
+  qDebug() << id;
+    qDebug() << checked;
+
+  if(left_id_ == id)
+  {
+   left_id_ = 0;
+  }
+  else if(left_id_ == 0)
+  {
+   left_id_ = id;
+  }
+  else
+  {
+   right_id_ = id;
+   check_pair();
+  }
+ });
+
  sentence_layout_->addStretch();
 
  main_layout_->addLayout(sentence_layout_);
  main_layout_->addWidget(button_box_);
 
  setLayout(main_layout_);
+}
+
+
+void Lexpair_Dialog::check_pair()
+{
+ auto it = pairs_.find({left_id_, right_id_});
+ if(it == pairs_.end())
+ {
+  QString sl = sentence_.at(-left_id_-2);
+  QString sr = sentence_.at(-right_id_-2);
+  pairs_[{left_id_, right_id_}]  = {sl, sr};
+ }
+ else
+ {
+  QString sl = (*it).first;
+  QString sr = (*it).second;
+ }
+ left_id_ = 0;
+ right_id_ = 0;
+}
+
+void Lexpair_Dialog::clear_buttons()
+{
+
 }
 
 void Lexpair_Dialog::set_button_width(QPushButton* button)

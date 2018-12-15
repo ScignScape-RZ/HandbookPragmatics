@@ -62,7 +62,17 @@ class Lexpair_Dialog : public QDialog
 
  QVBoxLayout* main_layout_;
 
+ qint8 left_id_;
+ qint8 right_id_;
+
+ QStringList sentence_;
+
+ void clear_buttons();
+
+ QMap<QPair<quint8, quint8>, QPair<QString, QString>> pairs_;
+
  void set_button_width(QPushButton* btn);
+ void check_pair();
 
 
 public:
