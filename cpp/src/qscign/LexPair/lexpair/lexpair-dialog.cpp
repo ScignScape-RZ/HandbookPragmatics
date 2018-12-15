@@ -23,7 +23,7 @@
 #include <QTabWidget>
 #include <QSplitter>
 #include <QDialogButtonBox>
-#include <QFormLayout>
+#include <QClipboard>
 #include <QCheckBox>
 #include <QLineEdit>
 #include <QGroupBox>
@@ -34,6 +34,7 @@
 
 #include <QPlainTextEdit>
 #include <QTextStream>
+#include <QStack>
 
 #include <QtMultimedia/QMediaPlayer>
 
@@ -205,10 +206,19 @@ Lexpair_Dialog::Lexpair_Dialog(QStringList sent, QWidget* parent)
   sxpr_line_edit_->setText(sxpr_line_edit_->text() + ") ");
  });
 
+ sxpr_cc_button_ = new QPushButton("Copy", this);
+ sxpr_cc_button_->setDefault(false);
+ sxpr_cc_button_->setAutoDefault(false);
+ sxpr_layout_->addWidget(sxpr_cc_button_, 0, 7);
+ connect(sxpr_cc_button_, &QPushButton::clicked, [this]
+ {
+  QApplication::clipboard()->setText(sxpr_line_edit_->text().simplified());
+ });
+
  sxpr_read_button_ = new QPushButton("Read", this);
  sxpr_read_button_->setDefault(false);
  sxpr_read_button_->setAutoDefault(false);
- sxpr_layout_->addWidget(sxpr_read_button_, 0, 7);
+ sxpr_layout_->addWidget(sxpr_read_button_, 0, 8);
  connect(sxpr_read_button_, &QPushButton::clicked, [this]
  {
   read_sxpr(sxpr_line_edit_->text().simplified());
@@ -241,6 +251,51 @@ void Lexpair_Dialog::read_sxpr(QString qs)
  qs.replace(" )", ")");
  qs.replace(") (", ")(");
  qDebug() << qs;
+
+ int lambda = 0;
+ int rewind = 0;
+ int lparen = 0;
+ int rparen = 0;
+ QString acc;
+
+ QStack<int> lambdas;
+
+ QMap<QPair<int, int>, QString> cars;
+
+ QSet<Dock_Link> docks;
+
+ auto add_word = [&]()
+ {
+  if(lambda == 0)
+    cars[{lparen, rparen}] = acc;
+  else
+  {
+   docks.insert({acc, cars[{lparen, rparen}],
+                 {lambda, rewind}});
+  }
+  ++lambda;
+  acc.clear();
+
+ };
+
+ for(int i = 0; i < qs.length(); ++i)
+ {
+  QChar qc = qs[i];
+  if(qc == '(')
+  {
+   lambdas.push(lambda);
+   ++lparen;
+  }
+  else if(qc == ')')
+  {
+   add_word();
+   --rparen;
+  }
+  else if(qc == ' ')
+    add_word();
+  else
+   acc += qc;
+ }
 }
 
 void Lexpair_Dialog::check_pair(qint8 id)

@@ -71,7 +71,7 @@ class Lexpair_Dialog : public QDialog
 
  QPushButton* right_paren_button_;
  QPushButton* rr_paren_button_;
-
+ QPushButton* sxpr_cc_button_;
  QPushButton* sxpr_read_button_;
  QLineEdit* sxpr_line_edit_;
 
@@ -85,6 +85,14 @@ class Lexpair_Dialog : public QDialog
  QTableWidget* pair_list_;
 
  void clear_buttons();
+
+ struct Dock_Link
+ {
+  //quint8 ;
+  QString left;
+  QString right;
+  QPair<quint8, quint8> rwl;
+ };
 
  struct Pair_Row
  {
