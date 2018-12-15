@@ -107,8 +107,14 @@ Lexpair_Dialog::Lexpair_Dialog(QStringList sent, QWidget* parent)
    [this](int id, bool checked)
  {
   qDebug() << id;
-    qDebug() << checked;
+  qDebug() << checked;
 
+  if(sxpr_mode_button_->isChecked())
+  {
+   QString text = sentence_.at(-id-2);
+   sxpr_line_edit_->setText(sxpr_line_edit_->text() + text + " ");
+   return;
+  }
   if(left_id_ == id)
   {
    left_id_ = 0;
@@ -137,22 +143,81 @@ Lexpair_Dialog::Lexpair_Dialog(QStringList sent, QWidget* parent)
  sxpr_mode_button_ = new QPushButton("SXPR\nMode", this);
  sxpr_layout_->addWidget(sxpr_mode_button_, 0, 0, 2, 1);
 
+ sxpr_mode_button_->setCheckable(true);
+ sxpr_mode_button_->setStyleSheet(colorful_toggle_button_quiet_style_sheet_());
+
  sxpr_clear_button_ = new QPushButton("Clear", this);
+ sxpr_clear_button_->setDefault(false);
+ sxpr_clear_button_->setAutoDefault(false);
  sxpr_layout_->addWidget(sxpr_clear_button_, 0, 1);
+ connect(sxpr_clear_button_, &QPushButton::clicked, [this]
+ {
+  sxpr_line_edit_->setText("");
+  clear_buttons();
+ });
+
+ ll_paren_button_ = new QPushButton("<- (", this);
+ ll_paren_button_->setDefault(false);
+ ll_paren_button_->setAutoDefault(false);
+ sxpr_layout_->addWidget(ll_paren_button_, 0, 2);
+ connect(ll_paren_button_, &QPushButton::clicked, [this]
+ {
+  sxpr_line_edit_->setText(sxpr_line_edit_->text().prepend("( "));
+ });
 
  left_paren_button_ = new QPushButton("(", this);
- sxpr_layout_->addWidget(left_paren_button_, 0, 2);
+ left_paren_button_->setDefault(false);
+ left_paren_button_->setAutoDefault(false);
+ sxpr_layout_->addWidget(left_paren_button_, 0, 3);
+ connect(left_paren_button_, &QPushButton::clicked, [this]
+ {
+  sxpr_line_edit_->setText(sxpr_line_edit_->text() + "( ");
+ });
+
+ lend_paren_button_ = new QPushButton("( ->", this);
+ lend_paren_button_->setDefault(false);
+ lend_paren_button_->setAutoDefault(false);
+ sxpr_layout_->addWidget(lend_paren_button_, 0, 4);
+ connect(lend_paren_button_, &QPushButton::clicked, [this]
+ {
+  QString qs = sxpr_line_edit_->text();
+  qs.replace(sxpr_line_edit_->cursorPosition(), 0, "( ");
+  sxpr_line_edit_->setText(qs);
+ });
 
  right_paren_button_ = new QPushButton(")", this);
- sxpr_layout_->addWidget(right_paren_button_, 0, 3);
+ right_paren_button_->setDefault(false);
+ right_paren_button_->setAutoDefault(false);
+ sxpr_layout_->addWidget(right_paren_button_, 0, 5);
+ connect(right_paren_button_, &QPushButton::clicked, [this]
+ {
+  QString qs = sxpr_line_edit_->text();
+  qs.replace(sxpr_line_edit_->cursorPosition(), 0, ") ");
+  sxpr_line_edit_->setText(qs);
+ });
+
+ rr_paren_button_ = new QPushButton(") ->", this);
+ rr_paren_button_->setDefault(false);
+ rr_paren_button_->setAutoDefault(false);
+ sxpr_layout_->addWidget(rr_paren_button_, 0, 6);
+ connect(rr_paren_button_, &QPushButton::clicked, [this]
+ {
+  sxpr_line_edit_->setText(sxpr_line_edit_->text() + ") ");
+ });
 
  sxpr_read_button_ = new QPushButton("Read", this);
- sxpr_layout_->addWidget(sxpr_read_button_, 0, 4);
+ sxpr_read_button_->setDefault(false);
+ sxpr_read_button_->setAutoDefault(false);
+ sxpr_layout_->addWidget(sxpr_read_button_, 0, 7);
+ connect(sxpr_read_button_, &QPushButton::clicked, [this]
+ {
+  read_sxpr(sxpr_line_edit_->text().simplified());
+ });
 
  sxpr_line_edit_ = new QLineEdit(this);
- sxpr_layout_->addWidget(sxpr_line_edit_, 1, 1, 1, 5);
+ sxpr_layout_->addWidget(sxpr_line_edit_, 1, 1, 1, 8);
 
- //sxpr_layout_->setColumnStretch(5, 1);
+ sxpr_layout_->setColumnStretch(9, 1);
 
  main_layout_->addLayout(sxpr_layout_);
 
@@ -170,6 +235,13 @@ Lexpair_Dialog::Lexpair_Dialog(QStringList sent, QWidget* parent)
  setLayout(main_layout_);
 }
 
+void Lexpair_Dialog::read_sxpr(QString qs)
+{
+ qs.replace("( ", "(");
+ qs.replace(" )", ")");
+ qs.replace(") (", ")(");
+ qDebug() << qs;
+}
 
 void Lexpair_Dialog::check_pair(qint8 id)
 {

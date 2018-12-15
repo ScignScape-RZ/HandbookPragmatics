@@ -65,8 +65,13 @@ class Lexpair_Dialog : public QDialog
  QGridLayout* sxpr_layout_;
  QPushButton* sxpr_mode_button_;
  QPushButton* sxpr_clear_button_;
+ QPushButton* ll_paren_button_;
  QPushButton* left_paren_button_;
+ QPushButton* lend_paren_button_;
+
  QPushButton* right_paren_button_;
+ QPushButton* rr_paren_button_;
+
  QPushButton* sxpr_read_button_;
  QLineEdit* sxpr_line_edit_;
 
@@ -107,6 +112,8 @@ class Lexpair_Dialog : public QDialog
 
  void set_button_width(QPushButton* btn);
  void check_pair(qint8 id);
+
+ void read_sxpr(QString qs);
 
 
 public:
