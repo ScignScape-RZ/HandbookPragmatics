@@ -38,14 +38,49 @@ class Lexpair_Sxpr
   QString word;
   QString parent_chief;
   int local_depth;
-  int current_rewind;
+  //int current_rewind;
+
+  QVector<int> lamba_counts;
  };
 
+
+
+ struct Dock_Link
+ {
+  QString left;
+  QString right;
+  QPair<quint8, quint8> rwl;
+
+  QPair<QPair<QString, QString>, QPair<quint8, quint8>> to_pr_pr() const
+  {
+   return { {left, right}, rwl };
+  }
+ };
+
+ friend uint qHash(const Dock_Link &dl)
+ {
+  return qHash(dl.to_pr_pr());
+ }
+
+ friend bool operator ==(const Dock_Link &lhs, const Dock_Link &rhs)
+ {
+  return lhs.to_pr_pr() == rhs.to_pr_pr();
+ }
+
  QMap<QString, Chief_Node*> chief_nodes_;
+
+ QSet<Dock_Link> docks_;
 
  void add_chief_node(Chief_Node* cn);
 
  void check_rewind(QString& chief);
+
+ void add_dock(QString chief, QString word)
+ {
+  add_dock(chief_nodes_[chief], word);
+ }
+
+ void add_dock(Chief_Node* cn, QString word);
 
 public:
 

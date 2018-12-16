@@ -23,37 +23,35 @@ Lexpair_Sxpr::Lexpair_Sxpr()
 
 
 
-
-struct Dock_Link
-{
- QString left;
- QString right;
- QPair<quint8, quint8> rwl;
-
- QPair<QPair<QString, QString>, QPair<quint8, quint8>> to_pr_pr() const
- {
-  return { {left, right}, rwl };
- }
-};
-
-
 //void add_word()
 //{
 
 //}
 
+void Lexpair_Sxpr::add_dock(Chief_Node* cn, QString word)
+{
+ int &lc = cn->lamba_counts.last();
+ ++lc;
+ docks_.insert({cn->word, word, {lc, cn->lamba_counts.size()}});
+}
+
 void Lexpair_Sxpr::add_chief_node(Chief_Node* cn)
 {
  chief_nodes_[cn->word] = cn;
+ cn->lamba_counts.push_back(0);
 }
 
 void Lexpair_Sxpr::check_rewind(QString& chief)
 {
  Chief_Node* cn = chief_nodes_[chief];
- ++cn->current_rewind;
- if(cn->current_rewind == cn->local_depth)
+
+ if(cn->lamba_counts.size() == cn->local_depth)
  {
   chief = cn->parent_chief;
+ }
+ else
+ {
+  cn->lamba_counts.push_back(0);
  }
 }
 
@@ -74,8 +72,6 @@ void Lexpair_Sxpr::read(QString qs)
 
  QString current_chief;
 
- QSet<Dock_Link> docks;
-
  auto add_word = [&]()
  {
   QPair<int, int> pr = {lparen, rparen};
@@ -86,7 +82,7 @@ void Lexpair_Sxpr::read(QString qs)
   {
    qDebug() << "lambda: " << lambda;
 
-   Chief_Node* cn = new Chief_Node {acc, current_chief, local_lparen, 0};
+   Chief_Node* cn = new Chief_Node {acc, current_chief, local_lparen};
    add_chief_node(cn);
 
    cars[pr] = cn;
@@ -95,8 +91,7 @@ void Lexpair_Sxpr::read(QString qs)
   }
   else
   {
-   docks.insert({current_chief, acc,
-                 {lambda, rewind + 1}});
+   add_dock(current_chief, acc); //, lambda, rewind + 1}});
    check_rewind(current_chief);
   }
   acc.clear();
@@ -133,12 +128,4 @@ void Lexpair_Sxpr::read(QString qs)
  }
 }
 
-uint qHash(const Dock_Link &dl)
-{
- return qHash(dl.to_pr_pr());
-}
 
-bool operator ==(const Dock_Link &lhs, const Dock_Link &rhs)
-{
- return lhs.to_pr_pr() == rhs.to_pr_pr();
-}

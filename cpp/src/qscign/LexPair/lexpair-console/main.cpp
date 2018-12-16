@@ -31,6 +31,8 @@ int main(int argc, char **argv)
 
  ls.read("((quickly won) he)");
 
+ return 0;
+
 
 // QApplication qapp(argc, argv);
 // Lexpair_Dialog dlg(Lexpair_Dialog::split(
