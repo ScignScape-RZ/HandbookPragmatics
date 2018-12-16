@@ -271,7 +271,7 @@ void Lexpair_Dialog::read_sxpr(QString qs)
   else
   {
    docks.insert({acc, cars[{lparen, rparen}],
-                 {lambda, rewind}});
+                 {lambda, rewind + 1}});
   }
   ++lambda;
   acc.clear();

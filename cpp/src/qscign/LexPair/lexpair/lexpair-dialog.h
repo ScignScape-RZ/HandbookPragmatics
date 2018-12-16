@@ -92,6 +92,11 @@ class Lexpair_Dialog : public QDialog
   QString left;
   QString right;
   QPair<quint8, quint8> rwl;
+
+  QPair<QPair<QString, QString>, QPair<quint8, quint8>> to_pr_pr() const
+  {
+   return { {left, right}, rwl };
+  }
  };
 
  struct Pair_Row
@@ -137,6 +142,16 @@ public:
  friend operator< (const Pair_Triple& lhs, const Pair_Triple& rhs)
  {
   return lhs.to_pr_pr() < rhs.to_pr_pr();
+ }
+
+ friend uint qHash(const Dock_Link &dl)
+ {
+  return qHash(dl.to_pr_pr());
+ }
+
+ friend operator ==(const Dock_Link &lhs, const Dock_Link &rhs)
+ {
+  return lhs.to_pr_pr() == rhs.to_pr_pr();
  }
 
 Q_SIGNALS:
