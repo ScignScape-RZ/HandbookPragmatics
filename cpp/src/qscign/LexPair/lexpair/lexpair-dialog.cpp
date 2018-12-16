@@ -245,6 +245,12 @@ Lexpair_Dialog::Lexpair_Dialog(QStringList sent, QWidget* parent)
  setLayout(main_layout_);
 }
 
+struct Word_Node
+{
+ QString parent_chief;
+ int local_depth;
+};
+
 void Lexpair_Dialog::read_sxpr(QString qs)
 {
  qs.replace("( ", "(");
@@ -252,50 +258,7 @@ void Lexpair_Dialog::read_sxpr(QString qs)
  qs.replace(") (", ")(");
  qDebug() << qs;
 
- int lambda = 0;
- int rewind = 0;
- int lparen = 0;
- int rparen = 0;
- QString acc;
 
- QStack<int> lambdas;
-
- QMap<QPair<int, int>, QString> cars;
-
- QSet<Dock_Link> docks;
-
- auto add_word = [&]()
- {
-  if(lambda == 0)
-    cars[{lparen, rparen}] = acc;
-  else
-  {
-   docks.insert({acc, cars[{lparen, rparen}],
-                 {lambda, rewind + 1}});
-  }
-  ++lambda;
-  acc.clear();
-
- };
-
- for(int i = 0; i < qs.length(); ++i)
- {
-  QChar qc = qs[i];
-  if(qc == '(')
-  {
-   lambdas.push(lambda);
-   ++lparen;
-  }
-  else if(qc == ')')
-  {
-   add_word();
-   --rparen;
-  }
-  else if(qc == ' ')
-    add_word();
-  else
-   acc += qc;
- }
 }
 
 void Lexpair_Dialog::check_pair(qint8 id)

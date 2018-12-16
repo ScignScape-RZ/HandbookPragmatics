@@ -7,6 +7,8 @@
 
 #include "lexpair/lexpair-dialog.h"
 
+#include "lexpair/lexpair-sxpr.h"
+
 #include <QApplication>
 #include <QDebug>
 
@@ -19,19 +21,22 @@ USING_KANS(TextIO)
 #include <QThread>
 
 
-//USING_KANS(DSM)
+USING_KANS(DSM)
 
 
 int main(int argc, char **argv)
 {
- QApplication qapp(argc, argv);
+ Lexpair_Sxpr ls;
+ //ls.read("((quickly won)(The (home team)))");
+
+ ls.read("((quickly won) he)");
 
 
- Lexpair_Dialog dlg(Lexpair_Dialog::split(
-   "The home team won quickly"), nullptr);
+// QApplication qapp(argc, argv);
+// Lexpair_Dialog dlg(Lexpair_Dialog::split(
+//   "The home team won quickly"), nullptr);
 
+// dlg.show();
+// return qapp.exec();
 
- dlg.show();
-
- return qapp.exec();
 }

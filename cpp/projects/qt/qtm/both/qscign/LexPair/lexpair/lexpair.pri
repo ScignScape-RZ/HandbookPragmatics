@@ -5,7 +5,7 @@
 #           http://www.boost.org/LICENSE_1_0.txt)
 
 
-QT += widgets 
+QT += widgets
 
 
 INCLUDEPATH += $$SRC_DIR $$SRC_GROUP_DIR
@@ -24,14 +24,13 @@ DEFINES += USE_RZNS
 
 HEADERS += \
   $$SRC_DIR/lexpair-dialog.h \
-
+  $$SRC_DIR/lexpair-sxpr.h \
 
 
 SOURCES += \
   $$SRC_DIR/lexpair-dialog.cpp \
+  $$SRC_DIR/lexpair-sxpr.cpp \
 
-
-LIBS += -L$$TARGETSDIR -ldsmain
 
 
 

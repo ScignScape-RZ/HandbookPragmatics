@@ -86,18 +86,18 @@ class Lexpair_Dialog : public QDialog
 
  void clear_buttons();
 
- struct Dock_Link
- {
-  //quint8 ;
-  QString left;
-  QString right;
-  QPair<quint8, quint8> rwl;
+// struct Dock_Link
+// {
+//  //quint8 ;
+//  QString left;
+//  QString right;
+//  QPair<quint8, quint8> rwl;
 
-  QPair<QPair<QString, QString>, QPair<quint8, quint8>> to_pr_pr() const
-  {
-   return { {left, right}, rwl };
-  }
- };
+//  QPair<QPair<QString, QString>, QPair<quint8, quint8>> to_pr_pr() const
+//  {
+//   return { {left, right}, rwl };
+//  }
+// };
 
  struct Pair_Row
  {
@@ -144,15 +144,15 @@ public:
   return lhs.to_pr_pr() < rhs.to_pr_pr();
  }
 
- friend uint qHash(const Dock_Link &dl)
- {
-  return qHash(dl.to_pr_pr());
- }
+// friend uint qHash(const Dock_Link &dl)
+// {
+//  return qHash(dl.to_pr_pr());
+// }
 
- friend operator ==(const Dock_Link &lhs, const Dock_Link &rhs)
- {
-  return lhs.to_pr_pr() == rhs.to_pr_pr();
- }
+// friend operator ==(const Dock_Link &lhs, const Dock_Link &rhs)
+// {
+//  return lhs.to_pr_pr() == rhs.to_pr_pr();
+// }
 
 Q_SIGNALS:
 
