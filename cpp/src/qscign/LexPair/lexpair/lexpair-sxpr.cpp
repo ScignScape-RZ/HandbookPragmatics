@@ -109,7 +109,8 @@ void Lexpair_Sxpr::read(QString qs)
   QChar qc = qs[i];
   if(qc == '(')
   {
-   lambdas.push(lambda);
+   //lambdas.push(lambda);
+   lambda = 0;
    ++lparen;
    ++local_lparen;
   }
