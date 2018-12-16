@@ -29,7 +29,7 @@ int main(int argc, char **argv)
  Lexpair_Sxpr ls;
  //ls.read("((quickly won)(The (home team)))");
 
- ls.read("((quickly won) he)");
+ ls.read("((quickly won)(The team))");
 
  return 0;
 

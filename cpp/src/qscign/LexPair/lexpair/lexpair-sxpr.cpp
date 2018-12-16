@@ -41,6 +41,11 @@ void Lexpair_Sxpr::add_chief_node(Chief_Node* cn)
  cn->lamba_counts.push_back(0);
 }
 
+int Lexpair_Sxpr::reset_lambda(Chief_Node* cn)
+{
+ return 0;
+}
+
 void Lexpair_Sxpr::check_rewind(QString& chief)
 {
  Chief_Node* cn = chief_nodes_[chief];
@@ -87,6 +92,8 @@ void Lexpair_Sxpr::read(QString qs)
 
    cars[pr] = cn;
    local_lparen = 0;
+   if(!current_chief.isEmpty())
+     add_dock(current_chief, acc);
    current_chief = acc;
   }
   else
@@ -108,7 +115,10 @@ void Lexpair_Sxpr::read(QString qs)
   }
   else if(qc == ')')
   {
-   add_word();
+   if(!acc.isEmpty())
+     add_word();
+   if(!current_chief.isEmpty())
+     lambda = reset_lambda(current_chief);
    ++rparen;
   }
   else if(qc == ' ')

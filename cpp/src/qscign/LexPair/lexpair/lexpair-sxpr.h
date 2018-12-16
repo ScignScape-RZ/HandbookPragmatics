@@ -75,6 +75,14 @@ class Lexpair_Sxpr
 
  void check_rewind(QString& chief);
 
+ int reset_lambda(QString chief)
+ {
+  return reset_lambda(chief_nodes_[chief]);
+ }
+
+ int reset_lambda(Chief_Node* cn);
+
+
  void add_dock(QString chief, QString word)
  {
   add_dock(chief_nodes_[chief], word);
