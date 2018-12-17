@@ -312,6 +312,9 @@ void Lexpair_Dialog::add_pair_line(QPair<QString, QString>& words,
  pair_list_->setRowCount(pairs_count_ + 1);
  pair_list_->setItem(pairs_count_, 0, twi);
 
+ QTableWidgetItem* twi_md = new QTableWidgetItem(QChar(0x2b05));
+ pair_list_->setItem(pairs_count_, 1, twi_md);
+
  QTableWidgetItem* twi_rw = new QTableWidgetItem(QString::number(pos.first));
  pair_list_->setItem(pairs_count_, 5, twi_rw);
 

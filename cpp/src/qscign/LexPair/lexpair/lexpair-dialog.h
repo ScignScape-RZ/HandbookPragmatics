@@ -16,6 +16,7 @@
 #include <QPoint>
 
 #include <QDialog>
+#include <QDebug>
 
 #include <functional>
 
@@ -148,7 +149,42 @@ public:
 
  static QStringList split(QString qs)
  {
-  return qs.simplified().split(' ');
+  QStringList result = qs.simplified().split(' ');
+
+//  QStringList qsl = result;
+//  if(qsl.removeDuplicates() == 0)
+//    return result;
+
+  QMap<QString, QPair<quint8, quint8>> counts;
+
+  for(QString qs: result)
+  {
+   ++counts[qs].first;
+//   int c = result.count(qs);
+//   if(c > 1)
+//     counts[qs] = {c, 0};
+  }
+
+  for(QString& qs: result)
+  {
+   QPair<quint8, quint8>& pr = counts[qs];
+   if(pr.first > 1)
+   {
+    ++pr.second;
+    qs += QString("\\%1").arg(pr.second);
+    qDebug() << qs;
+   }
+//   auto it = counts.find(qs);
+//   if(it != counts.end())
+//   {
+//    QPair<quint8, quint8>& pr = *it;
+//    ++pr.second;
+//    qs += "\\" + pr.second;
+//   }
+  }
+
+  return result;
+  //return qs.simplified().split(' ');
  }
 
  friend operator< (const Pair_Triple& lhs, const Pair_Triple& rhs)
