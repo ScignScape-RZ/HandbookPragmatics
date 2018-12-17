@@ -63,6 +63,7 @@ class Lexpair_Dialog : public QDialog
  QButtonGroup* sentence_button_group_;
 
  QPushButton* add_button_;
+ QLabel* add_label_;
  QHBoxLayout* add_layout_;
 
  QGridLayout* sxpr_layout_;

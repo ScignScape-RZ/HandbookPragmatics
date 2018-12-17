@@ -124,21 +124,24 @@ Lexpair_Dialog::Lexpair_Dialog(QStringList sent, QWidget* parent)
   if(left_id_ == 0)
   {
    left_id_ = id;
+   add_label_->setText(sentence_.at(-id-2));
   }
   else if(right_id_ == 0)
   {
    right_id_ = id;
+   add_label_->setText(QString("%1 %2").arg(add_label_->text()).arg(sentence_.at(-id-2)));
   }
   else if(medium_id_ == 0)
   {
    medium_id_ = id;
-   //check_pair(id);
+   add_label_->setText(QString("%1 (%2)").arg(add_label_->text()).arg(sentence_.at(-id-2)));
   }
   else
   {
    left_id_ = 0;
    right_id_ = 0;
    medium_id_ = 0;
+   add_label_->setText("");
   }
  });
 
@@ -148,8 +151,11 @@ Lexpair_Dialog::Lexpair_Dialog(QStringList sent, QWidget* parent)
 
  add_layout_ = new QHBoxLayout;
  add_button_ = new QPushButton("Add", this);
+ add_label_ = new QLabel(this);
+ add_label_->setText("(Pair/Triple)");
 
  add_layout_->addWidget(add_button_);
+ add_layout_->addWidget(add_label_);
  add_layout_->addStretch();
  main_layout_->addLayout(add_layout_);
 
