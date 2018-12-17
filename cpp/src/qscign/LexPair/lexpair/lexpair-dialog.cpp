@@ -325,35 +325,57 @@ void Lexpair_Dialog::add_pair_line(QPair<QString, QString>& words,
 void Lexpair_Dialog::check_pair()
 {
  auto it = pairs_.find({left_id_, right_id_, medium_id_});
+ qint8 found_mid = 0;
+
+ QTableWidgetItem* twi = nullptr;
+ QString sl;
+ QString sr;
+ QString sm;
+
  if(it == pairs_.end())
  {
-  QString sl = sentence_.at(-left_id_-2);
-  QString sr = sentence_.at(-right_id_-2);
-  QString sm = sentence_.at(-medium_id_-2);
+  if(medium_id_ == 0)
+  {
+   for(Pair_Triple pt: pairs_.keys())
+   {
+    if( (pt.left == left_id_) && (pt.right == right_id_) )
+    {
+     twi = pairs_[pt].twi;
+     sl = sentence_.at(-left_id_-2);
+     sr = sentence_.at(-right_id_-2);
+     sm = sentence_.at(-pt.mid-2);
+    }
+   }
+  }
+  if(!twi)
+  {
+   sl = sentence_.at(-left_id_-2);
+   sr = sentence_.at(-right_id_-2);
+   twi = new QTableWidgetItem(QString(
+     "%1 %2").arg(sl).arg(sr));
 
-  //pairs_[{left_id_, right_id_}]  = {nullptr, sl, sr};
-  //qDebug() << QStringList{sl, sr};
+   pairs_[{left_id_, right_id_, medium_id_}]  = {twi, sl, sr};
+   pair_list_->setRowCount(pairs_count_ + 1);
+   pair_list_->setItem(pairs_count_, 0, twi);
 
-  QTableWidgetItem* twi = new QTableWidgetItem(QString(
-    "%1 %2 (%3)").arg(sl).arg(sr).arg(sm));
-
-  pairs_[{left_id_, right_id_, medium_id_}]  = {twi, sl, sr};
-  pair_list_->setRowCount(pairs_count_ + 1);
-  pair_list_->setItem(pairs_count_, 0, twi);
-  ++pairs_count_;
+   if(medium_id_)
+   {
+    sm = sentence_.at(-medium_id_-2);
+    QTableWidgetItem* mtwi = new QTableWidgetItem(sm);
+    pair_list_->setItem(pairs_count_, 1, mtwi);
+   }
+   ++pairs_count_;
+   goto cleanup;
+  }
  }
  else
  {
-  QTableWidgetItem* twi = (*it).twi;
-  QString sl = (*it).left;
-  QString sr = (*it).right;
-  qDebug() << QStringList{sl, sr};
-  //twi->setSelected(true);
-  //twi->row();
-  pair_list_->selectRow(twi->row());
-  //.sethighlighted();
-  //twi->setCheckState(Qt::Checked);
+  twi = (*it).twi;
+  sl = (*it).left;
+  sr = (*it).right;
  }
+cleanup:
+ pair_list_->selectRow(twi->row());
  left_id_ = 0;
  right_id_ = 0;
  clear_buttons();
