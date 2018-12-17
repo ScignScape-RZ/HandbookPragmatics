@@ -154,6 +154,11 @@ Lexpair_Dialog::Lexpair_Dialog(QStringList sent, QWidget* parent)
  add_label_ = new QLabel(this);
  add_label_->setText("(Pair/Triple)");
 
+ connect(add_button_, &QPushButton::clicked, [this]()
+ {
+  check_pair();
+ });
+
  add_layout_->addWidget(add_button_);
  add_layout_->addWidget(add_label_);
  add_layout_->addStretch();
@@ -317,14 +322,14 @@ void Lexpair_Dialog::add_pair_line(QPair<QString, QString>& words,
 
 }
 
-void Lexpair_Dialog::check_pair(qint8 id)
+void Lexpair_Dialog::check_pair()
 {
- auto it = pairs_.find({left_id_, right_id_, id});
+ auto it = pairs_.find({left_id_, right_id_, medium_id_});
  if(it == pairs_.end())
  {
   QString sl = sentence_.at(-left_id_-2);
   QString sr = sentence_.at(-right_id_-2);
-  QString sm = sentence_.at(-id-2);
+  QString sm = sentence_.at(-medium_id_-2);
 
   //pairs_[{left_id_, right_id_}]  = {nullptr, sl, sr};
   //qDebug() << QStringList{sl, sr};
@@ -332,7 +337,7 @@ void Lexpair_Dialog::check_pair(qint8 id)
   QTableWidgetItem* twi = new QTableWidgetItem(QString(
     "%1 %2 (%3)").arg(sl).arg(sr).arg(sm));
 
-  pairs_[{left_id_, right_id_, id}]  = {twi, sl, sr};
+  pairs_[{left_id_, right_id_, medium_id_}]  = {twi, sl, sr};
   pair_list_->setRowCount(pairs_count_ + 1);
   pair_list_->setItem(pairs_count_, 0, twi);
   ++pairs_count_;

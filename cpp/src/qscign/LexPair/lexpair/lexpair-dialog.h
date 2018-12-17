@@ -136,7 +136,7 @@ class Lexpair_Dialog : public QDialog
  int pairs_count_;
 
  void set_button_width(QPushButton* btn);
- void check_pair(qint8 id);
+ void check_pair();
 
  void read_sxpr(QString qs);
 
