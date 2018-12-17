@@ -62,6 +62,9 @@ class Lexpair_Dialog : public QDialog
 
  QButtonGroup* sentence_button_group_;
 
+ QPushButton* add_button_;
+ QHBoxLayout* add_layout_;
+
  QGridLayout* sxpr_layout_;
  QPushButton* sxpr_mode_button_;
  QPushButton* sxpr_clear_button_;
@@ -79,6 +82,7 @@ class Lexpair_Dialog : public QDialog
 
  qint8 left_id_;
  qint8 right_id_;
+ qint8 medium_id_;
 
  QStringList sentence_;
 

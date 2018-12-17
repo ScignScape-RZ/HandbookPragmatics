@@ -50,7 +50,7 @@
 
 Lexpair_Dialog::Lexpair_Dialog(QStringList sent, QWidget* parent)
   : QDialog(parent), left_id_(0),
-    right_id_(0), pairs_count_(0), sxpr_(nullptr)
+    right_id_(0), medium_id_(0), pairs_count_(0), sxpr_(nullptr)
 {
  sentence_ = sent;
 
@@ -116,12 +116,12 @@ Lexpair_Dialog::Lexpair_Dialog(QStringList sent, QWidget* parent)
    sxpr_line_edit_->setText(sxpr_line_edit_->text() + text + " ");
    return;
   }
-  if(left_id_ == id)
-  {
-   left_id_ = 0;
-   right_id_ = 0;
-  }
-  else if(left_id_ == 0)
+//  if(left_id_ == id)
+//  {
+//   left_id_ = 0;
+//   right_id_ = 0;
+//  }
+  if(left_id_ == 0)
   {
    left_id_ = id;
   }
@@ -129,15 +129,29 @@ Lexpair_Dialog::Lexpair_Dialog(QStringList sent, QWidget* parent)
   {
    right_id_ = id;
   }
+  else if(medium_id_ == 0)
+  {
+   medium_id_ = id;
+   //check_pair(id);
+  }
   else
   {
-   check_pair(id);
+   left_id_ = 0;
+   right_id_ = 0;
+   medium_id_ = 0;
   }
  });
 
  sentence_layout_->addStretch();
 
  main_layout_->addLayout(sentence_layout_);
+
+ add_layout_ = new QHBoxLayout;
+ add_button_ = new QPushButton("Add", this);
+
+ add_layout_->addWidget(add_button_);
+ add_layout_->addStretch();
+ main_layout_->addLayout(add_layout_);
 
  sxpr_layout_ = new QGridLayout;
 
@@ -233,13 +247,14 @@ Lexpair_Dialog::Lexpair_Dialog(QStringList sent, QWidget* parent)
 
  pair_list_ = new QTableWidget(this);
 
- pair_list_->setColumnCount(6);
+ pair_list_->setColumnCount(7);
 
- pair_list_->setHorizontalHeaderLabels({"", "Left Expectation",
-   "Right Expectation", "Link Description", "RW", ""});
+ pair_list_->setHorizontalHeaderLabels({"", "Medium", "Left Expectation",
+   "Right Expectation", "Link Description", QChar(0x0002b13),//QChar(0x00027f8),
+                                        QChar(0x000003BB)});
 
- pair_list_->setColumnWidth(4, 14);
- pair_list_->setColumnWidth(5, 14);
+ pair_list_->setColumnWidth(5, 19);
+ pair_list_->setColumnWidth(6, 16);
 
  main_layout_->addWidget(pair_list_);
 
@@ -287,10 +302,10 @@ void Lexpair_Dialog::add_pair_line(QPair<QString, QString>& words,
  pair_list_->setItem(pairs_count_, 0, twi);
 
  QTableWidgetItem* twi_rw = new QTableWidgetItem(QString::number(pos.first));
- pair_list_->setItem(pairs_count_, 4, twi_rw);
+ pair_list_->setItem(pairs_count_, 5, twi_rw);
 
  QTableWidgetItem* twi_lm = new QTableWidgetItem(QString::number(pos.second));
- pair_list_->setItem(pairs_count_, 5, twi_lm);
+ pair_list_->setItem(pairs_count_, 6, twi_lm);
 
  ++pairs_count_;
 
