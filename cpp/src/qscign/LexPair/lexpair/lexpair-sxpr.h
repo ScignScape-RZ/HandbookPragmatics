@@ -96,6 +96,14 @@ public:
 
  void read(QString qs);
 
+ void get_dock_pairs(QSet<QPair<QPair<QString, QString>, QPair<quint8, quint8>>>& result)
+ {
+  for(auto& a : docks_)
+  {
+   result.insert(a.to_pr_pr());
+  }
+ }
+
 };
 
 _KANS(DSM)

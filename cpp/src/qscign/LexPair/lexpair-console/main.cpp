@@ -26,20 +26,20 @@ USING_KANS(DSM)
 
 int main(int argc, char **argv)
 {
- Lexpair_Sxpr ls;
- //
- ls.read("((quickly won)(The (home team)))");
+// Lexpair_Sxpr ls;
+// //
+// ls.read("((quickly won)(The (home team)))");
 
- //ls.read("((quickly won)(The team))");
+// //ls.read("((quickly won)(The team))");
 
- return 0;
+// return 0;
 
 
-// QApplication qapp(argc, argv);
-// Lexpair_Dialog dlg(Lexpair_Dialog::split(
-//   "The home team won quickly"), nullptr);
+ QApplication qapp(argc, argv);
+ Lexpair_Dialog dlg(Lexpair_Dialog::split(
+   "The home team won quickly"), nullptr);
 
-// dlg.show();
-// return qapp.exec();
+ dlg.show();
+ return qapp.exec();
 
 }

@@ -27,8 +27,8 @@
 
 #include "kans.h"
 
-
-//USING_KANS(DSM)
+KANS_CLASS_DECLARE(DSM ,Lexpair_Sxpr)
+USING_KANS(DSM)
 
 class QDialogButtonBox;
 class QLabel;
@@ -83,6 +83,13 @@ class Lexpair_Dialog : public QDialog
  QStringList sentence_;
 
  QTableWidget* pair_list_;
+
+ Lexpair_Sxpr* sxpr_;
+
+ void add_pair_line(QPair<QString, QString>& words, QPair<quint8, quint8>& pos);
+
+ // //
+ // ls.read("((quickly won)(The (home team)))");
 
  void clear_buttons();
 

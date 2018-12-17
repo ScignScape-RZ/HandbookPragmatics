@@ -9,8 +9,7 @@
 
 #include "styles.h"
 
-
-
+#include "lexpair/lexpair-sxpr.h"
 
 #include <QApplication>
 
@@ -50,7 +49,8 @@
 
 
 Lexpair_Dialog::Lexpair_Dialog(QStringList sent, QWidget* parent)
-  : QDialog(parent), left_id_(0), right_id_(0), pairs_count_(0)
+  : QDialog(parent), left_id_(0),
+    right_id_(0), pairs_count_(0), sxpr_(nullptr)
 {
  sentence_ = sent;
 
@@ -236,7 +236,10 @@ Lexpair_Dialog::Lexpair_Dialog(QStringList sent, QWidget* parent)
  pair_list_->setColumnCount(6);
 
  pair_list_->setHorizontalHeaderLabels({"", "Left Expectation",
-   "Right Expectation", "Link Description", "Rewind", "Lambda"});
+   "Right Expectation", "Link Description", "RW", ""});
+
+ pair_list_->setColumnWidth(4, 14);
+ pair_list_->setColumnWidth(5, 14);
 
  main_layout_->addWidget(pair_list_);
 
@@ -258,6 +261,38 @@ void Lexpair_Dialog::read_sxpr(QString qs)
  qs.replace(") (", ")(");
  qDebug() << qs;
 
+ if(sxpr_)
+   delete sxpr_;
+
+ sxpr_ = new Lexpair_Sxpr;
+ sxpr_->read(qs);
+
+ QSet<QPair<QPair<QString, QString>, QPair<quint8, quint8>>> prs;
+ sxpr_->get_dock_pairs(prs);
+
+ for(auto a: prs)
+ {
+  add_pair_line(a.first, a.second);
+ }
+}
+
+void Lexpair_Dialog::add_pair_line(QPair<QString, QString>& words,
+  QPair<quint8, quint8>& pos)
+{
+ QTableWidgetItem* twi = new QTableWidgetItem(QString(
+   "%1 %2").arg(words.first).arg(words.second));
+
+ //pairs_[{left_id_, right_id_, id}]  = {twi, sl, sr};
+ pair_list_->setRowCount(pairs_count_ + 1);
+ pair_list_->setItem(pairs_count_, 0, twi);
+
+ QTableWidgetItem* twi_rw = new QTableWidgetItem(QString::number(pos.first));
+ pair_list_->setItem(pairs_count_, 4, twi_rw);
+
+ QTableWidgetItem* twi_lm = new QTableWidgetItem(QString::number(pos.second));
+ pair_list_->setItem(pairs_count_, 5, twi_lm);
+
+ ++pairs_count_;
 
 }
 
