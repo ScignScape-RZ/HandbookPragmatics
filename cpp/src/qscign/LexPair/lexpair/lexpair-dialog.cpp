@@ -47,6 +47,12 @@
 #include <QHeaderView>
 
 
+#include <QDockWidget>
+#include <QHBoxLayout>
+#include <QPushButton>
+#include <QFrame>
+#include <QMainWindow>
+
 
 Lexpair_Dialog::Lexpair_Dialog(QStringList sent, QWidget* parent)
   : QDialog(parent), left_id_(0),
@@ -271,7 +277,37 @@ Lexpair_Dialog::Lexpair_Dialog(QStringList sent, QWidget* parent)
 
  main_layout_->addWidget(button_box_);
 
- setLayout(main_layout_);
+
+ QDockWidget* qdw = new QDockWidget;
+ QHBoxLayout* hbl = new QHBoxLayout;
+ hbl->addWidget(new QPushButton("x"));
+ hbl->addWidget(new QPushButton("y"));
+ QFrame* fr = new QFrame;
+ fr->setLayout(hbl);
+ qdw->setWidget(fr);
+ //qdw.show();
+
+ qdw->setAllowedAreas(Qt::AllDockWidgetAreas);
+
+ QMainWindow* mw = new QMainWindow;
+//   QHBoxLayout* xhbl = new QHBoxLayout;
+//   xhbl->addWidget(new QPushButton("xx"));
+//   xhbl->addWidget(new QPushButton("xy"));
+
+   mw->addDockWidget(Qt::LeftDockWidgetArea, qdw);
+ //  mw->show();
+
+ //main_layout_->addWidget(mw);
+
+ QVBoxLayout* vbl = new QVBoxLayout;
+
+ QFrame* xfr = new QFrame;
+ xfr->setLayout(main_layout_);
+ mw->setCentralWidget(xfr);
+
+ vbl->addWidget(mw);
+ setLayout(vbl);
+ //setLayout(main_layout_);
 }
 
 struct Word_Node

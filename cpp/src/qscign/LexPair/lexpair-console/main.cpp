@@ -12,6 +12,8 @@
 #include <QApplication>
 #include <QDebug>
 
+
+
 #include "kans.h"
 
 #include "textio.h"
@@ -36,6 +38,10 @@ int main(int argc, char **argv)
 
 
  QApplication qapp(argc, argv);
+
+
+
+
  Lexpair_Dialog dlg(Lexpair_Dialog::split(
    "The won team won quickly"), nullptr);
 
