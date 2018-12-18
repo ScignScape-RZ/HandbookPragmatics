@@ -91,6 +91,11 @@ USING_KANS(Phaon)
 Q_DECLARE_METATYPE(Language_Sample*)
 Q_DECLARE_METATYPE(Language_Sample_Group*)
 
+
+#include "add-minimize-frame.h"
+
+
+
 ScignStage_Ling_Dialog::ScignStage_Ling_Dialog(XPDF_Bridge* xpdf_bridge,
   Dataset& ds,
   QWidget* parent)
@@ -551,9 +556,12 @@ ScignStage_Ling_Dialog::ScignStage_Ling_Dialog(XPDF_Bridge* xpdf_bridge,
 
  main_layout_->addWidget(nav_panel_);
 
+ minimize_layout_ = add_minimize_frame(button_box_, [this]
+ {
+  setWindowState(Qt::WindowMinimized);
+ });
 
-
- main_layout_->addWidget(button_box_);
+ main_layout_->addLayout(minimize_layout_);
 
  setLayout(main_layout_);
 

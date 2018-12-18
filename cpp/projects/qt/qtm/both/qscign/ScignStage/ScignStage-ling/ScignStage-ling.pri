@@ -66,6 +66,8 @@ SOURCES += \
   $$SRC_DIR/nav-protocols/nav-ling-1d-panel.cpp \
   $$SRC_DIR/subwindows/scignstage-clickable-label.cpp \
   $$SRC_DIR/xpdf-bridge.cpp \
+  $$SRC_ROOT_DIR/add-minimize-frame.cpp \
+
 
 
 LIBS += -L$$TARGETSDIR -ldsmain

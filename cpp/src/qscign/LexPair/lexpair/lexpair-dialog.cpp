@@ -56,6 +56,9 @@
 #include <QFrame>
 #include <QMainWindow>
 
+#include "add-minimize-frame.h"
+
+
 
 Lexpair_Dialog::Lexpair_Dialog(QStringList sent, QWidget* parent)
   : QDialog(parent), left_id_(0),
@@ -311,40 +314,12 @@ Lexpair_Dialog::Lexpair_Dialog(QStringList sent, QWidget* parent)
  mw_frame_->setLayout(main_layout_);
  mw_->setCentralWidget(mw_frame_);
 
- QFrame* fr = new QFrame;
- //fr->setStyleSheet("QFrame{border-bottom: 4px ridge rgb(240,190,150); }");
- fr->setFrameStyle(QFrame::Sunken);
- fr->setFrameShape(QFrame::Panel);
-
- QHBoxLayout* fr_layout_ = new QHBoxLayout;
-
- minimize_layout_ = new QHBoxLayout;
- minimize_button_ = new QPushButton(QChar(0x2735), this); //
- minimize_label_ = new QLabel(this);
- minimize_label_->setText("Minimize");
- minimize_button_->setStyleSheet(colorful_small_button_style_sheet_());
- //set_button_width(minimize_button_);
-
- connect(minimize_button_, &QPushButton::clicked, [this]()
+ minimize_layout_ = add_minimize_frame(button_box_, [this]()
  {
   this->setWindowState(Qt::WindowMinimized);
  });
-
-
- fr_layout_->addWidget(minimize_button_);
- fr_layout_->addWidget(minimize_label_);
-
- fr->setLayout(fr_layout_);
-
- minimize_layout_->addWidget(fr);
- minimize_layout_->addStretch();
- minimize_layout_->addWidget(button_box_);
-
  mw_layout_->addWidget(mw_);
  mw_layout_->addLayout(minimize_layout_);
-
-
-
 
  setLayout(mw_layout_);
  // //  mw->show();

@@ -75,8 +75,9 @@ _QSNS(ScignStage)
 
 class ScignStage_Ling_Dialog : public QDialog
 {
-
  Q_OBJECT
+
+ QHBoxLayout* minimize_layout_;
 
  QDialogButtonBox* button_box_;
  QPushButton* button_ok_;

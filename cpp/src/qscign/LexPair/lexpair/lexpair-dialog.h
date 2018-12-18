@@ -59,8 +59,6 @@ class Lexpair_Dialog : public QDialog
 {
  Q_OBJECT
 
- QPushButton* minimize_button_;
- QLabel* minimize_label_;
  QHBoxLayout* minimize_layout_;
 
  QDialogButtonBox* button_box_;

@@ -30,6 +30,8 @@ HEADERS += \
 SOURCES += \
   $$SRC_DIR/lexpair-dialog.cpp \
   $$SRC_DIR/lexpair-sxpr.cpp \
+  $$SRC_ROOT_DIR/add-minimize-frame.cpp \
+
 
 
 
