@@ -313,6 +313,13 @@ Lexpair_Dialog::Lexpair_Dialog(QStringList sent, QWidget* parent)
  mw_frame_->setLayout(main_layout_);
  mw_->setCentralWidget(mw_frame_);
 
+ QFrame* fr = new QFrame;
+ //fr->setStyleSheet("QFrame{border-bottom: 4px ridge rgb(240,190,150); }");
+ fr->setFrameStyle(QFrame::Sunken);
+ fr->setFrameShape(QFrame::Panel);
+
+ QHBoxLayout* fr_layout_ = new QHBoxLayout;
+
  minimize_layout_ = new QHBoxLayout;
  minimize_button_ = new QPushButton(QChar(0x2735), this); //
  minimize_label_ = new QLabel(this);
@@ -326,11 +333,12 @@ Lexpair_Dialog::Lexpair_Dialog(QStringList sent, QWidget* parent)
  });
 
  minimize_layout_->addStretch();
- minimize_layout_->addWidget(minimize_button_);
- minimize_layout_->addWidget(minimize_label_);
+ fr_layout_->addWidget(minimize_button_);
+ fr_layout_->addWidget(minimize_label_);
 
+ fr->setLayout(fr_layout_);
+ minimize_layout_->addWidget(fr);
  mw_layout_->addLayout(minimize_layout_);
-
  mw_layout_->addWidget(mw_);
 
 
