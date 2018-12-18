@@ -278,22 +278,6 @@ inline QString colorful_button_style_sheet_down_()
 inline QString colorful_small_button_style_sheet_()
 {
  return
-
-//   "QPushButton {"
-//   "background:rgb(190,190,230); "
-//    " padding-left:20;padding-right:20;padding-top:0;padding-bottom:0;"
-//    " border-left: 4px groove rgb(240,190,150); "
-//    " border-right: 4px ridge rgb(240,190,150); "
-//   "background-image: none;"
-//   "border-image: none;"
-//   "border-radius: 6px;"
-//   "border-left: 2px ridge #3AFFAB;"
-//   "border-right: 2px ridge #3AFFAB;"
-//   "border-top: 2px ridge #C5D8FA;"
-//   "border-bottom: 2px ridge #C5D8FA;"
-//   "}"
-
-
    "QPushButton {background:rgb(190,190,230);min-width: 11px;"
    " padding-left:2;padding-right:2;padding-top:0;padding-bottom:0;"
    " border-left: 4px groove rgb(240,190,150); "
@@ -305,8 +289,6 @@ inline QString colorful_small_button_style_sheet_()
    " border-left: 4px groove rgb(240,190,0); "
    " border-right: 4px ridge rgb(240,190,0); "
    "}\n"
-
-  // "QPushButton::indicator {width: 10px;height: 20px;}\n";
    ;
 }
 

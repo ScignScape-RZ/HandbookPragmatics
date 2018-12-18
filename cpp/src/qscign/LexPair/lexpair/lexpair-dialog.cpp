@@ -35,6 +35,8 @@
 #include <QTextStream>
 #include <QStack>
 
+#include <QStackedWidget>
+
 #include <QtMultimedia/QMediaPlayer>
 
 #include <QPainter>
@@ -58,7 +60,7 @@
 
 #include "add-minimize-frame.h"
 
-
+#include "ScignStage-ling/subwindows/scignstage-clickable-label.h"
 
 Lexpair_Dialog::Lexpair_Dialog(QStringList sent, QWidget* parent)
   : QDialog(parent), left_id_(0),
@@ -286,27 +288,104 @@ Lexpair_Dialog::Lexpair_Dialog(QStringList sent, QWidget* parent)
 // mw->addDockWidget(Qt::LeftDockWidgetArea, qdw);
 
 
- link_grammar_dock_widget_ = new QDockWidget;
- link_grammar_dock_layout_ = new QHBoxLayout;
+ grammar_dock_widget_ = new QDockWidget;
+ grammar_frame_ = new QFrame;
+ grammar_combo_ = new QComboBox(this);
+ grammar_layout_ = new QVBoxLayout;
+
+ grammar_combo_->addItem("Link Grammar");
+ grammar_combo_->addItem("Dependency Grammar");
+
+ grammar_combo_layout_ = new QHBoxLayout;
+ grammar_combo_layout_->addWidget(grammar_combo_);
+ grammar_combo_layout_->addStretch();
+
+ grammar_layout_->addLayout(grammar_combo_layout_);
+
+ grammar_stacked_widget_ = new QStackedWidget(this);
+
  link_grammar_frame_ = new QFrame;
+ link_grammar_layout_ = new QGridLayout;
 
- QStringList lg_links {"AA", "B", "C", "DD"};
+ QStringList lg_links
+ {
+  "A"  "AA", "AF", "AJ", "AL", "AM", "AN", "AZ", "B", "BI",
+  "BT", "BW", "C", "CC", "CO", "CP", "CQ", "CV", "CX", "D",
+  "DD", "DG", "DP", "DT", "E", "EA", "EB", "EC", "EE", "EF",
+  "EI", "EL", "EN", "EP", "EQ", "ER", "EW", "EZ", "FL", "FM",
+  "G", "GN", "H", "HA", "I", "ID", "IN", "IV", "J", "JG", "J",
+  "Q", "JT", "K", "L", "LE", "LI", "M", "MF", "MG", "MJ", "MV",
+  "MX", "N", "NA", "ND", "NF", "NI", "NJ", "NM", "NN", "NO",
+  "NR", "NS", "NT", "NW", "O", "OD", "OF", "ON", "OT",
+  "OX", "P", "PF", "PH", "PP", "Q", "QI", "QJ", "QU", "R",
+  "RJ", "RS", "RW", "S", "SF", "SFI", "SI", "SJ", "SX",
+  "SXI", "TA", "TD", "TH", "TI", "TM", "TO", "TQ", "TR",
+  "TS", "TT", "TW", "TY", "TZ", "U", "UN", "V", "VC", "VJ",
+  "W", "WN", "WR", "WV", "X", "XJ", "Y", "YP", "YS", "Z", "ZZZ" };
 
+ int i = 0;
  for(QString qs : lg_links)
  {
-  QToolButton* b = new QToolButton(this);
-  b->setText(qs);
-  link_grammar_dock_layout_->addWidget(b);
-  //link_grammar_dock_layout_->addWidget(new QPushButton(qs));
+//  QToolButton* b = new QToolButton(this);
+//  b->setText(qs);
+
+  ScignStage_Clickable_Label* scl = new ScignStage_Clickable_Label(this);
+  scl->setText(qs);
+  scl->setAlignment(Qt::AlignCenter);
+
+  scl->setStyleSheet(
+   "ScignStage_Clickable_Label:hover{"
+     "background:white;border:1px ridge rgb(130, 40, 0);}");
+
+  link_grammar_layout_->addWidget(scl, i/10, i%10);
+  ++i;
+  //grammar_dock_layout_->addWidget(new QPushButton(qs));
  }
 
- link_grammar_dock_layout_->addStretch();
+ link_grammar_frame_->setLayout(link_grammar_layout_);
+ grammar_stacked_widget_->addWidget(link_grammar_frame_);
 
- link_grammar_frame_->setLayout(link_grammar_dock_layout_);
- link_grammar_dock_widget_->setWidget(link_grammar_frame_);
- link_grammar_dock_widget_->setAllowedAreas(Qt::AllDockWidgetAreas);
+ dependency_grammar_frame_ = new QFrame;
+ dependency_grammar_layout_ = new QGridLayout;
 
- mw_->addDockWidget(Qt::TopDockWidgetArea, link_grammar_dock_widget_);
+ QStringList dg_links
+ {
+  "A"  "AA", "AF", "AJ", "AL", "AM", "AN", "AZ", "B", "BI" };
+
+ int j = 0;
+ for(QString qs : dg_links)
+ {
+  ScignStage_Clickable_Label* scl = new ScignStage_Clickable_Label(this);
+  scl->setText(qs);
+  scl->setAlignment(Qt::AlignCenter);
+
+  scl->setStyleSheet(
+   "ScignStage_Clickable_Label:hover{"
+     "background:white;border:1px ridge rgb(130, 40, 0);}");
+
+  dependency_grammar_layout_->addWidget(scl, j/10, j%10);
+  ++j;
+ }
+
+
+ dependency_grammar_frame_->setLayout(dependency_grammar_layout_);
+ grammar_stacked_widget_->addWidget(dependency_grammar_frame_);
+
+ grammar_layout_->addWidget(grammar_stacked_widget_);
+
+ connect(grammar_combo_, QOverload<int>::of(&QComboBox::currentIndexChanged),
+   [this](int index)
+ {
+  grammar_stacked_widget_->setCurrentIndex(index);
+ });
+
+ //grammar_dock_layout_->addStretch();
+
+ grammar_frame_->setLayout(grammar_layout_);
+ grammar_dock_widget_->setWidget(grammar_frame_);
+ grammar_dock_widget_->setAllowedAreas(Qt::AllDockWidgetAreas);
+
+ mw_->addDockWidget(Qt::RightDockWidgetArea, grammar_dock_widget_);
 
  mw_layout_ = new QVBoxLayout;
 

@@ -10,6 +10,7 @@ QT += widgets
 
 INCLUDEPATH += $$SRC_DIR $$SRC_GROUP_DIR
 
+INCLUDEPATH += $$SCIGNSTAGE_SRC_GROUP_DIR
 
 DEFINES += CAON_DEBUG
 DEFINES += RELAE_LABEL_NODES
@@ -33,7 +34,7 @@ SOURCES += \
   $$SRC_ROOT_DIR/add-minimize-frame.cpp \
 
 
-
+LIBS +=-L$$TARGETSDIR -lScignStage-ling
 
 
 message(choice: $$CPP_ROOT_DIR/targets/$$CHOICE_CODE/$$PROJECT_SET--$$PROJECT_GROUP--$$PROJECT_NAME)

@@ -17,6 +17,7 @@
 
 #include <QDialog>
 #include <QDebug>
+#include <QComboBox>
 
 #include <functional>
 
@@ -46,6 +47,7 @@ class QButtonGroup;
 class QGroupBox;
 class QTableWidget;
 class QTableWidgetItem;
+class QStackedWidget;
 
 class QDockWidget;
 
@@ -102,9 +104,18 @@ class Lexpair_Dialog : public QDialog
  QMainWindow* mw_;
  QVBoxLayout* mw_layout_;
 
- QDockWidget* link_grammar_dock_widget_;
- QHBoxLayout* link_grammar_dock_layout_;
+ QDockWidget* grammar_dock_widget_;
+ QVBoxLayout* grammar_layout_;
+ QFrame* grammar_frame_;
+ QComboBox* grammar_combo_;
+ QHBoxLayout* grammar_combo_layout_;
+ QStackedWidget* grammar_stacked_widget_;
+
+ QGridLayout* link_grammar_layout_;
  QFrame* link_grammar_frame_;
+
+ QGridLayout* dependency_grammar_layout_;
+ QFrame* dependency_grammar_frame_;
 
  QFrame* mw_frame_;
  //QVBoxLayout* main_frame_layout_;
