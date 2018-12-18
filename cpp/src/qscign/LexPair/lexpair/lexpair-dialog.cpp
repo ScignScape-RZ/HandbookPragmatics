@@ -278,8 +278,6 @@ Lexpair_Dialog::Lexpair_Dialog(QStringList sent, QWidget* parent)
 
  main_layout_->addWidget(pair_list_);
 
- main_layout_->addWidget(button_box_);
-
  mw_ = new QMainWindow;
 
 // mw->addDockWidget(Qt::LeftDockWidgetArea, qdw);
@@ -332,14 +330,20 @@ Lexpair_Dialog::Lexpair_Dialog(QStringList sent, QWidget* parent)
   this->setWindowState(Qt::WindowMinimized);
  });
 
- minimize_layout_->addStretch();
+
  fr_layout_->addWidget(minimize_button_);
  fr_layout_->addWidget(minimize_label_);
 
  fr->setLayout(fr_layout_);
+
  minimize_layout_->addWidget(fr);
- mw_layout_->addLayout(minimize_layout_);
+ minimize_layout_->addStretch();
+ minimize_layout_->addWidget(button_box_);
+
  mw_layout_->addWidget(mw_);
+ mw_layout_->addLayout(minimize_layout_);
+
+
 
 
  setLayout(mw_layout_);
