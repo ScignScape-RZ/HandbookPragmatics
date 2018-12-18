@@ -41,15 +41,18 @@
 #include <QPushButton>
 #include <QLabel>
 
+#include <QToolButton>
+
 #include <QMessageBox>
 #include <QDebug>
 
 #include <QHeaderView>
 
-
-#include <QDockWidget>
 #include <QHBoxLayout>
+
 #include <QPushButton>
+#include <QDockWidget>
+
 #include <QFrame>
 #include <QMainWindow>
 
@@ -277,36 +280,78 @@ Lexpair_Dialog::Lexpair_Dialog(QStringList sent, QWidget* parent)
 
  main_layout_->addWidget(button_box_);
 
+ mw_ = new QMainWindow;
 
- QDockWidget* qdw = new QDockWidget;
- QHBoxLayout* hbl = new QHBoxLayout;
- hbl->addWidget(new QPushButton("x"));
- hbl->addWidget(new QPushButton("y"));
- QFrame* fr = new QFrame;
- fr->setLayout(hbl);
- qdw->setWidget(fr);
- //qdw.show();
+// mw->addDockWidget(Qt::LeftDockWidgetArea, qdw);
 
- qdw->setAllowedAreas(Qt::AllDockWidgetAreas);
 
- QMainWindow* mw = new QMainWindow;
-//   QHBoxLayout* xhbl = new QHBoxLayout;
-//   xhbl->addWidget(new QPushButton("xx"));
-//   xhbl->addWidget(new QPushButton("xy"));
+ link_grammar_dock_widget_ = new QDockWidget;
+ link_grammar_dock_layout_ = new QHBoxLayout;
+ link_grammar_frame_ = new QFrame;
 
-   mw->addDockWidget(Qt::LeftDockWidgetArea, qdw);
- //  mw->show();
+ QStringList lg_links {"AA", "B", "C", "DD"};
 
- //main_layout_->addWidget(mw);
+ for(QString qs : lg_links)
+ {
+  QToolButton* b = new QToolButton(this);
+  b->setText(qs);
+  link_grammar_dock_layout_->addWidget(b);
+  //link_grammar_dock_layout_->addWidget(new QPushButton(qs));
+ }
 
- QVBoxLayout* vbl = new QVBoxLayout;
+ link_grammar_dock_layout_->addStretch();
 
- QFrame* xfr = new QFrame;
- xfr->setLayout(main_layout_);
- mw->setCentralWidget(xfr);
+ link_grammar_frame_->setLayout(link_grammar_dock_layout_);
+ link_grammar_dock_widget_->setWidget(link_grammar_frame_);
+ link_grammar_dock_widget_->setAllowedAreas(Qt::AllDockWidgetAreas);
 
- vbl->addWidget(mw);
- setLayout(vbl);
+ mw_->addDockWidget(Qt::TopDockWidgetArea, link_grammar_dock_widget_);
+
+ mw_layout_ = new QVBoxLayout;
+
+ mw_frame_ = new QFrame(this);
+ mw_frame_->setLayout(main_layout_);
+ mw_->setCentralWidget(mw_frame_);
+
+ minimize_layout_ = new QHBoxLayout;
+ minimize_button_ = new QPushButton(QChar(0x2735), this); //
+ minimize_label_ = new QLabel(this);
+ minimize_label_->setText("Minimize");
+ minimize_button_->setStyleSheet(colorful_small_button_style_sheet_());
+ //set_button_width(minimize_button_);
+
+ connect(minimize_button_, &QPushButton::clicked, [this]()
+ {
+  this->setWindowState(Qt::WindowMinimized);
+ });
+
+ minimize_layout_->addStretch();
+ minimize_layout_->addWidget(minimize_button_);
+ minimize_layout_->addWidget(minimize_label_);
+
+ mw_layout_->addLayout(minimize_layout_);
+
+ mw_layout_->addWidget(mw_);
+
+
+ setLayout(mw_layout_);
+ // //  mw->show();
+
+// //main_layout_->addWidget(mw);
+
+// //main_frame_layout_ = new QVBoxLayout;
+
+// main_frame_ = new QFrame(this);
+// main_frame_->setLayout(main_layout_);
+// mw_->setCentralWidget(main_frame_);
+
+// mw_layout_->addWidget(mw_);
+// setLayout(mw_layout_);
+
+
+
+
+
  //setLayout(main_layout_);
 }
 

@@ -47,12 +47,21 @@ class QGroupBox;
 class QTableWidget;
 class QTableWidgetItem;
 
+class QDockWidget;
+
+class QFrame;
+class QMainWindow;
+
 class QCheckBox;
 
 
 class Lexpair_Dialog : public QDialog
 {
  Q_OBJECT
+
+ QPushButton* minimize_button_;
+ QLabel* minimize_label_;
+ QHBoxLayout* minimize_layout_;
 
  QDialogButtonBox* button_box_;
  QPushButton* button_ok_;
@@ -91,6 +100,16 @@ class Lexpair_Dialog : public QDialog
  QTableWidget* pair_list_;
 
  Lexpair_Sxpr* sxpr_;
+
+ QMainWindow* mw_;
+ QVBoxLayout* mw_layout_;
+
+ QDockWidget* link_grammar_dock_widget_;
+ QHBoxLayout* link_grammar_dock_layout_;
+ QFrame* link_grammar_frame_;
+
+ QFrame* mw_frame_;
+ //QVBoxLayout* main_frame_layout_;
 
  void add_pair_line(QPair<QString, QString>& words, QPair<quint8, quint8>& pos);
 
