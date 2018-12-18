@@ -341,6 +341,7 @@ Lexpair_Dialog::Lexpair_Dialog(QStringList sent, QWidget* parent)
   ++i;
   //grammar_dock_layout_->addWidget(new QPushButton(qs));
  }
+ link_grammar_layout_->setRowStretch(((i-1)/10)+1, 1);
 
  link_grammar_frame_->setLayout(link_grammar_layout_);
  grammar_stacked_widget_->addWidget(link_grammar_frame_);
@@ -348,25 +349,64 @@ Lexpair_Dialog::Lexpair_Dialog(QStringList sent, QWidget* parent)
  dependency_grammar_frame_ = new QFrame;
  dependency_grammar_layout_ = new QGridLayout;
 
+ int dg_max_col = 5;
+
  QStringList dg_links
  {
-  "A"  "AA", "AF", "AJ", "AL", "AM", "AN", "AZ", "B", "BI" };
+"acl", //clausal modifier of noun (adjectival clause)
+"advcl", //adverbial clause modifier
+"advmod", //adverbial modifier
+"amod", //adjectival modifier
+"appos", //appositional modifier
+"aux", //auxiliary
+"case", //case marking
+"cc", //coordinating conjunction
+"ccomp", //clausal complement
+"clf", //classifier
+"compound", //compound
+"conj", //conjunct
+"cop", //copula
+"csubj", //clausal subject
+"dep", //unspecified dependency
+"det", //determiner
+"discourse", //discourse element
+"dislocated", //dislocated elements
+"expl", //expletive
+"fixed", //fixed multiword expression
+"flat", //flat multiword expression
+"goeswith", //goes with
+"iobj", //indirect object
+"list", //list
+"mark", //marker
+"nmod", //nominal modifier
+"nsubj", //nominal subject
+"nummod", //numeric modifier
+"obj", //object
+"obl", //oblique nominal
+"orphan", //orphan
+"parataxis", //parataxis
+"punct", //punctuation
+"reparandum", //overridden disfluency
+"root", //root
+"vocative", //vocative
+"xcomp", //open clausal complement
+ };
 
  int j = 0;
  for(QString qs : dg_links)
  {
   ScignStage_Clickable_Label* scl = new ScignStage_Clickable_Label(this);
   scl->setText(qs);
-  scl->setAlignment(Qt::AlignCenter);
+  scl->setAlignment(Qt::AlignRight);
 
   scl->setStyleSheet(
    "ScignStage_Clickable_Label:hover{"
      "background:white;border:1px ridge rgb(130, 40, 0);}");
 
-  dependency_grammar_layout_->addWidget(scl, j/10, j%10);
+  dependency_grammar_layout_->addWidget(scl, j/dg_max_col, j%dg_max_col);
   ++j;
  }
-
+ dependency_grammar_layout_->setRowStretch(((j-1)/dg_max_col)+1, 1);
 
  dependency_grammar_frame_->setLayout(dependency_grammar_layout_);
  grammar_stacked_widget_->addWidget(dependency_grammar_frame_);
