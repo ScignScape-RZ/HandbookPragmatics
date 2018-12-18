@@ -9,7 +9,7 @@
 
 #include "styles.h"
 
-
+#include "lexpair/lexpair-dialog.h"
 
 
 #include <QApplication>
@@ -77,6 +77,7 @@
 
 #include "kauvir-code-model/kcm-channel-group.h"
 #include "kauvir-code-model/kauvir-code-model.h"
+
 
 #include "dsmain/dataset.h"
 
@@ -494,6 +495,11 @@ ScignStage_Ling_Dialog::ScignStage_Ling_Dialog(XPDF_Bridge* xpdf_bridge,
     {
      QClipboard* clipboard = QApplication::clipboard();
      clipboard->setText(s);
+    },
+    [](QString s)
+    {
+     Lexpair_Dialog* dlg = new Lexpair_Dialog(Lexpair_Dialog::split(s), nullptr);
+     dlg->show();
     },
     [](QStringList qsl)
     {
@@ -1038,6 +1044,7 @@ void ScignStage_Ling_Dialog::save_to_user_select_file(QString text)
 void ScignStage_Ling_Dialog::run_group_context_menu(const QPoint& p, int page, QString text,
   QStringList texts, std::function<void(int)> pdf_fn,
   std::function<void(QString)> copy_fn,
+  std::function<void(QString)> launch_fn,
   std::function<void(QStringList)> copies_fn,
   std::function<void()> highlight_fn)
 {
@@ -1046,6 +1053,8 @@ void ScignStage_Ling_Dialog::run_group_context_menu(const QPoint& p, int page, Q
    [page, pdf_fn](){pdf_fn(page);});
  qm->addAction("Copy Text to Clipboard",
    [text, copy_fn](){copy_fn(text);});
+ qm->addAction("Launch Link Pair Dialog with Text",
+   [text, launch_fn](){launch_fn(text);});
  qm->addAction("Copy Samples to Clipboard",
    [texts, copies_fn](){copies_fn(texts);});
  qm->addAction("Highlight (scroll from here)",

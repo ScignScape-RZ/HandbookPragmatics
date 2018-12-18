@@ -44,6 +44,8 @@ SOURCES += \
 
 LIBS += -L$$TARGETSDIR -ldsmain -lScignStage-ling \
 
+LIBS += -L$$TARGETSDIR -llexpair
+
 exists($$CPP_ROOT_DIR/targets/$$CHOICE_CODE/external--xpdf--xpdf) \#/
 {
  message(DEFINE\'ing USING_XPDF)
