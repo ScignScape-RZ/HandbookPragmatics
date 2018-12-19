@@ -788,6 +788,11 @@ QString Lexpair_Dialog::get_info_text(QString folder, QString topic, QString& de
 void Lexpair_Dialog::show_dg_info(QString text)
 {
  QString dt;
+
+ // // because "aux.txt" doesn't work ...
+ if(text == "aux")
+   text += "_";
+
  QString summary = get_info_text(DEPENDENCY_GRAMMAR_ABOUT_FOLDER, text, dt);
 
  QMessageBox* qmb = new QMessageBox;

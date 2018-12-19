@@ -1,2 +1,3 @@
-
+cc: coordinating conjunction
 @
+A cc is the relation between a conjunct and a preceding coordinating conjunction.
