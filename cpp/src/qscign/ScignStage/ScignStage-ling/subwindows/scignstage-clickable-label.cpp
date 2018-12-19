@@ -13,7 +13,8 @@ USING_QSNS(ScignStage)
 
 
 ScignStage_Clickable_Label::ScignStage_Clickable_Label(QWidget* parent, Qt::WindowFlags f)
-    : QLabel(parent) {
+    : QLabel(parent), cb_(nullptr)
+{
 
 }
 
@@ -22,6 +23,19 @@ ScignStage_Clickable_Label::~ScignStage_Clickable_Label() {}
 
 void ScignStage_Clickable_Label::mousePressEvent(QMouseEvent* event)
 {
- Q_EMIT(clicked());
+ if(cb_)
+ {
+  QObject* p = parent();
+  if(p)
+  {
+   while(p->parent())
+   {
+    p = p->parent();
+   }
+  }
+  cb_(p, text_data_);
+ }
+ else
+   Q_EMIT(clicked());
 }
 

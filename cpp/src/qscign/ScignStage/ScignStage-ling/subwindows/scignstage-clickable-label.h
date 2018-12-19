@@ -12,26 +12,40 @@
 
 #include "qsns.h"
 
+#include "accessors.h"
+
+#include <functional>
+
 //QSNS_(ScignStage)
 //?namespace QScign { namespace ScignStage {
 
 
 class ScignStage_Clickable_Label : public QLabel
 {
-    Q_OBJECT
+ Q_OBJECT
+
+ QString text_data_;
+
+ std::function<void(QObject*, QString)> cb_;
+ typedef std::function<void(QObject*, QString)> cb_type;
 
 public:
-    explicit ScignStage_Clickable_Label(QWidget* parent = Q_NULLPTR, Qt::WindowFlags f = Qt::WindowFlags());
-    ~ScignStage_Clickable_Label();
+
+ explicit ScignStage_Clickable_Label(QWidget* parent = nullptr,
+   Qt::WindowFlags f = Qt::WindowFlags());
+
+ ~ScignStage_Clickable_Label();
 
 
- QString path;
+ ACCESSORS(QString ,text_data)
+ ACCESSORS(cb_type ,cb)
+
 
 Q_SIGNALS:
-    void clicked();
+ void clicked();
 
 protected:
-    void mousePressEvent(QMouseEvent* event);
+  void mousePressEvent(QMouseEvent* event);
 
 };
 

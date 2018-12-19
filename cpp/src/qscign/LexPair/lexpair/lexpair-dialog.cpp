@@ -62,6 +62,19 @@
 
 #include "ScignStage-ling/subwindows/scignstage-clickable-label.h"
 
+
+void _lg_label_cb(QObject* obj, QString text)
+{
+ Lexpair_Dialog* dlg = qobject_cast<Lexpair_Dialog*>(obj);
+ dlg->lg_label_cb(text);
+}
+
+void _dg_label_cb(QObject* obj, QString text)
+{
+ Lexpair_Dialog* dlg = qobject_cast<Lexpair_Dialog*>(obj);
+ dlg->dg_label_cb(text);
+}
+
 Lexpair_Dialog::Lexpair_Dialog(QStringList sent, QWidget* parent)
   : QDialog(parent), left_id_(0),
     right_id_(0), medium_id_(0), pairs_count_(0), sxpr_(nullptr)
@@ -331,11 +344,9 @@ Lexpair_Dialog::Lexpair_Dialog(QStringList sent, QWidget* parent)
 
   ScignStage_Clickable_Label* scl = new ScignStage_Clickable_Label(this);
   scl->setText(qs);
+  scl->set_text_data(qs);
   scl->setAlignment(Qt::AlignCenter);
-
-  scl->setStyleSheet(
-   "ScignStage_Clickable_Label:hover{"
-     "background:white;border:1px ridge rgb(130, 40, 0);}");
+  scl->set_cb(&_lg_label_cb);
 
   link_grammar_layout_->addWidget(scl, i/10, i%10);
   ++i;
@@ -349,7 +360,7 @@ Lexpair_Dialog::Lexpair_Dialog(QStringList sent, QWidget* parent)
  dependency_grammar_frame_ = new QFrame;
  dependency_grammar_layout_ = new QGridLayout;
 
- int dg_max_col = 5;
+ int dg_max_col = 4;
 
  QStringList dg_links
  {
@@ -397,12 +408,9 @@ Lexpair_Dialog::Lexpair_Dialog(QStringList sent, QWidget* parent)
  {
   ScignStage_Clickable_Label* scl = new ScignStage_Clickable_Label(this);
   scl->setText(qs);
-  scl->setAlignment(Qt::AlignRight);
-
-  scl->setStyleSheet(
-   "ScignStage_Clickable_Label:hover{"
-     "background:white;border:1px ridge rgb(130, 40, 0);}");
-
+  scl->set_text_data(qs);
+  scl->set_cb(&_dg_label_cb);
+  scl->setAlignment(Qt::AlignLeft);
   dependency_grammar_layout_->addWidget(scl, j/dg_max_col, j%dg_max_col);
   ++j;
  }
@@ -420,6 +428,10 @@ Lexpair_Dialog::Lexpair_Dialog(QStringList sent, QWidget* parent)
  });
 
  //grammar_dock_layout_->addStretch();
+
+ grammar_frame_->setStyleSheet(
+    "ScignStage_Clickable_Label:hover{"
+      "background:white;border:1px ridge rgb(130, 40, 0);}");
 
  grammar_frame_->setLayout(grammar_layout_);
  grammar_dock_widget_->setWidget(grammar_frame_);
@@ -554,6 +566,7 @@ void Lexpair_Dialog::check_pair()
     QTableWidgetItem* mtwi = new QTableWidgetItem(sm);
     pair_list_->setItem(pairs_count_, 1, mtwi);
    }
+
    ++pairs_count_;
    goto cleanup;
   }
@@ -591,6 +604,38 @@ void Lexpair_Dialog::set_button_width(QPushButton* button)
    &opt, textSize, button));
 }
 
+
+void Lexpair_Dialog::lg_label_cb(QString text)
+{
+ QModelIndex qmi = pair_list_->currentIndex();
+ if(qmi.isValid())
+ {
+  if(qmi.column() > 0)
+    set_cell_text(qmi.row() + 1, qmi.column() + 1, text);
+ }
+}
+
+void Lexpair_Dialog::dg_label_cb(QString text)
+{
+ QModelIndex qmi = pair_list_->currentIndex();
+ if(qmi.isValid())
+ {
+  if(qmi.column() > 0)
+    set_cell_text(qmi.row() + 1, qmi.column() + 1, text);
+ }
+}
+
+
+void Lexpair_Dialog::set_cell_text(int r, int c, QString text)
+{
+ QTableWidgetItem* twi = pair_list_->item(r - 1, c - 1);
+ if(!twi)
+ {
+  twi = new QTableWidgetItem;
+  pair_list_->setItem(r - 1, c - 1, twi);
+ }
+ twi->setText(text);
+}
 
 
 Lexpair_Dialog::~Lexpair_Dialog()

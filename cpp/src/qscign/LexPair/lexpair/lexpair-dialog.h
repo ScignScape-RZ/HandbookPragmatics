@@ -120,6 +120,8 @@ class Lexpair_Dialog : public QDialog
  QFrame* mw_frame_;
  //QVBoxLayout* main_frame_layout_;
 
+ void set_cell_text(int r, int c, QString text);
+
  void add_pair_line(QPair<QString, QString>& words, QPair<quint8, quint8>& pos);
 
  // //
@@ -169,11 +171,14 @@ class Lexpair_Dialog : public QDialog
 
  void read_sxpr(QString qs);
 
-
 public:
 
  Lexpair_Dialog(QStringList sent, QWidget* parent);
  ~Lexpair_Dialog();
+
+
+ void lg_label_cb(QString text);
+ void dg_label_cb(QString text);
 
  static QStringList split(QString qs)
  {
