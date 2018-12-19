@@ -39,7 +39,7 @@
 
 #include <QtMultimedia/QMediaPlayer>
 
-#include <QPainter>
+#include <QMenu>
 #include <QPushButton>
 #include <QLabel>
 
@@ -73,6 +73,29 @@ void _dg_label_cb(QObject* obj, QString text)
 {
  Lexpair_Dialog* dlg = qobject_cast<Lexpair_Dialog*>(obj);
  dlg->dg_label_cb(text);
+}
+
+void _lg_info_cb(QObject* obj, QMouseEvent* event,
+  ScignStage_Clickable_Label* scl, QString text)
+{
+ Lexpair_Dialog* dlg = qobject_cast<Lexpair_Dialog*>(obj);
+ QMenu* qm = new QMenu(dlg);
+ qm->addAction("Show Info",
+   [dlg, scl]()
+ {
+  scl->unstyle();
+ });
+ qm->popup(event->globalPos());
+
+//
+// dlg->lg_label_cb(text);
+}
+
+void _dg_info_cb(QObject* obj, QMouseEvent* event,
+  ScignStage_Clickable_Label* scl, QString text)
+{
+// Lexpair_Dialog* dlg = qobject_cast<Lexpair_Dialog*>(obj);
+// dlg->dg_label_cb(text);
 }
 
 Lexpair_Dialog::Lexpair_Dialog(QStringList sent, QWidget* parent)
@@ -346,7 +369,10 @@ Lexpair_Dialog::Lexpair_Dialog(QStringList sent, QWidget* parent)
   scl->setText(qs);
   scl->set_text_data(qs);
   scl->setAlignment(Qt::AlignCenter);
-  scl->set_cb(&_lg_label_cb);
+  scl->set_cb({&_lg_label_cb, &_lg_info_cb});
+
+  scl->setStyleSheet("*[styled_info=\"true\"] {"
+    "background-color:yellow;}");
 
   link_grammar_layout_->addWidget(scl, i/10, i%10);
   ++i;
@@ -409,7 +435,7 @@ Lexpair_Dialog::Lexpair_Dialog(QStringList sent, QWidget* parent)
   ScignStage_Clickable_Label* scl = new ScignStage_Clickable_Label(this);
   scl->setText(qs);
   scl->set_text_data(qs);
-  scl->set_cb(&_dg_label_cb);
+  scl->set_cb({&_dg_label_cb, &_dg_info_cb});
   scl->setAlignment(Qt::AlignLeft);
   dependency_grammar_layout_->addWidget(scl, j/dg_max_col, j%dg_max_col);
   ++j;
@@ -431,7 +457,14 @@ Lexpair_Dialog::Lexpair_Dialog(QStringList sent, QWidget* parent)
 
  grammar_frame_->setStyleSheet(
     "ScignStage_Clickable_Label:hover{"
-      "background:white;border:1px ridge rgb(130, 40, 0);}");
+      "background-color:white;border:1px ridge rgb(130, 40, 0);}"
+//    "ScignStage_Clickable_Label:*[styled_info=\"true\"] {"
+//      "background-color:yellow;}" //border:1px ridge rgb(130, 40, 200);}"rgb(130, 240, 200)
+//    "ScignStage_Clickable_Label*[styled_info=\"false\"] {"
+//      "background-color:red;}" //border:1px ridge rgb(130, 40, 200);}"rgb(130, 240, */200)
+//    "ScignStage_Clickable_Label {"
+//      "background-color:blue;}" //border:1px ridge rgb(130, 40, 200);}"rgb(130, 240, 200)
+    );
 
  grammar_frame_->setLayout(grammar_layout_);
  grammar_dock_widget_->setWidget(grammar_frame_);

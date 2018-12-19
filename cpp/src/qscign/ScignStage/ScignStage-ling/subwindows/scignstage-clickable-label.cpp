@@ -7,23 +7,32 @@
 
 #include "scignstage-clickable-label.h"
 
+#include <QMouseEvent>
+#include <QStyle>
+
 #include "qsns.h"
 
 USING_QSNS(ScignStage)
 
 
 ScignStage_Clickable_Label::ScignStage_Clickable_Label(QWidget* parent, Qt::WindowFlags f)
-    : QLabel(parent), cb_(nullptr)
+    : QLabel(parent), cb_({nullptr, nullptr})
 {
-
+ setProperty("styled_info", false);
 }
 
 ScignStage_Clickable_Label::~ScignStage_Clickable_Label() {}
 
+void ScignStage_Clickable_Label::unstyle()
+{
+ setProperty("styled_info", false);
+ style()->unpolish(this);
+ style()->polish(this);
+}
 
 void ScignStage_Clickable_Label::mousePressEvent(QMouseEvent* event)
 {
- if(cb_)
+ if( (cb_.first) || (cb_.second) )
  {
   QObject* p = parent();
   if(p)
@@ -33,9 +42,17 @@ void ScignStage_Clickable_Label::mousePressEvent(QMouseEvent* event)
     p = p->parent();
    }
   }
-  cb_(p, text_data_);
+  if( (cb_.first) && (event->button() == Qt::LeftButton))
+    (cb_.first)(p, text_data_);
+  else if(cb_.second)
+  {
+   setProperty("styled_info", true);
+   style()->unpolish(this);
+   style()->polish(this);
+   (cb_.second)(p, event, this, text_data_);
+  }
  }
  else
-   Q_EMIT(clicked());
+   Q_EMIT(clicked(event));
 }
 
