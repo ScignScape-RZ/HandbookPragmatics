@@ -180,6 +180,10 @@ public:
  void lg_label_cb(QString text);
  void dg_label_cb(QString text);
 
+ void show_lg_info(QString text);
+ void show_dg_info(QString text);
+ void auto_insert(QString text);
+
  static QStringList split(QString qs)
  {
   QStringList result = qs.simplified().split(' ');

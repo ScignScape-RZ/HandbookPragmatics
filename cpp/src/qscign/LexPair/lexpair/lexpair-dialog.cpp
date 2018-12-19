@@ -81,21 +81,46 @@ void _lg_info_cb(QObject* obj, QMouseEvent* event,
  Lexpair_Dialog* dlg = qobject_cast<Lexpair_Dialog*>(obj);
  QMenu* qm = new QMenu(dlg);
  qm->addAction("Show Info",
-   [dlg, scl]()
+   [dlg, scl, text]()
  {
   scl->unstyle();
+  dlg->show_lg_info(text);
  });
+ qm->addAction("Auto Insert",
+   [dlg, scl, text]()
+ {
+  scl->unstyle();
+  dlg->auto_insert(text);
+ });
+
  qm->popup(event->globalPos());
 
 //
 // dlg->lg_label_cb(text);
 }
 
+
+
 void _dg_info_cb(QObject* obj, QMouseEvent* event,
   ScignStage_Clickable_Label* scl, QString text)
 {
-// Lexpair_Dialog* dlg = qobject_cast<Lexpair_Dialog*>(obj);
-// dlg->dg_label_cb(text);
+ Lexpair_Dialog* dlg = qobject_cast<Lexpair_Dialog*>(obj);
+ QMenu* qm = new QMenu(dlg);
+ qm->addAction("Show Info",
+   [dlg, scl, text]()
+ {
+  scl->unstyle();
+  dlg->show_dg_info(text);
+ });
+ qm->addAction("Auto Insert",
+   [dlg, scl, text]()
+ {
+  scl->unstyle();
+  dlg->auto_insert(text);
+ });
+
+ qm->popup(event->globalPos());
+
 }
 
 Lexpair_Dialog::Lexpair_Dialog(QStringList sent, QWidget* parent)
@@ -670,6 +695,83 @@ void Lexpair_Dialog::set_cell_text(int r, int c, QString text)
  twi->setText(text);
 }
 
+
+QHBoxLayout* add_minimize_frame(QMessageBox* qmb, std::function<void()> fn)
+{
+ for(QAbstractButton* qab: qmb->buttons())
+ {
+  if (qmb->buttonRole(qab) == QMessageBox::ActionRole)
+  {
+   qab->click();
+   break;
+  }
+ }
+
+ QPushButton* minimize_button = new QPushButton(QChar(0x2735), qmb);
+ QLabel* minimize_label = new QLabel(qmb);
+ QHBoxLayout* result = new QHBoxLayout;
+ minimize_label->setText("Minimize");
+ minimize_button->setStyleSheet(colorful_small_button_style_sheet_());
+
+ QApplication::connect(minimize_button, &QPushButton::clicked, fn);
+
+ QFrame* fr = new QFrame;
+
+ fr->setFrameStyle(QFrame::Sunken);
+ fr->setFrameShape(QFrame::Panel);
+
+ QHBoxLayout* fr_layout = new QHBoxLayout;
+ fr_layout->addWidget(minimize_button);
+ fr_layout->addWidget(minimize_label);
+
+ fr->setLayout(fr_layout);
+
+ result->addWidget(fr);
+ result->addStretch();
+
+ if(QGridLayout* gl = dynamic_cast<QGridLayout*>(qmb->layout()))
+ {
+  gl->addLayout(result, gl->rowCount(), 0, 1, gl->columnCount());
+ }
+ else
+ {
+  //qmb->layout()->addLayout(result);
+ }
+
+ return result;
+}
+
+
+void Lexpair_Dialog::show_lg_info(QString text)
+{
+ QMessageBox* qmb = new QMessageBox;
+ qmb->setAttribute(Qt::WA_DeleteOnClose);
+ qmb->setText(text);
+ qmb->setIcon(QMessageBox::Information);
+ qmb->setWindowTitle(QString("Dependency: %1").arg(text));
+ qmb->setDetailedText("...");
+ qmb->addButton("Ok", QMessageBox::YesRole);
+ add_minimize_frame(qmb, [qmb]()
+ {
+  qmb->setWindowState(Qt::WindowMinimized);
+ });
+ qmb->setModal(false);
+ qmb->open(this, "");
+}
+
+void Lexpair_Dialog::show_dg_info(QString text)
+{
+
+}
+
+void Lexpair_Dialog::auto_insert(QString text)
+{
+ int cr = pair_list_->currentRow();
+ if(cr != -1)
+ {
+  set_cell_text(cr + 1, 5, text);
+ }
+}
 
 Lexpair_Dialog::~Lexpair_Dialog()
 {
