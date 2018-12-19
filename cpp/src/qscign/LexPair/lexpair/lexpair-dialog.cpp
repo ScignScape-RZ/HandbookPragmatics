@@ -11,6 +11,10 @@
 
 #include "lexpair/lexpair-sxpr.h"
 
+#include "textio.h"
+
+USING_KANS(TextIO)
+
 #include <QApplication>
 
 #include <QHBoxLayout>
@@ -387,8 +391,9 @@ Lexpair_Dialog::Lexpair_Dialog(QStringList sent, QWidget* parent)
  int i = 0;
  for(QString qs : lg_links)
  {
-//  QToolButton* b = new QToolButton(this);
-//  b->setText(qs);
+  // //  Uncomment to regenerate files ...
+//  QString path = QString("%1/%2.txt").arg(LINK_GRAMMAR_ABOUT_FOLDER).arg(qs);
+//  save_file(path, "\n@\n");
 
   ScignStage_Clickable_Label* scl = new ScignStage_Clickable_Label(this);
   scl->setText(qs);
@@ -457,6 +462,10 @@ Lexpair_Dialog::Lexpair_Dialog(QStringList sent, QWidget* parent)
  int j = 0;
  for(QString qs : dg_links)
  {
+  // //  Uncomment to regenerate files ...
+//  QString path = QString("%1/%2.txt").arg(DEPENDENCY_GRAMMAR_ABOUT_FOLDER).arg(qs);
+//  save_file(path, "\n@\n");
+
   ScignStage_Clickable_Label* scl = new ScignStage_Clickable_Label(this);
   scl->setText(qs);
   scl->set_text_data(qs);
@@ -744,12 +753,15 @@ QHBoxLayout* add_minimize_frame(QMessageBox* qmb, std::function<void()> fn)
 
 void Lexpair_Dialog::show_lg_info(QString text)
 {
+ QString dt;
+ QString summary = get_info_text(LINK_GRAMMAR_ABOUT_FOLDER, text, dt);
+
  QMessageBox* qmb = new QMessageBox;
  qmb->setAttribute(Qt::WA_DeleteOnClose);
- qmb->setText(text);
+ qmb->setText(summary);
  qmb->setIcon(QMessageBox::Information);
- qmb->setWindowTitle(QString("Dependency: %1").arg(text));
- qmb->setDetailedText("...");
+ qmb->setWindowTitle(QString("Link: %1").arg(text));
+ qmb->setDetailedText(dt);
  qmb->addButton("Ok", QMessageBox::YesRole);
  add_minimize_frame(qmb, [qmb]()
  {
@@ -759,9 +771,38 @@ void Lexpair_Dialog::show_lg_info(QString text)
  qmb->open(this, "");
 }
 
+QString Lexpair_Dialog::get_info_text(QString folder, QString topic, QString& details)
+{
+ QString path = QString("%1/%2.txt").arg(folder).arg(topic);
+ QString text = load_file(path);
+ int index = text.indexOf("\n@\n");
+ if(index != -1)
+ {
+  details = text.mid(index + 3);
+  return text.left(index);
+ }
+ details = text;
+ return topic;
+}
+
 void Lexpair_Dialog::show_dg_info(QString text)
 {
+ QString dt;
+ QString summary = get_info_text(DEPENDENCY_GRAMMAR_ABOUT_FOLDER, text, dt);
 
+ QMessageBox* qmb = new QMessageBox;
+ qmb->setAttribute(Qt::WA_DeleteOnClose);
+ qmb->setText(summary);
+ qmb->setIcon(QMessageBox::Information);
+ qmb->setWindowTitle(QString("Dependency: %1").arg(text));
+ qmb->setDetailedText(dt);
+ qmb->addButton("Ok", QMessageBox::YesRole);
+ add_minimize_frame(qmb, [qmb]()
+ {
+  qmb->setWindowState(Qt::WindowMinimized);
+ });
+ qmb->setModal(false);
+ qmb->open(this, "");
 }
 
 void Lexpair_Dialog::auto_insert(QString text)

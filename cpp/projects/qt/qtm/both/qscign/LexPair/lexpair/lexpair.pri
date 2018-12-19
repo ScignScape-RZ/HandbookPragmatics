@@ -22,6 +22,8 @@ CONFIG += no_keywords
 DEFINES += USE_KANS
 DEFINES += USE_RZNS
 
+DEFINES += DEPENDENCY_GRAMMAR_ABOUT_FOLDER=\\\"$$CPP_ROOT_DIR/about/dependency-grammar\\\"
+DEFINES += LINK_GRAMMAR_ABOUT_FOLDER=\\\"$$CPP_ROOT_DIR/about/link-grammar\\\"
 
 HEADERS += \
   $$SRC_DIR/lexpair-dialog.h \
