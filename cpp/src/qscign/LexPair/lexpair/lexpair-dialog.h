@@ -87,7 +87,7 @@ class Lexpair_Dialog : public QDialog
  QPushButton* rr_paren_button_;
  QPushButton* sxpr_cc_button_;
  QPushButton* sxpr_read_button_;
- QLineEdit* sxpr_line_edit_;
+ QPlainTextEdit* sxpr_text_edit_;
 
  QVBoxLayout* main_layout_;
 
@@ -131,19 +131,6 @@ class Lexpair_Dialog : public QDialog
 
  void clear_buttons();
 
-// struct Dock_Link
-// {
-//  //quint8 ;
-//  QString left;
-//  QString right;
-//  QPair<quint8, quint8> rwl;
-
-//  QPair<QPair<QString, QString>, QPair<quint8, quint8>> to_pr_pr() const
-//  {
-//   return { {left, right}, rwl };
-//  }
-// };
-
  struct Pair_Row
  {
   QTableWidgetItem* twi;
@@ -173,6 +160,10 @@ class Lexpair_Dialog : public QDialog
 
  void read_sxpr(QString qs);
 
+ void check_sxpr_balance(QChar qch, int pos);
+ void check_paren_balance(QChar qch, int pos, int max,
+   std::function<void(int, QChar&)> fn, std::function<void(int, int)> cb);
+
 public:
 
  Lexpair_Dialog(QStringList sent, QWidget* parent);
@@ -184,7 +175,7 @@ public:
 
  void show_lg_info(QString text);
  void show_dg_info(QString text);
- void auto_insert(QString text);
+ void auto_insert(QString text, QString pm = QString());
 
  static QStringList split(QString qs)
  {

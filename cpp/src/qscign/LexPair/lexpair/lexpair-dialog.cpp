@@ -67,6 +67,13 @@ USING_KANS(TextIO)
 #include "ScignStage-ling/subwindows/scignstage-clickable-label.h"
 
 
+void set_height(QPlainTextEdit* qpte, int rows)
+{
+ QFontMetrics qfm(qpte->font());
+ int h = qfm.lineSpacing();
+ qpte->setFixedHeight(rows * h + 10);
+}
+
 void _lg_label_cb(QObject* obj, QString text)
 {
  Lexpair_Dialog* dlg = qobject_cast<Lexpair_Dialog*>(obj);
@@ -95,6 +102,18 @@ void _lg_info_cb(QObject* obj, QMouseEvent* event,
  {
   scl->unstyle();
   dlg->auto_insert(text);
+ });
+ qm->addAction("Auto Insert (+-)",
+   [dlg, scl, text]()
+ {
+  scl->unstyle();
+  dlg->auto_insert(text, "+-");
+ });
+ qm->addAction("Auto Insert (-+)",
+   [dlg, scl, text]()
+ {
+  scl->unstyle();
+  dlg->auto_insert(text, "-+");
  });
 
  qm->popup(event->globalPos());
@@ -192,14 +211,9 @@ Lexpair_Dialog::Lexpair_Dialog(QStringList sent, QWidget* parent)
   if(sxpr_mode_button_->isChecked())
   {
    QString text = sentence_.at(-id-2);
-   sxpr_line_edit_->setText(sxpr_line_edit_->text() + text + " ");
+   sxpr_text_edit_->setPlainText(sxpr_text_edit_->toPlainText() + text + " ");
    return;
   }
-//  if(left_id_ == id)
-//  {
-//   left_id_ = 0;
-//   right_id_ = 0;
-//  }
   if(left_id_ == 0)
   {
    left_id_ = id;
@@ -257,7 +271,7 @@ Lexpair_Dialog::Lexpair_Dialog(QStringList sent, QWidget* parent)
  sxpr_layout_->addWidget(sxpr_clear_button_, 0, 1);
  connect(sxpr_clear_button_, &QPushButton::clicked, [this]
  {
-  sxpr_line_edit_->setText("");
+  sxpr_text_edit_->setPlainText("");
   clear_buttons();
  });
 
@@ -267,7 +281,7 @@ Lexpair_Dialog::Lexpair_Dialog(QStringList sent, QWidget* parent)
  sxpr_layout_->addWidget(ll_paren_button_, 0, 2);
  connect(ll_paren_button_, &QPushButton::clicked, [this]
  {
-  sxpr_line_edit_->setText(sxpr_line_edit_->text().prepend("( "));
+  sxpr_text_edit_->setPlainText(sxpr_text_edit_->toPlainText().prepend("( "));
  });
 
  left_paren_button_ = new QPushButton("(", this);
@@ -276,7 +290,7 @@ Lexpair_Dialog::Lexpair_Dialog(QStringList sent, QWidget* parent)
  sxpr_layout_->addWidget(left_paren_button_, 0, 3);
  connect(left_paren_button_, &QPushButton::clicked, [this]
  {
-  sxpr_line_edit_->setText(sxpr_line_edit_->text() + "( ");
+  sxpr_text_edit_->setPlainText(sxpr_text_edit_->toPlainText() + "( ");
  });
 
  lend_paren_button_ = new QPushButton("( ->", this);
@@ -285,9 +299,9 @@ Lexpair_Dialog::Lexpair_Dialog(QStringList sent, QWidget* parent)
  sxpr_layout_->addWidget(lend_paren_button_, 0, 4);
  connect(lend_paren_button_, &QPushButton::clicked, [this]
  {
-  QString qs = sxpr_line_edit_->text();
-  qs.replace(sxpr_line_edit_->cursorPosition(), 0, "( ");
-  sxpr_line_edit_->setText(qs);
+  QString qs = sxpr_text_edit_->toPlainText();
+  qs.replace(sxpr_text_edit_->textCursor().position(), 0, "( ");
+  sxpr_text_edit_->setPlainText(qs);
  });
 
  right_paren_button_ = new QPushButton(")", this);
@@ -296,9 +310,9 @@ Lexpair_Dialog::Lexpair_Dialog(QStringList sent, QWidget* parent)
  sxpr_layout_->addWidget(right_paren_button_, 0, 5);
  connect(right_paren_button_, &QPushButton::clicked, [this]
  {
-  QString qs = sxpr_line_edit_->text();
-  qs.replace(sxpr_line_edit_->cursorPosition(), 0, ") ");
-  sxpr_line_edit_->setText(qs);
+  QString qs = sxpr_text_edit_->toPlainText();
+  qs.replace(sxpr_text_edit_->textCursor().position(), 0, ") ");
+  sxpr_text_edit_->setPlainText(qs);
  });
 
  rr_paren_button_ = new QPushButton(") ->", this);
@@ -307,7 +321,7 @@ Lexpair_Dialog::Lexpair_Dialog(QStringList sent, QWidget* parent)
  sxpr_layout_->addWidget(rr_paren_button_, 0, 6);
  connect(rr_paren_button_, &QPushButton::clicked, [this]
  {
-  sxpr_line_edit_->setText(sxpr_line_edit_->text() + ") ");
+  sxpr_text_edit_->setPlainText(sxpr_text_edit_->toPlainText() + ") ");
  });
 
  sxpr_cc_button_ = new QPushButton("Copy", this);
@@ -316,7 +330,7 @@ Lexpair_Dialog::Lexpair_Dialog(QStringList sent, QWidget* parent)
  sxpr_layout_->addWidget(sxpr_cc_button_, 0, 7);
  connect(sxpr_cc_button_, &QPushButton::clicked, [this]
  {
-  QApplication::clipboard()->setText(sxpr_line_edit_->text().simplified());
+  QApplication::clipboard()->setText(sxpr_text_edit_->toPlainText().simplified());
  });
 
  sxpr_read_button_ = new QPushButton("Read", this);
@@ -325,11 +339,24 @@ Lexpair_Dialog::Lexpair_Dialog(QStringList sent, QWidget* parent)
  sxpr_layout_->addWidget(sxpr_read_button_, 0, 8);
  connect(sxpr_read_button_, &QPushButton::clicked, [this]
  {
-  read_sxpr(sxpr_line_edit_->text().simplified());
+  read_sxpr(sxpr_text_edit_->toPlainText().simplified());
  });
 
- sxpr_line_edit_ = new QLineEdit(this);
- sxpr_layout_->addWidget(sxpr_line_edit_, 1, 1, 1, 8);
+ sxpr_text_edit_ = new QPlainTextEdit(this);
+ sxpr_layout_->addWidget(sxpr_text_edit_, 1, 1, 1, 8);
+
+ set_height(sxpr_text_edit_, 1);
+
+ connect(sxpr_text_edit_, &QPlainTextEdit::cursorPositionChanged, [this]()
+ {
+  //int pos =
+  QTextCursor qtc = sxpr_text_edit_->textCursor();//.position();
+  QChar qch;
+  if(! qtc.atBlockEnd() )
+    qch = sxpr_text_edit_->toPlainText().at(qtc.position());
+  else qch = '\0';
+    check_sxpr_balance(qch, qtc.position());
+ });
 
  sxpr_layout_->setColumnStretch(9, 1);
 
@@ -538,6 +565,53 @@ Lexpair_Dialog::Lexpair_Dialog(QStringList sent, QWidget* parent)
 
 
  //setLayout(main_layout_);
+}
+
+void Lexpair_Dialog::check_sxpr_balance(QChar qch, int pos)
+{
+ check_paren_balance(qch, pos, sxpr_text_edit_->toPlainText().size(),
+   [this](int i, QChar& result)
+   {
+    result = sxpr_text_edit_->toPlainText().at(i);
+   },
+   [](int i1, int i2)
+   {
+    qDebug() << ": " << i1 << ", " << i2;
+   });
+}
+
+void Lexpair_Dialog::check_paren_balance(QChar qch, int pos, int max,
+  std::function<void(int, QChar&)> fn, std::function<void(int, int)> cb)
+{
+ static QMap<QChar, QPair<QChar, qint8>> static_map {{
+  { '(', {')', +1} },
+  { ')', {'(', -1} },
+   }};
+
+ QPair<QChar, qint8> pr = static_map.value(qch);
+ int dir = pr.second;
+ if(dir == 0)
+   return;
+
+ QChar current;
+ int count = 0;
+ int p = pos + dir;
+ while((p >= 0) && (p <= max))
+ {
+  fn(p, current);
+  if(current == pr.first)
+  {
+   if(count == 0)
+   {
+    cb(pos, p);
+    break;
+   }
+   --count;
+  }
+  else if(current == qch)
+    ++count;
+  p += dir;
+ }
 }
 
 struct Word_Node
@@ -810,12 +884,22 @@ void Lexpair_Dialog::show_dg_info(QString text)
  qmb->open(this, "");
 }
 
-void Lexpair_Dialog::auto_insert(QString text)
+void Lexpair_Dialog::auto_insert(QString text, QString pm)
 {
  int cr = pair_list_->currentRow();
  if(cr != -1)
  {
   set_cell_text(cr + 1, 5, text);
+  if(pm == "+-")
+  {
+   set_cell_text(cr + 1, 3, text + "+");
+   set_cell_text(cr + 1, 4, text + "-");
+  }
+  else if(pm == "-+")
+  {
+   set_cell_text(cr + 1, 3, text + "-");
+   set_cell_text(cr + 1, 4, text + "+");
+  }
  }
 }
 
