@@ -160,6 +160,7 @@ class Lexpair_Dialog : public QDialog
 
  void read_sxpr(QString qs);
 
+ void sxpr_highlight_balanced(int i1, int i2);
  void check_sxpr_balance(QChar qch, int pos);
  void check_paren_balance(QChar qch, int pos, int max,
    std::function<void(int, QChar&)> fn, std::function<void(int, int)> cb);

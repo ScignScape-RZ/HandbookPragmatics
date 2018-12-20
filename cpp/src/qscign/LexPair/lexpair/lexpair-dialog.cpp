@@ -47,7 +47,7 @@ USING_KANS(TextIO)
 #include <QPushButton>
 #include <QLabel>
 
-#include <QToolButton>
+//#include <QExtraSelection>
 
 #include <QMessageBox>
 #include <QDebug>
@@ -574,10 +574,36 @@ void Lexpair_Dialog::check_sxpr_balance(QChar qch, int pos)
    {
     result = sxpr_text_edit_->toPlainText().at(i);
    },
-   [](int i1, int i2)
+   [this](int i1, int i2)
    {
-    qDebug() << ": " << i1 << ", " << i2;
+    sxpr_highlight_balanced(i1, i2);
+    //qDebug() << ": " << i1 << ", " << i2;
    });
+}
+
+void Lexpair_Dialog::sxpr_highlight_balanced(int i1, int i2)
+{
+ int m = qMin(i1, i2);
+ int x = qMax(i1, i2);
+
+ QTextCursor mc = QTextCursor(sxpr_text_edit_->document());
+ mc.setPosition(m);
+ mc.movePosition(QTextCursor::NextCharacter, QTextCursor::KeepAnchor);
+
+ QTextCursor xc = QTextCursor(sxpr_text_edit_->document());
+ xc.setPosition(x);
+ xc.movePosition(QTextCursor::NextCharacter, QTextCursor::KeepAnchor);
+
+ QTextEdit::ExtraSelection esm;
+ esm.cursor = mc;
+ esm.format.setUnderlineStyle(QTextCharFormat::SingleUnderline);
+
+ QTextEdit::ExtraSelection esx;
+ esx.cursor = xc;
+ esx.format.setUnderlineStyle(QTextCharFormat::SingleUnderline);
+
+ sxpr_text_edit_->setExtraSelections({esm, esx});
+
 }
 
 void Lexpair_Dialog::check_paren_balance(QChar qch, int pos, int max,
