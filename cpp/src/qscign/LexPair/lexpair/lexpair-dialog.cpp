@@ -97,6 +97,16 @@ void _lg_info_cb(QObject* obj, QMouseEvent* event,
   scl->unstyle();
   dlg->show_lg_info(text);
  });
+
+ if(scl->property("styled_info").toBool())
+ {
+  qm->addAction("Unmark",
+    [dlg, scl, text]()
+  {
+   scl->unstyle();
+  });
+ }
+
  qm->addAction("Auto Insert",
    [dlg, scl, text]()
  {
@@ -135,6 +145,16 @@ void _dg_info_cb(QObject* obj, QMouseEvent* event,
   scl->unstyle();
   dlg->show_dg_info(text);
  });
+
+ if(scl->property("styled_info").toBool())
+ {
+  qm->addAction("Unmark",
+    [dlg, scl, text]()
+  {
+   scl->unstyle();
+  });
+ }
+
  qm->addAction("Auto Insert",
    [dlg, scl, text]()
  {
@@ -596,11 +616,24 @@ void Lexpair_Dialog::sxpr_highlight_balanced(int i1, int i2)
 
  QTextEdit::ExtraSelection esm;
  esm.cursor = mc;
- esm.format.setUnderlineStyle(QTextCharFormat::SingleUnderline);
+ if(m == i2)
+ {
+  esm.format.setUnderlineStyle(QTextCharFormat::SingleUnderline);
+  esm.format.setUnderlineColor(Qt::magenta);
+ }
+ esm.format.setForeground(Qt::darkMagenta);
+ esm.format.setFontWeight(QFont::Bold);
 
  QTextEdit::ExtraSelection esx;
  esx.cursor = xc;
- esx.format.setUnderlineStyle(QTextCharFormat::SingleUnderline);
+ if(x == i2)
+ {
+  esx.format.setUnderlineStyle(QTextCharFormat::SingleUnderline);
+  esx.format.setUnderlineColor(Qt::green);
+ }
+ esx.format.setForeground(Qt::darkGreen);
+ esm.format.setFontWeight(QFont::Bold);
+
 
  sxpr_text_edit_->setExtraSelections({esm, esx});
 
