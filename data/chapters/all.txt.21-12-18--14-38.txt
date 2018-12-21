@@ -1,0 +1,4053 @@
+1 a 1 26 <>
+# 1
+Even KEN knows it's unethical.
+1 a/ 1 26 <>
+# 1
+Ken is the least likely to know it's unethical.
+1 b 1 26 <[in a recommendation letter for a philosophy position]>
+# 1
+Jones dresses well and writes grammatical English.
+1 b/ 1 26 <[in a recommendation letter for a philosophy position]>
+# 1
+Jones is no good at philosophy.
+1 c 1 26 <>
+# 1
+The cat is in the hamper or under the bed.
+1 c/ 1 26 <>
+# 1
+I don't know for a fact that the cat is under the bed.
+6 a 1 33 <>
+# 2
+: I1
+It's not WARM, it's HOT!
+6 b 1 33 <>
+# 2
+: I2
+You're right, it's not warm. It's HOT!
+10 a1 1 40 <>
+# 3
+He got the machine to stop.
+10 a2 1 40 <>
+# 3
+He stopped the machine.
+10 b1 1 40 <>
+# 3
+Her blouse was pale red.
+10 b2 1 40 <>
+# 3
+Her blouse was pink.
+10 c1 1 40 <>
+# 3
+She wants her to win.
+10 c2 1 40 <>
+# 3
+She wants PRO to win.
+10 d1 1 40 <>
+# 3
+I am going to marry you.
+10 d2 1 40 <>
+# 3
+I will marry you.
+10 e1 1 40 <>(the jail, the school)
+# 3
+My brother went to the church.
+10 e2 1 40 <>(jail, school)
+# 3
+My brother went to church.
+10 f1 1 40 <>
+# 3
+It's not impossible that you will solve the problem.
+10 f2 1 40 <>
+# 3
+It's possible that you will solve the problem.
+10 g1 1 40 <>
+# 3
+That's my father's wife.
+10 g2 1 40 <>
+# 3
+That's my mother.
+11 a 1 41 <>
+# 4
+They got married and (they) had a child.
+11 b 1 41 <>
+# 4
+They had a child and (they) got married.
+11 c 1 41 <>
+# 4
+They got married and then (they) had a child.
+12 a 1 42 <>
+# 5
+If they got married and had a child, their parents will be pleased, but if they had a child and got married their parents will not be pleased.
+12 b 1 42 <>
+# 5
+They didn't get married and have a child; they had a child and got married.
+12 c 1 42 <>
+# 5
+It's more acceptable to get married and have a child than to have a child and get married.
+++
+13 A 1 43 <>
+# 6
+Do you have two children?
+13 B1 1 43 <>
+# 6
+No, three.
+13 B2 1 43 <>
+# 6
+? ?
+Yes, (in fact) three.
+14 A 1 43 <>
+# 7
+Did many of the guests leave?
+14 B1 1 43 <>
+# 7
+? ?
+No, all of them.
+14 B2 1 43 <>
+# 7
+Yes, (in fact) all of them.
+--
+15 a 1 43 <#>
+# 8
+Neither of us liked the movie -- she adored it and I hated it.
+15 b 1 43 <>
+# 8
+Neither of us has three kids -- she has two and I have four.
+16 a 1 44 <>
+# 9
+I haven't had breakfast {today}.
+16 b 1 44 <>
+# 9
+John and Mary are married {to each other}.
+16 c 1 44 <>
+# 9
+They had a baby and they got married {in that order}.
+16 d 1 44 <>
+# 9
+Robin ate the shrimp and {as a result} got food poisoning.
+16 e 1 44 <>
+# 9
+Everybody {in our pragmatics class} solved the riddle.
+17 a 1 44 <>
+# 10
+John and Mary are married, but not to each other.
+17 b 1 44 <>
+# 10
+They had a child and got married, but not necessarily in that order.
+18 a 1 45 <>
+# 11
+If Annie got married and had a baby, her grandfather will be happy.
+18 b 1 45 <>
+# 11
+If Annie had a baby and got married, her grandfather will not be happy.
+20 a 1 46 <>
+# 12
+If some of my friends come to the party, I'll be happy -- but if all of them do, I'll be in trouble.
+20 b 1 46 <>
+# 12
+/ If it's warm, we'll lie out in the sun. But if it's {very warm/hot}, we'll go inside and sit in front of the air-conditioner.
+If it's warm, we'll lie out in the sun. But if it's hot, we'll go inside and sit in front of the air-conditioner.
+20 c 1 46 <>
+# 12
+If you're convicted of a felony, you'll spend at least a year in jail. And if you're convicted of murder, you'll be executed.
+20 d 1 46 <>
+# 12
+If you're injured, the paramedics will take you to the nearest trauma center. But if you're fatally injured, you'll be taken to the morgue.
+21 a 1 46 <>
+# 13
+Because he drank three beers and drove home, he went to jail.
+21 b 1 46 <>
+# 13
+Because he earns $40,000, he can't afford a house in Palo Alto.
+21 c 1 46 <>
+# 13
+Because he's such a fine friend, I've struck him off my list.
+21 d 1 46 <>
+# 13
+Because the police recovered some of the missing gold, they will later recover it all.
+22 _ 1 46 <>
+# 14
+/ Because the police recovered some of the gold, the thieves are expected to return later #(for the rest).
+Because the police recovered some of the gold, the thieves are expected to return later.
+23 a 1 47 <>
+# 15
+/ Because it's warm out [i.e. because it's warm but not hot], you should still wear a long-sleeved shirt.
+? #
+Because it's warm out you should still wear a long-sleeved shirt.
+23 b 1 47 <>
+# 15
+/ Because you ate some of your spinach [i.e. and not all], you don't get dessert.
+? #
+Because you ate some of your spinach, you don't get dessert.
+9 a' 2 70 <I am asked by someone whom I just met>
+# 16
+Are you going to lunch?
+9 b' 2 70 <I reply>
+# 16
+No, I've got to pick up my sister.
+6 a 3 90 <>cf. *Alfred claimed that the book was written by Fred and herself.
+# 17
+Nancy claimed that the book was written by Fred and herself.
+6 b 3 90 <>/*herself
+# 17
+This book was written by Fred and myself
+7 _ 3 90 <>
+# 18
+I won't eat any because, frankly, it's terrible.
+9 _ 3 92 <>
+# 19
+/ I'd like you to (please) take out the garbage.
+I'd like you to take out the garbage.
+10 _ 3 92 <>
+# 20
+/ Can you (please) take out the garbage?
+Can you take out the garbage?
+11 _ 3 93 <>
+# 21
+? ?
+I desire for you to please take out the garbage
+12 _ 3 93 <>
+# 22
+? ?
+Are you able to please take out the garbage
+1 a 4 100 <>
+# 23
+The most famous drummer for the Beatles wrote War and Peace.
+1 b 4 100 <>
+# 23
+Jimmy Smits's boyhood hero wrote War and Peace.
+1 c 4 100 <>
+# 23
+That man over there wrote War and Peace.
+2 _ 4 100 <>
+# 24
+Someone wrote War and Peace.
+1 a 4 100 <>
+# 23
+The most famous drummer for the Beatles wrote War and Peace.
+1 b 4 100 <>
+# 23
+Jimmy Smits's boyhood hero wrote War and Peace.
+1 c 4 100 <>
+# 23
+That man over there wrote War and Peace.
+2 _ 4 100 <>
+# 24
+Someone wrote War and Peace.
+3 a 4 100 <>
+# 25
+Ringo Starr is a stage-name.
+3 b 4 100 <>
+# 25
+The most famous drummer of the Beatles is a stage-name.
+3 c 4 100 <>
+# 25
+Richard Starkey's more famous alias is a stage-name.
+4 a 4 101 <>
+# 26
+James believes that Ringo Starr is a solo singer.
+4 b 4 101 <>
+# 26
+James believes that the Beatles' most famous drummer is a solo singer.
+5 a 4 101 <>
+# 27
+James believes that [()] is a solo singer.
+6 a 4 102 <>
+# 28
+The Beatles' most famous drummer is Ringo Starr.
+6 b 4 102 <>
+# 28
+Ringo Starr is Ringo Starr.
+8 a 4 102 <>
+# 29
+James believes that S1 is a solo singer.
+8 b 4 102 <>
+# 29
+James believes that S2 is a solo singer.
+13 a 4 106 <>
+# 30
+James believes that Ringo Starr is a solo singer.
+13 b 4 106 <>
+# 30
+James believes that the Beatles' most famous drummer is a solo singer.
+16 a 4 113 <>
+# 31
+Always do today what you could put off till tomorrow.
+16 b 4 113 <(Said, frustrated at where I put my glasses, again)>
+# 31
+Darn, they always seem to be over there, never over here!
+3 _ 5 124 <>(said of man entering the room)
+# 32
+He is my father
+4 _ 5 124 <>(said ear cocked to a slamming door)
+# 33
+Someone is comingr
+5 _ 5 124 <>(said pointing chin to kitchen)
+# 34
+The funny noise is our antiquated dishwashing machine
+6 _ 5 124 <>(said looking at a picture)
+# 35
+What a great picture!
+7 _ 5 124 <>
+# 36
+The editor's sign for "delete" is [followed by written demonstration]
+8 _ 5 124 <>
+# 37
+He is a bit [index finger to forehead, indicating "mad"]
+9 _ 5 124 <>(said by the chairman)
+# 38
+The chairman hereby resigns
+10 _ 5 124 <>(said walking through the Taj Mahal). (after Nunberg 1993)
+# 39
+He obviously had plenty of money
+11 _ 5 131 <>(exophoric: book available in the physical context)
+# 40
+Give me that book
+12 _ 5 131 <>(exophoric gestural: requires gesture or presentation of finger)
+# 41
+I hurt this finger
+13 _ 5 131 <>(exophoric symbolic: does not require gesture)
+# 42
+I like this city
+14 _ 5 131 <>(gestural contrastive)
+# 43
+I broke this tooth first and then that one next
+15 _ 5 131 <>(transposed)
+# 44
+He looked down and saw the gun: this was the murder weapon, he realized
+16 _ 5 131 <>(discourse deictic)
+# 45
+"You are wrong". That's exactly what she said.
+17 _ 5 131 <>(discourse deictic)
+# 46
+It sounded like this: whoosh.
+18 _ 5 131 <>(anaphoric)
+# 47
+The cowboy entered. This man was not someone to mess with.
+19 _ 5 131 <>(empathetic)
+# 48
+He went and hit that bastard.
+20 _ 5 131 <>(recognitional)
+# 49
+Do you remember that holiday we spent in the rain in Devon?
+6 _ 6 148 <>
+# 50
+That wasn't A reason I left Pittsburgh, it was THE reason.
+7 _ 6 149 <>
+# 51
+The king of France is bald.
+8 _ 6 149 <>
+# 52
+The youngest student in the class got the best grade.
+10 _ 6 152 <>
+# 53
+The author of Waverley is Scott.
+12 _ 6 154 <>
+# 54
+Yesterday the dog got into a fight with a dog. The dogs were snarling and snapping at each other for half an hour. I'll have to see to it that the dog doesn't get near that dog again.
+13 a 6 154 <>
+# 55
+Towards evening we came to the bank of a river.
+13 b 6 154 <>
+# 55
+The boy scribbled on the living-room wall.
+13 c 6 154 <>
+# 55
+John was hit on the arm.
+14 a 6 154 <>
+# 56
+? #
+The bank of the Thames is the personal property of the Queen.
+14 b 6 154 <>
+# 56
+? #
+Mary painted the living room wall.
+15 _ 6 155 <>
+# 57
+? #
+He scribbled on a living-room wall.
+15 _ 6 155 <>
+# 57
+? #
+He scribbled on a living-room wall.
+16 a 6 155 <>
+# 58
+There were the same people at both conferences.
+16 b 6 155 <>
+# 58
+There was the usual crowd at the beach.
+16 c 6 155 <>
+# 58
+There was the stupidest article on the reading list.
+17 _ 6 156 <>
+# 59
+Any man who owns a donkey beats it.
+18 _ 6 156 <>
+# 60
+A woman sat with a cat on her lap. She stroked the cat and it purred.
+19 a# 6 158 <>
+# 61
+Harold bought a first house he looked at.
+19 a 6 158 <>
+# 61
+Harold bought the first house he looked at.
+19 b# 6 158 <>
+# 61
+The instructor assigned some most difficult exercises she could find.
+19 b 6 158 <>
+# 61
+The instructor assigned the most difficult exercises she could find.
+19 c# 6 158 <>
+# 61
+In her talk, Baldwin introduced a notion that syntactic structure is derivable from pragmatic principles.
+19 c 6 158 <>
+# 61
+In her talk, Baldwin introduced the notion that syntactic structure is derivable from pragmatic principles.
+20 a 6 158 <>
+# 62
+What's wrong with Bill? Oh, the woman he went out with last night was nasty to him.
+20 b 6 158 <>
+# 62
+If you're going into the bedroom, would you mind bringing back the big bag of potato chips that I left on the bed?
+20 c 6 158 <>
+# 62
+Mary's gone for a spin in the car she just bought.
+21 _ 6 160 <>
+# 63
+There is this huge boulder sitting in the driveway.
+23 a 6 161 <>
+# 64
+There is a wolf at the door.
+23 b 6 161 <>
+# 64
+? *
+There is the wolf at the door.
+24 a 6 161 <>
+# 65
+There are some/several/many/few wolves at the door.
+24 b 6 161 <>
+# 65
+? *
+There are most/all/those/Betty's wolves at the door.
+25 a 6 162 <>
+# 66
+I would like some ("sm") apple sauce.
+25 b 6 162 <>
+# 66
+There weren't many students in class this morning.
+26 a 6 162 <>
+# 67
+Some (of the) apple sauce was put in special bowls.
+26 b 6 162 <>
+# 67
+Many (of the) students objected to their grades after class.
+27 a 6 162 <>
+# 68
+? *
+Sm salesmen are intelligent.
+27 b 6 162 <>
+# 68
+Some (of the) salesmen (but not others) are intelligent.
+28 a 6 162 <>
+# 69
+Salesmen are intelligent.
+28 b 6 162 <>
+# 69
+Salesmen are knocking on the door.
+29 a 6 162 <>
+# 70
+There are salesmen {knocking on the door/*intelligent}.
+29 b 6 162 <>
+# 70
+? *
+There were some (of the) participants waiting outside.
+31 a 6 163 <>
+# 71
+Every unicorn exists.
+31 b 6 163 <>
+# 71
+Neither unicorn exists.
+31 c 6 163 <>
+# 71
+Many unicorns exist.
+32 a 6 164 <>
+# 72
+? #
+There is every unicorn.
+32 b 6 164 <>
+# 72
+? #
+There is neither unicorn.
+32 c 6 164 <>
+# 72
+There are many unicorns.
+33 a 6 164 <>
+# 73
+There is a girl who knows you interested in this problem.
+33 b 6 164 <>
+# 73
+? *
+I met a girl who knows you interested in this problem.
+34 _ 6 164 <>
+# 74
+Look, there were either zero or else more than zero students there at the time. Now which is it?
+37 a 6 165 <>
+# 75
+Some student is a vegetarian.
+37 b 6 165 <>
+# 75
+Some student who is a vegetarian exists
+38 a 6 165 <>
+# 76
+Every student is a vegetarian.
+38 b 6 165 <>
+# 76
+Every student who is a vegetarian exists.
+40 a 6 167 <>
+# 77
+All of John's children are bald.
+40 b 6 167 <>
+# 77
+All trespassers will be prosecuted.
+41 a 6 167 <>
+# 78
+I talked with a logician.
+41 b 6 167 <>
+# 78
+Some of my friends speak French.
+42 _ 6 168 <>
+# 79
+A student in the syntax class cheated on the final exam.
+43 _ 6 169 <>
+# 80
+Smith's murderer is insane.
+44 _ 6 169 <>
+# 81
+John would like to marry a girl his parents don't approve of.
+45 a 6 169 <>
+# 82
+John succeeded in marrying a girl his parents don't approve of.
+45 b 6 169 <>
+# 82
+John married a girl his parents don't approve of.
+46 _ 6 170 <>
+# 83
+Mary talked to a logician.
+1 _ 7 176 <>
+# 84
+Beds ringed the room, their iron feet sinking into thick shirdiks woven in colorful patterns of birds and flowers. At the foot of each bed rested a stocky wooden chest, festooned with designs of cranes and sheep, horses and leaves.
+6 a 7 180 <>
+# 85
+Two sets of immigration bills currently before this session of Congress are giving observers both hope and worry. What is at stake are the immigration rights of gay people, and though gay legislation generally moves slowly, voting is expected soon.
+6 b 7 180 <>
+# 85
+Triggs is a lexicographer. Over his desk hangs the 18th-century dictionary maker Samuel Johnson's ironical definition: "A writer of dictionaries; a harmless drudge that busies himself in tracing the original, and detailing the signification of words." What Triggs actually does is find alert readers who recognize new words or new usages for ordinary ones.
+7 a 7 180 <>
+# 86
+Hey, look! That's my friend Jeremy Triggs over there. He's a lexicographer. What he does is find alert readers who recognize new words or new usages for ordinary ones.
+7 b 7 180 <(2nd sentence)>
+# 86
+? #
+Hey, look! That's my friend Jeremy Triggs over there. What he does is find alert readers who recognize new words or new usages for ordinary ones.
+8 _ 7 181 <NP>
+# 87
+To illustrate with a simple analogy, consider a person who knows arithmetic, who has mastered the concept of number. In principle, he is now capable of carrying out or determining the accuracy of any computation. Some computations he may not be able to carry out in his head. Paper and pencil are required to extend his memory.
+9 _ 7 181 <PP>
+# 88
+But keep in mind that no matter which type of equipment you choose, a weight-training regimen isn't likely to provide a cardiovascular workout as well. For that, you'll have to look elsewhere.
+10 _ 7 181 <VP>
+# 89
+They certainly had a lot to talk about and talk they did.
+11 _ 7 182 <P>
+# 90
+: A
+Interrogative do should then be classed as a popular idiom. Popular it may indeed have been, but I doubt the different origin.
+12 a' 7 182 <Customer>
+# 91
+Can I get a bagel?
+12 b' 7 182 <Waitress>
+# 91
+No, sorry. We're out of bagels. A bran muffin I can give you.
+13 a' 7 182 <>
+# 92
+: A
+Can I get a bagel?
+13 b' 7 182 <>
+# 92
+: B
+Sorry -- all out.
+13 c' 7 182 <>
+# 92
+: A
+How about a bran muffin?
+13 d' 7 182 <>
+# 92
+: B
+A bran muffin I can give you.
+14 _ 7 183 <>
+# 93
+Facts about the world thus come in twice on the road from meaning to truth: once to determine the interpretation, given the meaning, and then again to determine the truth value, given the interpretation. This insight we owe to David Kaplan's important work on indexicals and demon- stratives, and we believe it is absolutely crucial to semantics.
+15 _ 7 183 <>
+# 94
+With her new movie, called "Truth or Dare" in America, and "In Bed with Madonna" in Europe, Madonna provides pundits with another excuse to pontificate. And, on both sides of the Atlantic, pontificate they have -- in reviews, essays, magazine features and on television chat shows.
+16 _ 7 183 <>
+# 95
+Colonel Kadafy, you said you were planning on sending planes -- M-16s I believe they were -- to Sudan.
+18 a' 7 184 <G>
+# 96
+Do you watch football?
+18 b' 7 184 <E>
+# 96
+Yeah. Baseball I like a lot BETTER.
+20 _ 7 185 <>
+# 97
+One of the guys I work with, he said he bought over $100 in Powerball tickets.
+21 a 7 186 <>
+# 98
+Two of my sisters were living together on 18th Street. They had gone to bed, and this man, their girlfriend's husband, came in. He started fussing with my sister and she started to scream. The landlady, she went up and he laid her out.
+21 b 7 186 <>
+# 98
+She had an idea for a project. She's going to use three groups of mine. One she'll feed them mouse chow. Just the regular stuff they make for mice. Another she'll feed them veggies. And the third she'll feed junk food.
+21 c 7 186 <>
+# 98
+That woman you were just talking to, I don't know where she went.
+22 a 7 186 <>
+# 99
+In Ireland's County Limerick, near the River Shannon, there is a quiet little suburb by the name of Garryowen, which means "Garden of Owen".
+22 b 7 186 <>
+# 99
+After they had travelled on for weeks and weeks past more bays and headlands and rivers and villages than Shasta could remember, there came a moonlit night when they started their journey at evening, having slept during the day.
+23 a 7 187 <>
+# 100
+As soon as he laughed, he began to move forward in a deliberate way, jiggling a tin cup in one hand and tapping a white cane in front of him with the other. Just behind him there came a child, handing out leaflets.
+23 b 7 187 <...>
+# 100
+Just behind him there came the mayor, handing out leaflets.
+24 _ 7 187 <(bef. last sentence)>
+# 101
+? #
+As they laughed, John and the mayor began to move forward in a deliberate way. John jiggled a tin cup in one hand and tapped a white cane in front of him with the other. Just behind him there came the mayor, handing out leaflets.
+25 _ 7 188 <(ls)>
+# 102
+? #
+As soon as he laughed, he began to move forward in a deliberate way, jiggling a tin cup in one hand and tapping a white cane in front of him with the other. Just behind him there was the mayor, handing out leaflets.
+25 _ 7 188 <(ls)>
+# 102
+? #
+As soon as he laughed, he began to move forward in a deliberate way, jiggling a tin cup in one hand and tapping a white cane in front of him with the other. Just behind him there was the mayor, handing out leaflets.
+26 a 7 188 <>
+# 103
+The Woody Allen-Mia Farrow breakup, and Woody's declaration of love for one of Mia's adopted daughters, seems to have everyone's attention. There are the usual sleazy reasons for that, of course -- the visceral thrill of seeing the extremely private couple's dirt in the street, etc.
+26 b 7 188 <>
+# 103
+In addition, as the review continues, there is always the chance that we'll uncover something additional that is significant.
+26 c 7 188 <>
+# 103
+There once was this sharp Chicago alderman who also happened to be a crook.
+27 a 7 189 <>
+# 104
+The Woody Allen-Mia Farrow breakup, and Woody's declaration of love for one of Mia's adopted daughters, seems to have everyone's attention. There exist the usual sleazy reasons for that, of course -- the visceral thrill of seeing the extremely private couple's dirt in the street, etc.
+27 b 7 189 <>
+# 104
+In addition, as the review continues, there always exists the chance that we'll uncover something additional that is significant.
+27 c 7 189 <>
+# 104
+There once lived this sharp Chicago alderman who also happened to be a crook
+28 a 7 189 <>
+# 105
+That a bloodthirsty, cruel capitalist should be such a graceful fellow was a shock to me.
+28 b 7 189 <>
+# 105
+Yet to determine precisely to what extent and exactly in what ways any individual showed the effects of Christianity would be impossible.
+29 a 7 190 <>
+# 106
+It was a shock to me that a bloodthirsty, cruel capitalist should be such a graceful fellow.
+29 b 7 190 <>
+# 106
+Yet it would be impossible to determine precisely to what extent and exactly in what ways any individual showed the effects of Christianity.
+30 a1 7 190 <>
+# 107
+: A
+Jeffrey didn't turn in his term paper until a week after the deadline.
+30 a2 7 190 <>
+# 107
+: B
+It's a miracle that he turned in a term paper at all.
+30 b1 7 190 <>
+# 107
+: A
+Jeffrey didn't turn in his term paper until a week after the deadline.
+30 b2 7 190 <>
+# 107
+: B
+That he turned in a term paper at all is a miracle.
+31 a1 7 190 <>
+# 108
+: A
+Jeffrey isn't a very good student.
+31 a2 7 190 <>
+# 108
+: B
+Yeah; #that he turned in a term paper at all is a miracle.
+31 b1 7 190 <>
+# 108
+: A
+Jeffrey isn't a very good student.
+31 b2 7 190 <>
+# 108
+: B
+Yeah, it's a miracle that he turned in a term paper at all.
+32 _ 7 190 <>
+# 109
+His act takes on lunatic proportions as he challenges female audience members to wrestling matches, falling in love with one while grappling it out on the canvas. How he and feminist Lynne Margulies (Courtney Love) became life partners is anyone's guess.
+33 _ 7 191 <>
+# 110
+Below the waterfall (and this was the most astonishing sight of all), a whole mass of enormous glass pipes were dangling down into the river from somewhere high up in the ceiling! They really were enormous, those pipes. There must have been a dozen of them at least, and they were sucking up the brownish muddy water from the river and carrying it away to goodness knows where.
+34 _ 7 191 <(ls)>
+# 111
+? #
+Below the waterfall (and this was the most astonishing sight of all), a whole mass of enormous glass pipes were dangling down into the river from somewhere high up in the ceiling! They really were enormous, some of the boulders in the river.
+35 _ 7 192 <>
+# 112
+Connaught said it was advised that the Ciba-Geigy/Chiron offer would be increased to $26.51 a share from $25.23 a share if the company adopted a shareholder-rights plan that facilitated the Swiss and US firms' offer. That offer was rejected by Connaught, which cited its existing pact with Institut Merieux.
+36 _ 7 192 <>
+# 113
+The mayor's present term of office expires January 1. He will be succeeded by Ivan Allen Jr.
+37 _ 7 193 <(ls)>
+# 114
+? #
+Ivan Allen Jr. will take office January 1. The mayor will be succeeded by him.
+38 _ 7 193 <PP>
+# 115
+He, the publisher, is twenty-six. Born in Hungary, he emigrated to Canada after the revolution. He is as informal as the others. On his lapel is a large "Jesus Loves You" button; on his feet, sneakers. His dog scrounges about on a blanket in this inner office.
+39 _ 7 193 <djP>
+# 116
+: A
+Along US Route 6, overscale motels run by the national chains have started to supplant the quaint, traditional transients' cottages. Typical of these new giants is the Sheraton Ocean Park at Eastham, which boasts an indoor swimming pool with cabanas in a tropic-like setting.
+49 _ 7 193 <NP>
+# 117
+She's a nice woman, isn't she? Also a nice woman is our next guest.
+41 _ 7 194 <VP>
+# 118
+Discussion of the strategy began during this year's General Assembly and will conclude next year. Dropped from consideration so far are the approaches of the past, which The Economist recently described as "based on the idea that the rules of orthodox economics do not hold in developing countries".
+42 _ 7 194 <>
+# 119
+We have complimentary soft drinks, coffee, Sanka, tea, and milk. Also complimentary is red and white wine. We have cocktails available for $2.00.
+43 _ 7 195 <>
+# 120
+Each of the characters is the centerpiece of a book, doll and clothing collection. The story of each character is told in a series of six slim books, each $12.95 hardcover and $5.95 in paperback, and in bookstores and libraries across the country. More than 1 million copies have been sold; and in late 1989 a series of activity kits was introduced for retail sale. Complementing the relatively affordable books are the dolls, one fo each fictional heroine and each with a comparably pricey historically accurate wardrobe and accessories.
+44 _ 7 195 <(ls)>
+# 121
+? #
+Each of the characters is the centerpiece of a book, doll and clothing collection. The story of each character is told in a series of six slim books, each $12.95 hardcover and $5.95 in paperback, and in bookstores and libraries across the country. More than 1 million copies have been sold; and in late 1989 a series of activity kits was introduced for retail sale. Complementing the relatively affordable dolls are the books, one for each fictional heroine.
+1 a' 8 198 <>
+# 122
+: A
+We are now passing the oldest winery in the region.
+1 b' 8 198 <>
+# 122
+: B
+Why?
+3 a' 8 200 <>
+# 123
+: A
+Who called?
+3 b' 8 200 <>
+# 123
+: B
+Pat said SHE called.
+4 a' 8 200 <>
+# 124
+: A
+Did you order the chicken or the pork?
+4 b' 8 200 <>
+# 124
+: B
+It was the PORK that I ordered.
+5 a 8 201 <>
+# 125
+Who did the Red Sox play?
+5 b 8 201 <>
+# 125
+The Red Sox played the YANKEES.
+5 c 8 201 <>
+# 125
+? #
+The RED SOX played the Yankees.
+5 d 8 201 <>
+# 125
+? #
+I love baseball.
+0 _ 8 203 <>
+# 126
+My sister, she's a high school teacher.
+9 _ 8 203 <>
+# 127
+That book you borrowed, are you finished reading it yet?
+10 _ 8 203 <>
+# 128
+My work, I'm going crazy.
+11 _ 8 203 <>
+# 129
+The Red Sox, did they play the Yankees?
+12 a 8 203 <>
+# 130
+The window, it's still open.
+12 b 8 203 <>
+# 130
+? *
+A window, it's still open.
+13 _ 8 204 <>
+# 131
+An old preacher down there, they augured under the grave where his wife was buried.
+14 a' 8 204 <>
+# 132
+: A
+Do you know who called the meeting?
+14 b1 8 204 <1>
+# 132
+: B
+BILL called the meeting.
+14 b2 8 204 <2>
+# 132
+: B
+It was BILL who called the meeting.
+15 _ 8 205 <>
+# 133
+Every time we get together I'm the one who has to organize things, but this time BILL called the meeting.
+16 _ 8 205 <>
+# 134
+We have to get rid of some of these clothes. That COAT you're wearing I think we can give to the Salvation ARMY.
+17 a' 8 205 <>
+# 135
+: A
+Who made all this great food?
+17 b' 8 205 <>
+# 135
+: B
+BILL made the CURRY.
+18 a' 8 206 <>
+# 136
+: A
+Which of these clothes do you think we should give to the Salvation Army?
+18 b' 8 206 <>
+# 136
+: B
+/ That COAT you're wearing.
+That COAT you're wearing (I think we can give away).
+21 _ 8 207 <>
+# 137
+Nazis tear down antiwar posters.
+22 a 8 208 <>
+# 138
+Fred ate the beans.
+22 b 8 208 <>
+# 138
+The beans, Fred ate.
+22 c 8 208 <>
+# 138
+It was the beans that Fred ate.
+22 d 8 208 <>
+# 138
+The beans, Fred ate them.
+22 e 8 208 <>
+# 138
+Fred ate them, the beans.
+23 _ 8 209 <[Beginning of a newspaper article]>
+# 139
+It was just about 50 years ago that Henry Ford gave us the weekend. On September 25, 1926, in a somewhat shocking move for that time, he decided to establish a 40-hour work week, giving his employees two days off instead of one.
+24 _ 8 209 <>
+# 140
+The federal government is dealing with AIDS as if the virus was a problem that didn't travel along interstate highways and was none of its business. It's this lethal national inertia in the face of the most devastating epidemic of the late 20th century that finally prompted one congressman to strike out on his own.
+25 _ 8 210 <>
+# 141
+Most middle-class Americans, when they look at the costs plus the benefits, they're going to be much better off.
+26 _ 8 210 <>
+# 142
+Any company, if they're worth 150 million dollars, you don't need to think of...
+25 _ 8 211 <25'>
+# 143
+(As for) Middle-class Americans, when most of them look at the costs plus the benefits, they're going to be much better off.
+26 _ 8 211 <26'>
+# 144
+(As for) Companies, if any one of them is worth 150 million dollars, you don't need to think of. . .
+30 a 8 213 <>
+# 145
+The King of France is BALD.
+30 b 8 213 <>
+# 145
+The King of FRANCE is bald.
+31 a 8 213 <>(no dogless people allowed)
+# 146
+DOGS must be carried.
+31 b 8 213 <>(if you have a dog with you, you must carry it)
+# 146
+Dogs must be CARRIED.
+32 a 8 213 <>(no final sonorants)
+# 147
+Only voiceless OBSTRUENTS occur in word final position.
+32 b 8 213 <>(final sonorants ok)
+# 147
+Only VOICELESS obstruents occur in word final position.
+33 a 8 213 <>(the tickets were a mistake)
+# 148
+Clyde gave me the TICKETS by mistake.
+33 b 8 213 <>(giving ME the tickets was a mistake)
+# 148
+Clyde gave ME the tickets by mistake.
+34 a 8 213 <>(there were no larger demonstrations anywhere)
+# 149
+The largest demonstrations took place in PRAGUE in November 1989.
+34 b 8 213 <>(there may have been larger demonstrations in Budapest at that time)
+# 149
+The largest demonstrations took place in Prague in NOVEMBER 1989.
+35 _ 8 214 <>
+# 150
+The largest demonstrations took place in [sc.prague] in NOVEMBER (in) 1989.
+36 a 8 215 <>
+# 151
+What's Jane doing?
+36 b 8 215 <>
+# 151
+Jane's walking her DOG.
+36 c 8 215 <>
+# 151
+As for Jane, she's walking her DOG.
+1 _ 9 222 <>
+# 152
+Please hand me some lilacs.
+2 a' 9 223 <>
+# 153
+: A
+Where's the ham sandwich?
+2 b' 9 223 <>
+# 153
+: B
+He's sitting at table 20.
+3 _ 9 223 <>
+# 154
+I ordered a ham sandwich, too.
+4 _ 9 226 <>
+# 155
+If a farmer owns a donkey, he always uses it to plow his fields.
+5 _ 9 226 <>
+# 156
+Most farmers that own a donkey use it to plow their fields
+6 _ 9 227 <>
+# 157
+It had to be fed extra grain during plowing season last spring.
+7 a 9 227 <>
+# 158
+A farmer owns a donkey.
+7 b 9 227 <>
+# 158
+He uses it to plow his fields.
+9 a 9 233 <>
+# 159
+: A
+I need to catch the 1:20 to Philadelphia.
+9 b 9 233 <>
+# 159
+: A
+Where's it leaving from?
+9 c 9 233 <>
+# 159
+: B
+Platform 7.
+9 d 9 233 <>
+# 159
+: A
+Where do I get a ticket?
+9 e 9 233 <>
+# 159
+: B
+From the booth at the far right end of the hall.
+11 a 9 236 <>
+# 160
+I'm hungry.
+11 b 9 236 <>
+# 160
+Let's go to the Fuji Gardens.
+12 a 9 236 <>
+# 161
+We don't want orange juice.
+12 b 9 236 <>
+# 161
+We want apple juice.
+13 a 9 236 <>
+# 162
+I love to collect classic automobiles.
+13 b 9 236 <>
+# 162
+My favorite car is my 1899 Duryea.
+14 a 9 236 <>
+# 163
+Go jogging with me this afternoon.
+14 b 9 236 <>
+# 163
+You'll be full of energy.
+0 _ 10 245 <>
+# 164
+Oscar is here but he has forgotten his calculator.
+2 a 10 246 <>
+# 165
+Oscar is here.
+2 b 10 246 <>
+# 165
+Oscar has forgotten his calculator.
+3 _ 10 246 <>
+# 166
+They don't drink wine. So I have bought some beer and lemonade.
+4 a 10 246 <>
+# 167
+They don't drink wine.
+4 b 10 246 <>
+# 167
+I have bought some beer.
+8 _ 10 247 <[the hearer has arrived home laden with parcels]>
+# 168
+So you've spent all your money.
+11 _ 10 248 <>
+# 169
+Sheila is rich but she is unhappy.
+12 _ 10 248 <(I suggest that this contrasts)>
+# 170
+Sheila is rich and she is unhappy.
+14 _ 10 249 <>
+# 171
+That's not my sister but my mother.
+15 _ 10 250 <>
+# 172
+Anne said that Sheila is rich but she is unhappy.
+16 a 10 252 <>
+# 173
+Stanley can open Oscar's safe.
+16 b 10 252 <>
+# 173
+He knows the combination.
+17 _ 10 254 <>
+# 174
+Stanley spends the whole day inside. In complete contrast, Oscar only comes in for meals.
+18 _ 10 254 <>
+# 175
+Oscar has already eaten. But nevertheless I'll leave him some milk.
+19 _ 10 256 <>
+# 176
+She was never really happy here. So she's leaving.
+20 a' 10 256 <>
+# 177
+: A
+She'll be better off in a new place.
+20 b' 10 256 <>
+# 177
+: B
+So she's leaving?
+21 _ 10 257 <>
+# 178
+I have received the e-mail, but it's in Dutch.
+22 _ 10 257 <(ls)>
+# 179
+? ?
+I have received the e-mail. ?Nevertheless it's in Dutch.
+23 _ 10 257 <>
+# 180
+Her husband is in hospital. Yet she's seeing other men.
+24 _ 10 257 <>
+# 181
+Her husband is in hospital and she's seeing other men.
+25 _ 10 257 <>
+# 182
+Her husband is in hospital. But she's seeing other men.
+26 _ 10 257 <>
+# 183
+Her husband is in hospital. Nevertheless she's seeing other men.
+27 _ 10 260 <>
+# 184
+Oscar knocked the vase and it broke.
+28 a' 10 260 <>
+# 185
+: A
+Did Oscar break the vase?
+28 b' 10 260 <>[fall-rise nuclear tones in both clauses]
+# 185
+: B
+WELL | the VASE BROKE | and HE knocked it.
+29 a' 10 260 <>
+# 186
+: A
+All linguists can spell
+29 b' 10 260 <>[fall-rise nuclear tones in both clauses]
+# 186
+: B
+STANLEY can't SPELL | and HE'S A LINGUIST.
+30 a' 10 261 <>
+# 187
+: A
+Where did you put my pen?
+30 b' 10 261 <>
+# 187
+: B
+Oscar's just brought in a mouse.
+31 _ 10 262 <>
+# 188
+There's nothing in your wallet. So you've spent all your money.
+1 a 11 264 <>
+# 189
+George W. Bush wanted to satisfy the right wing of his party. He introduced an initiative to allow government funding for faith-based charitable organizations.
+1 b 11 264 <>
+# 189
+? ?
+George W. Bush wanted to satisfy the right wing of his party. He smirked a lot.
+2 _ 11 264 <>
+# 190
+Actually, many on the right are against the initiative because they worry that government interference will affect the independence of religious organizations.
+3 a 11 265 <>
+# 191
+Dick is worried about defense spending. George is concerned with education policy.
+3 b 11 265 <>
+# 191
+? ?
+Dick is worried about defense spending. George smirks a lot.
+4 a 11 265 <>
+# 192
+George delivered his tax plan to Congress. The Senate scheduled a debate for next week.
+4 b 11 265 <>
+# 192
+? ?
+George delivered his tax plan to Congress. The Senate scheduled hearings into former President Clinton's pardon of Marc Rich.
+5 _ 11 267 <>
+# 193
+? ?
+John broke his leg. I like plums.
+6 _ 11 270 <>
+# 194
+George introduced an initiative to allow government funding for faith-based charitable organizations. He wanted to satisfy the right wing of his party.
+7 _ 11 270 <>
+# 195
+George wanted to satisfy the right wing of his party, but he refused to introduce an initiative to allow government funding for faith-based charitable organizations.
+8 _ 11 271 <>
+# 196
+George refused to introduce an initiative to allow government funding for faith-based charitable organizations, even though he wanted to satisfy the right wing of his party.
+9 _ 11 271 <>
+# 197
+Dick supports a raise in defense spending, but George opposes it.
+10 _ 11 271 <>
+# 198
+Dick supports a raise in defense spending, but George wants a raise in education investment.
+11 _ 11 272 <>
+# 199
+Republican presidents often seek to put limits on federal funding of abortion. In his first week of office, George W. Bush signed a ban on contributing money to international agencies which offer abortion as one of their services.
+12 _ 11 272 <>
+# 200
+In his first week of office, George W. Bush signed a ban on contributing money to international agencies which offer abortion as one of their services. Republican presidents often seek to put limits on federal funding of abortion.
+13 _ 11 272 <>
+# 201
+Republican presidents do not usually put limits on federal funding of abortion immediately upon entering office. Nonetheless, in his first week, George W. Bush signed a ban on contributing money to international agencies which offer abortion as one of their services.
+14 _ 11 272 <>
+# 202
+In his first week, George W. Bush signed a ban on contributing money to international agencies which offer abortion as one of their services. Nonetheless, Republican presidents do not usually put limits on federal funding of abortion immediately upon entering office.
+15 _ 11 273 <>
+# 203
+The new Republican president took a swipe at abortion in his first week of office. In a White House ceremony yesterday, George W. Bush signed an executive order banning support to international agencies which offer abortion as one of their services.
+16 _ 11 274 <>
+# 204
+George claimed he won the election, and Al did too.
+17 a 11 274 <>[won New York]
+# 205
+? #
+New York was won by Al, and Hillary did too.
+17 b 11 274 <>[blamed him]
+# 205
+? #
+Ali blamed himselfi, and George did too.
+17 c 11 274 <>[blame Ali for losing]
+# 205
+? #
+George blamed Al for losing, and he did too.
+18 a 11 275 <>[overturn the election results]
+# 206
+In November, the citizens of Florida asked that the election results be overturned, but the election commission refused to.
+18 b 11 275 <>[campaign]
+# 206
+Bill is still a great campaigner, but he hasn't been allowed to this year, because Al doesn't want him to.
+18 c 11 275 <>[expect Al to win]
+# 206
+George expected Al to win the election even when he didn't.
+19 _ 11 276 <>
+# 207
+? #
+John read everything which Bill believes the claim that he did.
+20 a 11 277 <>
+# 208
+? *
+Which problem did you think John would solve because of the fact that Susan solved?
+20 b 11 277 <[solved the problem]>
+# 208
+Which problem did you think John would solve because of the fact that Susan did?
+21 _ 11 277 <>
+# 209
+? *
+This is the energy policy that George proposed the tax cut and.
+22 a 11 277 <>
+# 210
+? #
+What energy policy did George support and propose the tax cut?
+22 b 11 277 <>
+# 210
+? #
+What energy policy did George propose the tax cut and support?
+23 _ 11 277 <>
+# 211
+What energy policy did George propose and support?
+24 _ 11 278 <>
+# 212
+How much can you drink and still stay sober?
+25 _ 11 278 <>
+# 213
+That's the stuff that the guys in the Caucasus drink and live to be a hundred.
+26 a 11 278 <>
+# 214
+What did Harry buy, come home, and devour in thirty seconds?
+26 b 11 278 <>
+# 214
+? #
+What did Harry buy and come home?
+27 a 11 279 <>
+# 215
+I read a book about John Irving.
+27 b 11 279 <>
+# 215
+I lost a book about John Irving.
+27 c 11 279 <>
+# 215
+Who did you buy a book about?
+27 d 11 279 <>
+# 215
+? ??
+Who did you lose a book about?
+28 a 11 280 <>
+# 216
+The city council denied the demonstrators a permit because they feared violence.
+28 b 11 280 <>
+# 216
+The city council denied the demonstrators a permit because they advocated violence.
+29 a 11 280 <>
+# 217
+Terry really goofs sometimes.
+29 b 11 280 <>
+# 217
+Yesterday was a beautiful day and he was excited about trying out his new sailboat.
+29 c 11 280 <>
+# 217
+He wanted Tony to join him on a sailing expedition.
+29 d 11 280 <>
+# 217
+He called him at 6 a.m.
+29 e 11 280 <>
+# 217
+He was sick and furious at being woken up so early.
+30 a 11 281 <>
+# 218
+The green Whitierleaf is most commonly found near the wild rose.
+30 b 11 281 <>
+# 218
+The wild violet is found near it too.
+31 a 11 281 <>
+# 219
+Carl is talking to Tom in the Lab.
+31 b 11 281 <>
+# 219
+Terry wants to talk to him too.
+32 a 11 282 <>
+# 220
+Margaret Thatcher admires Hillary Clinton, and George W. Bush absolutely worships her.
+32 b 11 282 <>
+# 220
+Margaret Thatcher admires Ronald Reagan, and George W. Bush absolutely worships her.
+33 _ 11 282 <>
+# 221
+Colin Powell defied Dick Cheney, and George W. Bush punished him.
+34 a 11 283 <>
+# 222
+John seized the comic from Bill. He . . .
+34 b 11 283 <>
+# 222
+John passed the comic to Bill. He . . .
+35 a' 11 283 <Customer>
+# 223
+Where are the chuck steaks you advertised for 88 cents per pound?
+35 b' 11 283 <utcher>
+# 223
+: B
+How many do you want?
+36 a 11 284 <>
+# 224
+George Bush supports big business.
+36 b 11 284 <>
+# 224
+He's sure to veto House Bill 1711.
+1 _ 12 290 <>
+# 225
+America's most frequent service to Asia
+2 _ 12 290 <>
+# 226
+Fast relief for arthritic pain
+3 _ 12 290 <>
+# 227
+From the sun-soaked mountains of Colombia
+4 a 12 291 <>
+# 228
+John is running
+4 b 12 291 <>
+# 228
+Is John running?
+4 c 12 291 <>
+# 228
+Run, John!
+5 _ 12 292 <>
+# 229
+Mr. Tonstain has neat handwriting, and he usually arrives on time for class. Yours, J. A. Koorb.
+5 a 13 313 <>
+# 230
+Handel admired himself.
+5 b 13 313 <>
+# 230
+Handel admired him.
+5 c 13 313 <>
+# 230
+Handel admired Handel.
+11 a 13 316 <>
+# 231
+George W. Bush saw a picture of himself in The New York Times.
+11 a` 13 316 <>
+# 231
+George W. Bush saw a picture of him in The New York Times.
+11 b 13 316 <>
+# 231
+Yan is building a wall of pragmatics books around himself.
+11 b` 13 316 <>
+# 231
+Yan is building a wall of pragmatics books around him.
+11 c 13 316 <>
+# 231
+Pavarotti and Domingo adore each other's performances.
+11 c` 13 316 <>
+# 231
+Pavarotti and Domingo adore each their performances.
+11 d 13 316 <>
+# 231
+Pavarotti said that tenors like himself would not sing operas like that.
+11 d` 13 316 <>
+# 231
+Pavarotti said that tenors like him would not sing operas like that.
+21 a' 13 319 <>
+# 232
+Everyone has finally realized that Oscar is incompetent.
+21 b' 13 319 <>
+# 232
+Even he has finally realized that Oscar is incompetent.
+22 a 13 319 <>
+# 233
+? *
+Oscar is sad. He thinks that Oscar is incompetent.
+22 b 13 319 <>
+# 233
+He's doing what John always does.
+25 a 13 322 <>
+# 234
+Some of my friends love Christmas carols.
+25 b 13 322 <>
+# 234
+I believe that John loves Christmas carols.
+27 a 13 322 <>
+# 235
+John pressed the spring and the drawer opened.
+27 a1 13 322 <>
+# 235
+John first pressed the spring and then the drawer opened
+27 a2 13 322 <>
+# 235
+John pressed the spring and therefore the drawer opened
+27 a3 13 322 <>
+# 235
+John pressed the spring in order to cause the drawer to open
+27 b 13 322 <>
+# 235
+If you let me have a free Beethoven, I'll buy five Mozarts.
+27 b1 13 322 <>
+# 235
+If and only if you let me have a free Beethoven, will I buy five Mozarts
+29 a 13 323 <>
+# 236
+The train comes frequently.
+29 b 13 323 <>
+# 236
+The train comes not infrequently.
+35 a 13 325 <>
+# 237
+Handel adored his music.
+35 b 13 325 <>
+# 237
+He adored Handel's music.
+36 a 13 325 <>
+# 238
+The rose on the windowsill has come to blossom. The flower is beautiful.
+36 b 13 325 <>
+# 238
+The flower on the windowsill has come to blossom. The rose is beautiful.
+50 a' 13 332 <>
+# 239
+? *
+John said that heself is a basketball fan.
+50 b' 13 332 <>
+# 239
+John said that he is a basketball fan.
+1 a 14 338 <>
+# 240
+Then John hit Bill.
+1 b 14 338 <>
+# 240
+Then Johni hit his roommate.
+1 c 14 338 <>
+# 240
+Then Bill's roommate hit him.
+1 a 14 338 <>
+# 240
+Then John hit Bill.
+1 b 14 338 <>
+# 240
+Then John hit his roommate.
+1 c 14 338 <>
+# 240
+Then Bill's roommate hit him.
+2 a 14 338 <>
+# 241
+Then Bill was hit by John.
+2 b 14 338 <>
+# 241
+Then Billj was hit by his roommate.
+2 c 14 338 <*>
+# 241
+? ??
+Then John's roommate was hit by him.
+7 a 14 341 <>
+# 242
+Then I hit John.
+7 b 14 341 <*>
+# 242
+? ??
+Then John was hit by me.
+8 a 14 341 <>
+# 243
+Mary had quite an experience at the party she went to last week. She slapped a drunken reporter on the face.
+8 b 14 341 <(ls)>
+# 243
+? *
+Mary had quite an experience at the party she went to last night. A drunken reporter was slapped on the face by her.
+9 a 14 341 <>
+# 244
+Mary had quite an experience at the party she went to last night. She met a New York Times reporter.
+9 b 14 341 <(ls)>
+# 244
+? *
+Mary had quite an experience at the party she went to last night. A New York Times reporter met her.
+9 c 14 341 <>
+# 244
+Mary had quite an experience at the party she went to last night. A New York Times reporter asked her about her occupation.
+10 a 14 342 <>
+# 245
+John and Mary met.
+10 b 14 342 <>
+# 245
+Mary and John met.
+10 c 14 342 <>
+# 245
+John met Mary.
+10 d 14 342 <>
+# 245
+Mary met John.
+12 a 14 343 <>
+# 246
+John told Mary that Jane was seriously sick.
+12 b 14 343 <>
+# 246
+Mary heard from John that Jane was seriously sick.
+13 a 14 343 <>
+# 247
+John sent Mary a Valentine's Day present.
+13 b 14 343 <>
+# 247
+Mary received from John a Valentine's Day present.
+14 a 14 343 <>
+# 248
+I told Mary that Jane was seriously sick.
+14 b 14 343 <>
+# 248
+? ??
+Mary heard from me that Jane was seriously sick
+15 a 14 343 <>
+# 249
+I sent Mary a Valentine's Day present.
+15 b 14 343 <>
+# 249
+? ??
+Mary received from me a Valentine's Day present.
+16 a 14 343 <>
+# 250
+John told Mary what she had told him two days before.
+16 b 14 343 <>
+# 250
+John told Mary what he had heard from her two days before.
+16 c 14 343 <>
+# 250
+Mary heard from John what she had told him two days before.
+16 d 14 343 <>
+# 250
+? ??
+Mary heard from John what he had heard from her two days before.
+18 a' 14 344 <>
+# 251
+: A
+John says he hasn't met you before.
+18 b' 14 344 <>
+# 251
+: B
+That's not correct. He met me last year at Mary's party.
+20 a 14 345 <>
+# 252
+John read War and Peace last night.
+20 b 14 345 <>
+# 252
+? ??/*
+War and Peace was read by John last night.
+22 a 14 345 <>
+# 253
+War and Peace was written by Tolstoy.
+22 b 14 345 <>
+# 253
+War and Peace has been read by millions of people all over the world.
+22 c 14 345 <>
+# 253
+War and Peace has been read even by Bill.
+23 a 14 346 <>
+# 254
+Whales are mammals.
+23 b 14 346 <>
+# 254
+Mammals include whales.
+25 a 14 346 <>
+# 255
+John and his brother went to Paris.
+25 b 14 346 <>
+# 255
+? *
+John's brother and he/John went to Paris.
+25 b` 14 346 <>
+# 255
+John's brother and John went to Paris.
+28 a 14 347 <>
+# 256
+I saw John and a policeman walking together yesterday.
+28 b 14 347 <>
+# 256
+? ??
+I saw a policeman and John walking together yesterday.
+29 a 14 347 <>
+# 257
+I saw you and a policeman walking together yesterday.
+29 b 14 347 <>
+# 257
+? ??
+I saw a policeman and you walking together yesterday.
+30 a 14 347 <>
+# 258
+John and someone else will be there.
+30 b 14 347 <>
+# 258
+? *
+Someone else and John will be there.
+31 a 14 347 <>
+# 259
+? ??
+I and John are good friends.
+31 b 14 347 <>
+# 259
+John and I are good friends.
+34 a 14 348 <>
+# 260
+? *
+At the gate were John's brother and John smiling at me.
+34 a` 14 348 <>
+# 260
+At the gate were John's brother and he smiling at me.
+34 b 14 348 <>
+# 260
+At the top of the rank list were John's brother and John in that order.
+35 a 14 348 <>
+# 261
+John gave a book to the girl.
+35 b 14 348 <>
+# 261
+John gave the book to a girl.
+36 a 14 348 <>
+# 262
+John gave the girl a book.
+36 b 14 348 <>
+# 262
+? ??
+John gave a girl the book.
+38 a 14 349 <>
+# 263
+John criticized himself.
+38 b 14 349 <>
+# 263
+Harvard overextended itself in natural sciences in the sixties.
+39 a 14 350 <>
+# 264
+John wrote to his friends about himself.
+39 b 14 350 <>
+# 264
+? *
+Harvard wrote to its alumni about itself.
+40 a 14 350 <>
+# 265
+John talked to Mary about himself.
+40 b 14 350 </??>
+# 265
+? ?
+Mary talked to Bill about himself.
+41 b 14 350 </??/*>
+# 266
+? ?
+I talked to Bill about himself.
+42 a 14 350 </??>
+# 267
+? ?
+John talked to Mary about herself.
+42 b 14 350 <>
+# 267
+? *
+John talked about Mary to herself.
+43 _ 14 351 <>
+# 268
+? ??/*
+John discussed Mary with herself.
+44 a 14 351 <>
+# 269
+Mary cost John a picture of himself in the paper.
+44 b 14 351 <>
+# 269
+? *
+Mary cost John a picture of herself in the paper.
+45 a 14 352 <>
+# 270
+John said, "I am a genius".
+45 b 14 352 <>
+# 270
+John said that he was a genius.
+46 a 14 352 <>
+# 271
+John said to Mary, "You are a genius".
+46 b 14 352 <>
+# 271
+John said to Mary that she was a genius.
+47 a 14 352 <>
+# 272
+John said about Mary, "Mary is a genius".
+47 a` 14 352 <>
+# 272
+John said about Mary, "She is a genius".
+47 b 14 352 <>
+# 272
+John said about Mary that she was a genius.
+48 a 14 352 <>
+# 273
+? *
+Johni said, "John is a genius".
+48 b 14 352 <>
+# 273
+? *
+John said to Mary, "Mary is a genius".
+52 a 14 353 <>
+# 274
+The remark that Churchill was vain was often made about him.
+52 b 14 353 <>
+# 274
+? *
+The remark that Churchill was vain was often made to him.
+54 a 14 353 <>
+# 275
+The allegation that John was a spy was vehemently denied by him.
+54 b 14 353 <>
+# 275
+? *
+The claim that John was a genius was made by him.
+56 a 14 354 <>
+# 276
+? *
+People often made about him the remark that Churchill was vain.
+56 b 14 354 <>
+# 276
+? *
+He vehemently denied the allegation that John was vain
+61 a 14 355 <>
+# 277
+? *
+Which claim that John was asleep was he willing to discuss?
+61 b 14 355 <>
+# 277
+Which claim that John made did he later deny?
+63 a 14 356 <>
+# 278
+? *
+John hates John's mother.
+63 a 14 356 <>
+# 278
+? *
+He hates John's mother.
+63 b 14 356 <>
+# 278
+? *
+John hated the man that John shared an office with.
+63 b 14 356 <>
+# 278
+? *
+He hated the man that John shared an office with.
+63 c 14 356 <>
+# 278
+? *
+John thinks that John is a genius.
+63 c 14 356 <>
+# 278
+? *
+He thinks that John is a genius.
+65 _ 14 356 <>
+# 279
+? *
+He was willing to discuss which claim that John was asleep.
+67 _ 14 356 <>
+# 280
+? *
+He did later deny the claim that John made.
+70 a 14 357 <*>
+# 281
+? ??
+Which pictures of John did he like?
+70 b 14 357 <>
+# 281
+Which pictures near John did he look at?
+72 a 14 358 <>
+# 282
+Whose allegation that John was less than truthful did he refute vehemently?
+72 b 14 358 <>
+# 282
+Whose opinion that Weld was unfit for the ambassadorial appointment did he try to refute vehemently?
+72 c 14 358 <>
+# 282
+Whose claim that the Senator had violated the campaign finance regulation did he dismiss as politically motivated?
+72 d 14 358 <>
+# 282
+Which psychiatrist's view that John was schizophrenic did he try to get expunged from the trial records?
+73 a 14 358 <>
+# 283
+Which witness's attack on John did he try to get expunged from the trial records?
+73 b 14 358 <>
+# 283
+Which artist's portrait of Nixon do you think he liked best?
+73 c 14 358 <>
+# 283
+Whose criticism of John did he choose to ignore?
+74 a 14 359 <>
+# 284
+Which doctor's evaluation of John's physical fitness did he use when he applied to NASA for space training?
+74 b 14 359 <>
+# 284
+Which psychiatrist's evaluation of John's mental state did he try to get expunged from the trial records?
+75 a 14 359 <>
+# 285
+? *
+Which claim that John had helped develop new technologies did he make at last year's national convention?
+75 b 14 359 <>
+# 285
+Which claim that John made did he later deny?
+72 a 14 359 <>
+# 286
+Whose allegation that John was less than truthful did he refute vehemently?
+81 a 14 362 <>
+# 287
+? *
+He looked at pictures near himself.
+81 b 14 362 <>
+# 287
+? *
+He did look at pictures near himself.
+1 _ 15 369 <>
+# 288
+Murdoch bought a newspaper last week.
+2 _ 15 369 <(pointing at a newspaper)>
+# 289
+Murdoch bought that last week.
+3 _ 15 369 <>
+# 290
+I am parked out back.
+4 _ 15 370 <>
+# 291
+We are parked out back.
+5 _ 15 370 <>
+# 292
+I am parked out back and have been waiting for 15 minutes.
+6 _ 15 370 <>
+# 293
+? *
+I am parked out back and may not start.
+7 _ 15 370 <>
+# 294
+Who is the ham sandwich?
+8 _ 15 370 <>
+# 295
+The ham sandwich is at table seven.
+11 _ 15 372 <>
+# 296
+? ?
+I was once driven by Yogi Berra.
+12 _ 15 372 <>
+# 297
+? ?
+I'm in the second crate on the right.
+13 _ 15 372 <>
+# 298
+Ringo was hit in the fender by a truck when he was momentarily distracted by a motorcycle.
+14 _ 15 372 <>
+# 299
+? ?
+Ringo was hit in the fender by a truck two days after he died.
+15 _ 15 373 <>
+# 300
+Proust is on the top shelf.
+16 _ 15 373 <(the newspaper)>
+# 301
+The Chronicle opposed the highway project.
+17 _ 15 373 <>
+# 302
+We were eating chicken on tables made of oak.
+18 _ 15 374 <>
+# 303
+Obstinacy is usually a mistake.
+19 _ 15 374 <>
+# 304
+Her obstinacy surprised us.
+20 a' 15 375 <>
+# 305
+? ?
+We fried the chicken in safflower.
+20 b' 15 375 <>
+# 305
+? ?
+We fried the chicken in olive.
+20 c' 15 375 <>
+# 305
+? ?
+We fried the chicken in corn.
+21 a' 15 375 <>
+# 306
+? ?
+I enjoy a glass of orange with my breakfast.
+21 b' 15 375 <>
+# 306
+? ?
+I enjoy a glass of pear with my breakfast.
+21 c' 15 375 <>
+# 306
+? ?
+I enjoy a glass of apple with my breakfast.
+22 _ 15 375 <>
+# 307
+She owns two Picassos and a Renoir.
+23 _ 15 375 <>
+# 308
+The sale racks at the store were full of Jill Sanders.
+24 a' 15 375 <>
+# 309
+? ?
+We listened to a lovely Scarlatti.
+24 a' 15 375 <>
+# 309
+? ?
+We listened to a lovely Steven Sondheim.
+25 a' 15 375 <>
+# 310
+I love to curl up with a good Agatha Christie.
+25 a' 15 375 <>
+# 310
+I love to curl up with a good Simenon.
+25 a' 15 375 <>
+# 310
+? ?
+I love to curl up with a good Italo Calvino.
+25 a' 15 375 <>
+# 310
+? ?
+I love to curl up with a good Dostoyevsky.
+26 a' 15 375 <>
+# 311
+One of my favorite Hitchcocks is playing at the Bijou.
+26 b' 15 375 <>
+# 311
+? ?
+One of my favorite Renoirs is playing at the Bijou.
+27 _ 15 377 <>
+# 312
+Bees are swarming in the garden.
+28 _ 15 377 <>
+# 313
+The garden is swarming with bees.
+33 a' 15 378 <>
+# 314
+A fast (?drunken) motorway.
+33 b' 15 378 <>
+# 314
+? ?
+A fast (?drunken) motorway.
+34 a' 15 378 <>
+# 315
+Fast food.
+34 b' 15 378 <>
+# 315
+? ?
+Fast rude food.
+35 a' 15 378 <>
+# 316
+Free-range chicken.
+35 b' 15 378 <>
+# 316
+? ?
+Free-range beheaded chicken.
+36 a' 15 378 <>
+# 317
+Topless bars.
+36 b' 15 378 <>
+# 317
+? ?
+Topless Speedo bars.
+37 _ 15 379 <>
+# 318
+We enjoyed the movie.
+38 _ 15 379 <>
+# 319
+We enjoyed the book.
+39 _ 15 379 <>
+# 320
+We enjoyed the talk.
+40 _ 15 379 <>
+# 321
+The south side of Cambridge voted Conservative.
+41 a' 15 379 <>
+# 322
+Three villages voted for the proposed ban on timber production.
+41 b' 15 379 <>
+# 322
+Three villages south of the river voted for the proposed ban on timber production.
+41 c' 15 379 <>
+# 322
+? ?
+Three villages built of stone voted for the proposed ban on timber production.
+42 a' 15 380 <>
+# 323
+The huge stadium rose as one to cheer the team.
+42 b' 15 380 <>
+# 323
+? ?
+The domed stadium rose as one to cheer the team.
+43 _ 15 380 <>
+# 324
+The factory is out on strike.
+44 _ 15 380 <>
+# 325
+? ?
+The factory rose as one to cheer the contract.
+45 _ 15 380 <>
+# 326
+The school is taking a day off.
+46 _ 15 380 <>
+# 327
+The school rose as one to cheer the football team's victory.
+47 _ 15 380 <>
+# 328
+Ringo squeezed himself into a narrow space.
+48 _ 15 381 <>
+# 329
+Yeats did not like to hear himself read in an English accent.
+49 _ 15 381 <>
+# 330
+? ?
+Yeats wrote a lot of himself in sprung rhythm.
+50 _ 15 381 <>
+# 331
+The newspaper that Mary works for was featured in a Madonna video.
+51 _ 15 381 <>
+# 332
+? ?
+The newspaper that Mary works for fell off the table.
+52 _ 15 381 <>
+# 333
+No airlines that fly to Denver are based on the East Coast.
+53 _ 15 382 <>
+# 334
+? ?
+The airline disappeared behind a mountain.
+54 _ 15 382 <>
+# 335
+Roth is Jewish and widely read.
+9 a' 16 395 <Maggie>
+# 336
+You fancy it yourself do you?
+9 b' 16 395 <Julia>
+# 336
+What, the men's doubles?
+9 c' 16 395 <Maggie>
+# 336
+Yeah.
+9 d' 16 395 <Julia>
+# 336
+Well more than the singles, yes.
+11 _ 16 397 <nnouncer>
+# 337
+: A
+Seventy-two degrees Celsius. I beg your pardon. Seven- teen degrees Celsius. Seventy-two would be a little warm.
+25 _ 16 403 <[1.08 sec] between big cake>
+# 338
+/ They wheel a big table in, with a big with a big cake on it, and the girl, jumps up.
+They wheel a big table in, with a big cake on it, and the girl, jumps up.
+1 a 17 406 <>
+# 339
+George claimed he won the electoral vote, and Al, the popular vote.
+1 b 17 406 <>
+# 339
+George claimed he won the electoral vote, and Al did too.
+1 c 17 406 <>
+# 339
+George claimed he won the electoral vote, and Al did so too.
+1 d 17 406 <>
+# 339
+George claimed he won the electoral vote, and Al did it too.
+2 a 17 408 <>
+# 340
+A peace agreement in the Middle East needs to be negotiated. An agreement between India and Pakistan does too.
+2 b 17 408 <>
+# 340
+? #
+A peace agreement in the Middle East needs to be negotiated. Colin Powell volunteered to.
+2 c 17 408 <>
+# 340
+? #
+A peace agreement in the Middle East needs to be negotiated. Colin Powell volunteered to do it.
+3 a 17 409 <[Hankamer attempts to stuff a 9-inch ball through a 6-inch hoop; Sag says]>
+# 341
+? #
+It's not clear that you'll be able to.
+3 b 17 409 <[Hankamer attempts to stuff a 9-inch ball through a 6-inch hoop; Sag says]>
+# 341
+? #
+It's not clear that you'll be able to do it.
+3 c 17 409 <[Hankamer attempts to stuff a 9-inch ball through a 6-inch hoop; Sag says]>
+# 341
+? #
+I don't think you can do so.
+4 a 17 409 <>
+# 342
+I bought a book at the bookstore today.
+4 b 17 409 <>
+# 342
+I bought The Handbook of Pragmatics at the bookstore today.
+5 _ 17 410 <>
+# 343
+I bought a book at the bookstore today. The book had been marked down to 99 cents.
+6 _ 17 411 <>
+# 344
+George won the electoral vote, and Al, the popular vote.
+7 a 17 412 <>
+# 345
+Al was declared to have won Florida, and George, Texas.
+7 b 17 412 <>
+# 345
+? #
+Al was declared to have won Florida, but then the networks rescinded their projection, and George, Texas.
+7 c 17 412 <>
+# 345
+Al was declared to have won Florida, but then the networks rescinded their projection, and he had no option but to wait for the votes to be counted.
+9 a 17 412 <>
+# 346
+Sue became upset and Nan became downright angry.
+9 b 17 412 <>
+# 346
+Sue became upset and Nan downright angry.
+10 a 17 413 <>
+# 347
+BILL's father writes books.
+10 b 17 413 <>
+# 347
+Someone's father writes books.
+10 c 17 413 <>
+# 347
+Someone writes books.
+10 d 17 413 <>
+# 347
+Someone does something.
+12 a 17 413 <>
+# 348
+Something happened.
+12 b 17 413 <>
+# 348
+Nan did something.
+13 _ 17 414 <>
+# 349
+George claimed he won the election, and Al did too.
+14 a 17 414 <>[gave the aarvark a nut]
+# 350
+? #
+The aardvark was given a nut by Wendy, and Bruce did too.
+14 b 17 414 <>[blamed Al]
+# 350
+? #
+Al blamed himself, and George did too.
+14 c 17 414 <>
+# 350
+? #
+James defended George and he did too.
+15 a 17 415 <>[overturn the election results]
+# 351
+In November, the citizens of Florida asked that the election results be overturned, but the election commission refused to.
+15 b 17 415 <>[defend Al]
+# 351
+Al defended himself because Bill wouldn't.
+15 c 17 415 <>[expect Al to win the election]
+# 351
+George expected Al to win the election even when he didn't.
+16 a 17 415 <>
+# 352
+? #
+George will, if Al makes a statement claiming the election.
+16 b 17 415 <>
+# 352
+He will make a fool of himself, if Al makes a statement claiming the election.
+16 c 17 415 <>
+# 352
+If George will, Al will make a statement claiming the election.
+16 d 17 415 <>
+# 352
+If he makes a statement claiming the election, Al will make a fool of himself.
+17 a 17 416 <[John tries to kiss Mary. She says:]>
+# 353
+John, you mustn't.
+17 b 17 416 <[John pours another martini for Mary. She says:]>
+# 353
+I really shouldn't.
+18 a 17 416 <[John tries to kiss Mary. She says:]>
+# 354
+? #
+John, you're the first man who ever has.
+18 b 17 416 <[John pours another martini for Mary. She says:]>
+# 354
+? #
+John, are you aware that no one else has?
+19 a 17 417 <>
+# 355
+". . . and with complete premeditation resolved that His Imperial Majesty Haile Selassie should be strangled because he was head of the feudal system." He was so strangled on Aug. 26, 1975, in his bed most cruelly.
+19 b 17 417 <>
+# 355
+Section 1 provides the examples to be derived by Gapping, and a formulation of Gapping capable of doing so.
+21 a 17 417 <[John tries to kiss Mary. She says:]>
+# 356
+? #
+John, you mustn't do so.
+21 b 17 417 <[John pours another martini for Mary. She says:]>
+# 356
+? #
+I really shouldn't do so.
+22 _ 17 418 <[A and B together have just witnessed Haile Selassie being murdered by strangulation; A says:]>
+# 357
+? #
+He was so strangled most cruelly.
+23 a 17 418 <>[=deriving the examples]
+# 358
+Section 1 provides the examples to be derived by Gapping, and a formulation of Gapping capable of doing so.
+23 b 17 418 <>[amended an imperial statute]
+# 358
+As an imperial statute the British North America Act could be amended only by the British Parliament, which did so on several occasions.
+23 c 17 418 <>[derives this result from some independent principle]
+# 358
+It is possible that this result can be derived from some independent principle, but I know of no theory that does so.
+24 a 17 418 <>[defecting]
+# 359
+The defection of the seven moderates, who knew they were incurring the wrath of many colleagues in doing so, signaled that it may be harder to sell the GOP message on the crime bill than it was on the stimulus package.
+24 b 17 418 <>[successfully complete the act of removing the pump of the air compressor]
+# 359
+For example, in the dialogue of Figure 2, the purpose of the subdialogue marked (3) is to support the agents' successful completion of the act of removing the pump of the air compressor; the corresponding SharedPlan, marked (P3) in Figure 3, specifies the beliefs and intentions that the agents must hold to do so.
+25 a 17 419 <>[=dwell on more negativity]
+# 360
+There was a lot more negativity to dwell on, if anyone wished to do so.
+25 b 17 419 <>[=see Belcourt]
+# 360
+With or without the celebration, Belcourt is well worth seeing, and you can do so year round.
+26 _ 17 419 <>
+# 361
+Regarding a possible Elvis Presley stamp, Postmaster General Frank notes that anyone so honored must be "demonstrably dead" for 10 years.
+27 a 17 420 <[Norman sees a copy of The Handbook of Pragmatics on a table] Fred says to Norman:>
+# 362
+It's a wonderful book.
+27 b 17 420 <[Hankamer attempts to stuff a 9-inch ball through a 6-inch hoop.] Sag says:>
+# 362
+It's not clear that you'll be able to do it.
+28 a 17 421 <>
+# 363
+As they said about Ginger Rogers: "She did everything Fred Astaire did, and she did it backwards and in high heels".
+28 b 17 421 <>
+# 363
+Writing is a passion, and a film about the genesis of a writer should delve into the mind and heart of its subject. That "Becoming Colette" tries to do this is irrelevant, because it doesn't succeed.
+28 c 17 421 <>
+# 363
+So off he goes, writing in his diary the whole 3 day trip and complaining about the food and the runs I suppose, like all English people do when they go abroad, but he writes very well considering he's riding on a bumpy train, I mean he never even smears his ink *once* (I'm bitter. I can't do that with *my* fountain pens . . .).
+29 a' 17 421 <[Hankamer attempts to stuff a 9-inch ball through a 6-inch hoop. Sag says:]>
+# 364
+It's not clear that you'll be able to do it.
+29 b' 17 421 <[Hankamer attempts to stuff a 9-inch ball through a 6-inch hoop. Sag says:]>
+# 364
+It's not clear that you'll be able to do this.
+29 c' 17 421 <[Hankamer attempts to stuff a 9-inch ball through a 6-inch hoop. Sag says:]>
+# 364
+It's not clear that you'll be able to do that.
+30 a1 17 421 <>
+# 365
+Hey, management has reconsidered its position. They've promoted Fred to second vice president.
+30 a2 17 421 <>
+# 365
+That's my brother-in-law.
+30 b1 17 421 <>
+# 365
+Hey, management has reconsidered its position. They've promoted Fred to second vice president.
+30 b2 17 421 <>
+# 365
+That's a lie.
+30 c1 17 421 <>
+# 365
+Hey, management has reconsidered its position. They've promoted Fred to second vice president.
+30 c2 17 421 <>
+# 365
+That's false.
+30 d1 17 421 <>
+# 365
+Hey, management has reconsidered its position. They've promoted Fred to second vice president.
+30 d2 17 421 <>
+# 365
+That's a funny way to describe the situation.
+30 e1 17 421 <>
+# 365
+Hey, management has reconsidered its position. They've promoted Fred to second vice president.
+30 e2 17 421 <>
+# 365
+When did that happen?
+31 _ 17 422 <>
+# 366
+It's always been presumed that when the glaciers receded, the area got very hot. The Folsum men couldn't adapt, and they died out. That's what's supposed to have happened. It's the textbook dogma. But it's wrong. They were human and smart. They adapted their weapons and culture, and they survived.
+32 a 17 422 <>
+# 367
+For his part in their term project, John built a two-armed robot.
+32 b 17 422 <>
+# 367
+He had learned about robotics in CSE391.
+32 c 17 422 <>
+# 367
+For her part, Mary taught it how to play the saxophone.
+32 d 17 422 <>
+# 367
+That took her six months.
+32 d^ 17 422 <>
+# 367
+That earned them both A's.
+33 a 17 423 <>
+# 368
+Segal, however, had his own problems with women: he had been trying to keep his marriage of seven years from falling apart; when that became impossible . . .
+33 b 17 423 <>
+# 368
+Segal, however, had his own problems with women: he had been trying to keep his marriage of seven years from falling apart; when that became inevitable . . .
+34 a' 17 423 <>
+# 369
+This is the easy part of his job.
+34 b' 17 423 <>
+# 369
+That is the easy part of his job.
+35 a' 17 424 <>
+# 370
+Now get this -- you'll never believe it.
+35 b' 17 424 <!>
+# 370
+? ?
+Now get that -- you'll never believe it.
+1 a 18 433 <>
+# 371
+The bank was robbed by two young men with extensive facial scars.
+1 b 18 433 <>
+# 371
+My bike was taken between 3:00 and 5:30 on Monday.
+1 c 18 433 <>
+# 371
+Over 20,000 copies of the book were sold before it was discovered that pages 285 and 286 were missing.
+1 d 18 433 <>
+# 371
+Do you know where the February Scientific American is? It was thrown out.
+2 a 18 433 <>
+# 372
+He was interrogated for three hours.
+2 b 18 433 <>
+# 372
+He was awarded a Pulitzer Prize for that photograph.
+2 c 18 433 <>
+# 372
+The evidence was destroyed in the fire.
+2 d 18 433 <>
+# 372
+This idea has been attacked as simplistic and naive.
+3 a 18 433 <>
+# 373
+? #
+A car hit your dog, but he's OK now.
+3 b 18 433 <>
+# 373
+Your dog was hit by a car this afternoon, but he's OK now.
+4 a 18 433 <>
+# 374
+He expects that he will win.
+4 b 18 433 <>
+# 374
+He expects to win.
+5 a 18 433 <>
+# 375
+I know that it's raining.
+5 b 18 433 <>
+# 375
+I know it's raining.
+6 _ 18 434 <>
+# 376
+The committee money disappeared from the safe that day, and Lee came home with a new jacket that night, but I don't believe or intend to imply that the two events have anything to do with each other.
+7 a 18 434 <>
+# 377
+The Celtics play the Bucks tomorrow.
+7 b 18 434 <>
+# 377
+The Celtics are going to play the Bucks tomorrow.
+8 _ 18 434 <>
+# 378
+The Celtics crush the Bucks tomorrow.
+9 a 18 434 <>
+# 379
+Sandy arrives tomorrow, so we'll have to clean up the guest-room.
+9 b1 18 434 <>
+# 379
+: A
+What's on the docket for tomorrow?
+9 b2 18 434 <>
+# 379
+: B
+Well, Sandy arrives, so I have to go to the airport.
+10 a' 18 434 <>
+# 380
+: A
+What's new?
+10 b' 18 434 <>
+# 380
+: B
+? #
+My sister comes in from Seattle, so I'm getting ready to go to the airport.
+11 a 18 435 <>
+# 381
+? #
+The Celtics win tomorrow, but it's not preordained or fixed; there's an off chance the Pistons might beat them.
+11 b 18 435 <>
+# 381
+The Celtics win tomorrow, if Benny got the fix in and explained to the players on the other team what would happen to them if they didn't lose.
+12 a 18 436 <>
+# 382
+I bet it'll float if you throw it in the lake.
+12 b 18 436 <>
+# 382
+It'll float if you throw it in the lake, I bet.
+13 a 18 436 <>
+# 383
+That Sandy thought it was Tuesday is obvious.
+13 b 18 436 <>
+# 383
+It's obvious that Sandy thought it was Tuesday.
+14 a 18 436 <>
+# 384
+Someone who said the girls were supposed to bring two quarts of potato salad called.
+14 b 18 436 <>
+# 384
+Someone called who said the girls were supposed to bring two quarts of potato salad.
+15 a 18 436 <>
+# 385
+Win this one for the Gipper.
+15 a` 18 436 <>
+# 385
+Win this one for the me.
+15 b 18 436 <>
+# 385
+Win me Gipper this one.
+15 b` 18 436 <>
+# 385
+? #
+Win the Gipper this one.
+16 a 18 436 <>
+# 386
+It seemed to MacArthur that Patton was the greatest general in history.
+16 a` 18 436 <>
+# 386
+It seemed to MacArthur that Julius Caesar was the greatest general in history.
+16 b 18 436 <>
+# 386
+Patton seemed to MacArthur to be the greatest general in history.
+16 b` 18 436 <>
+# 386
+? #
+Julius Caesar seemed to MacArthur to be the greatest general in history.
+16 c 18 436 <>
+# 386
+Eks asked that Sandy leave.
+16 d 18 436 <>
+# 386
+Eks asked Sandy to leave
+16 e 18 436 <>
+# 386
+Eks allowed Dale to examine Dana.
+16 f 18 436 <>
+# 386
+Eks allowed Dale to be examined by Dana.
+17 a 18 437 <>
+# 387
+It looks like Stalin's been dead for years.
+17 b 18 437 <>
+# 387
+? #
+Stalin looks like he's been dead for years.
+18 a 18 437 <>
+# 388
+I don't think Sandy will arrive until Monday.
+18 b 18 437 <>
+# 388
+I think Sandy won't arrive until Monday.
+19 a 18 437 <>
+# 389
+Dana doesn't want to wash dishes.
+19 b 18 437 <>
+# 389
+Dana wants to not wash dishes.
+20 a 18 437 <>
+# 390
+I didn't see anyone there.
+20 b 18 437 <>
+# 390
+I saw no one there.
+21 a 18 438 <>
+# 391
+... if there are some apples on the table
+21 b 18 438 <>
+# 391
+... if there are any apples on the table
+22 a 18 438 <>
+# 392
+Does Bill want some spinach?
+22 b 18 438 <>
+# 392
+Does Bill want any spinach?
+23 a 18 438 <>
+# 393
+If you eat some bread, I'll cook hamburgers all week.
+23 b 18 438 <>
+# 393
+If you eat any bread, I'll cook hamburgers all week.
+24 a 18 438 <>
+# 394
+Do you think Bo spent a red cent on that?
+24 b 18 438 <>
+# 394
+Do you think Bo ate a bite?
+24 c 18 438 <>
+# 394
+Do you think Bo knows bupkes?
+24 d 18 438 <>
+# 394
+Do you think Bo bothered to RSVP?
+25 a 18 438 <>
+# 395
+She wants to know who did I appoint.
+25 b 18 438 <>
+# 395
+? #
+She already knows who did I appoint.
+25 c 18 438 <>
+# 395
+She already knows who I appointed.
+26 a 18 438 <>
+# 396
+John broke something, but he won't say what.
+26 b 18 438 <>
+# 396
+? #
+John broke something, and he said what.
+26 c 18 438 <>
+# 396
+John broke something, and he said what he broke.
+27 a 18 439 <>
+# 397
+It never occurred to me to wonder who did she appoint.
+27 b 18 439 <>
+# 397
+John went somewhere with my car, and you know where.
+28 _ 18 439 <>
+# 398
+John [stressted] ate the cookies.
+29 a 18 440 <>
+# 399
+Eks delivered a rug to Aitchberg.
+29 b 18 440 <>
+# 399
+A rug was delivered to Aitchberg by Eks.
+29 c 18 440 <>
+# 399
+/ There was a rug delivered (to Aitchberg) (by Eks).
+There was a rug delivered to Aitchberg, by Eks.
+29 d 18 440 <>
+# 399
+A rug, Eks delivered to Aitchberg.
+29 e 18 440 <>
+# 399
+It was a rug that Eks delivered to Aitchberg.
+29 f 18 440 <>
+# 399
+What Eks delivered to Aitchberg was a rug.
+29 g 18 440 <>
+# 399
+And deliver a rug to Aitchberg, Eks did.
+30 a 18 440 <>
+# 400
+Finding typographical errors is never simple.
+30 b 18 440 <>
+# 400
+It is never simple to find typographical errors.
+30 c 18 440 <>
+# 400
+Typographical errors are never simple to find.
+30 d 18 440 <>
+# 400
+Simple to find, typographical errors are not.
+31 a 18 440 <>
+# 401
+Eks met a woman who said she was the Princess Anastasia's governess at Treno's.
+31 b 18 440 <>
+# 401
+At Treno's, Eks met a woman who said she was the Princess Anastasia's governess.
+31 c 18 440 <>
+# 401
+Eks met at Treno's a woman who said she was the Princess Anastasia's governess.
+31 d 18 440 <>
+# 401
+Eks met her at Treno's, that woman who said she was the Princess Anastasia's governess.
+31 e 18 440 <>
+# 401
+That woman who said she was the Princess Anastasia's governess, Eks met her at Treno's.
+32 a 18 440 <>
+# 402
+The little bunny scampered into its hole.
+32 b 18 440 <>
+# 402
+Into its hole, the little bunny scampered.
+32 c 18 440 <>
+# 402
+Into its hole scampered the little bunny.
+33 _ 18 441 <>
+# 403
+An Eastern bloc embassy official gave Eks six full-size oriental rugs, and directed him to give them to the senators who had been most cooperative. One of these rugs Eks delivered to Senator Aitchberg.
+34 _ 18 441 <>
+# 404
+FBI agents suspected both Eks and Aitchberg of trafficking in cocaine, and had been tailing them for months. In March, they learned from an informant that six oriental rugs concealing 20 pounds of cocaine each had come through JFK airport, and as Exhibit B indicates, one of these rugs Eks delivered to Aitchberg.
+35 _ 18 441 <(ls.)>
+# 405
+? ??
+Eks and Aitchberg played golf together regularly. An oriental rug Eks delivered to Aitchberg one day.
+36 a 18 442 <>
+# 406
+Attached to it, as always, is an application blank for next year's license.
+36 b 18 442 <>
+# 406
+Jerome and Rita Arkoff and Tom and Fanny Irwin were in the front row. Back of the Arkoffs and Irwins were William Lesser and Patrick Degan, and between them and slightly to the rear was Saul Panzer.
+36 c 18 442 <>
+# 406
+At issue is Section 1401(a) of the Controlled Substances Act.
+37 a 18 442 <>
+# 407
+In a little white house lived two rabbits.
+37 b 18 442 <>
+# 407
+Competing with the screamers for popularity are the phone-in programs, an adaptation of two rural American pastimes -- listening in on the party-line and speaking at the town meeting.
+37 c 18 442 <>
+# 407
+The grounds were lavishly furnished with ceramic, stone, and wrought-metal sculpture. There were an enormous stainless steel frog and two tiny elves in the foyer of the guest house, and outside stood a little angel.
+38 a 18 443 <>
+# 408
+Then at the darkest hour dawned deliverance. Through the revolving doors swept Tom Pulsifer.
+38 b 18 443 <>
+# 408
+One night there was a tap on the window. Mrs. Rabbit peeped through the window. Outside stood a little angel.
+38 c 18 443 <>
+# 408
+Dumble vanished and in his place rose a dark, angry cloud of bees. They flew straight at the soldiers' faces, and from the soldiers came yells of anguish, of sorrow, and of despair.
+39 a 18 443 <>
+# 409
+Whether Kim will visit museums in France and Dana will go to concerts in Vienna, or Dana will visit museums in France and Kim will go to concerts in Vienna is unclear.
+39 b 18 443 <>
+# 409
+It is unclear whether Kim will visit museums in France and Dana will go to concerts in Vienna, or Dana will visit museums in France and Kim will go to concerts in Vienna.
+40 a 18 443 <>
+# 410
+Dana attributed a poem in which intuitions were compared to anemones and academic theories were described as battlements to Coleridge.
+40 b 18 443 <>
+# 410
+Dana attributed to Coleridge a poem in which intuitions were compared to anemones and academic theories were described as battlements.
+41 a 18 444 <>
+# 411
+But they attributed to Blake The Rise and Fall of the Roman Empire.
+41 a` 18 444 <>
+# 411
+? ?
+But they attributed to Blake The Rise and Fall of the Typee.
+41 b 18 444 <>
+# 411
+The district attorney considers indictable Montgomery J. Jingleheimer-Smith III.
+41 b` 18 444 <>
+# 411
+? ?
+The district attorney considers indictable Rose Budd.
+41 c 18 444 <>
+# 411
+The committee has attributed to Margaret Thatcher an extraordinary poem.
+41 c` 18 444 <>
+# 411
+? ?
+The committee has attributed to Margaret Thatcher an extraordinary the 27-line poem.
+42 _ 18 444 <>
+# 412
+? #
+Did you beware of John?
+43 a 18 444 <>
+# 413
+? #
+We need a registrar who can beware of phony addresses.
+43 b 18 444 <>
+# 413
+We need a registrar who will beware of phony addresses
+44 a 18 445 <>
+# 414
+Jo isn't interested in sports, and Bo couldn't tell a zone press from a fast break either.
+44 b 18 445 <>
+# 414
+? #
+Jo isn't interested in knitting, and Bo couldn't tell a zone press from a fast break either.
+45 a 18 445 <>
+# 415
+Do you have any idea how much that cost?
+45 b 18 445 <>
+# 415
+Why paint your house purple?
+46 a 18 445 <>
+# 416
+Any idea how much that cost?
+46 b 18 445 <>
+# 416
+Why do you paint your house purple?
+25 b, 18 446 <>
+# 417
+? #
+She already knows who did I appoint.
+1 _ 19 450 <>
+# 418
+She gave him an apple.
+2 _ 19 450 <>
+# 419
+She gave an apple to him.
+3 a 19 451 <>
+# 420
+Chris sent them a package.
+3 b 19 451 <>
+# 420
+? *
+Chris sent that place a package.
+4 a' 19 451 <>
+# 421
+Chris sent a package to them.
+4 b' 19 451 <>
+# 421
+Chris sent a package to to that place.
+6 _ 19 452 <>
+# 422
+It was a giraffe that the mouse saw.
+7 _ 19 452 <>
+# 423
+The giraffe, the mouse saw it.
+8 _ 19 452 <>
+# 424
+The giraffe, the mouse saw
+9 a 19 455 <>
+# 425
+What happened? Her SON is sick.
+9 b 19 455 <>
+# 425
+What happened? Her BIKE broke down.
+9 c 19 455 <>
+# 425
+What happened? My SHOULDER hurts.
+9 d 19 455 <>
+# 425
+What happened? ZACH called.
+9 e 19 455 <>
+# 425
+What happened? Her HUSBAND left her.
+12 _ 19 456 <>
+# 426
+? ??
+Who did Chris give the book?
+13 _ 19 456 <>
+# 427
+? ?*
+It is that girl that Chris gave the book.
+14 _ 19 456 <>
+# 428
+What did Pat give Chris?
+15 _ 19 456 <>
+# 429
+It is that book that Pat gave Chris.
+16 _ 19 457 <>
+# 430
+Pat was given the book by Chris.
+17 _ 19 457 <>
+# 431
+? ??
+The book was given Pat by Chris.
+18 _ 19 457 <>
+# 432
+She had an idea for a project. She's going to use three groups of mice. One, she'll feed them mouse chow, just the regular stuff they make for mice. Another she'll feed them veggies. And the third, she'll feed junk food.
+9 a 19 458 <>
+# 433
+The chef-in-training chopped and diced all afternoon.
+9 b 19 458 <>
+# 433
+Tigers only kill at night.
+9 c 19 458 <>
+# 433
+Pat gave and gave, but Chris just took and took.
+21 _ 19 458 <>
+# 434
+Pat gave and gave but Chris just took and took.
+22 _ 19 458 <>
+# 435
+He was always opposed to the idea of murder, but in the middle of the battlefield, he had no trouble killing.
+23 _ 19 459 <>
+# 436
+She picked up her carving knife and began to chop.
+24 _ 19 459 <>
+# 437
+Why would they give this creep a light prison term!? He murdered!
+25 _ 19 459 <>
+# 438
+She could steal but she could not rob.
+28 a 19 460 <>
+# 439
+? #
+The house was built.
+28 b 19 460 <>
+# 439
+The house was built last year.
+29 a 19 460 <>
+# 440
+? #
+The car drives.
+29 b1 19 460 <>
+# 440
+The car drives like a boat.
+29 b2 19 460 <>
+# 440
+The car drives like a easily.
+29 b3 19 460 <>
+# 440
+The car drives like a 365 days a year.
+29 b4 19 460 <>
+# 440
+The car drives like a only in the summertime.
+30 a 19 461 <>
+# 441
+The house will be built.
+30 b 19 461 <>
+# 441
+The house has been built.
+31 a 19 461 <>
+# 442
+The house might be built.
+31 b 19 461 <>
+# 442
+The house should be built.
+32 _ 19 461 <>
+# 443
+The house wasn't built.
+33 _ 19 461 <>
+# 444
+The house WAS built
+34 a 19 461 <>(not the garage)
+# 445
+The HOUSE was built.
+34 b 19 461 <>(not just designed)
+# 445
+The house was BUILT.
+35 _ 19 461 <>
+# 446
+This cake was microwaved.
+36 _ 19 461 <>
+# 447
+These diamonds were synthesized.
+37 _ 19 462 <>
+# 448
+That car doesn't drive.
+38 _ 19 462 <>
+# 449
+These red sports cars DO drive, don't they?
+39 a` 19 462 <>
+# 450
+: A
+How do you close this purse?
+39 b1 19 462 <>
+# 450
+: B
+It snaps.
+39 b2 19 462 <>
+# 450
+: B
+It zips.
+39 b3 19 462 <>
+# 450
+: B
+It buttons.
+40 a` 19 462 <>
+# 451
+: A
+Where do we enter the secret passageway?
+40 b' 19 462 <>
+# 451
+: B
+The bookshelf opens.
+41 a 19 462 <>
+# 452
+? #
+Pat dresses.
+41 b 19 462 <>
+# 452
+Pat dresses stylishly.
+42 a 19 462 <>
+# 453
+? *
+Pat behaved to Chris.
+42 b 19 462 <>
+# 453
+Pat behaved badly to Chris.
+43 a 19 463 <>(to mean that Pat dresses up and looks good)
+# 454
+Pat DRESSES!
+43 b 19 463 <>
+# 454
+Pat doesn't dress.
+43 c 19 463 <>
+# 454
+Pat dresses first thing in the morning.
+43 c` 19 463 <>
+# 454
+Pat dresses in the middle of the night.
+44 a 19 463 <>
+# 455
+? *
+Pat behaved to Chris, but not to Sam.
+44 b 19 463 <>
+# 455
+? *
+Pat BEHAVED TO Chris.
+44 c 19 463 <>
+# 455
+? *
+Pat doesn't behave to Chris.
+44 d 19 463 <>
+# 455
+? *
+Pat behaves to Chris first thing in the morning.
+44 d` 19 463 <>
+# 455
+Pat behaves to Chris first thing in the morning in the middle of the night/only on Tuesdays.
+1 _ 21 503 <>
+# 456
+Henry had sex and got infected.
+2 _ 21 503 <>
+# 457
+Henry got infected and had sex.
+3 a 21 503 <>
+# 458
+If Henry had sex and got infected, he needs a doctor.
+3 b 21 503 <>
+# 458
+If Henry got infected and had sex, he needs a lawyer
+4 _ 21 503 <>
+# 459
+It's worse to get infected and have sex than to have sex and get infected.
+5 _ 21 504 <>
+# 460
+Max is in Miami or he's in Palm Beach.
+6 _ 21 504 <>
+# 461
+Max is in Miami or his wife Minnie will hire a lawyer.
+7 _ 21 506 <>
+# 462
+Phil took a pill last night at 11 p.m., and it relieved his migraine.
+1 _ 22 511 <>
+# 463
+The tones sounded impure because the hem was torn.
+2 a 22 512 <>
+# 464
+Should we take the lion back to the zoo?
+2 b 22 512 <>
+# 464
+Should we take the bus back to the zoo?
+3 a 22 512 <>
+# 465
+I see the tree.
+3 b 22 512 <>
+# 465
+I see what you're getting at.
+7 a 22 521 <>
+# 466
+If you mow the lawn, I'll give you $5.
+7 b 22 521 <>
+# 466
+If you don't mow the lawn, I won't give you $5.
+7 c 22 521 <>
+# 466
+If and only if you mow the lawn, I'll give you $5.
+9 a 22 521 <>
+# 467
+If John quits, he will be replaced.
+9 b 22 521 <>
+# 467
+If John doesn't quit, he won't be replaced.
+9 c 22 521 <>
+# 467
+If and only if John quits, he will be replaced.
+10 a 22 522 <>
+# 468
+If you're in Toronto, you are in Canada.
+10 b 22 522 <>
+# 468
+If you're not in Toronto, you're not in Canada.
+10 c 22 522 <>
+# 468
+If and only if you're in Toronto, you are in Canada.
+14 a 22 525 <>
+# 469
+Black Bart killed the sheriff.
+14 b 22 525 <>
+# 469
+Black Bart caused the sheriff to die.
+12 a 22 523 <>
+# 470
+I'm not unhappy
+12 b 22 523 <>
+# 470
+It isn't the case that I'm unhappy
+12 c 22 523 <>
+# 470
+I'm neither happy nor unhappy
+12 d 22 523 <>(but not quite as happy as using the expression "happy" would suggest)
+# 470
+I'm rather happy
+12 e 22 523 <>
+# 470
+I'm not unhappy, in fact I'm happy
+15 a 22 526 <>
+# 471
+I ate pork
+15 a` 22 526 <>
+# 471
+? ?
+I ate pig
+15 b 22 526 <>
+# 471
+Some people do not eat beef
+15 b` 22 526 <>
+# 471
+? ?
+Some people do not eat cow
+15 c 22 526 <>
+# 471
+The table is made of wood
+15 c` 22 526 <>
+# 471
+? ?
+The table is made of tree
+16 a' 22 526 <>
+# 472
+Hindus are forbidden to eat cow
+16 b' 22 526 <>
+# 472
+? ?
+Hindus are forbidden to eat beef
+1 a 23 541 <>
+# 473
+The Smiths aren't inviting anybody important. They invited L+H* Lorraine.
+1 b 23 541 <>
+# 473
+The Smiths aren't inviting anybody important. They invited L*+H Lorraine.
+2 a' 23 542 <>
+# 474
+: A
+No German has ever won the Luce Prize.
+2 b' 23 542 <>
+# 474
+: B
+H+!H* Joachim's from Germany.
+3 a' 23 546 <>
+# 475
+Anna frightened the woman | with the gun.
+3 b' 23 546 <>
+# 475
+Anna frightened | the woman with the gun.
+4 a' 23 546 <>
+# 476
+Mary knows many languages you know.
+4 b' 23 546 <>
+# 476
+Mary knows many languages | you know.
+5 a' 23 546 <>
+# 477
+The animal that usually fights the lion is missing.
+5 b' 23 546 <>
+# 477
+The animal that usually fights | the lion | is missing.
+6 a' 23 546 <>
+# 478
+My brother who is a writer needs a new job.
+6 b' 23 546 <>
+# 478
+My brother | who is a writer | needs a new job.
+7 a' 23 546 <>
+# 479
+John laughed | at the party.
+7 b' 23 546 <>
+# 479
+John laughed at | the party.
+8 a' 23 546 <>
+# 480
+If you need me | when you get there call me.
+8 b' 23 546 <>
+# 480
+If you need me when you get there | call me.
+9 a' 23 547 <>
+# 481
+This collar is dangerous to younger | dogs and cats.
+9 b' 23 547 <>
+# 481
+This collar is dangerous to younger dogs | and cats.
+10 a' 23 547 <>
+# 482
+Stir in rice wine | and seasonings.
+10 b' 23 547 <>
+# 482
+Stir in rice | wine | and seasonings.
+11 a' 23 547 <>
+# 483
+We only suspected | they all knew that a burglary had been committed.
+11 b' 23 547 <>
+# 483
+We only suspected | they all knew | that a burglary had been committed
+12 _ 23 547 <>
+# 484
+WE only SUSPECTED | THEY all KNEW | that a BURGLARY had been committed.
+13 a' 23 547 <>
+# 485
+GERMAN teachers
+13 b' 23 547 <>
+# 485
+German TEACHERS
+14 a' 23 547 <>
+# 486
+LEAVE in the LIMO
+14 b' 23 547 <>
+# 486
+Leave IN the REFERENCE
+15 _ 23 547 <>
+# 487
+I didn't shoot AT him, I shot PAST him.
+16 a 23 548 <>
+# 488
+John only introduced Mary to Sue.
+16 b 23 548 <>
+# 488
+John only introduced MARY to Sue.
+16 c 23 548 <>
+# 488
+John only introduced Mary to SUE.
+17 a 23 549 <>
+# 489
+Most ships pass through the lock at night.
+17 b 23 549 <>
+# 489
+: I1
+When do ships go through the lock?
+17 b` 23 549 <>
+# 489
+: I2
+Most ships pass through the lock at NIGHT.
+17 c 23 549 <>
+# 489
+: I1
+What do ships do at night?
+17 c` 23 549 <>
+# 489
+: I2
+Most ships pass through the LOCK at night.
+18 a 23 549 <>
+# 490
+Londoners most often go to Brighton.
+18 b 23 549 <>
+# 490
+: I1
+Who goes to Brighton?
+18 b` 23 549 <>
+# 490
+: I2
+LONDONERS most often go to Brighton.
+18 c 23 549 <>
+# 490
+: I1
+Where do Londoners go on vacation?
+18 c` 23 549 <>
+# 490
+: I2
+Londoners most often go to BRIGHTON.
+19 a 23 549 <>
+# 491
+Dogs must be carried.
+19 b 23 549 <>
+# 491
+DOGS must be carried.
+19 c 23 549 <>
+# 491
+Dogs must be CARRIED.
+20 a 23 549 <>
+# 492
+It's ODD that Clyde married Bertha.
+20 b 23 549 <>
+# 492
+It's odd that CLYDE married Bertha.
+20 c 23 549 <>
+# 492
+It's odd that Clyde MARRIED Bertha.
+20 d 23 549 <>
+# 492
+It's odd that Clyde married BERTHA.
+21 a 23 550 <>
+# 493
+This time HARRY didn't cause our defeat.
+21 b 23 550 <>
+# 493
+This time Harry didn't CAUSE our defeat.
+21 c 23 550 <>
+# 493
+This time Harry didn't cause our DEFEAT.
+22 a 23 550 <>
+# 494
+Bill doesn't drink because he's unhappy.
+22 b 23 550 <>
+# 494
+Bill doesn't drink | because he's unhappy.
+23 a 23 551 <>
+# 495
+John called Bill a Republican and then he insulted him.
+23 b 23 551 <>
+# 495
+John called Bill a Republican and then HE insulted HIM.
+24 a 23 552 <>
+# 496
+John likes his colleagues and so does Sue.
+24 b 23 552 <>
+# 496
+John likes HIS colleagues and so does Sue.
+25 a' 23 552 <>
+# 497
+Susan gave Betsy a pet hamster.
+25 b' 23 552 <>
+# 497
+She reminded her such hamsters were quite shy.
+25 c' 23 552 <>
+# 497
+She asked Betsy whether she liked the gift.
+25 d' 23 552 <>
+# 497
+And SHE said yes, she did.
+25 e' 23 552 <>
+# 497
+She'd always wanted a pet hamster.
+26 a 23 553 <>
+# 498
+The SENATE BREAKS for LUNCH at NOON, so I HEADED to the CAFETERIA to GET my STORY.
+26 b 23 553 <>
+# 498
+There are SENATORS, and there are THIN senators.
+26 c 23 553 <>
+# 498
+For SENATORS, LUNCH at the cafeteria is FREE. For REPORTERS, it's not.
+26 d 23 553 <>
+# 498
+But CAFETERIA food is CAFETERIA food.
+27 a 23 555 <>
+# 499
+Now, Bill is a vegetarian.
+27 b 23 555 <>
+# 499
+Now Bill is a vegetarian.
+27 c 23 555 <>
+# 499
+NOW Bill is a vegetarian.
+28 a 23 556 <>
+# 500
+The number is {{L-H%}}: 555-1212.
+28 b 23 556 <>
+# 500
+Open the carton {{L-H%}}. Now remove the monitor carefully.
+29 a' 23 556 <>
+# 501
+The Johnsons are solid citizens.
+29 b' 23 556 <>
+# 501
+They {{H*}} pay their {{H*}} taxes {{H-L%}}.
+29 c' 23 556 <>
+# 501
+They {{H* attend {{H*}} PTA meetings {{H-L%}}.
+29 d' 23 556 <>
+# 501
+They're just good people.
+30 _ 23 557 <>
+# 502
+: I1
+Did you finish those slides?
+30 a 23 557 <>
+# 502
+: I2
+{{L*+H}} Sort of {{L-H%}}.
+30 b 23 557 <>
+# 502
+: I1
+{{L*+H}} Sort of {{L-H%}}.
+31 _ 23 557 <>
+# 503
+The {{L*}} blackboard's painted {{H*}} orange.
+32 a 23 557 <>
+# 504
+{{H*}} Today we're {{!H*}} going to {{!H*}} look at the {{!H*}} population of {{!H*}} Ghana {{L-L%}}.
+32 b 23 557 <>
+# 504
+{{H*}} This is {{!H*}} how you {{!H*}} heat the {{!H*}} soup {{L-L%}}.
+33 a' 23 558 <>
+# 505
+: A
+Can you tell me the time?
+33 b1 23 558 <>
+# 505
+: B
+Yes.
+33 b2 23 558 <>
+# 505
+: B
+It's four o'clock.
+34 a 23 558 <>
+# 506
+I like grapefruit.
+34 b 23 558 <>
+# 506
+I like grapefruit?
+35 a 23 558 <>
+# 507
+Would you stop hitting Gwendolyn?
+35 b 23 558 <>
+# 507
+Why don't you move to California?
+5 a 24 576 <>
+# 508
+He is brave; he is after all an Englishman.
+5 b 24 576 <>
+# 508
+Tom has left. After all, his wife is not here.
+6 a' 24 577 <>
+# 509
+The federal fund that finances presidential campaigns should have enough money to pay for the 1992 race after all, but by 1996 the coffer could be depleted, a new report said Wednesday.
+6 b' 24 577 <>
+# 509
+The Federal Election Commission issued a new projection on how much money will be available to finance the 1992 primaries . . . that is more optimistic than some previous estimates.
+7 _ 24 578 <>
+# 510
+Grodin also captures the movie star's obsessive concern with his image, which is, after all, what he has to sell.
+8 _ 24 578 <>
+# 511
+The notion that bombs can strike military targets without killing and maiming innocent women and children is absurd. If there is war, the Iraqi dictator can be expected to employ chemical weaponry. After all, he killed his own people, including Kurdish women and children, with poison gas.
+15 _ 24 582 <>
+# 512
+You need not be much concerned at it; for after all, this way of explaining things, as you called it, could never have satisfied any reasonable man.
+3 a' 25 586 <Mother:>
+# 513
+Why don't you put it in the wastebasket?
+3 b' 25 586 <Sally (2;0):>
+# 513
+Throw away?
+4 a' 25 586 <Mother (in car):>
+# 514
+I'm cold.
+4 b' 25 586 <Child (3;3):>
+# 514
+I already shut the window.
+13 a' 25 593 <>I want you to.
+# 515
+Would you like to play on the train?
+13 b' 25 593 <>I'll let you.
+# 515
+Would you like to play on the train?
+1 _ 26 603 <>
+# 516
+Can you pass the salt?
+2 a' 26 603 <>
+# 517
+: A
+I was wanting to make some arrangements for a trip that I'm going to be taking uh to LA uh beginning of the week after next.
+2 b' 26 603 <>
+# 517
+: B
+OK uh let me pull up your profile and I'll be right with you here.
+2 c' 26 603 <[pause]>
+# 517
+: B
+And you said you wanted to travel next week?
+2 d' 26 603 <>
+# 517
+: A
+Uh, yes.
+10 _ 26 617 <>
+# 518
+Oh so you're from the Midwest too.
+11 _ 26 618 <>
+# 519
+So you can steady it.
+12 _ 26 618 <>
+# 520
+You really rough it then.
+13 _ 26 618 <>
+# 521
+That's good.
+14 _ 26 618 <>
+# 522
+Oh that's nice.
+15 _ 26 618 <>
+# 523
+It's great.
+2 _ 27 632 <>
+# 524
+We are serving meat.
+3 _ 27 632 <>
+# 525
+We are serving chicken.
+4 _ 27 632 <>
+# 526
+Either we are serving chicken or (7squared - 3) is not 46.
+11 a 27 638 <Peter>
+# 527
+Did John pay back the money he owed you?
+11 b 27 638 <Mary>
+# 527
+No. He forgot to go to the bank.
+13 a 27 642 <Peter>
+# 528
+What do you think of Martin's latest novel?
+13 b 27 642 <Mary>
+# 528
+It puts me to sleep.
+1 a' 28 658 <>
+# 529
+: X
+How is Mary feeling after her first year at university?
+1 b' 28 658 <>
+# 529
+: Y
+She didn't get enough units and can't continue.
+4 a' 28 661 <>
+# 530
+: A
+Have you heard Alfred Brendel's version of The Moonlight Sonata?
+4 b' 28 661 <>
+# 530
+: B
+Yes. It made me realize I should never try to play it.
+5 a 28 662 <>
+# 531
+She has a brain.
+5 a` 28 662 <>
+# 531
+She has a brain -- she's very smart.
+5 b 28 662 <>
+# 531
+It's going to take time for these wounds to heal.
+5 b` 28 662 <>
+# 531
+It's going to take considerable time for these wounds to heal.
+5 c 28 662 <>
+# 531
+I've had a shower.
+5 c 28 662 <>
+# 531
+c` I've had a shower today.
+5 d 28 662 <>
+# 531
+It's snowing.
+5 d` 28 662 <>
+# 531
+It's snowing here.
+5 e 28 662 <>
+# 531
+Mary gave John a pen and he wrote down her address.
+5 e` 28 662 <>
+# 531
+Mary gave John a pen and and then he wrote down her address with the pen.
+5 f 28 662 <>
+# 531
+Sam left Jane and she became very depressed.
+5 f` 28 662 <>
+# 531
+Sam left Jane and as a result she became very depressed.
+7 _ 28 664 <>
+# 532
+Only 22,000 miles. Like new.
+9 a 28 665 <>
+# 533
+He was upset but he wasn't upset.
+10 a 28 665 <>
+# 534
+There is a rectangle of lawn at the back.
+10 b 28 665 <>
+# 534
+This steak is raw.
+10 c 28 665 <>
+# 534
+On Classic FM, we play continuous classics.
+10 d 28 665 <>
+# 534
+Mary is a bulldozer.
+11 a' 28 666 <>
+# 535
+: A
+Let's go to a movie. I've heard Sense and Sensibility is good. Are you interested in seeing it?
+11 b' 28 666 <>
+# 535
+: B
+Costume dramas are usually boring.
+13 a 28 668 <>
+# 536
+Bill drank a bottle of vodka and fell into a stupor.
+13 b 28 668 <>
+# 536
+Bill drank a bottle of vodka and as a result he fell into a stupor.
+14 a 28 668 <>
+# 537
+Sam and Jane moved the piano.
+14 b 28 668 <>
+# 537
+Sam and Jane moved the piano together.
+0 b 28 668 <>
+# 538
+Pat will be eligible for the job if and only if she finishes her thesis by September.
+16 a 28 669 <>
+# 539
+I've eaten three of your Swiss chocolates.
+16 b 28 669 <>
+# 539
+I've eaten exactly three of your Swiss chocolates.
+17 a 28 669 <>
+# 540
+Some of the children were sick.
+17 b 28 669 <>
+# 540
+Some but not all of the children were sick.
+16 c 28 669 <>
+# 539
+I've eaten at least three of your Swiss chocolates.
+16 d 28 669 <>
+# 539
+I haven't eaten more than three of your Swiss chocolates.
+17 c 28 669 <>
+# 540
+At least some (perhaps all) of the children were sick.
+17 d 28 669 <>
+# 540
+Not all of the children were sick.
+18 a 28 669 <>
+# 541
+It's always the same at parties: either I get drunk and no one will talk to me or no one will talk to me and I get drunk.
+18 b 28 669 <>
+# 541
+If someone leaves a manhole uncovered and you break your leg, you can sue.
+19 a 28 670 <>
+# 542
+If each side in the soccer game got three goals, then the game was a draw.
+19 b 28 670 <>
+# 542
+If each side in the soccer game got EXACTLY three goals, then the game was a draw.
+22 a 28 671 <>
+# 543
+Everyone screamed.
+22 b 28 671 <>
+# 543
+The door is locked.
+22 c 28 671 <>
+# 543
+There is milk in the fridge.
+22 d 28 671 <>
+# 543
+I've had breakfast.
+24 a 28 675 <>
+# 544
+It's snowing.
+24 b 28 675 <>
+# 544
+It's snowing IN ABERDEEN.
+25 a 28 675 <>
+# 545
+On the table.
+25 b 28 675 <>
+# 545
+THE MARMALADE IS on the table.
+26 a 28 675 <>
+# 546
+Every bottle is empty.
+26 b 28 675 <>
+# 546
+Every bottle IN THIS CRATE is empty.
+27 a 28 675 <>
+# 547
+She seized the knife and stabbed her husband.
+27 b 28 675 <>
+# 547
+She seized the knife and A FEW SECONDS LATER she stabbed her husband WITH THE KNIFE.
+2 _ 29 687 <>
+# 548
+The Boston Marathon will take place next week. Max thought the winner received $100, but it turns out there won't be any prize money.
+3 _ 29 687 <>
+# 549
+My friends were under the impression that I was running a lottery in my garage. Max thought the winner received $100. But they were all wrong -- there was no lottery.
+5 _ 29 689 <>
+# 550
+Sue believes Luke has a child and that Luke's child will visit her.
+6 _ 29 690 <>
+# 551
+In France, Watergate wouldn't have done Nixon any harm.
+7 a 29 691 <>
+# 552
+In France, Watergate wouldn't have done Nixon any harm because Nixon is loved by the French.
+7 b 29 691 <>
+# 552
+In France, Watergate wouldn't have done Nixon any harm because French presidents are not affected by US scandals.
+7 c 29 691 <>
+# 552
+In France, Watergate wouldn't have done Nixon any harm because spying on American political parties is supported by public opinion.
+7 d 29 691 <>
+# 552
+In France, Watergate wouldn't have done Nixon any harm because he would never have been elected president in the first place.
+8 _ 29 694 <>
+# 553
+The crook paid them with fake money.
+9 _ 29 694 <>
+# 554
+The crook thought he was paying them with fake money, but in fact it was the new European currency.
+1 _ 30 698 <>
+# 555
+We do not know much about this part of the brain, which plays such an important role in our lives, but we will see in the next chapter . . .
+2 _ 30 699 <>
+# 556
+Fred won't order shrimp, let alone Louise, squid.
+3 _ 30 700 <>
+# 557
+Him be a doctor!?
+4 a 30 700 <>
+# 558
+It's not good, but superb.
+4 b 30 700 <>
+# 558
+? #
+It's not good, but it is superb.
+4 c 30 700 <>
+# 558
+He's more negligent than vicious.
+4 d 30 700 <>
+# 558
+He's more negligent than he is vicious.
+4 e 30 700 <>
+# 558
+His negligence exceeds his viciousness.
+7 a' 30 702 <>
+# 559
+: A
+Did Louise order squid?
+7 b' 30 702 <>
+# 559
+: B
+Are you kidding? Fred didn't even order shrimp, let alone Louise, squid.
+10 _ 30 703 <>
+# 560
+? #
+She doesn't have an odd number of books, let alone 75.
+11 _ 30 703 <>
+# 561
+She didn't get an odd-numbered ticket, let alone 75.
+12 a 30 704 <>
+# 562
+You couldn't get a poor man to wash your car for $10 let alone a rich man to wax your truck for $5.
+12 b 30 704 <>
+# 562
+You couldn't get a poor man to wash your car, let alone a rich man to wax your truck, for $10, let alone for $5.
+12 c 30 704 <>
+# 562
+You couldn't get a poor man, let alone a rich man, to wash your car for $10, let alone wax your truck for $5.
+12 d 30 704 <>
+# 562
+You couldn't get a poor man, let alone a rich man, to wash, let alone (to) wax, your car, let alone (your) truck, for $10, let alone (for) $5.
+12 a 30 704 <>
+# 562
+You couldn't get a poor man to wash your car for $10 let alone a rich man to wax your truck for $5.
+12 b 30 704 <>
+# 562
+You couldn't get a poor man to wash your car, let alone a rich man to wax your truck, for $10, let alone for $5.
+12 c 30 704 <>
+# 562
+You couldn't get a poor man, let alone a rich man, to wash your car for $10, let alone wax your truck for $5.
+12 d 30 704 <>
+# 562
+You couldn't get a poor man, let alone a rich man, to wash, let alone (to) wax, your car, let alone (your) truck, for $10, let alone (for) $5.
+12 d` 30 704 <>
+# 562
+You couldn't get a poor man, let alone a rich man, to wash, let alone wax, your car, let alone truck, for $10, let alone $5.
+13 a 30 704 <>[if not others]
+# 563
+She has invited at least Sarah and James.
+13 b 30 704 <>[if not more than five]
+# 563
+At least five students passed.
+13 c 30 704 <>[if not outraged]
+# 563
+He'll be at least irritated.
+13 d 30 704 <>[if not seriously so]
+# 563
+He's at least slightly depressed.
+13 e 30 704 <>[if not ruin it altogether]
+# 563
+That will at least damage it.
+14 a 30 705 <>
+# 564
+In that big trainwreck at least several people were saved.
+14 b 30 705 <>
+# 564
+In that big trainwreck at least several people were killed.
+14 c 30 705 <>
+# 564
+At least in that big trainwreck several people were saved.
+14 d 30 705 <>
+# 564
+At least in that big trainwreck several people were killed.
+15 a 30 705 <>
+# 565
+Well, I didn't get an A, but I didn't do too badly either. At least I got an A-.
+15 b 30 705 <>
+# 565
+At least I got an A-.
+16 a 30 705 <>
+# 566
+Mary is at home -- at least John's car is in the driveway.
+16 b 30 705 <>
+# 566
+Mary is at home -- at least I think so.
+16 c 30 705 <>
+# 566
+Mary is at home -- at least that's what Sue said.
+16 d 30 705 <>
+# 566
+Mary will help me -- at least on the first draft.
+16 d` 30 705 <>
+# 566
+Mary will help me -- at least if it doesn't rain.
+16 d`1 30 705 <>
+# 566
+Mary will help me -- at least when I've finished the outline.
+17 _ 30 706 <>
+# 567
+Mary doesn't collect Norwegian pottery, let alone Austrian prints.
+18 a 30 706 <>
+# 568
+Mr. Smith and Mr. Jones love Mrs. Jones and Mrs. Smith, respectively.
+18 b 30 706 <>
+# 568
+Mr. Smith loves Mrs. Jones and Mr. Jones loves Mrs. Smith.
+18 c 30 706 <>
+# 568
+Mr. Smith and Mr. Jones love their respective wives.
+18 d 30 706 <>
+# 568
+Mr. Smith loves Mrs. Smith and Mr. Jones loves Mrs. Jones.
+19 a 30 707 <>
+# 569
+The three brightest students scored 95, 99, and 96, respectively.
+19 b 30 707 <>
+# 569
+Clarence, Florence, and Terrence got the three highest grades, respectively.
+19 c 30 707 <>
+# 569
+The three brightest students got the three highest grades, respectively.
+20 a 30 707 <>
+# 570
+Many senators represent their respective states well.
+20 b 30 707 <>
+# 570
+? *
+Many senators represent their states well, respectively.
+20 c 30 707 <>
+# 570
+Senators Jones and Smith represent their respective states well.
+20 d 30 707 <>
+# 570
+? *
+Senators Jones and Smith represent their states well, respectively.
+21 a 30 708 <>
+# 571
+The horses finishing in the money were Augustus, Brutus, and Cassius, respectively.
+21 b 30 708 <>
+# 571
+? *
+The horses finishing out of the money were Xerxes, Yerkes, and Zippo, respectively.
+22 a 30 708 <>
+# 572
+Many senators represent their states well.
+22 b 30 708 <>
+# 572
+Senators Jones and Smith represent their states well.
+23 _ 30 708 <>
+# 573
+? ??
+Clarence, Florence, and Terrence got the respective scores of 95, 99, and 96.
+24 a 30 708 <>
+# 574
+Billy Martin and Tony La Russa are known for their volatility and charm, respectively.
+24 b 30 708 <>
+# 574
+? ?
+Billy Martin and Tony La Russa are known for their respective volatility and charm.
+25 _ 30 708 <>
+# 575
+Twelve generals and admirals from the United States, the Soviet Union and their respective allies . . . met for two days of discussions.
+26 _ 30 709 <>
+# 576
+Two rock stars and their respective entourages can fill a small stadium.
+27 _ 30 709 <>
+# 577
+The secretaries emailed their respective mayors
+28 _ 30 709 <>
+# 578
+The secretaries emailed their respective mayors, and vice versa.
+29 _ 30 709 <>
+# 579
+Every boy loves his mother.
+30 _ 30 709 <>
+# 580
+Every boy loves his mother, and vice versa.
+31 _ 30 710 <>
+# 581
+The Joneses don't like their next-door neighbors, but we do, and vice versa.
+32 _ 30 710 <>
+# 582
+The King of France is not bald . . . because there is no King of France.
+33 a 30 711 <>
+# 583
+This is not tasty, it's delicious.
+33 b 30 711 <>
+# 583
+Her name's not Andre, it's Andrea.
+33 c 30 711 <>
+# 583
+We're not dealing with a rare phenomena here, we're dealing with a rare phenomenon.
+33 d 30 711 <>
+# 583
+Your Aunt May is not taking a pee, she's going to the bathroom.
+34 a 30 711 <>
+# 584
+? *
+John didn't manage to solve any of the problems, he managed to solve all of them.
+34 a` 30 711 <>
+# 584
+John didn't manage to solve some of the problems, he managed to solve all of them.
+34 b 30 711 <>
+# 584
+I wouldn't rather walk, but I'm willing to.
+35 a 30 711 <>
+# 585
+? *
+That's impossible, it's certain.
+35 a` 30 711 <>
+# 585
+That's not possible, it's certain.
+35 b 30 711 <>
+# 585
+? *
+She's unlikely to help you, she's bound to.
+35 b` 30 711 <>
+# 585
+She's not likely to help you, she's bound to.
+36 a 30 711 <>[intended inference: He broke many.]
+# 586
+? ?
+He didn't break a few bottles.
+36 b 30 711 <>[entailment: He broke many.]
+# 586
+He didn't break only a few bottles.
+36 b` 30 711 <>[entailment: He broke many.]
+# 586
+He didn't break just a few bottles.
+37 a 30 712 <>
+# 587
+It isn't hot, but scalding.
+37 b 30 712 <>
+# 587
+It isn't hot -- it's scalding.
+37 c 30 712 <>
+# 587
+? #
+It isn't hot, but it's scalding.
+38 a 30 712 <>
+# 588
+It may be hot, or scalding.
+38 b 30 712 <>
+# 588
+? #
+It may be either hot or scalding.
+39 a 30 712 <>
+# 589
+If you're looking for a gas station, there's one around that corner.
+39 b 30 712 <>
+# 589
+? #
+If you're looking for a gas station, then there's one around that corner
+40 _ 30 712 <>
+# 590
+You spilled what in my laptop?
+41 a 30 713 <(spoken by an anthropologist)>
+# 591
+Loosely speaking, the first human beings lived in Kenya.
+41 b 30 713 <>
+# 591
+The first human beings lived in Kenya.
+42 a 30 714 <>(order Rodentia)
+# 592
+Technically, that's a rodent.
+42 b 30 714 <>
+# 592
+? *
+Technically, that's a varmint.
+43 a 30 714 <>(order Insecta)
+# 593
+Technically, that's an insect.
+43 b 30 714 <>
+# 593
+? *
+Technically, that's a bug.
+44 a 30 714 <>
+# 594
+Technically, Sacco and Vanzetti were murderers.
+44 b 30 714 <>
+# 594
+Strictly speaking, Sacco and Vanzetti were murderers.
+45 a 30 714 <>
+# 595
+It's got a sorta halo over it.
+45 b 30 714 <>
+# 595
+It was very kinda blustery that day.
+45 c 30 714 <>
+# 595
+He was kinda elected the hereditary ruler.
+46 a 30 715 <>
+# 596
+Crete is sort of an island.
+46 b 30 715 <>
+# 596
+All the papers were kinda really interesting.
+46 c 30 715 <>
+# 596
+I kinda have to get going now.
+47 _ 30 715 <>
+# 597
+Marvin's a sorta self-made straw man.
+48 a 30 715 <>
+# 598
+He distributed the grapes kinda amongst the mangoes.
+48 b 30 715 <>
+# 598
+While singing kinda in between the notes . . .
+48 c 30 715 <>
+# 598
+Sort of all over the world, reports kept cropping up.
+48 d 30 715 <>
+# 598
+She did it very kinda unfalteringly.
+48 e 30 715 <>
+# 598
+It began to shake kinda very jerkily.
+48 f 30 715 <>
+# 598
+I wonder sorta how many of the people he thinks he can fool how much of the time.
+48 g 30 715 <>
+# 598
+Kinda twist it over the flange and under the casing.
+48 h 30 715 <>
+# 598
+In trying kinda to outdo herself . . .
+49 a 30 715 <>
+# 599
+I (hereby) appoint you Assistant Principal of George Walker Shrub Elementary School.
+49 b 30 715 <>
+# 599
+This court (hereby) finds in favor of the plaintiff.
+50 _ 30 716 <>
+# 600
+Watch me drop this!
+52 a' 30 716 <>
+# 601
+Look in the mirror -- now, when I tell you this joke watch yourself.
+52 b' 30 716 <>
+# 601
+? *
+Look in the mirror -- now, when I tell you this joke watch you blush.
+53 a' 30 716 <>
+# 602
+I've finally taught you a proper backhand. Now, watch yourself beat me.
+53 b' 30 716 <>
+# 602
+? *
+I've finally taught you a proper backhand. Now, watch you beat me.
+54 a 30 716 <>
+# 603
+Didn't Fido eat the pizza?
+54 b 30 716 <>
+# 603
+Did Fido fail to eat the pizza?
+55 a 30 717 <>
+# 604
+Fido ate the pizza, did he?
+55 b 30 717 <>
+# 604
+? *
+Fido didn't eat the pizza, didn't he?
+56 a 30 717 <>
+# 605
+So John has washed dishes, has he? Well I know for a fact that he hasn't.
+56 b 30 717 <>
+# 605
+Lucy can play the viola, can she? I didn't know that.
+57 a 30 717 <>
+# 606
+You wouldn't rather go to the \movies, /would you?
+57 b 30 717 <>
+# 606
+? *
+I wouldn't rather go to the movies.
+57 c 30 717 <>
+# 606
+? *
+You wouldn't prefer to give me \a red cent, /would you?
+57 d 30 717 <>
+# 606
+You wouldn't prefer to give me \a penny, /would you?
+58 a 30 717 <>
+# 607
+They got caught, didn't they. pol + tone \
+58 b 30 717 <>
+# 607
+They got caught, didn't they? pol + tone /
+58 c 30 717 <>
+# 607
+They didn't get caught, did they. pol - tone \
+58 d 30 717 <>
+# 607
+They didn't get caught, did they? pol - tone /
+59 a 30 718 <>
+# 608
+Sing away!
+59 b 30 718 <>
+# 608
+Talk away!
+59 c 30 718 <>
+# 608
+Eat away!
+61 a 30 718 <>
+# 609
+Are you crazy?
+61 b 30 718 <>
+# 609
+Have you lost your mind?
+61 c 30 718 <>
+# 609
+Are you out of your gourd?
+61 d 30 718 <>
+# 609
+Is he out of his gourd?
+61 e 30 718 <>
+# 609
+Is that woman out of her gourd?
+1 _ 32 747 <>
+# 610
+John drove down the street in a car.
+2 _ 32 747 <>
+# 611
+John drove down a street in Chicago.
+8 a' 32 753 <>
+# 612
+: A
+How is John doing on his new job at the bank?
+8 b' 32 753 <>
+# 612
+: B
+Quite well. He likes his colleagues and he hasn't embezzled any money yet.
+12 _ 32 756 <>
+# 613
+The Boston office called.
+13 _ 32 756 <>
+# 614
+The plane taxied to the terminal.
+14 _ 32 758 <>
+# 615
+The police prohibited the women from demonstrating. They feared violence.
+15 _ 32 759 <>
+# 616
+The police prohibited the women from demonstrating, because they feared violence.
+16 _ 32 759 <>
+# 617
+The police prohibited the women from demonstrating, because they advocated violence.
+18 a' 32 761 <>
+# 618
+: A
+Your Johnny is certainly acting up today, isn't he?
+18 b' 32 761 <>
+# 618
+Boys will be boys.
+22 _ 32 763 <>
+# 619
+John has three children.

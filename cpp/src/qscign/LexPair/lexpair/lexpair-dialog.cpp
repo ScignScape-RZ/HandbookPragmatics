@@ -167,7 +167,7 @@ void _dg_info_cb(QObject* obj, QMouseEvent* event,
 }
 
 Lexpair_Dialog::Lexpair_Dialog(QStringList sent, QWidget* parent)
-  : QDialog(parent), focus_button_(nullptr), source_id_(0),
+  : QDialog(parent), _focus_button_(nullptr), source_id_(0),
     target_id_(0), pivot_id_(0), pairs_count_(0), sxpr_(nullptr)
 {
  sentence_ = sent;
@@ -245,25 +245,27 @@ Lexpair_Dialog::Lexpair_Dialog(QStringList sent, QWidget* parent)
    {
     force_recheck(id);
    }
+   sentence_button_group_->button(id)->setFocus();
+   plan_focus_button(sxpr_cc_button_);
    return;
   }
   if(source_id_ == 0)
   {
    source_id_ = id;
    add_label_->setText(sentence_.at(-id-2));
-   focus_button_ = reset_button_;
+   plan_focus_button(reset_button_);
   }
   else if(target_id_ == 0)
   {
    target_id_ = id;
    add_label_->setText(QString("%1 %2").arg(add_label_->text()).arg(sentence_.at(-id-2)));
-   focus_button_ = add_button_;
+   plan_focus_button(add_button_);
   }
   else if(pivot_id_ == 0)
   {
    pivot_id_ = id;
    add_label_->setText(QString("%1 (%2)").arg(add_label_->text()).arg(sentence_.at(-id-2)));
-   focus_button_ = add_button_;
+   plan_focus_button(add_button_);
    if(!checked)
      force_recheck(id);
   }
@@ -274,7 +276,7 @@ Lexpair_Dialog::Lexpair_Dialog(QStringList sent, QWidget* parent)
    source_id_ = tid;
    add_label_->setText(QString("%1 %2 (%3)").arg(sentence_.at(-tid-2))
      .arg(sentence_.at(-id-2)).arg(sentence_.at(-pivot_id_-2)));
-   focus_button_ = add_button_;
+   plan_focus_button(add_button_);
    force_recheck(id);
   }
   else if(id == target_id_)
@@ -284,13 +286,13 @@ Lexpair_Dialog::Lexpair_Dialog(QStringList sent, QWidget* parent)
    target_id_ = sid;
    add_label_->setText(QString("%1 %2 (%3)").arg(sentence_.at(-id-2))
      .arg(sentence_.at(-sid-2)).arg(sentence_.at(-pivot_id_-2)));
-   focus_button_ = add_button_;
+   plan_focus_button(add_button_);
    force_recheck(id);
   }
   else if(id == pivot_id_)
   {
    force_recheck(id);
-   focus_button_ = add_button_;
+   plan_focus_button(add_button_);
   }
   else
   {
@@ -299,12 +301,10 @@ Lexpair_Dialog::Lexpair_Dialog(QStringList sent, QWidget* parent)
    source_id_ = tid;
    add_label_->setText(QString("%1 %2 (%3)").arg(sentence_.at(-tid-2))
      .arg(sentence_.at(-id-2)).arg(sentence_.at(-pivot_id_-2)));
-   focus_button_ = add_button_;
+   plan_focus_button(add_button_);
    force_recheck(id);
   }
 
-//  if(focus_button_)
-//    focus_button_->setFocus();
  });
 
  sentence_layout_->addStretch();
@@ -315,13 +315,18 @@ Lexpair_Dialog::Lexpair_Dialog(QStringList sent, QWidget* parent)
  add_button_ = new QPushButton("Add", this);
  add_label_ = new QLabel(this);
  add_label_->setText("(Pair/Triple)");
-
+ original_add_label_text_ = "(Pair/Triple)";
  add_label_->setMaximumWidth(300);
  add_label_->setMinimumWidth(300);
 
  connect(add_button_, &QPushButton::clicked, [this]()
  {
-  check_pair();
+  if( (source_id_ == 0 ) || (target_id_ == 0) )
+  {
+   reset_button_->setFocus();
+  }
+  else
+    check_pair();
  });
 
  add_layout_->addWidget(add_button_);
@@ -352,7 +357,18 @@ Lexpair_Dialog::Lexpair_Dialog(QStringList sent, QWidget* parent)
  connect(sxpr_mode_button_, &QPushButton::clicked, [this]
  {
   reset_add();
+  add_label_->setText(original_add_label_text_);
+  if(sxpr_mode_button_->isChecked())
+  {
+   enable_sxpr_buttons(true);
+   sxpr_cc_button_->setFocus();
+  }
+  else
+    enable_sxpr_buttons(false);
  });
+
+ sxpr_button_group_ = new QButtonGroup(this);
+ sxpr_button_group_->setExclusive(false);
 
  sxpr_clear_button_ = new QPushButton("Clear", this);
  sxpr_clear_button_->setDefault(false);
@@ -363,6 +379,7 @@ Lexpair_Dialog::Lexpair_Dialog(QStringList sent, QWidget* parent)
   sxpr_text_edit_->setPlainText("");
   clear_buttons();
  });
+ sxpr_button_group_->addButton(sxpr_clear_button_);
 
  ll_paren_button_ = new QPushButton("<- (", this);
  ll_paren_button_->setDefault(false);
@@ -371,8 +388,8 @@ Lexpair_Dialog::Lexpair_Dialog(QStringList sent, QWidget* parent)
  connect(ll_paren_button_, &QPushButton::clicked, [this]
  {
   sxpr_insert_text("( ", 1, 0);
-  //sxpr_text_edit_->setPlainText(sxpr_text_edit_->toPlainText().prepend("( "));
  });
+ sxpr_button_group_->addButton(ll_paren_button_);
 
  lend_paren_button_ = new QPushButton("(", this);
  lend_paren_button_->setDefault(false);
@@ -381,10 +398,8 @@ Lexpair_Dialog::Lexpair_Dialog(QStringList sent, QWidget* parent)
  connect(lend_paren_button_, &QPushButton::clicked, [this]
  {
   sxpr_insert_text("( ");
-//  QString qs = sxpr_text_edit_->toPlainText();
-//  qs.replace(sxpr_text_edit_->textCursor().position(), 0, "( ");
-//  sxpr_text_edit_->setPlainText(qs);
  });
+ sxpr_button_group_->addButton(lend_paren_button_);
 
  left_paren_button_ = new QPushButton("( ->", this);
  left_paren_button_->setDefault(false);
@@ -393,8 +408,8 @@ Lexpair_Dialog::Lexpair_Dialog(QStringList sent, QWidget* parent)
  connect(left_paren_button_, &QPushButton::clicked, [this]
  {
   sxpr_insert_text("( ", -1);
-  //sxpr_text_edit_->setPlainText(sxpr_text_edit_->toPlainText() + "( ");
  });
+ sxpr_button_group_->addButton(left_paren_button_);
 
  right_paren_button_ = new QPushButton(")", this);
  right_paren_button_->setDefault(false);
@@ -403,10 +418,8 @@ Lexpair_Dialog::Lexpair_Dialog(QStringList sent, QWidget* parent)
  connect(right_paren_button_, &QPushButton::clicked, [this]
  {
   sxpr_insert_text(") ");
-//  QString qs = sxpr_text_edit_->toPlainText();
-//  qs.replace(sxpr_text_edit_->textCursor().position(), 0, ") ");
-//  sxpr_text_edit_->setPlainText(qs);
  });
+ sxpr_button_group_->addButton(right_paren_button_);
 
  rr_paren_button_ = new QPushButton(") ->", this);
  rr_paren_button_->setDefault(false);
@@ -415,8 +428,8 @@ Lexpair_Dialog::Lexpair_Dialog(QStringList sent, QWidget* parent)
  connect(rr_paren_button_, &QPushButton::clicked, [this]
  {
   sxpr_insert_text(") ", -1, 0);
-  //sxpr_text_edit_->setPlainText(sxpr_text_edit_->toPlainText() + ") ");
  });
+ sxpr_button_group_->addButton(rr_paren_button_);
 
  sxpr_cc_button_ = new QPushButton("Copy", this);
  sxpr_cc_button_->setDefault(false);
@@ -426,6 +439,10 @@ Lexpair_Dialog::Lexpair_Dialog(QStringList sent, QWidget* parent)
  {
   QApplication::clipboard()->setText(sxpr_text_edit_->toPlainText().simplified());
  });
+ sxpr_cc_button_->setFocusPolicy(Qt::StrongFocus);
+ sxpr_cc_button_->setStyleSheet("QPushButton:focus{border:1px groove teal;}"
+   "QPushButton:focus:hover{border:2px groove teal;}" );
+ sxpr_button_group_->addButton(sxpr_cc_button_);
 
  sxpr_read_button_ = new QPushButton("Read", this);
  sxpr_read_button_->setDefault(false);
@@ -435,6 +452,9 @@ Lexpair_Dialog::Lexpair_Dialog(QStringList sent, QWidget* parent)
  {
   read_sxpr(sxpr_text_edit_->toPlainText().simplified());
  });
+ sxpr_button_group_->addButton(sxpr_read_button_);
+
+ enable_sxpr_buttons(false);
 
  sxpr_text_edit_ = new QPlainTextEdit(this);
  sxpr_layout_->addWidget(sxpr_text_edit_, 1, 1, 1, 8);
@@ -683,14 +703,19 @@ void Lexpair_Dialog::check_sxpr_balance(QChar qch, int pos)
    });
 }
 
+void Lexpair_Dialog::plan_focus_button(QPushButton* btn)
+{
+ _focus_button_ = btn;
+}
+
 bool Lexpair_Dialog::eventFilter(QObject* obj, QEvent* event)
 {
  if(QPushButton* btn = qobject_cast<QPushButton*>(obj))
  {
   if(event->type() == QEvent::Leave)
   {
-   if(focus_button_)
-     focus_button_->setFocus();
+   if(_focus_button_)
+     _focus_button_->setFocus();
    if(btn->isChecked())
    {
     btn->setFocusPolicy(Qt::NoFocus);
@@ -926,6 +951,15 @@ cleanup:
  source_id_ = 0;
  target_id_ = 0;
  clear_buttons();
+}
+
+void Lexpair_Dialog::enable_sxpr_buttons(bool en)
+{
+ QSignalBlocker qsb(sentence_button_group_);
+ for(QAbstractButton* b : sxpr_button_group_->buttons())
+ {
+  b->setEnabled(en);
+ }
 }
 
 void Lexpair_Dialog::clear_buttons()

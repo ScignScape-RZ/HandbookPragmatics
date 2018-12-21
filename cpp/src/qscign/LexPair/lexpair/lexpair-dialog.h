@@ -74,13 +74,16 @@ class Lexpair_Dialog : public QDialog
 
  QPushButton* add_button_;
  QLabel* add_label_;
+ QString original_add_label_text_;
  QHBoxLayout* add_layout_;
 
  QPushButton* reset_button_;
- QPushButton* focus_button_;
+ QPushButton* _focus_button_;
 
  QGridLayout* sxpr_layout_;
  QPushButton* sxpr_mode_button_;
+
+ QButtonGroup* sxpr_button_group_;
  QPushButton* sxpr_clear_button_;
  QPushButton* ll_paren_button_;
  QPushButton* left_paren_button_;
@@ -125,6 +128,8 @@ class Lexpair_Dialog : public QDialog
 
  void set_cell_text(int r, int c, QString text);
 
+ void plan_focus_button(QPushButton* btn);
+
  QString get_info_text(QString folder, QString topic, QString& details);
 
  void add_pair_line(QPair<QString, QString>& words, QPair<quint8, quint8>& pos);
@@ -136,6 +141,7 @@ class Lexpair_Dialog : public QDialog
  // ls.read("((quickly won)(The (home team)))");
 
  void clear_buttons();
+ void enable_sxpr_buttons(bool en);
 
  struct Pair_Row
  {

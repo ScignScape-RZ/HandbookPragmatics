@@ -81,12 +81,8 @@ void Lexpair_Sxpr::read(QString qs)
  {
   QPair<int, int> pr = {lparen, rparen};
 
-  qDebug() << "lambda: " << lambda;
-
   if(lambda == 0)
   {
-   qDebug() << "lambda: " << lambda;
-
    Chief_Node* cn = new Chief_Node {acc, current_chief, local_lparen};
    add_chief_node(cn);
 
