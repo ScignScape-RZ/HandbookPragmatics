@@ -231,17 +231,17 @@ Lexpair_Dialog::Lexpair_Dialog(QStringList sent, QWidget* parent)
   if(sxpr_mode_button_->isChecked())
   {
    QString text = sentence_.at(-id-2);
-
+   sxpr_insert_text(text + " ");
    //QString qs = sxpr_text_edit_->toPlainText();
-   QTextCursor qts = sxpr_text_edit_->textCursor();
-   qts.insertText(text + " ");
+   //QTextCursor qtc = sxpr_text_edit_->textCursor();
+   //qtc.insertText(text + " ");
 
-//   QTextCursor qts = sxpr_text_edit_->textCursor();
-//   qs.replace(qts.position(), 0, text + " ");
+//   QTextCursor qtc = sxpr_text_edit_->textCursor();
+//   qs.replace(qtc.position(), 0, text + " ");
 //   sxpr_text_edit_->document()->setPlainText(qs);
-//   QTextCursor qts1 = sxpr_text_edit_->textCursor();
-//   qts1.setPosition(qts.position() + text.size() + 1);
-//   sxpr_text_edit_->setTextCursor(qts1);
+//   QTextCursor qtc1 = sxpr_text_edit_->textCursor();
+//   qtc1.setPosition(qtc.position() + text.size() + 1);
+//   sxpr_text_edit_->setTextCursor(qtc1);
 
 
    //sxpr_text_edit_->setPlainText(sxpr_text_edit_->toPlainText() + text + " ");
@@ -314,7 +314,8 @@ Lexpair_Dialog::Lexpair_Dialog(QStringList sent, QWidget* parent)
  sxpr_layout_->addWidget(ll_paren_button_, 0, 2);
  connect(ll_paren_button_, &QPushButton::clicked, [this]
  {
-  sxpr_text_edit_->setPlainText(sxpr_text_edit_->toPlainText().prepend("( "));
+  sxpr_insert_text("( ", 1, 0);
+  //sxpr_text_edit_->setPlainText(sxpr_text_edit_->toPlainText().prepend("( "));
  });
 
  lend_paren_button_ = new QPushButton("(", this);
@@ -323,9 +324,10 @@ Lexpair_Dialog::Lexpair_Dialog(QStringList sent, QWidget* parent)
  sxpr_layout_->addWidget(lend_paren_button_, 0, 3);
  connect(lend_paren_button_, &QPushButton::clicked, [this]
  {
-  QString qs = sxpr_text_edit_->toPlainText();
-  qs.replace(sxpr_text_edit_->textCursor().position(), 0, "( ");
-  sxpr_text_edit_->setPlainText(qs);
+  sxpr_insert_text("( ");
+//  QString qs = sxpr_text_edit_->toPlainText();
+//  qs.replace(sxpr_text_edit_->textCursor().position(), 0, "( ");
+//  sxpr_text_edit_->setPlainText(qs);
  });
 
  left_paren_button_ = new QPushButton("( ->", this);
@@ -334,7 +336,8 @@ Lexpair_Dialog::Lexpair_Dialog(QStringList sent, QWidget* parent)
  sxpr_layout_->addWidget(left_paren_button_, 0, 4);
  connect(left_paren_button_, &QPushButton::clicked, [this]
  {
-  sxpr_text_edit_->setPlainText(sxpr_text_edit_->toPlainText() + "( ");
+  sxpr_insert_text("( ", -1);
+  //sxpr_text_edit_->setPlainText(sxpr_text_edit_->toPlainText() + "( ");
  });
 
  right_paren_button_ = new QPushButton(")", this);
@@ -343,9 +346,10 @@ Lexpair_Dialog::Lexpair_Dialog(QStringList sent, QWidget* parent)
  sxpr_layout_->addWidget(right_paren_button_, 0, 5);
  connect(right_paren_button_, &QPushButton::clicked, [this]
  {
-  QString qs = sxpr_text_edit_->toPlainText();
-  qs.replace(sxpr_text_edit_->textCursor().position(), 0, ") ");
-  sxpr_text_edit_->setPlainText(qs);
+  sxpr_insert_text(") ");
+//  QString qs = sxpr_text_edit_->toPlainText();
+//  qs.replace(sxpr_text_edit_->textCursor().position(), 0, ") ");
+//  sxpr_text_edit_->setPlainText(qs);
  });
 
  rr_paren_button_ = new QPushButton(") ->", this);
@@ -354,7 +358,8 @@ Lexpair_Dialog::Lexpair_Dialog(QStringList sent, QWidget* parent)
  sxpr_layout_->addWidget(rr_paren_button_, 0, 6);
  connect(rr_paren_button_, &QPushButton::clicked, [this]
  {
-  sxpr_text_edit_->setPlainText(sxpr_text_edit_->toPlainText() + ") ");
+  sxpr_insert_text(") ", -1, 0);
+  //sxpr_text_edit_->setPlainText(sxpr_text_edit_->toPlainText() + ") ");
  });
 
  sxpr_cc_button_ = new QPushButton("Copy", this);
@@ -614,25 +619,39 @@ void Lexpair_Dialog::check_sxpr_balance(QChar qch, int pos)
    });
 }
 
-void Lexpair_Dialog::sxpr_insert_text(QString text, qint16 at_position, qint16 move_cursor_offset)
+void Lexpair_Dialog::sxpr_insert_text(QString text, qint16 at_position,
+  qint16 move_cursor_offset)
 {
- QTextCursor qts = sxpr_text_edit_->textCursor();
- int old_pos = qts.position();
+ QTextCursor qtc = sxpr_text_edit_->textCursor();
+ int old_pos = qtc.position();
  int revised_old_pos = old_pos;
 
  if(at_position > 0)
  {
-  qts.movePosition(QTextCursor::Start);
-  qts.movePosition(QTextCursor::NextCharacter, at_position - 1);
-  revised_old_pos += (at_position - 1;)
+  qtc.movePosition(QTextCursor::Start);
+  qtc.movePosition(QTextCursor::NextCharacter, QTextCursor::MoveAnchor, at_position - 1);
+  revised_old_pos += (at_position - 1);
  }
  else if(at_position < 0)
  {
-  qts.movePosition(QTextCursor::End);
-  qts.movePosition(QTextCursor::PreviousCharacter, at_position);
+  qtc.movePosition(QTextCursor::End);
+  qtc.movePosition(QTextCursor::PreviousCharacter, QTextCursor::MoveAnchor, -at_position);
  }
 
- qts.insertText();
+ qtc.insertText(text);
+ if(move_cursor_offset == 0)
+ {
+  qtc.setPosition(revised_old_pos);
+ }
+ else if(move_cursor_offset > 1)
+ {
+  qtc.movePosition(QTextCursor::NextCharacter, QTextCursor::MoveAnchor, move_cursor_offset - 1);
+ }
+ else if(move_cursor_offset < 1)
+ {
+  qtc.movePosition(QTextCursor::PreviousCharacter, QTextCursor::MoveAnchor, -move_cursor_offset);
+ }
+ sxpr_text_edit_->setFocus();
 }
 
 void Lexpair_Dialog::sxpr_highlight_balanced(int i1, int i2)
