@@ -247,6 +247,7 @@ Lexpair_Dialog::Lexpair_Dialog(QStringList sent, QWidget* parent)
     clear_splice();
     {
      QSignalBlocker qsb(sentence_button_group_);
+     sxpr_cc_button_->setFocus();
      btn->setChecked(false);
     }
     return;
@@ -383,7 +384,10 @@ Lexpair_Dialog::Lexpair_Dialog(QStringList sent, QWidget* parent)
    sxpr_cc_button_->setFocus();
   }
   else
-    enable_sxpr_buttons(false);
+  {
+   clear_splice();
+   enable_sxpr_buttons(false);
+  }
  });
 
  sxpr_button_group_ = new QButtonGroup(this);
@@ -397,6 +401,7 @@ Lexpair_Dialog::Lexpair_Dialog(QStringList sent, QWidget* parent)
  {
   sxpr_text_edit_->setPlainText("");
   clear_buttons();
+  clear_splice();
  });
  sxpr_button_group_->addButton(sxpr_clear_button_);
  set_button_width(sxpr_clear_button_, 16);
@@ -487,7 +492,7 @@ Lexpair_Dialog::Lexpair_Dialog(QStringList sent, QWidget* parent)
  sxpr_layout_->addWidget(sxpr_splice_button_, 0, 9);
  connect(sxpr_splice_button_, &QPushButton::clicked, [this]
  {
-  read_sxpr(sxpr_text_edit_->toPlainText().simplified());
+  splice_multi();
  });
  sxpr_button_group_->addButton(sxpr_splice_button_);
  set_button_width(sxpr_splice_button_, 16);
@@ -748,6 +753,24 @@ void Lexpair_Dialog::plan_focus_button(QPushButton* btn)
  _focus_button_ = btn;
 }
 
+void Lexpair_Dialog::splice_multi()
+{
+ QString text;
+ int c = 0;
+ for(QPushButton* btn: multi_selected_buttons_)
+ {
+  int id = sentence_button_group_->id(btn);
+  if( (id >= -1) )
+    continue;
+  text += QString("( %1 ").arg(sentence_.at(-id-2));
+  ++c;
+ }
+ text += QString(" )").repeated(c);
+ if(!text.isEmpty())
+   sxpr_insert_text(text, 0, 0);
+ clear_splice();
+}
+
 void Lexpair_Dialog::clear_splice()
 {
  for(QPushButton* btn: multi_selected_buttons_)
@@ -757,6 +780,7 @@ void Lexpair_Dialog::clear_splice()
   btn->style()->polish(btn);
  }
  sxpr_splice_button_->setEnabled(false);
+ multi_selected_buttons_.clear();
 }
 
 bool Lexpair_Dialog::eventFilter(QObject* obj, QEvent* event)
@@ -777,6 +801,11 @@ bool Lexpair_Dialog::eventFilter(QObject* obj, QEvent* event)
     {
      if(QPushButton* btn = qobject_cast<QPushButton*>(qw))
      {
+      if(btn->property("multi_select").toBool())
+      {
+       // already added ...
+       return true;
+      }
       multi_selected_buttons_.push_back(btn);
       sxpr_splice_button_->setEnabled(true);
       btn->setProperty("multi_select", true);
@@ -1039,7 +1068,7 @@ void Lexpair_Dialog::enable_sxpr_buttons(bool en)
  {
   b->setEnabled(en);
  }
- sxpr_splice_button_->setEnabled(false);
+ // sxpr_splice_button_->setEnabled(false);
 }
 
 void Lexpair_Dialog::clear_buttons()

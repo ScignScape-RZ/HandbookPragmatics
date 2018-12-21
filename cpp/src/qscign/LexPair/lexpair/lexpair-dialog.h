@@ -133,6 +133,7 @@ class Lexpair_Dialog : public QDialog
  void set_cell_text(int r, int c, QString text);
 
  void clear_splice();
+ void splice_multi();
 
  void plan_focus_button(QPushButton* btn);
 
