@@ -655,7 +655,7 @@ void Lexpair_Dialog::check_paren_balance(QChar qch, int pos, int max,
  QChar current;
  int count = 0;
  int p = pos + dir;
- while((p >= 0) && (p <= max))
+ while((p >= 0) && (p < max))
  {
   fn(p, current);
   if(current == pr.first)
