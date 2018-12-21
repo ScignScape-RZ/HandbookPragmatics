@@ -204,6 +204,7 @@ Lexpair_Dialog::Lexpair_Dialog(QStringList sent, QWidget* parent)
  main_layout_ = new QVBoxLayout;
 
  sentence_layout_ = new QHBoxLayout;
+ sentence_frame_ = new QFrame(this);
 
  sentence_button_group_ = new QButtonGroup(this);
 
@@ -211,13 +212,14 @@ Lexpair_Dialog::Lexpair_Dialog(QStringList sent, QWidget* parent)
 
  for(QString qs : sent)
  {
-  QPushButton* b = new QPushButton(qs, this);
+  QPushButton* b = new QPushButton(qs, sentence_frame_);
 
   b->setStyleSheet(
     "QPushButton:checked:!focus:hover{background:darkRed}\n"
     "QPushButton:checked:focus:hover{background:teal}\n"
     "QPushButton:pressed:!focus{border:1px ridge darkRed; background:white}\n"
     "QPushButton:pressed:focus:hover{border:1px ridge teal; background:white}\n"
+    "*[multi_select=\"true\"]{background:orange;}\n"
    );
 
   set_button_width(b);
@@ -239,6 +241,17 @@ Lexpair_Dialog::Lexpair_Dialog(QStringList sent, QWidget* parent)
 
   if(sxpr_mode_button_->isChecked())
   {
+   QAbstractButton* btn = sentence_button_group_->button(id);
+   if(btn->property("multi_select").toBool())
+   {
+    clear_splice();
+    {
+     QSignalBlocker qsb(sentence_button_group_);
+     btn->setChecked(false);
+    }
+    return;
+   }
+
    QString text = sentence_.at(-id-2);
    sxpr_insert_text(text + " ");
    if(!checked)
@@ -308,10 +321,16 @@ Lexpair_Dialog::Lexpair_Dialog(QStringList sent, QWidget* parent)
  });
 
  sentence_layout_->addStretch();
-
- main_layout_->addLayout(sentence_layout_);
+ sentence_frame_->setLayout(sentence_layout_);
+ sentence_frame_->installEventFilter(this);
+ main_layout_->addWidget(sentence_frame_);
 
  add_layout_ = new QHBoxLayout;
+// multi_button_ = new QPushButton("Multi", this);
+// multi_button_->setCheckable(true);
+// multi_button_->setChecked(false);
+// add_layout_->addWidget(multi_button_);
+
  add_button_ = new QPushButton("Add", this);
  add_label_ = new QLabel(this);
  add_label_->setText("(Pair/Triple)");
@@ -380,6 +399,7 @@ Lexpair_Dialog::Lexpair_Dialog(QStringList sent, QWidget* parent)
   clear_buttons();
  });
  sxpr_button_group_->addButton(sxpr_clear_button_);
+ set_button_width(sxpr_clear_button_, 16);
 
  ll_paren_button_ = new QPushButton("<- (", this);
  ll_paren_button_->setDefault(false);
@@ -390,6 +410,7 @@ Lexpair_Dialog::Lexpair_Dialog(QStringList sent, QWidget* parent)
   sxpr_insert_text("( ", 1, 0);
  });
  sxpr_button_group_->addButton(ll_paren_button_);
+ set_button_width(ll_paren_button_, 16);
 
  lend_paren_button_ = new QPushButton("(", this);
  lend_paren_button_->setDefault(false);
@@ -400,6 +421,7 @@ Lexpair_Dialog::Lexpair_Dialog(QStringList sent, QWidget* parent)
   sxpr_insert_text("( ");
  });
  sxpr_button_group_->addButton(lend_paren_button_);
+ set_button_width(lend_paren_button_, 16);
 
  left_paren_button_ = new QPushButton("( ->", this);
  left_paren_button_->setDefault(false);
@@ -410,6 +432,7 @@ Lexpair_Dialog::Lexpair_Dialog(QStringList sent, QWidget* parent)
   sxpr_insert_text("( ", -1);
  });
  sxpr_button_group_->addButton(left_paren_button_);
+ set_button_width(left_paren_button_, 16);
 
  right_paren_button_ = new QPushButton(")", this);
  right_paren_button_->setDefault(false);
@@ -420,6 +443,7 @@ Lexpair_Dialog::Lexpair_Dialog(QStringList sent, QWidget* parent)
   sxpr_insert_text(") ");
  });
  sxpr_button_group_->addButton(right_paren_button_);
+ set_button_width(right_paren_button_, 16);
 
  rr_paren_button_ = new QPushButton(") ->", this);
  rr_paren_button_->setDefault(false);
@@ -430,6 +454,7 @@ Lexpair_Dialog::Lexpair_Dialog(QStringList sent, QWidget* parent)
   sxpr_insert_text(") ", -1, 0);
  });
  sxpr_button_group_->addButton(rr_paren_button_);
+ set_button_width(rr_paren_button_, 16);
 
  sxpr_cc_button_ = new QPushButton("Copy", this);
  sxpr_cc_button_->setDefault(false);
@@ -443,6 +468,7 @@ Lexpair_Dialog::Lexpair_Dialog(QStringList sent, QWidget* parent)
  sxpr_cc_button_->setStyleSheet("QPushButton:focus{border:1px groove teal;}"
    "QPushButton:focus:hover{border:2px groove teal;}" );
  sxpr_button_group_->addButton(sxpr_cc_button_);
+ set_button_width(sxpr_cc_button_, 16);
 
  sxpr_read_button_ = new QPushButton("Read", this);
  sxpr_read_button_->setDefault(false);
@@ -453,11 +479,25 @@ Lexpair_Dialog::Lexpair_Dialog(QStringList sent, QWidget* parent)
   read_sxpr(sxpr_text_edit_->toPlainText().simplified());
  });
  sxpr_button_group_->addButton(sxpr_read_button_);
+ set_button_width(sxpr_read_button_, 16);
+
+ sxpr_splice_button_ = new QPushButton("Splice", this);
+ sxpr_splice_button_->setDefault(false);
+ sxpr_splice_button_->setAutoDefault(false);
+ sxpr_layout_->addWidget(sxpr_splice_button_, 0, 9);
+ connect(sxpr_splice_button_, &QPushButton::clicked, [this]
+ {
+  read_sxpr(sxpr_text_edit_->toPlainText().simplified());
+ });
+ sxpr_button_group_->addButton(sxpr_splice_button_);
+ set_button_width(sxpr_splice_button_, 16);
+
+ sxpr_layout_->setColumnStretch(10, 1);
 
  enable_sxpr_buttons(false);
 
  sxpr_text_edit_ = new QPlainTextEdit(this);
- sxpr_layout_->addWidget(sxpr_text_edit_, 1, 1, 1, 8);
+ sxpr_layout_->addWidget(sxpr_text_edit_, 1, 1, 1, 10);
 
  set_height(sxpr_text_edit_, 1);
 
@@ -708,12 +748,51 @@ void Lexpair_Dialog::plan_focus_button(QPushButton* btn)
  _focus_button_ = btn;
 }
 
+void Lexpair_Dialog::clear_splice()
+{
+ for(QPushButton* btn: multi_selected_buttons_)
+ {
+  btn->setProperty("multi_select", false);
+  btn->style()->unpolish(btn);
+  btn->style()->polish(btn);
+ }
+ sxpr_splice_button_->setEnabled(false);
+}
+
 bool Lexpair_Dialog::eventFilter(QObject* obj, QEvent* event)
 {
+ if(QFrame* fr = qobject_cast<QFrame*>(obj))
+ {
+  if(event->type() == QEvent::MouseMove)
+  {
+   const QMouseEvent* const qme = static_cast<const QMouseEvent*>( event );
+
+   if(qme->buttons() & Qt::RightButton)//multi_button_->isChecked())
+   {
+    if(!sxpr_mode_button_->isChecked())
+    {
+     return true;
+    }
+    if(QWidget* qw = fr->childAt(qme->pos()))
+    {
+     if(QPushButton* btn = qobject_cast<QPushButton*>(qw))
+     {
+      multi_selected_buttons_.push_back(btn);
+      sxpr_splice_button_->setEnabled(true);
+      btn->setProperty("multi_select", true);
+      btn->style()->unpolish(btn);
+      btn->style()->polish(btn);
+     }
+    }
+   }
+  }
+ }
  if(QPushButton* btn = qobject_cast<QPushButton*>(obj))
  {
   if(event->type() == QEvent::Leave)
   {
+//   const QMouseEvent* const qme = static_cast<const QMouseEvent*>( event );
+
    if(_focus_button_)
      _focus_button_->setFocus();
    if(btn->isChecked())
@@ -960,6 +1039,7 @@ void Lexpair_Dialog::enable_sxpr_buttons(bool en)
  {
   b->setEnabled(en);
  }
+ sxpr_splice_button_->setEnabled(false);
 }
 
 void Lexpair_Dialog::clear_buttons()
@@ -972,15 +1052,16 @@ void Lexpair_Dialog::clear_buttons()
  }
 }
 
-void Lexpair_Dialog::set_button_width(QPushButton* button)
+void Lexpair_Dialog::set_button_width(QPushButton* button, int margin)
 {
- auto textSize = button->fontMetrics().size(Qt::TextShowMnemonic, button->text());
+ QSize size = button->fontMetrics().size(Qt::TextShowMnemonic, button->text());
+ size += {margin, 0};
  QStyleOptionButton opt;
  opt.initFrom(button);
- opt.rect.setSize(textSize);
+ opt.rect.setSize(size);
  button->setMaximumSize(
- button->style()->sizeFromContents(QStyle::CT_PushButton,
-   &opt, textSize, button));
+   button->style()->sizeFromContents(QStyle::CT_PushButton,
+   &opt, size, button));
 }
 
 

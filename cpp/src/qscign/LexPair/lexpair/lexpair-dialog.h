@@ -68,10 +68,13 @@ class Lexpair_Dialog : public QDialog
  QPushButton* button_cancel_;
  QPushButton* button_proceed_;
 
+ QFrame* sentence_frame_;
  QHBoxLayout* sentence_layout_;
 
  QButtonGroup* sentence_button_group_;
+ QList<QPushButton*> multi_selected_buttons_;
 
+ //QPushButton* multi_button_;
  QPushButton* add_button_;
  QLabel* add_label_;
  QString original_add_label_text_;
@@ -93,6 +96,7 @@ class Lexpair_Dialog : public QDialog
  QPushButton* rr_paren_button_;
  QPushButton* sxpr_cc_button_;
  QPushButton* sxpr_read_button_;
+ QPushButton* sxpr_splice_button_;
  QPlainTextEdit* sxpr_text_edit_;
 
  QVBoxLayout* main_layout_;
@@ -127,6 +131,8 @@ class Lexpair_Dialog : public QDialog
  //QVBoxLayout* main_frame_layout_;
 
  void set_cell_text(int r, int c, QString text);
+
+ void clear_splice();
 
  void plan_focus_button(QPushButton* btn);
 
@@ -168,7 +174,7 @@ class Lexpair_Dialog : public QDialog
  int pairs_count_;
 
  void sxpr_insert_text(QString text, qint16 at_position = 0, qint16 move_cursor_offset = 1);
- void set_button_width(QPushButton* btn);
+ void set_button_width(QPushButton* btn, int margin = 0);
  void check_pair();
 
  void read_sxpr(QString qs);
