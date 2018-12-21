@@ -93,11 +93,11 @@ class Lexpair_Dialog : public QDialog
 
  qint8 left_id_;
  qint8 right_id_;
- qint8 medium_id_;
+ qint8 pivot_id_;
 
  QStringList sentence_;
 
- QTableWidget* pair_list_;
+ QTableWidget* pairs_table_widget_;
 
  Lexpair_Sxpr* sxpr_;
 
@@ -177,7 +177,8 @@ public:
 
  void show_lg_info(QString text);
  void show_dg_info(QString text);
- void auto_insert(QString text, QString pm = QString());
+ void auto_insert_lg(QString text, QString pm = QString());
+ void auto_insert_dg(QString text);
 
  static QStringList split(QString qs)
  {

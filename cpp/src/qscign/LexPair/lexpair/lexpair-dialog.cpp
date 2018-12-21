@@ -111,19 +111,19 @@ void _lg_info_cb(QObject* obj, QMouseEvent* event,
    [dlg, scl, text]()
  {
   scl->unstyle();
-  dlg->auto_insert(text);
+  dlg->auto_insert_lg(text);
  });
  qm->addAction("Auto Insert (+-)",
    [dlg, scl, text]()
  {
   scl->unstyle();
-  dlg->auto_insert(text, "+-");
+  dlg->auto_insert_lg(text, "+-");
  });
  qm->addAction("Auto Insert (-+)",
    [dlg, scl, text]()
  {
   scl->unstyle();
-  dlg->auto_insert(text, "-+");
+  dlg->auto_insert_lg(text, "-+");
  });
 
  qm->popup(event->globalPos());
@@ -159,7 +159,7 @@ void _dg_info_cb(QObject* obj, QMouseEvent* event,
    [dlg, scl, text]()
  {
   scl->unstyle();
-  dlg->auto_insert(text);
+  dlg->auto_insert_dg(text);
  });
 
  qm->popup(event->globalPos());
@@ -168,7 +168,7 @@ void _dg_info_cb(QObject* obj, QMouseEvent* event,
 
 Lexpair_Dialog::Lexpair_Dialog(QStringList sent, QWidget* parent)
   : QDialog(parent), left_id_(0),
-    right_id_(0), medium_id_(0), pairs_count_(0), sxpr_(nullptr)
+    right_id_(0), pivot_id_(0), pairs_count_(0), sxpr_(nullptr)
 {
  sentence_ = sent;
 
@@ -232,19 +232,6 @@ Lexpair_Dialog::Lexpair_Dialog(QStringList sent, QWidget* parent)
   {
    QString text = sentence_.at(-id-2);
    sxpr_insert_text(text + " ");
-   //QString qs = sxpr_text_edit_->toPlainText();
-   //QTextCursor qtc = sxpr_text_edit_->textCursor();
-   //qtc.insertText(text + " ");
-
-//   QTextCursor qtc = sxpr_text_edit_->textCursor();
-//   qs.replace(qtc.position(), 0, text + " ");
-//   sxpr_text_edit_->document()->setPlainText(qs);
-//   QTextCursor qtc1 = sxpr_text_edit_->textCursor();
-//   qtc1.setPosition(qtc.position() + text.size() + 1);
-//   sxpr_text_edit_->setTextCursor(qtc1);
-
-
-   //sxpr_text_edit_->setPlainText(sxpr_text_edit_->toPlainText() + text + " ");
    return;
   }
   if(left_id_ == 0)
@@ -257,16 +244,16 @@ Lexpair_Dialog::Lexpair_Dialog(QStringList sent, QWidget* parent)
    right_id_ = id;
    add_label_->setText(QString("%1 %2").arg(add_label_->text()).arg(sentence_.at(-id-2)));
   }
-  else if(medium_id_ == 0)
+  else if(pivot_id_ == 0)
   {
-   medium_id_ = id;
+   pivot_id_ = id;
    add_label_->setText(QString("%1 (%2)").arg(add_label_->text()).arg(sentence_.at(-id-2)));
   }
   else
   {
    left_id_ = 0;
    right_id_ = 0;
-   medium_id_ = 0;
+   pivot_id_ = 0;
    add_label_->setText("");
   }
  });
@@ -297,6 +284,14 @@ Lexpair_Dialog::Lexpair_Dialog(QStringList sent, QWidget* parent)
 
  sxpr_mode_button_->setCheckable(true);
  sxpr_mode_button_->setStyleSheet(colorful_toggle_button_quiet_style_sheet_());
+
+ connect(sxpr_mode_button_, &QPushButton::clicked, [this]
+ {
+  left_id_ = 0;
+  right_id_ = 0;
+  pivot_id_ = 0;
+  clear_buttons();
+ });
 
  sxpr_clear_button_ = new QPushButton("Clear", this);
  sxpr_clear_button_->setDefault(false);
@@ -400,18 +395,24 @@ Lexpair_Dialog::Lexpair_Dialog(QStringList sent, QWidget* parent)
 
  main_layout_->addLayout(sxpr_layout_);
 
- pair_list_ = new QTableWidget(this);
+ pairs_table_widget_ = new QTableWidget(this);
 
- pair_list_->setColumnCount(7);
+ pairs_table_widget_->setColumnCount(10);
 
- pair_list_->setHorizontalHeaderLabels({"", "Medium", "Left Expectation",
-   "Right Expectation", "Link Description", QChar(0x0002b13),//QChar(0x00027f8),
+ pairs_table_widget_->setHorizontalHeaderLabels({"", "Pivot", "lg:Source\nExpectation",
+   "lg:Target\nExpectation", "lg:\nDescription",
+   "ds:Source\nExpectation", "dg:Target\nExpectation",
+   "dg:\nDescription",
+                                        QChar(0x0002b13),//QChar(0x00027f8),
                                         QChar(0x000003BB)});
 
- pair_list_->setColumnWidth(5, 19);
- pair_list_->setColumnWidth(6, 16);
+ for(int i = 1; i < 8; ++i)
+   pairs_table_widget_->setColumnWidth(i, 75);
 
- main_layout_->addWidget(pair_list_);
+ pairs_table_widget_->setColumnWidth(8, 19);
+ pairs_table_widget_->setColumnWidth(9, 16);
+
+ main_layout_->addWidget(pairs_table_widget_);
 
  mw_ = new QMainWindow;
 
@@ -623,34 +624,35 @@ void Lexpair_Dialog::sxpr_insert_text(QString text, qint16 at_position,
   qint16 move_cursor_offset)
 {
  QTextCursor qtc = sxpr_text_edit_->textCursor();
- int old_pos = qtc.position();
- int revised_old_pos = old_pos;
 
  if(at_position > 0)
  {
   qtc.movePosition(QTextCursor::Start);
   qtc.movePosition(QTextCursor::NextCharacter, QTextCursor::MoveAnchor, at_position - 1);
-  revised_old_pos += (at_position - 1);
  }
  else if(at_position < 0)
  {
   qtc.movePosition(QTextCursor::End);
-  qtc.movePosition(QTextCursor::PreviousCharacter, QTextCursor::MoveAnchor, -at_position);
+  qtc.movePosition(QTextCursor::PreviousCharacter, QTextCursor::MoveAnchor, -1 - at_position);
  }
 
  qtc.insertText(text);
- if(move_cursor_offset == 0)
+
+ if(move_cursor_offset == 1)
  {
-  qtc.setPosition(revised_old_pos);
+  sxpr_text_edit_->setTextCursor(qtc);
  }
  else if(move_cursor_offset > 1)
  {
+  sxpr_text_edit_->setTextCursor(qtc);
   qtc.movePosition(QTextCursor::NextCharacter, QTextCursor::MoveAnchor, move_cursor_offset - 1);
  }
- else if(move_cursor_offset < 1)
+ else if(move_cursor_offset < 0)
  {
+  sxpr_text_edit_->setTextCursor(qtc);
   qtc.movePosition(QTextCursor::PreviousCharacter, QTextCursor::MoveAnchor, -move_cursor_offset);
  }
+
  sxpr_text_edit_->setFocus();
 }
 
@@ -761,25 +763,24 @@ void Lexpair_Dialog::add_pair_line(QPair<QString, QString>& words,
    "%1 %2").arg(words.first).arg(words.second));
 
  //pairs_[{left_id_, right_id_, id}]  = {twi, sl, sr};
- pair_list_->setRowCount(pairs_count_ + 1);
- pair_list_->setItem(pairs_count_, 0, twi);
+ pairs_table_widget_->setRowCount(pairs_count_ + 1);
+ pairs_table_widget_->setItem(pairs_count_, 0, twi);
 
  QTableWidgetItem* twi_md = new QTableWidgetItem(QChar(0x2b05));
- pair_list_->setItem(pairs_count_, 1, twi_md);
+ pairs_table_widget_->setItem(pairs_count_, 1, twi_md);
 
  QTableWidgetItem* twi_rw = new QTableWidgetItem(QString::number(pos.first));
- pair_list_->setItem(pairs_count_, 5, twi_rw);
+ pairs_table_widget_->setItem(pairs_count_, 8, twi_rw);
 
  QTableWidgetItem* twi_lm = new QTableWidgetItem(QString::number(pos.second));
- pair_list_->setItem(pairs_count_, 6, twi_lm);
+ pairs_table_widget_->setItem(pairs_count_, 9, twi_lm);
 
  ++pairs_count_;
-
 }
 
 void Lexpair_Dialog::check_pair()
 {
- auto it = pairs_.find({left_id_, right_id_, medium_id_});
+ auto it = pairs_.find({left_id_, right_id_, pivot_id_});
  qint8 found_mid = 0;
 
  QTableWidgetItem* twi = nullptr;
@@ -789,7 +790,7 @@ void Lexpair_Dialog::check_pair()
 
  if(it == pairs_.end())
  {
-  if(medium_id_ == 0)
+  if(pivot_id_ == 0)
   {
    for(Pair_Triple pt: pairs_.keys())
    {
@@ -809,15 +810,15 @@ void Lexpair_Dialog::check_pair()
    twi = new QTableWidgetItem(QString(
      "%1 %2").arg(sl).arg(sr));
 
-   pairs_[{left_id_, right_id_, medium_id_}]  = {twi, sl, sr};
-   pair_list_->setRowCount(pairs_count_ + 1);
-   pair_list_->setItem(pairs_count_, 0, twi);
+   pairs_[{left_id_, right_id_, pivot_id_}]  = {twi, sl, sr};
+   pairs_table_widget_->setRowCount(pairs_count_ + 1);
+   pairs_table_widget_->setItem(pairs_count_, 0, twi);
 
-   if(medium_id_)
+   if(pivot_id_)
    {
-    sm = sentence_.at(-medium_id_-2);
+    sm = sentence_.at(-pivot_id_-2);
     QTableWidgetItem* mtwi = new QTableWidgetItem(sm);
-    pair_list_->setItem(pairs_count_, 1, mtwi);
+    pairs_table_widget_->setItem(pairs_count_, 1, mtwi);
    }
 
    ++pairs_count_;
@@ -831,7 +832,7 @@ void Lexpair_Dialog::check_pair()
   sr = (*it).right;
  }
 cleanup:
- pair_list_->selectRow(twi->row());
+ pairs_table_widget_->selectRow(twi->row());
  left_id_ = 0;
  right_id_ = 0;
  clear_buttons();
@@ -860,7 +861,7 @@ void Lexpair_Dialog::set_button_width(QPushButton* button)
 
 void Lexpair_Dialog::lg_label_cb(QString text)
 {
- QModelIndex qmi = pair_list_->currentIndex();
+ QModelIndex qmi = pairs_table_widget_->currentIndex();
  if(qmi.isValid())
  {
   if(qmi.column() > 0)
@@ -870,7 +871,7 @@ void Lexpair_Dialog::lg_label_cb(QString text)
 
 void Lexpair_Dialog::dg_label_cb(QString text)
 {
- QModelIndex qmi = pair_list_->currentIndex();
+ QModelIndex qmi = pairs_table_widget_->currentIndex();
  if(qmi.isValid())
  {
   if(qmi.column() > 0)
@@ -881,11 +882,11 @@ void Lexpair_Dialog::dg_label_cb(QString text)
 
 void Lexpair_Dialog::set_cell_text(int r, int c, QString text)
 {
- QTableWidgetItem* twi = pair_list_->item(r - 1, c - 1);
+ QTableWidgetItem* twi = pairs_table_widget_->item(r - 1, c - 1);
  if(!twi)
  {
   twi = new QTableWidgetItem;
-  pair_list_->setItem(r - 1, c - 1, twi);
+  pairs_table_widget_->setItem(r - 1, c - 1, twi);
  }
  twi->setText(text);
 }
@@ -996,9 +997,15 @@ void Lexpair_Dialog::show_dg_info(QString text)
  qmb->open(this, "");
 }
 
-void Lexpair_Dialog::auto_insert(QString text, QString pm)
+void Lexpair_Dialog::auto_insert_dg(QString text)
 {
- int cr = pair_list_->currentRow();
+ int cr = pairs_table_widget_->currentRow();
+ set_cell_text(cr + 1, 8, text);
+}
+
+void Lexpair_Dialog::auto_insert_lg(QString text, QString pm)
+{
+ int cr = pairs_table_widget_->currentRow();
  if(cr != -1)
  {
   set_cell_text(cr + 1, 5, text);
