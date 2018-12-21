@@ -231,7 +231,20 @@ Lexpair_Dialog::Lexpair_Dialog(QStringList sent, QWidget* parent)
   if(sxpr_mode_button_->isChecked())
   {
    QString text = sentence_.at(-id-2);
-   sxpr_text_edit_->setPlainText(sxpr_text_edit_->toPlainText() + text + " ");
+
+   //QString qs = sxpr_text_edit_->toPlainText();
+   QTextCursor qts = sxpr_text_edit_->textCursor();
+   qts.insertText(text + " ");
+
+//   QTextCursor qts = sxpr_text_edit_->textCursor();
+//   qs.replace(qts.position(), 0, text + " ");
+//   sxpr_text_edit_->document()->setPlainText(qs);
+//   QTextCursor qts1 = sxpr_text_edit_->textCursor();
+//   qts1.setPosition(qts.position() + text.size() + 1);
+//   sxpr_text_edit_->setTextCursor(qts1);
+
+
+   //sxpr_text_edit_->setPlainText(sxpr_text_edit_->toPlainText() + text + " ");
    return;
   }
   if(left_id_ == 0)
@@ -304,24 +317,24 @@ Lexpair_Dialog::Lexpair_Dialog(QStringList sent, QWidget* parent)
   sxpr_text_edit_->setPlainText(sxpr_text_edit_->toPlainText().prepend("( "));
  });
 
- left_paren_button_ = new QPushButton("(", this);
- left_paren_button_->setDefault(false);
- left_paren_button_->setAutoDefault(false);
- sxpr_layout_->addWidget(left_paren_button_, 0, 3);
- connect(left_paren_button_, &QPushButton::clicked, [this]
- {
-  sxpr_text_edit_->setPlainText(sxpr_text_edit_->toPlainText() + "( ");
- });
-
- lend_paren_button_ = new QPushButton("( ->", this);
+ lend_paren_button_ = new QPushButton("(", this);
  lend_paren_button_->setDefault(false);
  lend_paren_button_->setAutoDefault(false);
- sxpr_layout_->addWidget(lend_paren_button_, 0, 4);
+ sxpr_layout_->addWidget(lend_paren_button_, 0, 3);
  connect(lend_paren_button_, &QPushButton::clicked, [this]
  {
   QString qs = sxpr_text_edit_->toPlainText();
   qs.replace(sxpr_text_edit_->textCursor().position(), 0, "( ");
   sxpr_text_edit_->setPlainText(qs);
+ });
+
+ left_paren_button_ = new QPushButton("( ->", this);
+ left_paren_button_->setDefault(false);
+ left_paren_button_->setAutoDefault(false);
+ sxpr_layout_->addWidget(left_paren_button_, 0, 4);
+ connect(left_paren_button_, &QPushButton::clicked, [this]
+ {
+  sxpr_text_edit_->setPlainText(sxpr_text_edit_->toPlainText() + "( ");
  });
 
  right_paren_button_ = new QPushButton(")", this);
@@ -599,6 +612,27 @@ void Lexpair_Dialog::check_sxpr_balance(QChar qch, int pos)
     sxpr_highlight_balanced(i1, i2);
     //qDebug() << ": " << i1 << ", " << i2;
    });
+}
+
+void Lexpair_Dialog::sxpr_insert_text(QString text, qint16 at_position, qint16 move_cursor_offset)
+{
+ QTextCursor qts = sxpr_text_edit_->textCursor();
+ int old_pos = qts.position();
+ int revised_old_pos = old_pos;
+
+ if(at_position > 0)
+ {
+  qts.movePosition(QTextCursor::Start);
+  qts.movePosition(QTextCursor::NextCharacter, at_position - 1);
+  revised_old_pos += (at_position - 1;)
+ }
+ else if(at_position < 0)
+ {
+  qts.movePosition(QTextCursor::End);
+  qts.movePosition(QTextCursor::PreviousCharacter, at_position);
+ }
+
+ qts.insertText();
 }
 
 void Lexpair_Dialog::sxpr_highlight_balanced(int i1, int i2)

@@ -155,6 +155,7 @@ class Lexpair_Dialog : public QDialog
 
  int pairs_count_;
 
+ void sxpr_insert_text(QString text, qint16 at_position = 0, qint16 move_cursor_offset = 1);
  void set_button_width(QPushButton* btn);
  void check_pair();
 
