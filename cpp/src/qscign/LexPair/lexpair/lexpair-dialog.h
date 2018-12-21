@@ -76,6 +76,9 @@ class Lexpair_Dialog : public QDialog
  QLabel* add_label_;
  QHBoxLayout* add_layout_;
 
+ QPushButton* reset_button_;
+ QPushButton* focus_button_;
+
  QGridLayout* sxpr_layout_;
  QPushButton* sxpr_mode_button_;
  QPushButton* sxpr_clear_button_;
@@ -91,8 +94,8 @@ class Lexpair_Dialog : public QDialog
 
  QVBoxLayout* main_layout_;
 
- qint8 left_id_;
- qint8 right_id_;
+ qint8 source_id_;
+ qint8 target_id_;
  qint8 pivot_id_;
 
  QStringList sentence_;
@@ -125,6 +128,8 @@ class Lexpair_Dialog : public QDialog
  QString get_info_text(QString folder, QString topic, QString& details);
 
  void add_pair_line(QPair<QString, QString>& words, QPair<quint8, quint8>& pos);
+
+ void reset_add();
 
  // //
  // ls.read("((quickly won)(The (home team)))");

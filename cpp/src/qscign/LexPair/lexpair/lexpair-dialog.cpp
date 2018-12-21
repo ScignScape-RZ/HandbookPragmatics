@@ -167,8 +167,8 @@ void _dg_info_cb(QObject* obj, QMouseEvent* event,
 }
 
 Lexpair_Dialog::Lexpair_Dialog(QStringList sent, QWidget* parent)
-  : QDialog(parent), left_id_(0),
-    right_id_(0), pivot_id_(0), pairs_count_(0), sxpr_(nullptr)
+  : QDialog(parent), focus_button_(nullptr), source_id_(0),
+    target_id_(0), pivot_id_(0), pairs_count_(0), sxpr_(nullptr)
 {
  sentence_ = sent;
 
@@ -212,6 +212,12 @@ Lexpair_Dialog::Lexpair_Dialog(QStringList sent, QWidget* parent)
  for(QString qs : sent)
  {
   QPushButton* b = new QPushButton(qs, this);
+
+  b->setStyleSheet(
+    "QPushButton:checked:!focus:hover{background:darkRed}\n"
+    "QPushButton:pressed{background:white}\n"
+   );
+
   set_button_width(b);
   b->setCheckable(true);
   //b->setFocusPolicy(Qt::);
@@ -225,36 +231,68 @@ Lexpair_Dialog::Lexpair_Dialog(QStringList sent, QWidget* parent)
    QOverload<int, bool>::of(&QButtonGroup::buttonToggled),
    [this](int id, bool checked)
  {
-  qDebug() << id;
-  qDebug() << checked;
+//  qDebug() << id;
+//  qDebug() << checked;
 
   if(sxpr_mode_button_->isChecked())
   {
    QString text = sentence_.at(-id-2);
    sxpr_insert_text(text + " ");
+   if(!checked)
+   {
+    QSignalBlocker qsb(sentence_button_group_);
+    sentence_button_group_->button(id)->setChecked(true);
+   }
    return;
   }
-  if(left_id_ == 0)
+  if(source_id_ == 0)
   {
-   left_id_ = id;
+   source_id_ = id;
    add_label_->setText(sentence_.at(-id-2));
+   focus_button_ = reset_button_;
   }
-  else if(right_id_ == 0)
+  else if(target_id_ == 0)
   {
-   right_id_ = id;
+   target_id_ = id;
    add_label_->setText(QString("%1 %2").arg(add_label_->text()).arg(sentence_.at(-id-2)));
+   focus_button_ = reset_button_;
   }
   else if(pivot_id_ == 0)
   {
    pivot_id_ = id;
    add_label_->setText(QString("%1 (%2)").arg(add_label_->text()).arg(sentence_.at(-id-2)));
+   focus_button_ = reset_button_;
+  }
+  else if(id == source_id_)
+  {
+   qint8 tid = target_id_;
+   target_id_ = id;
+   source_id_ = tid;
+   add_label_->setText(QString("%1 %2 (%3)").arg(sentence_.at(-tid-2))
+     .arg(sentence_.at(-id-2)).arg(sentence_.at(-pivot_id_-2)));
+   focus_button_ = reset_button_;
+  }
+  else if(id == target_id_)
+  {
+   qint8 sid = source_id_;
+   source_id_ = id;
+   target_id_ = sid;
+   add_label_->setText(QString("%1 %2 (%3)").arg(sentence_.at(-id-2))
+     .arg(sentence_.at(-sid-2)).arg(sentence_.at(-pivot_id_-2)));
+   focus_button_ = reset_button_;
+  }
+  else if(id == pivot_id_)
+  {
+
   }
   else
   {
-   left_id_ = 0;
-   right_id_ = 0;
-   pivot_id_ = 0;
-   add_label_->setText("");
+   qint8 tid = target_id_;
+   target_id_ = id;
+   source_id_ = tid;
+   add_label_->setText(QString("%1 %2 (%3)").arg(sentence_.at(-tid-2))
+     .arg(sentence_.at(-id-2)).arg(sentence_.at(-pivot_id_-2)));
+   focus_button_ = reset_button_;
   }
  });
 
@@ -267,6 +305,9 @@ Lexpair_Dialog::Lexpair_Dialog(QStringList sent, QWidget* parent)
  add_label_ = new QLabel(this);
  add_label_->setText("(Pair/Triple)");
 
+ add_label_->setMaximumWidth(300);
+ add_label_->setMinimumWidth(300);
+
  connect(add_button_, &QPushButton::clicked, [this]()
  {
   check_pair();
@@ -274,7 +315,19 @@ Lexpair_Dialog::Lexpair_Dialog(QStringList sent, QWidget* parent)
 
  add_layout_->addWidget(add_button_);
  add_layout_->addWidget(add_label_);
+
+ reset_button_ = new QPushButton("Reset", this);
+ connect(reset_button_, &QPushButton::clicked, [this]()
+ {
+  reset_add();
+ });
+
+ add_layout_->addSpacing(30);
+ add_layout_->addWidget(reset_button_);
  add_layout_->addStretch();
+
+
+
  main_layout_->addLayout(add_layout_);
 
  sxpr_layout_ = new QGridLayout;
@@ -287,10 +340,7 @@ Lexpair_Dialog::Lexpair_Dialog(QStringList sent, QWidget* parent)
 
  connect(sxpr_mode_button_, &QPushButton::clicked, [this]
  {
-  left_id_ = 0;
-  right_id_ = 0;
-  pivot_id_ = 0;
-  clear_buttons();
+  reset_add();
  });
 
  sxpr_clear_button_ = new QPushButton("Clear", this);
@@ -694,6 +744,15 @@ void Lexpair_Dialog::sxpr_highlight_balanced(int i1, int i2)
 
 }
 
+void Lexpair_Dialog::reset_add()
+{
+ source_id_ = 0;
+ target_id_ = 0;
+ pivot_id_ = 0;
+ clear_buttons();
+ reset_button_->setFocus();
+}
+
 void Lexpair_Dialog::check_paren_balance(QChar qch, int pos, int max,
   std::function<void(int, QChar&)> fn, std::function<void(int, int)> cb)
 {
@@ -762,7 +821,7 @@ void Lexpair_Dialog::add_pair_line(QPair<QString, QString>& words,
  QTableWidgetItem* twi = new QTableWidgetItem(QString(
    "%1 %2").arg(words.first).arg(words.second));
 
- //pairs_[{left_id_, right_id_, id}]  = {twi, sl, sr};
+ //pairs_[{source_id_, target_id_, id}]  = {twi, sl, sr};
  pairs_table_widget_->setRowCount(pairs_count_ + 1);
  pairs_table_widget_->setItem(pairs_count_, 0, twi);
 
@@ -780,7 +839,7 @@ void Lexpair_Dialog::add_pair_line(QPair<QString, QString>& words,
 
 void Lexpair_Dialog::check_pair()
 {
- auto it = pairs_.find({left_id_, right_id_, pivot_id_});
+ auto it = pairs_.find({source_id_, target_id_, pivot_id_});
  qint8 found_mid = 0;
 
  QTableWidgetItem* twi = nullptr;
@@ -794,23 +853,23 @@ void Lexpair_Dialog::check_pair()
   {
    for(Pair_Triple pt: pairs_.keys())
    {
-    if( (pt.left == left_id_) && (pt.right == right_id_) )
+    if( (pt.left == source_id_) && (pt.right == target_id_) )
     {
      twi = pairs_[pt].twi;
-     sl = sentence_.at(-left_id_-2);
-     sr = sentence_.at(-right_id_-2);
+     sl = sentence_.at(-source_id_-2);
+     sr = sentence_.at(-target_id_-2);
      sm = sentence_.at(-pt.mid-2);
     }
    }
   }
   if(!twi)
   {
-   sl = sentence_.at(-left_id_-2);
-   sr = sentence_.at(-right_id_-2);
+   sl = sentence_.at(-source_id_-2);
+   sr = sentence_.at(-target_id_-2);
    twi = new QTableWidgetItem(QString(
      "%1 %2").arg(sl).arg(sr));
 
-   pairs_[{left_id_, right_id_, pivot_id_}]  = {twi, sl, sr};
+   pairs_[{source_id_, target_id_, pivot_id_}]  = {twi, sl, sr};
    pairs_table_widget_->setRowCount(pairs_count_ + 1);
    pairs_table_widget_->setItem(pairs_count_, 0, twi);
 
@@ -833,8 +892,8 @@ void Lexpair_Dialog::check_pair()
  }
 cleanup:
  pairs_table_widget_->selectRow(twi->row());
- left_id_ = 0;
- right_id_ = 0;
+ source_id_ = 0;
+ target_id_ = 0;
  clear_buttons();
 }
 
