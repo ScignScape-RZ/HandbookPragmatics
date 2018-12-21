@@ -233,8 +233,9 @@ class ScignStage_Ling_Dialog : public QDialog
    std::function<void()> highlight_fn);
 
  void run_sample_context_menu(const QPoint& p, int page, QString text,
-   std::function<void(int)> pdf_fn, std::function<void(QString)> copy_fn);
-
+   std::function<void(int)> pdf_fn,
+   std::function<void(QString)> copy_fn,
+   std::function<void(QString)> launch_fn);
 
  void run_message_by_grid_position(const QPoint& p, int r, int c);
 

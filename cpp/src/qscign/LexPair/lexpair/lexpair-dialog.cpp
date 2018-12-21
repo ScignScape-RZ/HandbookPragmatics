@@ -380,6 +380,8 @@ Lexpair_Dialog::Lexpair_Dialog(QStringList sent, QWidget* parent)
   add_label_->setText(original_add_label_text_);
   if(sxpr_mode_button_->isChecked())
   {
+   add_button_->setEnabled(false);
+   reset_button_->setEnabled(false);
    enable_sxpr_buttons(true);
    sxpr_cc_button_->setFocus();
   }
@@ -387,6 +389,8 @@ Lexpair_Dialog::Lexpair_Dialog(QStringList sent, QWidget* parent)
   {
    clear_splice();
    enable_sxpr_buttons(false);
+   add_button_->setEnabled(true);
+   reset_button_->setEnabled(true);
   }
  });
 
@@ -791,7 +795,7 @@ bool Lexpair_Dialog::eventFilter(QObject* obj, QEvent* event)
   {
    const QMouseEvent* const qme = static_cast<const QMouseEvent*>( event );
 
-   if(qme->buttons() & Qt::RightButton)//multi_button_->isChecked())
+   if(qme->buttons() == Qt::RightButton)
    {
     if(!sxpr_mode_button_->isChecked())
     {
@@ -818,7 +822,22 @@ bool Lexpair_Dialog::eventFilter(QObject* obj, QEvent* event)
  }
  if(QPushButton* btn = qobject_cast<QPushButton*>(obj))
  {
-  if(event->type() == QEvent::Leave)
+  if(event->type() == QEvent::MouseButtonPress)
+  {
+   const QMouseEvent* const qme = static_cast<const QMouseEvent*>( event );
+   if(qme->buttons() == Qt::RightButton)
+   {
+    QMenu* qm = new QMenu(this);
+    qm->addAction("Discard",
+      []()
+    {
+     scl->unstyle();
+     dlg->show_lg_info(text);
+    });
+   }
+   return true;
+  }
+  else if(event->type() == QEvent::Leave)
   {
 //   const QMouseEvent* const qme = static_cast<const QMouseEvent*>( event );
 
