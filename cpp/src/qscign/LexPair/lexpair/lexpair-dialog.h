@@ -130,6 +130,7 @@ class Lexpair_Dialog : public QDialog
  void add_pair_line(QPair<QString, QString>& words, QPair<quint8, quint8>& pos);
 
  void reset_add();
+ void force_recheck(int id);
 
  // //
  // ls.read("((quickly won)(The (home team)))");

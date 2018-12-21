@@ -240,8 +240,7 @@ Lexpair_Dialog::Lexpair_Dialog(QStringList sent, QWidget* parent)
    sxpr_insert_text(text + " ");
    if(!checked)
    {
-    QSignalBlocker qsb(sentence_button_group_);
-    sentence_button_group_->button(id)->setChecked(true);
+    force_recheck(id);
    }
    return;
   }
@@ -271,6 +270,7 @@ Lexpair_Dialog::Lexpair_Dialog(QStringList sent, QWidget* parent)
    add_label_->setText(QString("%1 %2 (%3)").arg(sentence_.at(-tid-2))
      .arg(sentence_.at(-id-2)).arg(sentence_.at(-pivot_id_-2)));
    focus_button_ = reset_button_;
+   force_recheck(id);
   }
   else if(id == target_id_)
   {
@@ -280,10 +280,11 @@ Lexpair_Dialog::Lexpair_Dialog(QStringList sent, QWidget* parent)
    add_label_->setText(QString("%1 %2 (%3)").arg(sentence_.at(-id-2))
      .arg(sentence_.at(-sid-2)).arg(sentence_.at(-pivot_id_-2)));
    focus_button_ = reset_button_;
+   force_recheck(id);
   }
   else if(id == pivot_id_)
   {
-
+   force_recheck(id);
   }
   else
   {
@@ -293,6 +294,7 @@ Lexpair_Dialog::Lexpair_Dialog(QStringList sent, QWidget* parent)
    add_label_->setText(QString("%1 %2 (%3)").arg(sentence_.at(-tid-2))
      .arg(sentence_.at(-id-2)).arg(sentence_.at(-pivot_id_-2)));
    focus_button_ = reset_button_;
+   force_recheck(id);
   }
  });
 
@@ -649,11 +651,13 @@ Lexpair_Dialog::Lexpair_Dialog(QStringList sent, QWidget* parent)
 // mw_layout_->addWidget(mw_);
 // setLayout(mw_layout_);
 
-
-
-
-
  //setLayout(main_layout_);
+}
+
+void Lexpair_Dialog::force_recheck(int id)
+{
+ QSignalBlocker qsb(sentence_button_group_);
+ sentence_button_group_->button(id)->setChecked(true);
 }
 
 void Lexpair_Dialog::check_sxpr_balance(QChar qch, int pos)
