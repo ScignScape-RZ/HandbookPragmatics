@@ -214,16 +214,18 @@ Lexpair_Dialog::Lexpair_Dialog(QStringList sent, QWidget* parent)
   QPushButton* b = new QPushButton(qs, this);
 
   b->setStyleSheet(
-    "QPushButton:checked:focus:hover{border:1px ridge darkRed; background:yellow}\n"
-    "QPushButton:checked:!focus:hover{background:teal}\n"
-    "QPushButton:pressed{background:white}\n"
+    "QPushButton:checked:!focus:hover{background:darkRed}\n"
+    "QPushButton:checked:focus:hover{background:teal}\n"
+    "QPushButton:pressed:!focus{border:1px ridge darkRed; background:white}\n"
+    "QPushButton:pressed:focus:hover{border:1px ridge teal; background:white}\n"
    );
 
   set_button_width(b);
   b->setCheckable(true);
-  //b->setFocusPolicy(Qt::);
+  b->setFocusPolicy(Qt::StrongFocus);
   b->setAutoDefault(false);
   b->setDefault(false);
+  b->installEventFilter(this);
   sentence_button_group_->addButton(b);
   sentence_layout_->addWidget(b);
  }
@@ -255,13 +257,15 @@ Lexpair_Dialog::Lexpair_Dialog(QStringList sent, QWidget* parent)
   {
    target_id_ = id;
    add_label_->setText(QString("%1 %2").arg(add_label_->text()).arg(sentence_.at(-id-2)));
-   focus_button_ = reset_button_;
+   focus_button_ = add_button_;
   }
   else if(pivot_id_ == 0)
   {
    pivot_id_ = id;
    add_label_->setText(QString("%1 (%2)").arg(add_label_->text()).arg(sentence_.at(-id-2)));
-   focus_button_ = reset_button_;
+   focus_button_ = add_button_;
+   if(!checked)
+     force_recheck(id);
   }
   else if(id == source_id_)
   {
@@ -270,7 +274,7 @@ Lexpair_Dialog::Lexpair_Dialog(QStringList sent, QWidget* parent)
    source_id_ = tid;
    add_label_->setText(QString("%1 %2 (%3)").arg(sentence_.at(-tid-2))
      .arg(sentence_.at(-id-2)).arg(sentence_.at(-pivot_id_-2)));
-   focus_button_ = reset_button_;
+   focus_button_ = add_button_;
    force_recheck(id);
   }
   else if(id == target_id_)
@@ -280,12 +284,13 @@ Lexpair_Dialog::Lexpair_Dialog(QStringList sent, QWidget* parent)
    target_id_ = sid;
    add_label_->setText(QString("%1 %2 (%3)").arg(sentence_.at(-id-2))
      .arg(sentence_.at(-sid-2)).arg(sentence_.at(-pivot_id_-2)));
-   focus_button_ = reset_button_;
+   focus_button_ = add_button_;
    force_recheck(id);
   }
   else if(id == pivot_id_)
   {
    force_recheck(id);
+   focus_button_ = add_button_;
   }
   else
   {
@@ -294,9 +299,12 @@ Lexpair_Dialog::Lexpair_Dialog(QStringList sent, QWidget* parent)
    source_id_ = tid;
    add_label_->setText(QString("%1 %2 (%3)").arg(sentence_.at(-tid-2))
      .arg(sentence_.at(-id-2)).arg(sentence_.at(-pivot_id_-2)));
-   focus_button_ = reset_button_;
+   focus_button_ = add_button_;
    force_recheck(id);
   }
+
+//  if(focus_button_)
+//    focus_button_->setFocus();
  });
 
  sentence_layout_->addStretch();
@@ -675,6 +683,24 @@ void Lexpair_Dialog::check_sxpr_balance(QChar qch, int pos)
    });
 }
 
+bool Lexpair_Dialog::eventFilter(QObject* obj, QEvent* event)
+{
+ if(QPushButton* btn = qobject_cast<QPushButton*>(obj))
+ {
+  if(event->type() == QEvent::Leave)
+  {
+   if(focus_button_)
+     focus_button_->setFocus();
+   if(btn->isChecked())
+   {
+    btn->setFocusPolicy(Qt::NoFocus);
+   }
+   return true;
+  }
+ }
+ return QDialog::eventFilter(obj, event);
+}
+
 void Lexpair_Dialog::sxpr_insert_text(QString text, qint16 at_position,
   qint16 move_cursor_offset)
 {
@@ -908,6 +934,7 @@ void Lexpair_Dialog::clear_buttons()
  for(QAbstractButton* b : sentence_button_group_->buttons())
  {
   b->setChecked(false);
+  b->setFocusPolicy(Qt::StrongFocus);
  }
 }
 

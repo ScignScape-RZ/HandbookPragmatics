@@ -177,6 +177,7 @@ public:
  Lexpair_Dialog(QStringList sent, QWidget* parent);
  ~Lexpair_Dialog();
 
+ bool eventFilter(QObject *obj, QEvent *event);
 
  void lg_label_cb(QString text);
  void dg_label_cb(QString text);
