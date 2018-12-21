@@ -214,7 +214,8 @@ Lexpair_Dialog::Lexpair_Dialog(QStringList sent, QWidget* parent)
   QPushButton* b = new QPushButton(qs, this);
 
   b->setStyleSheet(
-    "QPushButton:checked:!focus:hover{background:darkRed}\n"
+    "QPushButton:checked:focus:hover{border:1px ridge darkRed; background:yellow}\n"
+    "QPushButton:checked:!focus:hover{background:teal}\n"
     "QPushButton:pressed{background:white}\n"
    );
 
