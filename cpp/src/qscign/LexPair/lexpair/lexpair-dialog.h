@@ -112,6 +112,7 @@ class Lexpair_Dialog : public QDialog
  struct Vertical_Header_Map_Value
  {
   QStringList words;
+  int logical_index;
   QTableWidgetItem* pin_prior;
   QTableWidgetItem* pin_next;
  };

@@ -877,11 +877,43 @@ void Lexpair_Dialog::clear_splice(bool checked)
 
 void Lexpair_Dialog::reinsert_pair_line(int li, int ovi, int nvi)
 {
+ //qDebug() << QString("\nli: %1 ovi: %2 nvi: %3").arg(li).arg(ovi).arg(nvi);
+
+ QTableWidgetItem* twi_v = pairs_table_widget_->verticalHeaderItem(li);
+ //qDebug() << vertical_header_map_[twi_v].words << "\n";
+
  for(int r = 0; r < pairs_table_widget_->rowCount(); ++r)
  {
   QTableWidgetItem* twi_vi = pairs_table_widget_->verticalHeaderItem(r);
+
+  //qDebug() << vertical_header_map_[twi_vi].words;
+
   twi_vi->setText(QString::number(pairs_table_widget_->verticalHeader()->visualIndex(r)));
  }
+
+
+ if(QTableWidgetItem* twi_vp = vertical_header_map_[twi_v].pin_prior)
+ {
+  int li = vertical_header_map_[twi_vp].logical_index;
+  qDebug() << "prior: " << li;
+//  qDebug() << vertical_header_map_[twi_vp].words << "\n";
+  QHeaderView* qhv = pairs_table_widget_->verticalHeader();
+  int vi = qhv->visualIndex(li);
+  qhv->moveSection(vi, nvi);
+ }
+ if(QTableWidgetItem* twi_vp = vertical_header_map_[twi_v].pin_next)
+ {
+  int li = vertical_header_map_[twi_vp].logical_index;
+  qDebug() << "next: " << li << " n+ " << nvi + 1;
+//  qDebug() << vertical_header_map_[twi_vp].words << "\n";
+  QHeaderView* qhv = pairs_table_widget_->verticalHeader();
+  int vi = qhv->visualIndex(li);
+  if(vi != nvi + 1)
+    qhv->moveSection(vi, nvi + 1);
+ }
+
+
+
 
 // int start = qMin(ovi, nvi);
 // int end = qMax(ovi, nvi);
@@ -1156,7 +1188,7 @@ void Lexpair_Dialog::add_pair_line(QPair<QString, QString>& words,
  QTableWidgetItem* twi_vi = new QTableWidgetItem(QString::number(pairs_count_));
  pairs_table_widget_->setVerticalHeaderItem(pairs_count_, twi_vi);
 
- vertical_header_map_[twi_vi] = {{words.first, words.second}, nullptr, nullptr};
+ vertical_header_map_[twi_vi] = {{words.first, words.second}, pairs_count_, nullptr, nullptr};
 
  ++pairs_count_;
 }
@@ -1199,7 +1231,7 @@ void Lexpair_Dialog::check_pair()
 
    QTableWidgetItem* twi_vi = new QTableWidgetItem(QString::number(pairs_count_));
    pairs_table_widget_->setVerticalHeaderItem(pairs_count_, twi_vi);
-   vertical_header_map_[twi_vi] = {{sl, sr}, nullptr, nullptr};
+   vertical_header_map_[twi_vi] = {{sl, sr}, pairs_count_, nullptr, nullptr};
 
    if(pivot_id_)
    {
