@@ -109,6 +109,15 @@ class Lexpair_Dialog : public QDialog
 
  QTableWidget* pairs_table_widget_;
 
+ struct Vertical_Header_Map_Value
+ {
+  QStringList words;
+  QTableWidgetItem* pin_prior;
+  QTableWidgetItem* pin_next;
+ };
+
+ QMap<QTableWidgetItem*, Vertical_Header_Map_Value> vertical_header_map_;
+
  Lexpair_Sxpr* sxpr_;
 
  QMainWindow* mw_;
