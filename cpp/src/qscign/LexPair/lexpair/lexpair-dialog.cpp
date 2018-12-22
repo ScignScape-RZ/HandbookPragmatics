@@ -551,13 +551,7 @@ Lexpair_Dialog::Lexpair_Dialog(QStringList sent, QWidget* parent)
  connect(pairs_table_widget_->verticalHeader(), &QHeaderView::sectionMoved,
     [this](int li, int ovi, int nvi)
  {
-  int start = qMin(ovi, nvi);
-  int end = qMax(ovi, nvi);
-  for(int i = start; i <= end; ++i)
-  {
-   QTableWidgetItem* twi_vi = pairs_table_widget_->verticalHeaderItem(i);
-   twi_vi->setText(QString::number(pairs_table_widget_->verticalHeader()->visualIndex(i)));
-  }
+  reinsert_pair_line(li, ovi, nvi);
  });
 
 
@@ -853,6 +847,17 @@ void Lexpair_Dialog::clear_splice(bool checked)
  }
  sxpr_splice_button_->setEnabled(false);
  multi_selected_buttons_.clear();
+}
+
+void Lexpair_Dialog::reinsert_pair_line(int li, int ovi, int nvi)
+{
+ int start = qMin(ovi, nvi);
+ int end = qMax(ovi, nvi);
+ for(int i = start; i <= end; ++i)
+ {
+  QTableWidgetItem* twi_vi = pairs_table_widget_->verticalHeaderItem(i);
+  twi_vi->setText(QString::number(pairs_table_widget_->verticalHeader()->visualIndex(i)));
+ }
 }
 
 void Lexpair_Dialog::check_multi_select_button(QPushButton* btn)

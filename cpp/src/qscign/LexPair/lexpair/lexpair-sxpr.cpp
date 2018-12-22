@@ -77,28 +77,8 @@ void Lexpair_Sxpr::read(QString qs)
 
  QString current_chief;
 
- auto add_word = [&]()
- {
-  QPair<int, int> pr = {lparen, rparen};
+ //auto add_tail
 
-  if(lambda == 0)
-  {
-   Chief_Node* cn = new Chief_Node {acc, current_chief, local_lparen};
-   add_chief_node(cn);
-
-   cars[pr] = cn;
-   local_lparen = 0;
-   if(!current_chief.isEmpty())
-     add_dock(current_chief, acc);
-   current_chief = acc;
-  }
-  else
-  {
-   add_dock(current_chief, acc); //, lambda, rewind + 1}});
-   check_rewind(current_chief);
-  }
-  acc.clear();
- };
 
  for(int i = 0; i < qs.length(); ++i)
  {
@@ -113,7 +93,11 @@ void Lexpair_Sxpr::read(QString qs)
   else if(qc == ')')
   {
    if(!acc.isEmpty())
-     add_word();
+   {
+    add_dock(current_chief, acc); //, lambda, rewind + 1}});
+    acc.clear();
+    check_rewind(current_chief);
+   }
    if(!current_chief.isEmpty())
      lambda = reset_lambda(current_chief);
    ++rparen;
@@ -126,7 +110,25 @@ void Lexpair_Sxpr::read(QString qs)
    }
    else
    {
-    add_word();
+    QPair<int, int> pr = {lparen, rparen};
+
+    if(lambda == 0)
+    {
+     Chief_Node* cn = new Chief_Node {acc, current_chief, local_lparen};
+     add_chief_node(cn);
+
+     cars[pr] = cn;
+     local_lparen = 0;
+     if(!current_chief.isEmpty())
+       add_dock(current_chief, acc);
+     current_chief = acc;
+    }
+    else
+    {
+     add_dock(current_chief, acc); //, lambda, rewind + 1}});
+     check_rewind(current_chief);
+    }
+    acc.clear();
     ++lambda;
    }
   }

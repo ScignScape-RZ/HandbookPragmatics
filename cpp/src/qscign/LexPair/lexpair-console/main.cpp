@@ -30,7 +30,7 @@ int main(int argc, char **argv)
 {
 // Lexpair_Sxpr ls;
 // //
-// ls.read("((quickly won)(The (home team)))");
+// ls.read("(((very quickly) won) (The (home team)))");
 
 // //ls.read("((quickly won)(The team))");
 
@@ -40,7 +40,7 @@ int main(int argc, char **argv)
  QApplication qapp(argc, argv);
 
  Lexpair_Dialog dlg(Lexpair_Dialog::split(
-   "The home team won quickly!"), nullptr);
+   "The home team won very quickly"), nullptr);
 
  dlg.show();
  return qapp.exec();
