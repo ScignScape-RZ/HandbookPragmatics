@@ -554,6 +554,32 @@ Lexpair_Dialog::Lexpair_Dialog(QStringList sent, QWidget* parent)
   reinsert_pair_line(li, ovi, nvi);
  });
 
+ pairs_table_widget_->verticalHeader()->setContextMenuPolicy(Qt::CustomContextMenu);     //set contextmenu
+ connect(pairs_table_widget_->verticalHeader(), &QHeaderView::customContextMenuRequested,
+   [this](const QPoint& qp)
+ {
+  QMenu* qm = new QMenu(this);
+  QModelIndex qmi = pairs_table_widget_->indexAt(qp);
+  int row = qmi.row();
+  if(qmi.row() > 0)
+  {
+   qm->addAction("Pin Row to Predecessor",
+     [this, row]()
+   {
+    QTableWidgetItem* twi = pairs_table_widget_->verticalHeaderItem(row);
+    QTableWidgetItem* up_twi = pairs_table_widget_->verticalHeaderItem(row - 1);
+    vertical_header_map_[twi].pin_prior = up_twi;
+    vertical_header_map_[up_twi].pin_next = twi;
+   });
+  }
+
+  qm->addAction("Delete Row",
+     [this]()
+  {
+
+  });
+  qm->popup(pairs_table_widget_->verticalHeader()->mapToGlobal(qp));
+ });
 
 // pairs_table_widget_->setDragDropOverwriteMode(false);
 // pairs_table_widget_->setDragEnabled(true);
