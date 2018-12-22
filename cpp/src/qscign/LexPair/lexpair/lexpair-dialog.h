@@ -115,6 +115,8 @@ class Lexpair_Dialog : public QDialog
   int logical_index;
   QTableWidgetItem* pin_prior;
   QTableWidgetItem* pin_next;
+//  QTableWidgetItem* _prior;
+//  QTableWidgetItem* _next;
  };
 
  QMap<QTableWidgetItem*, Vertical_Header_Map_Value> vertical_header_map_;
@@ -154,7 +156,7 @@ class Lexpair_Dialog : public QDialog
  QString get_info_text(QString folder, QString topic, QString& details);
 
  void add_pair_line(QPair<QString, QString>& words, QPair<quint8, quint8>& pos);
- void reinsert_pair_line(int li, int ovi, int nvi);
+ void reinsert_pair_line(int li, int ovi, int nvi, qint8 dir = 0);
 
 
  void reset_add();

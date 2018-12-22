@@ -875,8 +875,10 @@ void Lexpair_Dialog::clear_splice(bool checked)
  multi_selected_buttons_.clear();
 }
 
-void Lexpair_Dialog::reinsert_pair_line(int li, int ovi, int nvi)
+void Lexpair_Dialog::reinsert_pair_line(int li, int ovi, int nvi, qint8 dir)
 {
+ QSignalBlocker qsb(pairs_table_widget_->verticalHeader());
+
  //qDebug() << QString("\nli: %1 ovi: %2 nvi: %3").arg(li).arg(ovi).arg(nvi);
 
  QTableWidgetItem* twi_v = pairs_table_widget_->verticalHeaderItem(li);
@@ -888,33 +890,38 @@ void Lexpair_Dialog::reinsert_pair_line(int li, int ovi, int nvi)
 
   //qDebug() << vertical_header_map_[twi_vi].words;
 
-  twi_vi->setText(QString::number(pairs_table_widget_->verticalHeader()->visualIndex(r)));
+  twi_vi->setText(QString("%1 {%2}")
+    .arg(pairs_table_widget_->verticalHeader()->visualIndex(r)).arg(r));
  }
 
-
- if(QTableWidgetItem* twi_vp = vertical_header_map_[twi_v].pin_prior)
+ if(dir != 1)
  {
-  int li = vertical_header_map_[twi_vp].logical_index;
-  qDebug() << "prior: " << li;
-//  qDebug() << vertical_header_map_[twi_vp].words << "\n";
-  QHeaderView* qhv = pairs_table_widget_->verticalHeader();
-  int vi = qhv->visualIndex(li);
-  qhv->moveSection(vi, nvi);
+  if(QTableWidgetItem* twi_vp = vertical_header_map_[twi_v].pin_prior)
+  {
+     //if(twi_vp == vertical_header_map_[twi_v].pin_prior)
+   int li = vertical_header_map_[twi_vp].logical_index;
+   qDebug() << "prior: " << li;
+   // qDebug() << vertical_header_map_[twi_vp].words << "\n";
+   QHeaderView* qhv = pairs_table_widget_->verticalHeader();
+   int vi = qhv->visualIndex(li);
+   qhv->moveSection(vi, nvi);
+   reinsert_pair_line(li, vi, nvi + 1, -1);
+  }
  }
- if(QTableWidgetItem* twi_vp = vertical_header_map_[twi_v].pin_next)
+ if(dir != -1)
  {
-  int li = vertical_header_map_[twi_vp].logical_index;
-  qDebug() << "next: " << li << " n+ " << nvi + 1;
-//  qDebug() << vertical_header_map_[twi_vp].words << "\n";
-  QHeaderView* qhv = pairs_table_widget_->verticalHeader();
-  int vi = qhv->visualIndex(li);
-  if(vi != nvi + 1)
-    qhv->moveSection(vi, nvi + 1);
+  if(QTableWidgetItem* twi_vp = vertical_header_map_[twi_v].pin_next)
+  {
+   int li = vertical_header_map_[twi_vp].logical_index;
+   qDebug() << "next: " << li << " n+ " << nvi + 1;
+   //  qDebug() << vertical_header_map_[twi_vp].words << "\n";
+   QHeaderView* qhv = pairs_table_widget_->verticalHeader();
+   int vi = qhv->visualIndex(li);
+   if(vi != nvi + 1)
+     qhv->moveSection(vi, nvi + 1);
+   reinsert_pair_line(li, vi, nvi + 1, 1);
+  }
  }
-
-
-
-
 // int start = qMin(ovi, nvi);
 // int end = qMax(ovi, nvi);
 // for(int i = start; i <= end; ++i)
@@ -1185,7 +1192,7 @@ void Lexpair_Dialog::add_pair_line(QPair<QString, QString>& words,
  QTableWidgetItem* twi_lm = new QTableWidgetItem(QString::number(pos.second));
  pairs_table_widget_->setItem(pairs_count_, 9, twi_lm);
 
- QTableWidgetItem* twi_vi = new QTableWidgetItem(QString::number(pairs_count_));
+ QTableWidgetItem* twi_vi = new QTableWidgetItem(QString("%1 {%1}").arg(pairs_count_));
  pairs_table_widget_->setVerticalHeaderItem(pairs_count_, twi_vi);
 
  vertical_header_map_[twi_vi] = {{words.first, words.second}, pairs_count_, nullptr, nullptr};
@@ -1229,7 +1236,7 @@ void Lexpair_Dialog::check_pair()
    pairs_table_widget_->setRowCount(pairs_count_ + 1);
    pairs_table_widget_->setItem(pairs_count_, 0, twi);
 
-   QTableWidgetItem* twi_vi = new QTableWidgetItem(QString::number(pairs_count_));
+   QTableWidgetItem* twi_vi = new QTableWidgetItem(QString("%1 {%1}").arg(pairs_count_));
    pairs_table_widget_->setVerticalHeaderItem(pairs_count_, twi_vi);
    vertical_header_map_[twi_vi] = {{sl, sr}, pairs_count_, nullptr, nullptr};
 
