@@ -539,6 +539,34 @@ Lexpair_Dialog::Lexpair_Dialog(QStringList sent, QWidget* parent)
 
  pairs_table_widget_ = new QTableWidget(this);
 
+ pairs_table_widget_->setDropIndicatorShown(true);
+
+ pairs_table_widget_->verticalHeader()->setSectionsMovable(true);
+ pairs_table_widget_->verticalHeader()->setDragEnabled(true);
+ pairs_table_widget_->verticalHeader()->setDragDropMode(QAbstractItemView::InternalMove);
+
+// QTableWidgetItem* twi_vi = new QTableWidgetItem(QString::number(pairs_count_));
+// pairs_table_widget_->setVerticalHeaderItem(pairs_count_, twi_vi);
+
+ connect(pairs_table_widget_->verticalHeader(), &QHeaderView::sectionMoved,
+    [this](int li, int ovi, int nvi)
+ {
+  int start = qMin(ovi, nvi);
+  int end = qMax(ovi, nvi);
+  for(int i = start; i <= end; ++i)
+  {
+   QTableWidgetItem* twi_vi = pairs_table_widget_->verticalHeaderItem(i);
+   twi_vi->setText(QString::number(pairs_table_widget_->verticalHeader()->visualIndex(i)));
+  }
+ });
+
+
+// pairs_table_widget_->setDragDropOverwriteMode(false);
+// pairs_table_widget_->setDragEnabled(true);
+// pairs_table_widget_->setDragDropMode(QAbstractItemView::InternalMove);
+
+ //item->setFlags(item->flags() & ~(Qt::ItemIsDropEnabled));
+
  pairs_table_widget_->setColumnCount(10);
 
  pairs_table_widget_->setHorizontalHeaderLabels({"", "Pivot", "lg:Source\nExpectation",
@@ -1087,6 +1115,9 @@ void Lexpair_Dialog::add_pair_line(QPair<QString, QString>& words,
 
  QTableWidgetItem* twi_lm = new QTableWidgetItem(QString::number(pos.second));
  pairs_table_widget_->setItem(pairs_count_, 9, twi_lm);
+
+ QTableWidgetItem* twi_vi = new QTableWidgetItem(QString::number(pairs_count_));
+ pairs_table_widget_->setVerticalHeaderItem(pairs_count_, twi_vi);
 
  ++pairs_count_;
 }
