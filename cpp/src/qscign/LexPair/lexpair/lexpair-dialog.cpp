@@ -875,14 +875,57 @@ void Lexpair_Dialog::clear_splice(bool checked)
  multi_selected_buttons_.clear();
 }
 
-void Lexpair_Dialog::reinsert_pair_line(int li, int ovi, int nvi, qint8 dir)
+void Lexpair_Dialog::reinsert_pair_line(int li, int ovi, int nvi, int dir)
 {
- QSignalBlocker qsb(pairs_table_widget_->verticalHeader());
+ QHeaderView* qhv = pairs_table_widget_->verticalHeader();
+ QSignalBlocker qsb(qhv);
 
- //qDebug() << QString("\nli: %1 ovi: %2 nvi: %3").arg(li).arg(ovi).arg(nvi);
+  //qDebug() << QString("\nli: %1 ovi: %2 nvi: %3").arg(li).arg(ovi).arg(nvi);
 
  QTableWidgetItem* twi_v = pairs_table_widget_->verticalHeaderItem(li);
  //qDebug() << vertical_header_map_[twi_v].words << "\n";
+
+ QList<QTableWidgetItem*> prior_list;
+ {
+  QTableWidgetItem* temp = twi_v;
+  while(temp = vertical_header_map_[temp].pin_prior)
+  {
+   prior_list.push_front(temp);
+  }
+ }
+ QList<QTableWidgetItem*> next_list;
+ {
+  QTableWidgetItem* temp = twi_v;
+  while(temp = vertical_header_map_[temp].pin_next)
+  {
+   next_list.push_back(temp);
+  }
+ }
+
+ //int offset = prior_list.size();
+ int vrow = nvi;
+ for(QTableWidgetItem* ptwi : prior_list)
+ {
+  int pli = vertical_header_map_[ptwi].logical_index;
+  int pvi = qhv->visualIndex(pli);
+  qhv->moveSection(pvi, vrow);
+  ++vrow;
+ }
+ if(vrow != nvi)
+ {
+  int vi = qhv->visualIndex(li);
+  qhv->moveSection(vi, vrow);
+ }
+ for(QTableWidgetItem* ntwi : next_list)
+ {
+  ++vrow;
+  int nli = vertical_header_map_[ntwi].logical_index;
+  int nvi = qhv->visualIndex(nli);
+  qhv->moveSection(nvi, vrow);
+  //++vrow;
+ }
+
+
 
  for(int r = 0; r < pairs_table_widget_->rowCount(); ++r)
  {
@@ -894,34 +937,36 @@ void Lexpair_Dialog::reinsert_pair_line(int li, int ovi, int nvi, qint8 dir)
     .arg(pairs_table_widget_->verticalHeader()->visualIndex(r)).arg(r));
  }
 
- if(dir != 1)
- {
-  if(QTableWidgetItem* twi_vp = vertical_header_map_[twi_v].pin_prior)
-  {
-     //if(twi_vp == vertical_header_map_[twi_v].pin_prior)
-   int li = vertical_header_map_[twi_vp].logical_index;
-   qDebug() << "prior: " << li;
-   // qDebug() << vertical_header_map_[twi_vp].words << "\n";
-   QHeaderView* qhv = pairs_table_widget_->verticalHeader();
-   int vi = qhv->visualIndex(li);
-   qhv->moveSection(vi, nvi);
-   reinsert_pair_line(li, vi, nvi + 1, -1);
-  }
- }
- if(dir != -1)
- {
-  if(QTableWidgetItem* twi_vp = vertical_header_map_[twi_v].pin_next)
-  {
-   int li = vertical_header_map_[twi_vp].logical_index;
-   qDebug() << "next: " << li << " n+ " << nvi + 1;
-   //  qDebug() << vertical_header_map_[twi_vp].words << "\n";
-   QHeaderView* qhv = pairs_table_widget_->verticalHeader();
-   int vi = qhv->visualIndex(li);
-   if(vi != nvi + 1)
-     qhv->moveSection(vi, nvi + 1);
-   reinsert_pair_line(li, vi, nvi + 1, 1);
-  }
- }
+// if(dir != 1)
+// {
+//  if(QTableWidgetItem* twi_vp = vertical_header_map_[twi_v].pin_prior)
+//  {
+//     //if(twi_vp == vertical_header_map_[twi_v].pin_prior)
+//   int li = vertical_header_map_[twi_vp].logical_index;
+//   qDebug() << "prior: " << li;
+//   // qDebug() << vertical_header_map_[twi_vp].words << "\n";
+//   QHeaderView* qhv = pairs_table_widget_->verticalHeader();
+//   int vi = qhv->visualIndex(li);
+//   qhv->moveSection(vi, nvi);
+//   reinsert_pair_line(li, vi, nvi + 1, -1);
+//  }
+// }
+
+// if(dir != -1)
+// {
+//  if(QTableWidgetItem* twi_vp = vertical_header_map_[twi_v].pin_next)
+//  {
+//   int li = vertical_header_map_[twi_vp].logical_index;
+//   qDebug() << "next: " << li << " n+ " << nvi + 1;
+//   //  qDebug() << vertical_header_map_[twi_vp].words << "\n";
+//   QHeaderView* qhv = pairs_table_widget_->verticalHeader();
+//   int vi = qhv->visualIndex(li);
+//   if(vi != nvi + 1)
+//     qhv->moveSection(vi, nvi + 1);
+//   reinsert_pair_line(li, vi, nvi + 1, 1);
+//  }
+
+// }
 // int start = qMin(ovi, nvi);
 // int end = qMax(ovi, nvi);
 // for(int i = start; i <= end; ++i)
