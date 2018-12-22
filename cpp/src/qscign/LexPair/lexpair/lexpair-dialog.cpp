@@ -572,11 +572,10 @@ Lexpair_Dialog::Lexpair_Dialog(QStringList sent, QWidget* parent)
     vertical_header_map_[up_twi].pin_next = twi;
    });
   }
-
   qm->addAction("Delete Row",
-     [this]()
+     [this, row]()
   {
-
+   remove_pairs_row(row);
   });
   qm->popup(pairs_table_widget_->verticalHeader()->mapToGlobal(qp));
  });
@@ -849,6 +848,51 @@ void Lexpair_Dialog::splice_multi()
    sxpr_insert_text(text, 0, 0);
  clear_splice(true);
 }
+
+int Lexpair_Dialog::remove_pairs_row(int row)
+{
+ QHeaderView* qhv = pairs_table_widget_->verticalHeader();
+ QSignalBlocker qsb(qhv);
+
+ int li = qhv->logicalIndex(row);
+ QTableWidgetItem* rvi = pairs_table_widget_->verticalHeaderItem(li);
+ qDebug() << vertical_header_map_[rvi].words;
+
+ // // remove any pins
+ if(QTableWidgetItem* pvi = vertical_header_map_[rvi].pin_prior)
+ {
+  vertical_header_map_[pvi].pin_next = nullptr;
+ }
+ if(QTableWidgetItem* nvi = vertical_header_map_[rvi].pin_next)
+ {
+  vertical_header_map_[nvi].pin_prior = nullptr;
+ }
+
+ int i = li;
+ while(i < pairs_table_widget_->rowCount() - 1)
+ {
+  ++i;
+  QTableWidgetItem* twi = pairs_table_widget_->verticalHeaderItem(i);
+  --vertical_header_map_[twi].logical_index;
+ }
+
+ pairs_table_widget_->removeRow(row);
+
+ for(int r = 0; r < pairs_table_widget_->rowCount(); ++r)
+ {
+  QTableWidgetItem* twi_vi = pairs_table_widget_->verticalHeaderItem(r);
+  twi_vi->setText(QString("%1 {%2}")
+    .arg(pairs_table_widget_->verticalHeader()->visualIndex(r)).arg(r));
+ }
+
+// for(int r = 0; r < pairs_table_widget_->rowCount(); ++r)
+// {
+//  QTableWidgetItem* twi_vi = pairs_table_widget_->verticalHeaderItem(r);
+//  qDebug() << vertical_header_map_[twi_vi].words;
+// }
+
+}
+
 
 void Lexpair_Dialog::strip_characters(QPushButton* btn)
 {

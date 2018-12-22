@@ -158,6 +158,7 @@ class Lexpair_Dialog : public QDialog
  void add_pair_line(QPair<QString, QString>& words, QPair<quint8, quint8>& pos);
  void reinsert_pair_line(int li, int ovi, int nvi, int dir = 0);
 
+ int remove_pairs_row(int row);
 
  void reset_add();
  void force_recheck(int id);
