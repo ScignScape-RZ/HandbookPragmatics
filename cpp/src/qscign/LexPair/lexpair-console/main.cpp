@@ -40,7 +40,7 @@ int main(int argc, char **argv)
  QApplication qapp(argc, argv);
 
  Lexpair_Dialog dlg(Lexpair_Dialog::split(
-   "The home team won quickly"), nullptr);
+   "The home team won quickly!"), nullptr);
 
  dlg.show();
  return qapp.exec();

@@ -130,10 +130,14 @@ class Lexpair_Dialog : public QDialog
  QFrame* mw_frame_;
  //QVBoxLayout* main_frame_layout_;
 
+ void check_multi_select_button(QPushButton* btn);
+
  void set_cell_text(int r, int c, QString text);
 
- void clear_splice();
+ void clear_splice(bool checked = false);
  void splice_multi();
+
+ void strip_characters(QPushButton* btn);
 
  void plan_focus_button(QPushButton* btn);
 
