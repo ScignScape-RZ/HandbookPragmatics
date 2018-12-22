@@ -97,6 +97,7 @@ class Lexpair_Dialog : public QDialog
  QPushButton* sxpr_cc_button_;
  QPushButton* sxpr_read_button_;
  QPushButton* sxpr_splice_button_;
+ QPushButton* sxpr_back_splice_button_;
  QPlainTextEdit* sxpr_text_edit_;
 
  QVBoxLayout* main_layout_;
@@ -148,6 +149,8 @@ class Lexpair_Dialog : public QDialog
 
  void clear_splice(bool checked = false);
  void splice_multi();
+
+ void back_splice_multi();
 
  void strip_characters(QPushButton* btn);
 

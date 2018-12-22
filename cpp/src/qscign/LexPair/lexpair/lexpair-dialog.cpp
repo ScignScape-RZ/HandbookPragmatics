@@ -513,12 +513,23 @@ Lexpair_Dialog::Lexpair_Dialog(QStringList sent, QWidget* parent)
  sxpr_button_group_->addButton(sxpr_splice_button_);
  set_button_width(sxpr_splice_button_, 16);
 
- sxpr_layout_->setColumnStretch(10, 1);
+ sxpr_back_splice_button_ = new QPushButton("Back Splice", this);
+ sxpr_back_splice_button_->setDefault(false);
+ sxpr_back_splice_button_->setAutoDefault(false);
+ sxpr_layout_->addWidget(sxpr_back_splice_button_, 0, 10);
+ connect(sxpr_back_splice_button_, &QPushButton::clicked, [this]
+ {
+  back_splice_multi();
+ });
+ sxpr_button_group_->addButton(sxpr_back_splice_button_);
+ set_button_width(sxpr_back_splice_button_, 11);
+
+ sxpr_layout_->setColumnStretch(11, 1);
 
  enable_sxpr_buttons(false);
 
  sxpr_text_edit_ = new QPlainTextEdit(this);
- sxpr_layout_->addWidget(sxpr_text_edit_, 1, 1, 1, 10);
+ sxpr_layout_->addWidget(sxpr_text_edit_, 1, 1, 1, 11);
 
  set_height(sxpr_text_edit_, 1);
 
@@ -561,6 +572,13 @@ Lexpair_Dialog::Lexpair_Dialog(QStringList sent, QWidget* parent)
   QMenu* qm = new QMenu(this);
   QModelIndex qmi = pairs_table_widget_->indexAt(qp);
   int row = qmi.row();
+
+  qm->addAction("Delete Row",
+     [this, row]()
+  {
+   remove_pairs_row(row);
+  });
+
   if(qmi.row() > 0)
   {
    qm->addAction("Pin Row to Predecessor",
@@ -572,11 +590,7 @@ Lexpair_Dialog::Lexpair_Dialog(QStringList sent, QWidget* parent)
     vertical_header_map_[up_twi].pin_next = twi;
    });
   }
-  qm->addAction("Delete Row",
-     [this, row]()
-  {
-   remove_pairs_row(row);
-  });
+
   qm->popup(pairs_table_widget_->verticalHeader()->mapToGlobal(qp));
  });
 
@@ -849,6 +863,38 @@ void Lexpair_Dialog::splice_multi()
  clear_splice(true);
 }
 
+void Lexpair_Dialog::back_splice_multi()
+{
+ QString text;
+
+// //int sz = multi_selected_buttons_.size();
+// QPushButton* hold = nullptr;
+
+// int sz = multi_selected_buttons_.size();
+// if(sz == 0)
+//   return;
+
+ int c = 0;
+ for(QPushButton* btn: multi_selected_buttons_)
+ {
+  int id = sentence_button_group_->id(btn);
+  if( (id >= -1) )
+    continue;
+  if(c == 0)
+    text += QString("%1 ").arg(sentence_.at(-id-2));
+  else
+    text += QString("%1 ) ").arg(sentence_.at(-id-2));
+  ++c;
+ }
+
+ if(c > 1)
+   text.prepend(QString("( ").repeated(c - 1));
+
+ if(!text.isEmpty())
+   sxpr_insert_text(text, 0, 0);
+ clear_splice(true);
+}
+
 int Lexpair_Dialog::remove_pairs_row(int row)
 {
  QHeaderView* qhv = pairs_table_widget_->verticalHeader();
@@ -916,6 +962,7 @@ void Lexpair_Dialog::clear_splice(bool checked)
   btn->style()->polish(btn);
  }
  sxpr_splice_button_->setEnabled(false);
+ sxpr_back_splice_button_->setEnabled(false);
  multi_selected_buttons_.clear();
 }
 
@@ -1067,20 +1114,22 @@ bool Lexpair_Dialog::eventFilter(QObject* obj, QEvent* event)
    if(qme->buttons() == Qt::RightButton)
    {
     QMenu* qm = new QMenu(this);
+
     if(btn->isEnabled())
     {
+     qm->addAction("Add to Multiple Selection",
+       [btn, this]()
+     {
+      check_multi_select_button(btn);
+      return true;
+     });
+
      qm->addAction("Discard",
        [btn, this]()
      {
       btn->setEnabled(false);
       if(_focus_button_)
         _focus_button_->setFocus();
-     });
-     qm->addAction("Add to Multiple Selection",
-       [btn, this]()
-     {
-      check_multi_select_button(btn);
-      return true;
      });
     }
     else
@@ -1093,10 +1142,12 @@ bool Lexpair_Dialog::eventFilter(QObject* obj, QEvent* event)
         _focus_button_->setFocus();
      });
     }
+
     qm->addAction("Strip Punctuation", [this, btn]
     {
      strip_characters(btn);
     });
+
     qm->popup(btn->mapToGlobal(qme->pos()));
     return true;
    }
