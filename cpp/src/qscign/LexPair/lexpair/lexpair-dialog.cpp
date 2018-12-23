@@ -1718,6 +1718,11 @@ void Lexpair_Dialog::auto_insert_tr(int r, int c, QString text)
  ct += text;
  set_cell_text(r, c, ct);
 
+ pairs_table_widget_->setCurrentCell(r - 1, c - 1);
+
+ QModelIndex qmi = pairs_table_widget_->model()->index(r - 1, c - 1);
+
+ pairs_table_widget_->edit(qmi);
 }
 
 void Lexpair_Dialog::auto_insert_dg(QString text)
