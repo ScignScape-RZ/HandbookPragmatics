@@ -1231,6 +1231,18 @@ bool Lexpair_Dialog::eventFilter(QObject* obj, QEvent* event)
       if(_focus_button_)
         _focus_button_->setFocus();
      });
+
+     if(btn->isChecked())
+     {
+      qm->addAction("Unmark",
+        [btn, this]()
+      {
+       QSignalBlocker qsb(sentence_button_group_);
+       btn->setChecked(false);
+       if(_focus_button_)
+         _focus_button_->setFocus();
+      });
+     }
     }
     else
     {

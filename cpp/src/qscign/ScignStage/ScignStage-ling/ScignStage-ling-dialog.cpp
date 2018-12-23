@@ -744,7 +744,7 @@ void ScignStage_Ling_Dialog::find_sample_down(Language_Sample_Group* start,
     {
      // // i.e. all way round
      QMessageBox::information(this, "No More",
-                              "NM");
+                              "There are no more samples given the current filters.");
      return;
     }
     if(!g->match_classification(*temp_filters))
