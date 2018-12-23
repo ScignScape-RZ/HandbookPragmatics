@@ -784,6 +784,10 @@ Lexpair_Dialog::Lexpair_Dialog(QStringList sent, QWidget* parent)
   scl->set_text_data(qs);
   scl->set_cb({&_dg_label_cb, &_dg_info_cb});
   scl->setAlignment(Qt::AlignLeft);
+
+  scl->setStyleSheet("*[styled_info=\"true\"] {"
+    "background-color:yellow;}");
+
   dependency_grammar_layout_->addWidget(scl, j/dg_max_col, j%dg_max_col);
   ++j;
  }
@@ -831,6 +835,10 @@ Lexpair_Dialog::Lexpair_Dialog(QStringList sent, QWidget* parent)
   scl->set_text_data(qs.replace('_', ' '));
   scl->set_cb({&_tr_label_cb, &_tr_insert_cb});
   scl->setAlignment(Qt::AlignLeft);
+
+  scl->setStyleSheet("*[styled_info=\"true\"] {"
+    "background-color:yellow;}");
+
   transform_elements_layout_->addWidget(scl, k/tr_max_col, k%tr_max_col);
   ++k;
  }
@@ -1695,13 +1703,21 @@ void Lexpair_Dialog::show_dg_info(QString text)
 void Lexpair_Dialog::auto_insert_tr_micro(QString text)
 {
  int cr = pairs_table_widget_->currentRow();
- set_cell_text(cr + 1, 12, text);
+ auto_insert_tr(cr + 1, 12, text);
 }
 
 void Lexpair_Dialog::auto_insert_tr_macro(QString text)
 {
  int cr = pairs_table_widget_->currentRow();
- set_cell_text(cr + 1, 11, text);
+ auto_insert_tr(cr + 1, 11, text);
+}
+
+void Lexpair_Dialog::auto_insert_tr(int r, int c, QString text)
+{
+ QString ct = get_cell_text(r, c);
+ ct += text;
+ set_cell_text(r, c, ct);
+
 }
 
 void Lexpair_Dialog::auto_insert_dg(QString text)

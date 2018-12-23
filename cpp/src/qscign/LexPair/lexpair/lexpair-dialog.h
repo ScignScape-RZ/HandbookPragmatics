@@ -229,6 +229,7 @@ public:
  void auto_insert_dg(QString text);
  void auto_insert_tr_micro(QString text);
  void auto_insert_tr_macro(QString text);
+ void auto_insert_tr(int r, int c, QString text);
 
  static QStringList split(QString qs)
  {
