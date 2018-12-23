@@ -99,7 +99,7 @@ void _tr_label_cb(QObject* obj, QString text)
  qDebug() << text;
 
  Lexpair_Dialog* dlg = qobject_cast<Lexpair_Dialog*>(obj);
- //dlg->dg_label_cb(text);
+ dlg->tr_label_cb(text);
 }
 
 
@@ -149,8 +149,6 @@ void _lg_info_cb(QObject* obj, QMouseEvent* event,
 // dlg->lg_label_cb(text);
 }
 
-
-
 void _dg_info_cb(QObject* obj, QMouseEvent* event,
   ScignStage_Clickable_Label* scl, QString text)
 {
@@ -180,8 +178,31 @@ void _dg_info_cb(QObject* obj, QMouseEvent* event,
  });
 
  qm->popup(event->globalPos());
-
 }
+
+void _tr_insert_cb(QObject* obj, QMouseEvent* event,
+  ScignStage_Clickable_Label* scl, QString text)
+{
+ Lexpair_Dialog* dlg = qobject_cast<Lexpair_Dialog*>(obj);
+ QMenu* qm = new QMenu(dlg);
+
+ qm->addAction("Auto Insert (macro)",
+   [dlg, scl, text]()
+ {
+  scl->unstyle();
+  dlg->auto_insert_tr_macro(text);
+ });
+
+ qm->addAction("Auto Insert (micro)",
+   [dlg, scl, text]()
+ {
+  scl->unstyle();
+  dlg->auto_insert_tr_micro(text);
+ });
+
+ qm->popup(event->globalPos());
+}
+
 
 Lexpair_Dialog::Lexpair_Dialog(QStringList sent, QWidget* parent)
   : QDialog(parent), _focus_button_(nullptr), source_id_(0),
@@ -634,6 +655,9 @@ Lexpair_Dialog::Lexpair_Dialog(QStringList sent, QWidget* parent)
  pairs_table_widget_->setColumnWidth(8, 19);
  pairs_table_widget_->setColumnWidth(9, 16);
 
+ pairs_table_widget_->setColumnWidth(10, 110);
+ pairs_table_widget_->setColumnWidth(11, 110);
+
  main_layout_->addWidget(pairs_table_widget_);
 
  mw_ = new QMainWindow;
@@ -781,16 +805,16 @@ Lexpair_Dialog::Lexpair_Dialog(QStringList sent, QWidget* parent)
   "V ..-> V", " A ", " A ..-> A",
   "N ..-> N", " J ", " J ..-> J ",
   "N ..-> J", "N ..-> A ", "N ..-> V",
-  "V ..-> N", " .\-> ", "P ..-> V",
+  "V ..-> N", " .\\-> ", "P ..-> V",
 
   "N ..-> P",  "N .-> N ..-> P", "N .-> N .-> N ..-> P",
 
   "P .-> P ..-> P", "P ..-> N", "P ..-> P",
   " <-. ",  " <. ", " .> ",
 
-  " ( ", " ) ", " ( ) ",
-  " [ ", " ] ", " [ ] ",
-  " { ", " } ", " { } ",
+  " ( ", " ) ", "_(__)_",
+  " [ ", " ] ", "_[__]_",
+  " { ", " } ", "_{__}_",
 
   " ##: ", " :> ", " := ",
   " , ", " .; ", " .;; ",
@@ -803,9 +827,9 @@ Lexpair_Dialog::Lexpair_Dialog(QStringList sent, QWidget* parent)
  {
   ScignStage_Clickable_Label* scl = new ScignStage_Clickable_Label(this);
   scl->setMinimumWidth(50);
-  scl->setText(qs);
-  scl->set_text_data(qs);
-  scl->set_cb({&_tr_label_cb, nullptr});
+  scl->setText(qs.simplified().replace(' ', "").replace('_', ' '));
+  scl->set_text_data(qs.replace('_', ' '));
+  scl->set_cb({&_tr_label_cb, &_tr_insert_cb});
   scl->setAlignment(Qt::AlignLeft);
   transform_elements_layout_->addWidget(scl, k/tr_max_col, k%tr_max_col);
   ++k;
@@ -1516,6 +1540,22 @@ void Lexpair_Dialog::lg_label_cb(QString text)
  }
 }
 
+
+
+void Lexpair_Dialog::tr_label_cb(QString text)
+{
+ QModelIndex qmi = pairs_table_widget_->currentIndex();
+ if(qmi.isValid())
+ {
+  if(qmi.column() > 0)
+  {
+   QString ct = get_cell_text(qmi.row() + 1, qmi.column() + 1);
+   ct += text;
+   set_cell_text(qmi.row() + 1, qmi.column() + 1, text);
+  }
+ }
+}
+
 void Lexpair_Dialog::dg_label_cb(QString text)
 {
  QModelIndex qmi = pairs_table_widget_->currentIndex();
@@ -1526,6 +1566,14 @@ void Lexpair_Dialog::dg_label_cb(QString text)
  }
 }
 
+QString Lexpair_Dialog::get_cell_text(int r, int c)
+{
+ if(QTableWidgetItem* twi = pairs_table_widget_->item(r - 1, c - 1))
+ {
+  return twi->text();
+ }
+ return QString();
+}
 
 void Lexpair_Dialog::set_cell_text(int r, int c, QString text)
 {
@@ -1642,6 +1690,18 @@ void Lexpair_Dialog::show_dg_info(QString text)
  });
  qmb->setModal(false);
  qmb->open(this, "");
+}
+
+void Lexpair_Dialog::auto_insert_tr_micro(QString text)
+{
+ int cr = pairs_table_widget_->currentRow();
+ set_cell_text(cr + 1, 12, text);
+}
+
+void Lexpair_Dialog::auto_insert_tr_macro(QString text)
+{
+ int cr = pairs_table_widget_->currentRow();
+ set_cell_text(cr + 1, 11, text);
 }
 
 void Lexpair_Dialog::auto_insert_dg(QString text)

@@ -149,6 +149,7 @@ class Lexpair_Dialog : public QDialog
  void check_multi_select_button(QPushButton* btn);
 
  void set_cell_text(int r, int c, QString text);
+ QString get_cell_text(int r, int c);
 
  void clear_splice(bool checked = false);
  void splice_multi();
@@ -219,11 +220,15 @@ public:
 
  void lg_label_cb(QString text);
  void dg_label_cb(QString text);
+ void tr_label_cb(QString text);
+
 
  void show_lg_info(QString text);
  void show_dg_info(QString text);
  void auto_insert_lg(QString text, QString pm = QString());
  void auto_insert_dg(QString text);
+ void auto_insert_tr_micro(QString text);
+ void auto_insert_tr_macro(QString text);
 
  static QStringList split(QString qs)
  {
