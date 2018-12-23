@@ -140,6 +140,9 @@ class Lexpair_Dialog : public QDialog
  QGridLayout* dependency_grammar_layout_;
  QFrame* dependency_grammar_frame_;
 
+ QGridLayout* transform_elements_layout_;
+ QFrame* transform_elements_frame_;
+
  QFrame* mw_frame_;
  //QVBoxLayout* main_frame_layout_;
 

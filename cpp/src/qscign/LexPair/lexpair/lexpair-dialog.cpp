@@ -86,6 +86,13 @@ void _dg_label_cb(QObject* obj, QString text)
  dlg->dg_label_cb(text);
 }
 
+void _tr_label_cb(QObject* obj, QString text)
+{
+ Lexpair_Dialog* dlg = qobject_cast<Lexpair_Dialog*>(obj);
+ //dlg->dg_label_cb(text);
+}
+
+
 void _lg_info_cb(QObject* obj, QMouseEvent* event,
   ScignStage_Clickable_Label* scl, QString text)
 {
@@ -600,14 +607,16 @@ Lexpair_Dialog::Lexpair_Dialog(QStringList sent, QWidget* parent)
 
  //item->setFlags(item->flags() & ~(Qt::ItemIsDropEnabled));
 
- pairs_table_widget_->setColumnCount(10);
+ pairs_table_widget_->setColumnCount(12);
 
  pairs_table_widget_->setHorizontalHeaderLabels({"", "Pivot", "lg:Source\nExpectation",
    "lg:Target\nExpectation", "lg:\nDescription",
    "dg:Source\nExpectation", "dg:Target\nExpectation",
    "dg:\nDescription",
                                         QChar(0x0002b13),//QChar(0x00027f8),
-                                        QChar(0x000003BB)});
+                                        QChar(0x000003BB),
+   "Transform\nSignature (macro)", "Transform\nSignature (micro)"
+                         });
 
  for(int i = 1; i < 8; ++i)
    pairs_table_widget_->setColumnWidth(i, 75);
@@ -627,8 +636,9 @@ Lexpair_Dialog::Lexpair_Dialog(QStringList sent, QWidget* parent)
  grammar_combo_ = new QComboBox(this);
  grammar_layout_ = new QVBoxLayout;
 
- grammar_combo_->addItem("Link Grammar");
- grammar_combo_->addItem("Dependency Grammar");
+ grammar_combo_->addItem("Link Grammar (Completion Layer)");
+ grammar_combo_->addItem("Dependency Grammar (Refinement Layer)");
+ grammar_combo_->addItem("Type-Theoretic Grammar (Transform Layer)");
 
  grammar_combo_layout_ = new QHBoxLayout;
  grammar_combo_layout_->addWidget(grammar_combo_);
@@ -747,6 +757,40 @@ Lexpair_Dialog::Lexpair_Dialog(QStringList sent, QWidget* parent)
 
  dependency_grammar_frame_->setLayout(dependency_grammar_layout_);
  grammar_stacked_widget_->addWidget(dependency_grammar_frame_);
+
+ transform_elements_frame_ = new QFrame;
+ transform_elements_layout_ = new QGridLayout;
+
+ int tr_max_col = 2;
+
+ QStringList tr_elements
+ {
+  " N ", " P ", " V ", " .-> ", " ..-> ", " ( ", " ) ",
+
+  " Adj ", " Adv ",
+  "N ..-> P", "N .-> N ..-> P", "N .-> N .-> ..-> P",
+  "N ..-> N", "V ..-> V", "N ..-> Adj", "N ..-> Adv", "N ..-> V",
+  "P ..-> N", "P ..-> P",
+
+  " [ ", " ] ",
+  " { ", " } ",
+ };
+ int k = 0;
+ for(QString qs : tr_elements)
+ {
+  ScignStage_Clickable_Label* scl = new ScignStage_Clickable_Label(this);
+  scl->setText(qs);
+  scl->set_text_data(qs);
+  scl->set_cb({&_tr_label_cb, nullptr});
+  scl->setAlignment(Qt::AlignLeft);
+  transform_elements_layout_->addWidget(scl, k/tr_max_col, k%tr_max_col);
+  ++k;
+ }
+ transform_elements_layout_->setRowStretch(((k-1)/tr_max_col)+1, 1);
+
+ transform_elements_frame_->setLayout(transform_elements_layout_);
+ grammar_stacked_widget_->addWidget(transform_elements_frame_);
+
 
  grammar_layout_->addWidget(grammar_stacked_widget_);
 
