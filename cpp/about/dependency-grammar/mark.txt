@@ -1,2 +1,3 @@
-
+mark: marker
 @
+A marker is the word marking a clause as subordinate to another clause. For a complement clause, this is words like [en] that or whether. For an adverbial clause, the marker is typically a subordinating conjunction like [en] while or although. The marker is a dependent of the subordinate clause head. In a relative clause, it is a normally uninflected word, which simply introduces a relative clause, such as [he] še. (In this last use, one needs to distinguish between relative clause markers, which are mark, from relative pronouns such as [en] who or that, which fill a regular verbal argument or modifier grammatical relation.)

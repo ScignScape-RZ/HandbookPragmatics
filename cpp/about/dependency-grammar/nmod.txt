@@ -1,2 +1,7 @@
-
+nmod: nominal modifie
 @
+The nmod relation is used for nominal dependents of another noun or noun phrase and functionally corresponds to an attribute, or genitive complement.
+
+In conjunction with the case relation, nmod provides a uniform analysis for the possessive alternation (with the option of a subtype like nmod:poss to distinguish non-adpositional case).
+
+(example: office - chair in "the office of the chair")
