@@ -771,30 +771,38 @@ Lexpair_Dialog::Lexpair_Dialog(QStringList sent, QWidget* parent)
  transform_elements_frame_ = new QFrame;
  transform_elements_layout_ = new QGridLayout;
 
- int tr_max_col = 4;
+ int tr_max_col = 3;
 
  QStringList tr_elements
  {
   " N ", " P ", " V ",
-  " V3 ",  " V2 ", " V1 ", " Adj ", " Adv ",
-  " .-> ", " *-> ", " ..-> ", " /\\ ",
-  "V ..-> V", "N ..-> N", "N ..-> V",
-  "N .-> N\n.-> N ..-> P",
-  "N .-> N\n..-> P", "N ..-> P",
-  "N ..-> Adj", "N ..-> Adv",
-  "P ..-> N",
-  "P .-> P\n..-> P", "P ..-> P",
-  " <-. ",
-  " [ ", " ] ",
-  " { ", " } ",
-  " <. ", " .> ",
-  " ( ", " ) ",
+  " V1 ",  " V2 ", " V3 ",
+  " .-> ", " *-> ", " ..-> ",
+  "V ..-> V", " A ", " A ..-> A",
+  "N ..-> N", " J ", " J ..-> J ",
+  "N ..-> J", "N ..-> A ", "N ..-> V",
+  "V ..-> N", " .\-> ", "P ..-> V",
+
+  "N ..-> P",  "N .-> N ..-> P", "N .-> N .-> N ..-> P",
+
+  "P .-> P ..-> P", "P ..-> N", "P ..-> P",
+  " <-. ",  " <. ", " .> ",
+
+  " ( ", " ) ", " ( ) ",
+  " [ ", " ] ", " [ ] ",
+  " { ", " } ", " { } ",
+
+  " ##: ", " :> ", " := ",
+  " , ", " .; ", " .;; ",
+
+  " //~ ",  " /~~ ",  " ~~/ ",
 
  };
  int k = 0;
  for(QString qs : tr_elements)
  {
   ScignStage_Clickable_Label* scl = new ScignStage_Clickable_Label(this);
+  scl->setMinimumWidth(50);
   scl->setText(qs);
   scl->set_text_data(qs);
   scl->set_cb({&_tr_label_cb, nullptr});
