@@ -33,6 +33,8 @@
 #include "ScignStage-ling/xpdf-bridge.h"
 
 
+#include "lexpair/lexpair-dialog.h"
+
 #include "dsmain/language-sample.h"
 
 #include "kauvir-code-model/kauvir-code-model.h"
@@ -99,6 +101,12 @@ int main(int argc, char **argv)
    []()
  {
    qDebug() << "Closing ...";
+ });
+
+ dlg.set_launch_lexpair_dialog_function([](QString s)
+ {
+  Lexpair_Dialog* dlg = new Lexpair_Dialog(Lexpair_Dialog::split(s), nullptr);
+  dlg->show();
  });
 
  dlg.set_screenshot_function([&dlg, &qapp]()

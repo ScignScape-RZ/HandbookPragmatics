@@ -64,8 +64,8 @@ USING_KANS(TextIO)
 
 #include "add-minimize-frame.h"
 
-#include "ScignStage-ling/subwindows/scignstage-clickable-label.h"
 
+#include "ScignStage-ling/subwindows/scignstage-clickable-label.h"
 
 void set_height(QPlainTextEdit* qpte, int rows)
 {
@@ -1594,51 +1594,6 @@ void Lexpair_Dialog::set_cell_text(int r, int c, QString text)
  twi->setText(text);
 }
 
-
-QHBoxLayout* add_minimize_frame(QMessageBox* qmb, std::function<void()> fn)
-{
- for(QAbstractButton* qab: qmb->buttons())
- {
-  if (qmb->buttonRole(qab) == QMessageBox::ActionRole)
-  {
-   qab->click();
-   break;
-  }
- }
-
- QPushButton* minimize_button = new QPushButton(QChar(0x2735), qmb);
- QLabel* minimize_label = new QLabel(qmb);
- QHBoxLayout* result = new QHBoxLayout;
- minimize_label->setText("Minimize");
- minimize_button->setStyleSheet(colorful_small_button_style_sheet_());
-
- QApplication::connect(minimize_button, &QPushButton::clicked, fn);
-
- QFrame* fr = new QFrame;
-
- fr->setFrameStyle(QFrame::Sunken);
- fr->setFrameShape(QFrame::Panel);
-
- QHBoxLayout* fr_layout = new QHBoxLayout;
- fr_layout->addWidget(minimize_button);
- fr_layout->addWidget(minimize_label);
-
- fr->setLayout(fr_layout);
-
- result->addWidget(fr);
- result->addStretch();
-
- if(QGridLayout* gl = dynamic_cast<QGridLayout*>(qmb->layout()))
- {
-  gl->addLayout(result, gl->rowCount(), 0, 1, gl->columnCount());
- }
- else
- {
-  //qmb->layout()->addLayout(result);
- }
-
- return result;
-}
 
 
 void Lexpair_Dialog::show_lg_info(QString text)

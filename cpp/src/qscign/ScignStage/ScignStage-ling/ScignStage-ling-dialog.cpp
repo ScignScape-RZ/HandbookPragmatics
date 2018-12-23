@@ -96,14 +96,14 @@ Q_DECLARE_METATYPE(Language_Sample_Group*)
 #include "add-minimize-frame.h"
 
 
-
 ScignStage_Ling_Dialog::ScignStage_Ling_Dialog(XPDF_Bridge* xpdf_bridge,
   Dataset& ds,
   QWidget* parent)
   : QDialog(parent), xpdf_bridge_(xpdf_bridge),
     current_sample_(nullptr),
     last_highlight_(nullptr), xpdf_process_(nullptr), tcp_server_(nullptr),
-    phr_(nullptr), phr_init_function_(nullptr), screenshot_function_(nullptr),
+    phr_(nullptr), phr_init_function_(nullptr),
+    screenshot_function_(nullptr), launch_lexpair_dialog_function_(nullptr),
     current_tcp_msecs_(0), xpdf_port_(0),
     current_index_(-1), max_index_(0),
     current_volume_(50), current_group_index_(-1),
@@ -484,10 +484,10 @@ ScignStage_Ling_Dialog::ScignStage_Ling_Dialog(XPDF_Bridge* xpdf_bridge,
      QClipboard* clipboard = QApplication::clipboard();
      clipboard->setText(s);
     },
-    [](QString s)
+    [this](QString s)
     {
-     Lexpair_Dialog* dlg = new Lexpair_Dialog(Lexpair_Dialog::split(s), nullptr);
-     dlg->show();
+     if(launch_lexpair_dialog_function_)
+       launch_lexpair_dialog_function_(s);
     });
    }
    else
@@ -501,10 +501,10 @@ ScignStage_Ling_Dialog::ScignStage_Ling_Dialog(XPDF_Bridge* xpdf_bridge,
      QClipboard* clipboard = QApplication::clipboard();
      clipboard->setText(s);
     },
-    [](QString s)
+    [this](QString s)
     {
-     Lexpair_Dialog* dlg = new Lexpair_Dialog(Lexpair_Dialog::split(s), nullptr);
-     dlg->show();
+     if(launch_lexpair_dialog_function_)
+       launch_lexpair_dialog_function_(s);
     },
     [](QStringList qsl)
     {

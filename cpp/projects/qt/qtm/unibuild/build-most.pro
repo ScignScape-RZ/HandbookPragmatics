@@ -28,6 +28,8 @@ SUBDIRS += \
 
 SUBDIRS += \
   qscign/ScignStage/ScignStage-ling \
+  qscign/LexPair/lexpair \
+  qscign/LexPair/lexpair-console \
 
 SUBDIRS += \
   phaon/phaon/phaon-console \

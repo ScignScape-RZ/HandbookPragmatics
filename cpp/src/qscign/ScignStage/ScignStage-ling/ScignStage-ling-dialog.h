@@ -173,6 +173,8 @@ class ScignStage_Ling_Dialog : public QDialog
  std::function<void(Phaon_Runner&)> phr_init_function_;
  std::function<void()> screenshot_function_;
 
+ std::function<void(QString)> launch_lexpair_dialog_function_;
+
  int current_group_index_;
  Language_Sample_Group* current_open_group_;
 
@@ -250,6 +252,7 @@ public:
 
  ACCESSORS__SET(std::function<void(Phaon_Runner&)>, phr_init_function)
  ACCESSORS__SET(std::function<void()> ,screenshot_function)
+ ACCESSORS__SET(std::function<void(QString)> ,launch_lexpair_dialog_function)
 
  // //  Kernel Application Interface
  void test_msgbox(QString msg);

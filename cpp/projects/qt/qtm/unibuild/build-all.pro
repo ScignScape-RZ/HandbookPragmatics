@@ -39,6 +39,8 @@ SUBDIRS += \
   tests-kph/kauvir-phaon/kauvir-phaon \
 
 SUBDIRS += \
+  qscign/LexPair/lexpair \
+  qscign/LexPair/lexpair-console \
   qscign/ScignStage/ScignStage-ling \
 
 SUBDIRS += \
