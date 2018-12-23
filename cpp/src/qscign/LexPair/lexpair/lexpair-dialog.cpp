@@ -765,8 +765,8 @@ Lexpair_Dialog::Lexpair_Dialog(QStringList sent, QWidget* parent)
 
  QStringList tr_elements
  {
-  " N ", " P ", " V ", " .-> ", " ..-> ", " ( ", " ) ",
-
+  " N ", " P ", " V ",  " <- ",
+  " .-> ", " ..-> ", " ( ", " ) ",
   " Adj ", " Adv ",
   "N ..-> P", "N .-> N ..-> P", "N .-> N .-> ..-> P",
   "N ..-> N", "V ..-> V", "N ..-> Adj", "N ..-> Adv", "N ..-> V",
@@ -774,6 +774,7 @@ Lexpair_Dialog::Lexpair_Dialog(QStringList sent, QWidget* parent)
 
   " [ ", " ] ",
   " { ", " } ",
+  " <. ", " .> ",
  };
  int k = 0;
  for(QString qs : tr_elements)
