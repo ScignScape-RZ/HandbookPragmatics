@@ -88,6 +88,16 @@ void _dg_label_cb(QObject* obj, QString text)
 
 void _tr_label_cb(QObject* obj, QString text)
 {
+ bool s = text.startsWith(' ');
+ bool e = text.startsWith(' ');
+ text = text.simplified();
+ if(s)
+   text.prepend(' ');
+ if(e)
+   text.append(' ');
+
+ qDebug() << text;
+
  Lexpair_Dialog* dlg = qobject_cast<Lexpair_Dialog*>(obj);
  //dlg->dg_label_cb(text);
 }
@@ -761,20 +771,25 @@ Lexpair_Dialog::Lexpair_Dialog(QStringList sent, QWidget* parent)
  transform_elements_frame_ = new QFrame;
  transform_elements_layout_ = new QGridLayout;
 
- int tr_max_col = 2;
+ int tr_max_col = 4;
 
  QStringList tr_elements
  {
-  " N ", " P ", " V ",  " <- ",
-  " .-> ", " ..-> ", " ( ", " ) ",
-  " Adj ", " Adv ",
-  "N ..-> P", "N .-> N ..-> P", "N .-> N .-> ..-> P",
-  "N ..-> N", "V ..-> V", "N ..-> Adj", "N ..-> Adv", "N ..-> V",
-  "P ..-> N", "P ..-> P",
-
+  " N ", " P ", " V ",
+  " V3 ",  " V2 ", " V1 ", " Adj ", " Adv ",
+  " .-> ", " *-> ", " ..-> ", " /\\ ",
+  "V ..-> V", "N ..-> N", "N ..-> V",
+  "N .-> N\n.-> N ..-> P",
+  "N .-> N\n..-> P", "N ..-> P",
+  "N ..-> Adj", "N ..-> Adv",
+  "P ..-> N",
+  "P .-> P\n..-> P", "P ..-> P",
+  " <-. ",
   " [ ", " ] ",
   " { ", " } ",
   " <. ", " .> ",
+  " ( ", " ) ",
+
  };
  int k = 0;
  for(QString qs : tr_elements)
