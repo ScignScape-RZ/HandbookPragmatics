@@ -12,6 +12,8 @@
 
 #include <QApplication>
 
+#include <QVector>
+
 
 int main(int argc, char *argv[])
 {
