@@ -161,6 +161,10 @@ ScignStage_Ling_Dialog::ScignStage_Ling_Dialog(XPDF_Bridge* xpdf_bridge,
    current_filters_.insert(i);
    QCheckBox* cb = new QCheckBox(i, this);
    cb->setChecked(true);
+
+   // // temporary while issues are notated in the data set
+   cb->setEnabled(false);
+
    filter_issues_grid_layout_->addWidget(cb, c / icolmax,
      c % icolmax);
    filter_issues_button_group_->addButton(cb);
@@ -442,6 +446,17 @@ ScignStage_Ling_Dialog::ScignStage_Ling_Dialog(XPDF_Bridge* xpdf_bridge,
   main_tree_widget_->addTopLevelItem(twi);
   //items.append(twi);
  }
+
+ connect(main_tree_widget_, &QTreeWidget::itemSelectionChanged,
+   [this]()
+ {
+  QList<QTreeWidgetItem*> ltwi = main_tree_widget_->selectedItems();
+  if(ltwi.size() == 1)
+  {
+   QTreeWidgetItem* twi = ltwi.first();
+   handle_user_expand(twi);
+  }
+ });
 
  middle_layout_->addWidget(main_tree_widget_);
 
@@ -744,7 +759,7 @@ void ScignStage_Ling_Dialog::find_sample_down(Language_Sample_Group* start,
     {
      // // i.e. all way round
      QMessageBox::information(this, "No More",
-                              "There are no more samples given the current filters.");
+       "There are no more samples given the current filters.");
      return;
     }
     if(!g->match_classification(*temp_filters))
@@ -784,6 +799,14 @@ void ScignStage_Ling_Dialog::find_sample_down(Language_Sample_Group* start,
 //   break;
   }
  }
+}
+
+void ScignStage_Ling_Dialog::handle_user_expand(QTreeWidgetItem* twi)
+{
+ twi->setExpanded(true);
+
+ if(Language_Sample_Group* g = twi->data(0, Qt::UserRole).value<Language_Sample_Group*>())
+   show_full_sentence(g);
 }
 
 void ScignStage_Ling_Dialog::check_expand(QTreeWidgetItem* twi)

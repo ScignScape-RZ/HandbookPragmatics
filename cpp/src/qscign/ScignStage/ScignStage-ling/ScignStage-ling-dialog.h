@@ -214,6 +214,9 @@ class ScignStage_Ling_Dialog : public QDialog
  void run_group_message(const QPoint& p, int col);
 
  void check_expand(QTreeWidgetItem* twi);
+
+ void handle_user_expand(QTreeWidgetItem* twi);
+
  void highlight(QTreeWidgetItem* twi,
    Language_Sample_Group* g, int* index = nullptr);
 
@@ -222,9 +225,6 @@ class ScignStage_Ling_Dialog : public QDialog
  {
   highlight(twi, nullptr, index);
  }
-
-
-
 
  void run_group_context_menu(const QPoint& p, int page, QString text,
    QStringList texts,
