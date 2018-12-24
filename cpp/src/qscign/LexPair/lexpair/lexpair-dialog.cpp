@@ -433,6 +433,8 @@ Lexpair_Dialog::Lexpair_Dialog(QStringList sent, QWidget* parent)
    add_button_->setEnabled(false);
    reset_button_->setEnabled(false);
    enable_sxpr_buttons(true);
+   sxpr_splice_button_->setEnabled(false);
+   sxpr_back_splice_button_->setEnabled(false);
    sxpr_cc_button_->setFocus();
   }
   else
