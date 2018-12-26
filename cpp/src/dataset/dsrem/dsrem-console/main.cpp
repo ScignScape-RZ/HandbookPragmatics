@@ -11,7 +11,7 @@
 #include "dsrem/channels/lambda.h"
 #include "dsrem/channels/result.h"
 
-void test(Lambda2<QString, int> lc, Result<int>& rc)
+void test(Lambda2<QString, int> lc, Result1<int>& rc)
 {
  QString& text = std::get<0>(lc);
  int& count = std::get<1>(lc);
@@ -28,7 +28,7 @@ void test(Lambda2<QString, int> lc, Result<int>& rc)
 int main(int argc, char* argv[])
 {
  int r = 9;
- Result<int> rc = std::make_tuple(r);
+ Result1<int> rc(r);
  //Lambda2<QString, int> lc(std::tuple<QString, int>{"Ok", 44});
  test(tup<QString, int>{"Ok", 44}, rc);
 

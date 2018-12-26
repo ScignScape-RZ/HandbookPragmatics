@@ -10,8 +10,20 @@
 
 #include <QPair>
 
-template<typename... Ts>
-using Result = std::tuple<Ts...>;
+template<
+  typename T1,
+  typename T2 = _info,
+  typename T3 = _temp
+  >
+struct Result1 : std::tuple<T1&, T2, T3>
+{
+ Result1(T1& arg)
+  : std::tuple<T1&, T2, T3>(arg, _info(), _temp())
+ {
+
+ }
+};
+
 
 
 
