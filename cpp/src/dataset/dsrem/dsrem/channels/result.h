@@ -10,8 +10,8 @@
 
 #include <QPair>
 
-template<typename T1>
-using Result = T1;
+template<typename... Ts>
+using Result = std::tuple<Ts...>;
 
 
 
