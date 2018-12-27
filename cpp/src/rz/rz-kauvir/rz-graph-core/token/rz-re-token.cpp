@@ -1,5 +1,5 @@
 
-//           Copyright Nathaniel Christen 2018.
+//           Copyright Nathaniel Christen 2019.
 //  Distributed under the Boost Software License, Version 1.0.
 //     (See accompanying file LICENSE_1_0.txt or copy at
 //           http://www.boost.org/LICENSE_1_0.txt)
@@ -76,7 +76,7 @@ RE_Token::RE_Token(QString raw_text, QString prefix,
 
  default:
   if(raw_text.endsWith('='))
-   flags.is_equalizer = true;
+    flags.is_equalizer = true;
 
   else if(raw_text.startsWith('-') && raw_text.endsWith('>'))
   {

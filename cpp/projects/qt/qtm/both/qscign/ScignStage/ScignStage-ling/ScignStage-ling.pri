@@ -1,12 +1,11 @@
 
-#           Copyright Nathaniel Christen 2018.
+#           Copyright Nathaniel Christen 2019.
 #  Distributed under the Boost Software License, Version 1.0.
 #     (See accompanying file LICENSE_1_0.txt or copy at
 #           http://www.boost.org/LICENSE_1_0.txt)
 
 
-
-QT += widgets multimedia
+QT += widgets network
 
 
 INCLUDEPATH += $$SRC_DIR $$SRC_GROUP_DIR
@@ -40,22 +39,6 @@ DEFINES += USE_KANS
 DEFINES += USE_RZNS
 
 
-exists($$CPP_ROOT_DIR/targets/$$CHOICE_CODE/external--xpdf--xpdf) \#/
-{
- message(DEFINE\'ing USING_XPDF)
- DEFINES += USING_XPDF
- LIBS += -L$$TARGETSDIR -lxpdf
-}
-
-exists($$CPP_ROOT_DIR/targets/$$CHOICE_CODE/tests-kph--kauvir-phaon--kauvir-phaon) \#/
-{
- message(DEFINE\'ing USING_XPDF)
- DEFINES += USING_KPH
- LIBS += -L$$TARGETSDIR -lPhaonLib -lkauvir-phaon -lkauvir-code-model
-}
-
-
-
 HEADERS += \
   $$SRC_DIR/scignstage-ling-dialog.h \
   $$SRC_DIR/nav-protocols/nav-ling-1d-panel.h \
@@ -73,6 +56,39 @@ SOURCES += \
 
 
 LIBS += -L$$TARGETSDIR -ldsmain
+
+
+contains(CHOICE_FEATURES, "xpdf") \#/
+{
+ message(LINKING XPDF)
+ LIBS += -L$$TARGETSDIR -lxpdf
+}
+
+contains(CHOICE_FEATURES, "kph") \#/
+{
+ #?message(DEFINE\'ing USING_KPH)
+ #?DEFINES += USING_KPH
+ LIBS += -L$$TARGETSDIR -lPhaonLib -lkauvir-phaon -lkauvir-code-model
+}
+
+contains(CHOICE_FEATURES, "iso-choice") \#/
+{
+ exists($$CPP_ROOT_DIR/targets/$$CHOICE_CODE/external--xpdf--xpdf) \#/
+ {
+  message(DEFINE\'ing USING_XPDF)
+  DEFINES += USING_XPDF
+  LIBS += -L$$TARGETSDIR -lxpdf
+ }
+
+ exists($$CPP_ROOT_DIR/targets/$$CHOICE_CODE/tests-kph--kauvir-phaon--kauvir-phaon) \#/
+ {
+  message(DEFINE\'ing USING_XPDF)
+  DEFINES += USING_KPH
+  LIBS += -L$$TARGETSDIR -lPhaonLib -lkauvir-phaon -lkauvir-code-model
+ }
+}
+
+
 
 #LIBS += -L$$TARGETSDIR -llexpair
 

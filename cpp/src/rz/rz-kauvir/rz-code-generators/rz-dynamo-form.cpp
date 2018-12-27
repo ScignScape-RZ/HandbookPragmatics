@@ -1,5 +1,5 @@
 
-//           Copyright Nathaniel Christen 2018.
+//           Copyright Nathaniel Christen 2019.
 //  Distributed under the Boost Software License, Version 1.0.
 //     (See accompanying file LICENSE_1_0.txt or copy at
 //           http://www.boost.org/LICENSE_1_0.txt)
@@ -60,7 +60,13 @@ void RZ_Dynamo_Form::write_as_statement(QTextStream& qts)
  if(code_statement_)
  {
   qts << "\n\n ;; Identified as code statement kind: "
-      << code_statement_->kind_to_string() << "\n";
+      << code_statement_->kind_to_string();
+
+  if(!code_statement_->annotation().isEmpty())
+  {
+   qts << " " << code_statement_->annotation();
+  }
+  qts << "\n";
  }
  if(expression_review_)
  {

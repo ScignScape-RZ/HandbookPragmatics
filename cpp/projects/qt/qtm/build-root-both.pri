@@ -19,6 +19,9 @@ ROOT_DIR = $$OUT_PWD
 
 ROOT_DIR ~= s!/cpp/projects.qt/.*!!
 
+DEFINES += WHICH_DEFINES=\\\"./_defines/$${WHICH_BUILD_DIR_CODE}_defines.h\\\"
+
+
 ## this is defined elswhere now ...
 #BUILD_DIR_CODE = $$OUT_PWD
 #BUILD_DIR_CODE ~= s!.*/(build|release)-($$PROJECT_NAME)-(.*)-(Debug|Release)!\3

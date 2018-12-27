@@ -1,6 +1,6 @@
 
 
-//          Copyright Nathaniel Christen 2018.
+//          Copyright Nathaniel Christen 2019.
 // Distributed under the Boost Software License, Version 1.0.
 //    (See accompanying file LICENSE_1_0.txt or copy at
 //          http://www.boost.org/LICENSE_1_0.txt)
@@ -22,12 +22,16 @@
 #define QSNS_CLASS_DECLARE(X ,C) \
  namespace QScign { namespace X { class C; } }
 
-
+#ifndef INNER_NS_
 #define INNER_NS_(X) \
  namespace X{
+#endif
 
-#define END_INNER_NS(X) \
+#ifndef _INNER_NS
+#define _INNER_NS(X) \
  }
+#endif
+
 
 #define USING_QSNS(x) \
  using namespace QScign::x;
@@ -44,6 +48,9 @@
 #define END_INNER_NS(X) \
 
 #define USING_QSNS(x) \
+
+#define QSNS_CLASS_DECLARE(X ,C) \
+  class C;
 
 #endif
 

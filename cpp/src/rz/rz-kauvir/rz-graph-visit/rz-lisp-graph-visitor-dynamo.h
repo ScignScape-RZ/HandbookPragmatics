@@ -1,5 +1,5 @@
 
-//           Copyright Nathaniel Christen 2018.
+//           Copyright Nathaniel Christen 2019.
 //  Distributed under the Boost Software License, Version 1.0.
 //     (See accompanying file LICENSE_1_0.txt or copy at
 //           http://www.boost.org/LICENSE_1_0.txt)
@@ -144,6 +144,9 @@ public:
  caon_ptr<RZ_Lisp_Graph_Block_Info> clear_pending_block_info();
 
  caon_ptr<RE_Node> leave_nested_block(caon_ptr<RZ_Lisp_Graph_Block_Info> rbi, caon_ptr<RZ_Lisp_Graph_Block_Info>& nn_bi);
+
+ void check_assignment_annotation(caon_ptr<RE_Node> statement_entry_node,
+   caon_ptr<RZ_Code_Statement> st);
 
  RZ_Lisp_Graph_Valuer& valuer()
  {

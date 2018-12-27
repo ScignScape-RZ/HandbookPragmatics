@@ -1,5 +1,5 @@
 
-//           Copyright Nathaniel Christen 2018.
+//           Copyright Nathaniel Christen 2019.
 //  Distributed under the Boost Software License, Version 1.0.
 //     (See accompanying file LICENSE_1_0.txt or copy at
 //           http://www.boost.org/LICENSE_1_0.txt)
@@ -172,6 +172,12 @@ void RE_Grammar::init(RE_Parser& p, RE_Graph& g, RE_Graph_Build& graph_build)
   graph_build.string_plex_acc(p.match_text());
  });
 
+ add_rule( run_context, "initializer-annotation",
+  " \\{ \\S* [^;] \\} ",
+   [&]
+ {
+  graph_build.add_assignment_annotation(p.match_text());
+ });
 
  add_rule( run_context, "run-tuple-indicator-opens",
   " (?<name> \\w* ) "

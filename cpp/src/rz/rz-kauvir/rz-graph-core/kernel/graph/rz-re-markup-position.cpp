@@ -1,5 +1,5 @@
 
-//           Copyright Nathaniel Christen 2018.
+//           Copyright Nathaniel Christen 2019.
 //  Distributed under the Boost Software License, Version 1.0.
 //     (See accompanying file LICENSE_1_0.txt or copy at
 //           http://www.boost.org/LICENSE_1_0.txt)
@@ -44,7 +44,8 @@ RE_Markup_Position::RE_Markup_Position
    last_statement_entry_node_(nullptr),
    last_do_map_inner_block_first_entry_node_(nullptr),
    held_equalizer_context_(Equalizer_Contexts::N_A),
-   current_closed_do_entry_node_(nullptr)
+   current_closed_do_entry_node_(nullptr),
+   held_assignment_annotation_node_(nullptr)
 {
 }
 
@@ -140,21 +141,18 @@ caon_ptr<RE_Node> RE_Markup_Position::insert_entry_node(
  CAON_PTR_DEBUG(RE_Node ,current_node_)
  CAON_PTR_DEBUG(RE_Node ,result)
 
-
-
  current_node_ <<fr_/connector>> result;
 
-   if(caon_ptr<RE_Token> token = current_node_->re_token())
-   {
-    if(token->raw_text() == "if")
-     result->re_call_entry()->flags.may_precede_if_block = true;
+ if(caon_ptr<RE_Token> token = current_node_->re_token())
+ {
+  if(token->raw_text() == "if")
+    result->re_call_entry()->flags.may_precede_if_block = true;
 
-    //?
-    if(token->raw_text() == "elsif")
-     result->re_call_entry()->flags.may_precede_elsif_block = true;
+  //?
+  if(token->raw_text() == "elsif")
+    result->re_call_entry()->flags.may_precede_elsif_block = true;
 
-   }
-
+ }
 
  return result;
 }
@@ -503,6 +501,13 @@ void RE_Markup_Position::add_call_entry(bool is_statement_entry, QString prefix)
 void RE_Markup_Position::add_equalizer_token_node(caon_ptr<RE_Node> token_node)
 {
  bool maybe_set_pending_equalizer_entry = position_state_ == Position_States::Active_Run_Token;
+
+ if(held_assignment_annotation_node_)
+ {
+  token_node << fr_/rq_.Assignment_Annotation>> held_assignment_annotation_node_;
+  held_assignment_annotation_node_ = nullptr;
+ }
+
  add_token_node(token_node);
  if(maybe_set_pending_equalizer_entry)
  {
@@ -1240,6 +1245,7 @@ void RE_Markup_Position::add_token_node(caon_ptr<RE_Node> token_node)
  caon_ptr<RE_Token> token = token_node->re_token();
  CAON_PTR_DEBUG(RE_Token ,token)
 
+
  if(flags.active_type_indicator_node)
  {
   flags.active_type_indicator_node = false;
@@ -1933,6 +1939,12 @@ void RE_Markup_Position::leave_expression()
  default:
   break;
  }
+}
+
+void RE_Markup_Position::hold_assignment_annotation_node(caon_ptr<RE_Node> aa_node)
+{
+ // //  Chance to check position state ...
+ held_assignment_annotation_node_ = aa_node;
 }
 
 void RE_Markup_Position::complete_function_declaration(caon_ptr<RE_Node> arrow_node,

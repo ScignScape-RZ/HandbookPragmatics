@@ -1,5 +1,5 @@
 
-//           Copyright Nathaniel Christen 2018.
+//           Copyright Nathaniel Christen 2019.
 //  Distributed under the Boost Software License, Version 1.0.
 //     (See accompanying file LICENSE_1_0.txt or copy at
 //           http://www.boost.org/LICENSE_1_0.txt)
@@ -44,9 +44,12 @@ private:
 
  caon_ptr<RE_Node> node_;
 
+ QString annotation_;
+
 public:
 
  ACCESSORS(caon_ptr<RE_Node> ,node)
+ ACCESSORS(QString ,annotation)
 
  RZ_Code_Statement(Statement_Kinds statement_kind, caon_ptr<RE_Node> node);
 

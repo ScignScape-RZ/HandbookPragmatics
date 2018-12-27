@@ -1,5 +1,5 @@
 
-//           Copyright Nathaniel Christen 2018.
+//           Copyright Nathaniel Christen 2019.
 //  Distributed under the Boost Software License, Version 1.0.
 //     (See accompanying file LICENSE_1_0.txt or copy at
 //           http://www.boost.org/LICENSE_1_0.txt)
@@ -151,6 +151,13 @@ caon_ptr<RE_Node> RE_Graph_Build::make_new_node(caon_ptr<RE_Block_Entry> rbe)
  caon_ptr<RE_Node> result = new RE_Node(rbe);
  RELAE_SET_NODE_LABEL(result, QString("<block %1>").arg(rbe->call_id()));
  return result;
+}
+
+void RE_Graph_Build::add_assignment_annotation(QString text)
+{
+ caon_ptr<RE_Token> aa_token = new RE_Token(text);
+ caon_ptr<RE_Node> aa_node = make_new_node(aa_token);
+ markup_position_.hold_assignment_annotation_node(aa_node);
 }
 
 void RE_Graph_Build::check_line_increment(QString text)

@@ -1,5 +1,5 @@
 
-#           Copyright Nathaniel Christen 2018.
+#           Copyright Nathaniel Christen 2019.
 #  Distributed under the Boost Software License, Version 1.0.
 #     (See accompanying file LICENSE_1_0.txt or copy at
 #           http://www.boost.org/LICENSE_1_0.txt)
@@ -39,13 +39,14 @@ LIBS += -L$$TARGETSDIR -lkcm-scopes -lkauvir-code-model \
   -lkcm-command-package -lPhaonLib
 
 
-exists($$CPP_ROOT_DIR/targets/$$CHOICE_CODE/kauvir--kauvir-kcm--kcm-lisp-bridge)\
+contains(CHOICE_FEATURES, "iso-choice") \#/
 {
- message(DEFINE\'ing USING_ECL)
- include(../../../../find-ecl-sexp.pri)
-
- LIBS += -L$$TARGETSDIR -lkcm-lisp-bridge
-
+ exists($$CPP_ROOT_DIR/targets/$$CHOICE_CODE/kauvir--kauvir-kcm--kcm-lisp-bridge) \#/
+ {
+  message(DEFINE\'ing USING_ECL)
+  include(../../../../find-ecl-sexp.pri)
+  LIBS += -L$$TARGETSDIR -lkcm-lisp-bridge
+ }
 }
 
 message(choice: $$CPP_ROOT_DIR/targets/$$CHOICE_CODE/$$PROJECT_SET--$$PROJECT_GROUP--$$PROJECT_NAME)

@@ -1,2 +1,2 @@
 
-CHOICE_FEATURES = xpdf ss3d
+CHOICE_FEATURES = xpdf 

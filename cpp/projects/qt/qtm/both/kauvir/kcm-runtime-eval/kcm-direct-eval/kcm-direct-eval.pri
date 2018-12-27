@@ -1,5 +1,5 @@
 
-#           Copyright Nathaniel Christen 2018.
+#           Copyright Nathaniel Christen 2019.
 #  Distributed under the Boost Software License, Version 1.0.
 #     (See accompanying file LICENSE_1_0.txt or copy at
 #           http://www.boost.org/LICENSE_1_0.txt)
@@ -32,12 +32,16 @@ CONFIG += no_keywords
 
 
 
-exists($$CPP_ROOT_DIR/targets/$$CHOICE_CODE/kauvir--kauvir-phaon--kph-generator) \#/
+contains(CHOICE_FEATURES, "iso-choice") \#/
 {
- message(DEFINE\'ing USING_KPH_GEN)
- DEFINES += USING_KPH_GEN
- LIBS += -L$$TARGETSDIR -lkph-generator
+ exists($$CPP_ROOT_DIR/targets/$$CHOICE_CODE/kauvir--kauvir-phaon--kph-generator) \#/
+ {
+  message(DEFINE\'ing ISO__USING_KPH_GEN)
+  DEFINES += ISO__USING_KPH_GEN
+ #? LIBS += -L$$TARGETSDIR -lkph-generator
+ }
 }
+
 
 
 message(choice: $$CPP_ROOT_DIR/targets/$$CHOICE_CODE/$$PROJECT_SET--$$PROJECT_GROUP--$$PROJECT_NAME)

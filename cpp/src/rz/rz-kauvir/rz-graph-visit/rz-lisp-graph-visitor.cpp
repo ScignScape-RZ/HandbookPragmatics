@@ -1,5 +1,5 @@
 
-//           Copyright Nathaniel Christen 2018.
+//           Copyright Nathaniel Christen 2019.
 //  Distributed under the Boost Software License, Version 1.0.
 //     (See accompanying file LICENSE_1_0.txt or copy at
 //           http://www.boost.org/LICENSE_1_0.txt)
@@ -668,6 +668,12 @@ caon_ptr<RE_Node> RZ_Lisp_Graph_Visitor::get_expression_review_node_from_entry_n
  return rq_.Element_Review(entry_node);
 }
 
+caon_ptr<RE_Node> RZ_Lisp_Graph_Visitor::get_assignment_annotation_node_from_statement_entry_node(
+  caon_ptr<RE_Node> statement_entry_node)
+{
+ CAON_PTR_DEBUG(RE_Node ,statement_entry_node)
+ return rq_.Assignment_Annotation(statement_entry_node);
+}
 
 caon_ptr<RE_Node> RZ_Lisp_Graph_Visitor::get_code_statement_node_from_statement_entry_node(
   caon_ptr<RE_Node> statement_entry_node)
