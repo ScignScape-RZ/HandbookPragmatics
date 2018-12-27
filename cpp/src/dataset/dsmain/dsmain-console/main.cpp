@@ -28,7 +28,7 @@
 
 #include <QFileDialog>
 
-#include "ScignStage-ling/scignstage-ling-dialog.h"
+#include "ScignStage-ling/ScignStage-ling-dialog.h"
 
 #include "ScignStage-ling/xpdf-bridge.h"
 

@@ -24,8 +24,22 @@ SOURCES += \
   $$SRC_DIR/main.cpp \
 
 
-LIBS += -L$$TARGETSDIR -llexpair
+LIBS += -L$$TARGETSDIR -llexpair -lScignStage-ling -ldsmain
 
+exists($$CPP_ROOT_DIR/targets/$$CHOICE_CODE/external--xpdf--xpdf) \#/
+{
+ message(DEFINE\'ing USING_XPDF)
+ DEFINES += USING_XPDF
+ LIBS += -L$$TARGETSDIR -lxpdf -lpdf-pull
+}
+
+exists($$CPP_ROOT_DIR/targets/$$CHOICE_CODE/tests-kph--kauvir-phaon--kauvir-phaon) \#/
+{
+ message(DEFINE\'ing USING_KPH)
+ DEFINES += USING_KPH
+ LIBS += -L$$TARGETSDIR -lkauvir-phaon -lkauvir-code-model -lkcm-scopes \
+   -lPhaonLib  -lkcm-command-package -lkauvir-type-system
+}
 
 
 message(choice: $$CPP_ROOT_DIR/targets/$$CHOICE_CODE/$$PROJECT_SET--$$PROJECT_GROUP--$$PROJECT_NAME)

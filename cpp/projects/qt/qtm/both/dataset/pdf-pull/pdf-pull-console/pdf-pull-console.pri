@@ -29,7 +29,7 @@ HEADERS += \
 SOURCES += \
   $$SRC_DIR/main.cpp \
 
-LIBS += -L$$TARGETSDIR -lpdf-pull
+LIBS += -L$$TARGETSDIR -lpdf-pull -ldsmain
 
 message(choice: $$CPP_ROOT_DIR/targets/$$CHOICE_CODE/$$PROJECT_SET--$$PROJECT_GROUP--$$PROJECT_NAME)
 mkpath($$CPP_ROOT_DIR/targets/$$CHOICE_CODE/$$PROJECT_SET--$$PROJECT_GROUP--$$PROJECT_NAME)

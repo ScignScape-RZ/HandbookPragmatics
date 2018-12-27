@@ -46,7 +46,8 @@ SOURCES += \
 
 
 LIBS += -L$$TARGETSDIR -lPhaonLib -lkauvir-code-model -lkauvir-type-system \
-   -lkcm-command-package -lkcm-direct-eval -lkcm-scopes -lkauvir-phaon
+  -lkcm-command-package -lkcm-direct-eval -lkcm-scopes \
+  -lkauvir-phaon -lkcm-command-runtime
 
 
 message(choice: $$CPP_ROOT_DIR/targets/$$CHOICE_CODE/$$PROJECT_SET--$$PROJECT_GROUP--$$PROJECT_NAME)

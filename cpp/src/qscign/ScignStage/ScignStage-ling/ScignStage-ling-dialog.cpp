@@ -5,7 +5,7 @@
 //          http://www.boost.org/LICENSE_1_0.txt)
 
 
-#include "scignstage-ling-dialog.h"
+#include "ScignStage-ling-dialog.h"
 
 #include "styles.h"
 

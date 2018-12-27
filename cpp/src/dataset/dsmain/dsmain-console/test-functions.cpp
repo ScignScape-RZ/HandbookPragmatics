@@ -25,7 +25,7 @@
 #include "PhaonLib/phaon-symbol-scope.h"
 #include "PhaonLib/phaon-function.h"
 
-#include "ScignStage-ling/scignstage-ling-dialog.h"
+#include "ScignStage-ling/ScignStage-ling-dialog.h"
 
 
 #include <QTextStream>

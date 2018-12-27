@@ -64,7 +64,7 @@ void XPDF_Bridge::init()
   }
  });
 
- connect(thr, QThread::finished, [thr]
+ connect(thr, &QThread::finished, [thr]
  {
   thr->deleteLater();
  });

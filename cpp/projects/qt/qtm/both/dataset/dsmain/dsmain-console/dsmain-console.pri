@@ -51,13 +51,16 @@ exists($$CPP_ROOT_DIR/targets/$$CHOICE_CODE/external--xpdf--xpdf) \#/
 {
  message(DEFINE\'ing USING_XPDF)
  DEFINES += USING_XPDF
+ LIBS += -L$$TARGETSDIR -lxpdf -lpdf-pull
 }
 
 exists($$CPP_ROOT_DIR/targets/$$CHOICE_CODE/tests-kph--kauvir-phaon--kauvir-phaon) \#/
 {
  message(DEFINE\'ing USING_KPH)
  DEFINES += USING_KPH
- LIBS += -L$$TARGETSDIR -lkcm-direct-eval -lkcm-scopes  -lkauvir-phaon -lPhaonLib -lkauvir-code-model
+ LIBS += -L$$TARGETSDIR -lkcm-direct-eval -lkcm-scopes  \
+   -lkauvir-phaon -lPhaonLib -lkauvir-code-model \
+   -lkcm-command-runtime -lkcm-command-package -lkauvir-type-system
 }
 
 exists($$CPP_ROOT_DIR/targets/$$CHOICE_CODE/kauvir--kauvir-kcm--kcm-lisp-bridge) \#/

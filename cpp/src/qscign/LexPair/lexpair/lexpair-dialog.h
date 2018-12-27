@@ -271,7 +271,7 @@ public:
   //return qs.simplified().split(' ');
  }
 
- friend operator< (const Pair_Triple& lhs, const Pair_Triple& rhs)
+ friend bool operator< (const Pair_Triple& lhs, const Pair_Triple& rhs)
  {
   return lhs.to_pr_pr() < rhs.to_pr_pr();
  }
