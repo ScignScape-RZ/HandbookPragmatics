@@ -8,6 +8,8 @@ PROJECT_NAME = kcm-direct-eval
 
 include(../build-group.pri)
 
+DEFINES += USE_KANS
+
 
 INCLUDEPATH += $$KAUVIR_KCM_SRC_GROUP_DIR
 INCLUDEPATH += $$KCM_RUNTIME_EVAL_SRC_GROUP_DIR

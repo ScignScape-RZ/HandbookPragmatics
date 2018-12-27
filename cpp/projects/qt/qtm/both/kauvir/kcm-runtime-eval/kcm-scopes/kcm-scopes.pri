@@ -8,6 +8,9 @@ PROJECT_NAME = kcm-scopes
 
 include(../build-group.pri)
 
+DEFINES += USE_KANS
+
+
 INCLUDEPATH += $$KAUVIR_KCM_SRC_GROUP_DIR \
   $$KAUVIR_KCM_SRC_GROUP_DIR/kauvir-type-system
 

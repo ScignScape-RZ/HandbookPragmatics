@@ -10,6 +10,9 @@ QT += widgets
 
 include(../build-group.pri)
 
+DEFINES += USE_KANS
+
+
 INCLUDEPATH += $$SRC_GROUP_DIR
 
 INCLUDEPATH += $$KAUVIR_KCM_SRC_GROUP_DIR

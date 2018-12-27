@@ -8,6 +8,7 @@ PROJECT_NAME = kcm-command-package
 
 include(../build-group.pri)
 
+DEFINES += USE_KANS
 
 INCLUDEPATH += $$KAUVIR_KCM_SRC_GROUP_DIR
 
