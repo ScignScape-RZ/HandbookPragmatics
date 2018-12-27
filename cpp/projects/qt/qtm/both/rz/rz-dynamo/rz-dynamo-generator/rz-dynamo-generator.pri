@@ -16,6 +16,8 @@ INCLUDEPATH += $$SRC_DIR $$SRC_GROUP_DIR
 CONFIG += no_keywords
 
 DEFINES += USE_KANS
+DEFINES += USE_RZNS
+
 
 HEADERS += \
   $$SRC_DIR/rz-dynamo-generator.h \

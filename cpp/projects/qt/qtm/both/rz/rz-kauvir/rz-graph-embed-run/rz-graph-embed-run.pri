@@ -8,6 +8,9 @@ PROJECT_NAME = rz-graph-embed-run
 
 include(../build-group.pri)
 
+DEFINES += USE_RZNS
+
+
 INCLUDEPATH += $$SRC_DIR $$SRC_GROUP_DIR  $$SRC_GROUP_DIR/rz-graph-core  \
   $$SRC_GROUP_DIR/rz-graph-token \
 

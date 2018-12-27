@@ -12,6 +12,10 @@ include(../build-group.pri)
 include(../../../../find-ecl-sexp.pri)
 
 
+DEFINES += USE_RZNS
+DEFINES += USE_KANS
+
+
 INCLUDEPATH += $$KAUVIR_KCM_SRC_GROUP_DIR  $$SRC_GROUP_DIR  \
   $$KAUVIR_KCM_SRC_GROUP_DIR/kauvir-type-system
 

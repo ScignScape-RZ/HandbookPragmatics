@@ -8,8 +8,10 @@ PROJECT_NAME = rz-function-def
 
 include(../build-group.pri)
 
-TARGET = $$PROJECT_NAME
+DEFINES += USE_RZNS
 
+
+#?TARGET = $$PROJECT_NAME
 
 DEFINES += CAON_DEBUG
 DEFINES += RELAE_LABEL_NODES

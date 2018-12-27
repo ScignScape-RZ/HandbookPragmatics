@@ -8,7 +8,10 @@ PROJECT_NAME = rz-graph-valuer
 
 include(../build-group.pri)
 
-TARGET = $$PROJECT_NAME
+DEFINES += USE_RZNS
+
+
+#?TARGET = $$PROJECT_NAME
 
 
 DEFINES += CAON_DEBUG
@@ -59,6 +62,6 @@ SOURCES += \
    $$SRC_DIR/string/rz-keyword.cpp \
    $$SRC_DIR/string/rz-match-literal.cpp \
 
-   
+
 message(choice: $$CPP_ROOT_DIR/targets/$$CHOICE_CODE/$$PROJECT_SET--$$PROJECT_GROUP--$$PROJECT_NAME)
 mkpath($$CPP_ROOT_DIR/targets/$$CHOICE_CODE/$$PROJECT_SET--$$PROJECT_GROUP--$$PROJECT_NAME)

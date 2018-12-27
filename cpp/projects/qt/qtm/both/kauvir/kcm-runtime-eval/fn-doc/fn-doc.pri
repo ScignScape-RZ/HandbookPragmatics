@@ -7,8 +7,10 @@
 
 PROJECT_NAME = fn-doc
 
-
 include(../build-group.pri)
+
+
+DEFINES += USE_KANS
 
 
 DEFINES += AR_ROOT_DIR=\\\"$$ROOT_DIR\\\"

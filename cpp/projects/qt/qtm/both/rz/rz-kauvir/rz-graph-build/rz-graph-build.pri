@@ -6,8 +6,10 @@
 
 PROJECT_NAME = rz-graph-build
 
-
 include(../build-group.pri)
+
+DEFINES += USE_RZNS
+
 
 DEFINES += CAON_DEBUG
 DEFINES += RELAE_LABEL_NODES

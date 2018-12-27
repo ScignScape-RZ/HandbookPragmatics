@@ -13,7 +13,13 @@ SUBDIRS = \
   dataset/dsmain/data-model-console \
   dataset/ro-info/ro-info \
   dataset/ro-info/ro-info-console \
-  
+
+
+SUBDIRS += \
+  dataset/pdf-pull/pdf-pull \
+  dataset/pdf-pull/pdf-pull-console \
+
+
 SUBDIRS += \
   external/xpdf/xpdf \
   external/xpdf/xpdf-console \
@@ -38,10 +44,12 @@ SUBDIRS += \
   kauvir/kcm-runtime-eval/kcm-direct-eval \
   tests-kph/kauvir-phaon/kauvir-phaon \
 
+
 SUBDIRS += \
+  qscign/ScignStage/ScignStage-ling \
   qscign/LexPair/lexpair \
   qscign/LexPair/lexpair-console \
-  qscign/ScignStage/ScignStage-ling \
+
 
 SUBDIRS += \
   phaon/phaon/phaon-console \
