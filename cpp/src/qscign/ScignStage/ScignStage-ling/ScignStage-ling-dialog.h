@@ -92,13 +92,16 @@ class ScignStage_Ling_Dialog : public QDialog
  // //  "Pseudo" Toolbar ...
  //QHBoxLayout* top_buttons_layout_;
 
+ QPushButton* launch_config_button_;
  QPushButton* activate_tcp_button_;
-
  QPushButton* take_screenshot_button_;
 
  QHBoxLayout* filters_layout_;
  QGridLayout* filter_forms_grid_layout_;
  QGridLayout* filter_issues_grid_layout_;
+
+ QGridLayout* quasi_toolbar_layout_;
+ QHBoxLayout* config_layout_;
 
  QButtonGroup* filter_forms_button_group_;
  QButtonGroup* filter_issues_button_group_;
@@ -172,6 +175,7 @@ class ScignStage_Ling_Dialog : public QDialog
 
  std::function<void(Phaon_Runner&)> phr_init_function_;
  std::function<void()> screenshot_function_;
+ std::function<void()> launch_config_function_;
 
  std::function<void(QString)> launch_lexpair_dialog_function_;
 
@@ -253,6 +257,7 @@ public:
  ACCESSORS__SET(std::function<void(Phaon_Runner&)>, phr_init_function)
  ACCESSORS__SET(std::function<void()> ,screenshot_function)
  ACCESSORS__SET(std::function<void(QString)> ,launch_lexpair_dialog_function)
+ ACCESSORS__SET(std::function<void()> ,launch_config_function)
 
  // //  Kernel Application Interface
  void test_msgbox(QString msg);
@@ -268,6 +273,7 @@ Q_SIGNALS:
  void canceled(QDialog*);
  void accepted(QDialog*);
  void take_screenshot_requested();
+ void launch_config_requested();
 
 public Q_SLOTS:
 
@@ -275,6 +281,7 @@ public Q_SLOTS:
 
  void handle_xpdf_is_ready();
  void handle_take_screenshot_requested();
+ void handle_launch_config_requested();
 
  void accept();
  void cancel();

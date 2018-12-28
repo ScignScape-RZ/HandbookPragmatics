@@ -51,9 +51,17 @@
 
 #include "dsmain/dataset.h"
 
+#include "application-model/application-config-model.h"
+
+#include "config-dialog/config-dialog.h"
+
 #include "kans.h"
 
-#include <QThread>
+//?#include <QThread>
+
+#include "textio.h"
+
+USING_KANS(TextIO)
 
 
 USING_KANS(KCM)
@@ -64,6 +72,74 @@ USING_KANS(PhaonLib)
 USING_QSNS(ScignStage)
 
 
+void launch_config_dialog(Config_Dialog*& dlg, QWidget* parent)
+{
+ if(!dlg)
+ {
+  dlg = new Config_Dialog(parent);
+ }
+
+ dlg->set_reset_callback([]()
+ {
+  Application_Config_Model::reset(
+  {
+   DEFINES_SRC_FOLDER "/UNIBUILD-custom_defines.h",
+   CHOICES_PRI_FOLDER "/UNIBUILD-custom_choices.pri",
+   UNIBUILD_PRI_FOLDER "/build-custom.pro",
+   CUSTOM_LIBS_PRI_FOLDER "/_xpdf.pri",
+   CUSTOM_LIBS_PRI_FOLDER "/_kph.pri",
+   CUSTOM_LIBS_PRI_FOLDER "/_ss3d.pri",
+  }, ".reset");
+ });
+
+ dlg->set_proceed_callback([&dlg](QString qs)
+ {
+  qDebug() << qs;
+
+  Application_Config_Model acm;
+  //qs.prepend("gen_test__");
+  acm.parse_config_code(qs);
+  {
+   QString result;
+   QString f = acm.insert_to_defines(DEFINES_SRC_FOLDER "/UNIBUILD-custom_defines.h", result);
+   save_file(f, result);
+  }
+
+  {
+   QString result;
+   QString f = acm.insert_to_choices(CHOICES_PRI_FOLDER "/UNIBUILD-custom_choices.pri", result);
+   save_file(f, result);
+  }
+
+  {
+   QString result;
+   QString f = acm.insert_to_unibuild(UNIBUILD_PRI_FOLDER "/build-custom.pro", result);
+   save_file(f, result);
+  }
+
+  {
+   QMap<QString, QString> result;
+   QMap<QString, QString> files {{
+     { "xpdf", CUSTOM_LIBS_PRI_FOLDER "/_xpdf.pri" },
+     { "kph", CUSTOM_LIBS_PRI_FOLDER "/_kph.pri" },
+     { "ss3d", CUSTOM_LIBS_PRI_FOLDER "/_ss3d.pri" }
+    }};
+   acm.insert_to_custom_libs(files, result);
+
+   QMapIterator<QString, QString> it(result);
+
+   while(it.hasNext())
+   {
+    it.next();
+    save_file(it.key(), it.value());
+   }
+  }
+
+  dlg->register_proceed_completed(qs);
+ });
+
+ dlg->show();
+}
 
 int main(int argc, char **argv)
 {
@@ -131,6 +207,13 @@ int main(int argc, char **argv)
     pixmap.save(&file, "PNG");
    }
   });
+ });
+
+ Config_Dialog* cdlg = nullptr;
+
+ dlg.set_launch_config_function([&cdlg, &dlg]()
+ {
+  launch_config_dialog(cdlg, &dlg);
  });
 
  dlg.show();

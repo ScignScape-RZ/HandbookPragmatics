@@ -115,9 +115,9 @@ void Application_Config_Model::parse_config_code(QString cc)
 
  for(QPair<QString, QString> pr : QList<QPair<QString, QString>>{
  {"", "dataset/ro-info/ro-info"},
- {"", "external/posit/posit-lib"},
  {"", "dataset/config/config-dialog"},
  {"", "dataset/dsmain/dsmain"},
+ {"", "dataset/pdf-pull/pdf-pull"},
 
  {"ro", "*"},
  {"ss3d", "*"},
@@ -271,6 +271,7 @@ void Application_Config_Model::insert_to_custom_libs(const QMap<QString, QString
    {
     libs += QString(" -l%1 ").arg(lib);
    }
+   QString insert;
    if(!libs.isEmpty())
      insert = QString("LIBS += %1").arg(libs);
    c.replace(ii.first, ii.second, insert);

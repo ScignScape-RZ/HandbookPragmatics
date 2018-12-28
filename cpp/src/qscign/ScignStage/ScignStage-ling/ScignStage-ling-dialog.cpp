@@ -106,7 +106,8 @@ ScignStage_Ling_Dialog::ScignStage_Ling_Dialog(XPDF_Bridge* xpdf_bridge,
     current_sample_(nullptr),
     last_highlight_(nullptr), xpdf_process_(nullptr), tcp_server_(nullptr),
     phr_(nullptr), phr_init_function_(nullptr),
-    screenshot_function_(nullptr), launch_lexpair_dialog_function_(nullptr),
+    screenshot_function_(nullptr),  launch_config_function_(nullptr),
+    launch_lexpair_dialog_function_(nullptr),
     current_tcp_msecs_(0), xpdf_port_(0),
     current_index_(-1), max_index_(0),
     current_volume_(50), current_group_index_(-1),
@@ -226,10 +227,11 @@ ScignStage_Ling_Dialog::ScignStage_Ling_Dialog(XPDF_Bridge* xpdf_bridge,
 
  //top_buttons_layout_ = new QHBoxLayout;
 
+ launch_config_button_ = new QPushButton("Customize Build", this);
  take_screenshot_button_ = new QPushButton("Screenshot", this);
-
  activate_tcp_button_ = new QPushButton("Activate TCP", this);
 
+ launch_config_button_->setStyleSheet(colorful_button_style_sheet_());
  take_screenshot_button_->setStyleSheet(colorful_button_style_sheet_());
  activate_tcp_button_->setStyleSheet(colorful_button_style_sheet_());
 
@@ -238,6 +240,9 @@ ScignStage_Ling_Dialog::ScignStage_Ling_Dialog(XPDF_Bridge* xpdf_bridge,
 
  connect(activate_tcp_button_, SIGNAL(clicked()),
    this, SLOT(activate_tcp_requested()));
+
+ connect(launch_config_button_, SIGNAL(clicked()),
+   this, SLOT(handle_launch_config_requested()));
 
 // top_buttons_layout_->addStretch();
 
@@ -263,9 +268,21 @@ ScignStage_Ling_Dialog::ScignStage_Ling_Dialog(XPDF_Bridge* xpdf_bridge,
  filters_layout_->addWidget(filter_issues_group_box_);
  filters_layout_->addStretch();
 
- filters_layout_->addWidget(activate_tcp_button_);
+ quasi_toolbar_layout_ = new QGridLayout;
 
- filters_layout_->addWidget(take_screenshot_button_);
+ quasi_toolbar_layout_->setRowStretch(0, 1);
+ quasi_toolbar_layout_->addWidget(activate_tcp_button_, 1, 0);
+ quasi_toolbar_layout_->addWidget(take_screenshot_button_, 1, 1);
+
+ config_layout_ = new QHBoxLayout;
+ config_layout_->addStretch();
+ config_layout_->addWidget(launch_config_button_);
+ config_layout_->addStretch();
+ quasi_toolbar_layout_->addLayout(config_layout_, 2, 0, 1, 2);
+
+ quasi_toolbar_layout_->setRowStretch(3, 1);
+
+ filters_layout_->addLayout(quasi_toolbar_layout_);
 
  main_layout_->addLayout(filters_layout_);
 
@@ -1033,6 +1050,13 @@ void ScignStage_Ling_Dialog::handle_sample_first()
  handle_sample_down();
 }
 
+
+void ScignStage_Ling_Dialog::handle_launch_config_requested()
+{
+ Q_EMIT(launch_config_requested());
+ if(launch_config_function_)
+   launch_config_function_();
+}
 
 
 void ScignStage_Ling_Dialog::handle_take_screenshot_requested()
