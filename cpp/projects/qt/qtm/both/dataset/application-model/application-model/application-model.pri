@@ -35,10 +35,15 @@ DEFINES += USE_RZNS
 
 HEADERS += \
   $$SRC_DIR/application-config-model.h \
+  $$SRC_DIR/application-model.h \
 
 
 SOURCES += \
   $$SRC_DIR/application-config-model.cpp \
+  $$SRC_DIR/application-model.cpp \
+
+
+LIBS += -L$$TARGETSDIR -lScignStage-ling
 
 
 contains(CHOICE_FEATURES, "kph") \#/

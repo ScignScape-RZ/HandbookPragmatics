@@ -31,6 +31,12 @@ SUBDIRS += \
   qscign/LexPair/lexpair \
   qscign/LexPair/lexpair-console \
 
+
+SUBDIRS += \
+  dataset/application-model/application-model \
+  dataset/config/config-dialog \
+
+
 SUBDIRS += \
   phaon/phaon/phaon-console \
   tests-kph/kauvir-phaon/kauvir-phaon-console \

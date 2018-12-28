@@ -165,8 +165,9 @@ class ScignStage_Ling_Dialog : public QDialog
 
  quint64 current_tcp_msecs_;
 
- int xpdf_port_;
+ void* application_model_;
 
+ //int xpdf_port_;
  QTcpServer* tcp_server_;
 
  QString held_xpdf_msg_;
@@ -259,15 +260,18 @@ public:
  ACCESSORS__SET(std::function<void(QString)> ,launch_lexpair_dialog_function)
  ACCESSORS__SET(std::function<void()> ,launch_config_function)
 
+ ACCESSORS(void* ,application_model)
+
  // //  Kernel Application Interface
  void test_msgbox(QString msg);
- void view_sample(int index);
+ void expand_sample(int index);
 
  void find_sample_down(Language_Sample_Group* start,
    QSet<QString>* temp_filters);
 
  void find_sample_up(Language_Sample_Group* start,
    QSet<QString>* temp_filters);
+
 
 Q_SIGNALS:
  void canceled(QDialog*);

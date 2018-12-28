@@ -1,7 +1,7 @@
 
 #__CHOICE_FEATURES__#
 
-CHOICE_FEATURES = xpdf
+CHOICE_FEATURES = ro xpdf xx
 
 #__END_INSERT__#
 

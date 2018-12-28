@@ -52,6 +52,7 @@
 #include "dsmain/dataset.h"
 
 #include "application-model/application-config-model.h"
+#include "application-model/application-model.h"
 
 #include "config-dialog/config-dialog.h"
 
@@ -175,11 +176,8 @@ int main(int argc, char **argv)
  });
 #endif
 
- QObject::connect(&dlg, &ScignStage_Ling_Dialog::canceled,
-   []()
- {
-   qDebug() << "Closing ...";
- });
+ Application_Model apm(&dlg);
+ dlg.set_application_model(&apm);
 
  dlg.set_launch_lexpair_dialog_function([](QString s)
  {

@@ -108,7 +108,8 @@ ScignStage_Ling_Dialog::ScignStage_Ling_Dialog(XPDF_Bridge* xpdf_bridge,
     phr_(nullptr), phr_init_function_(nullptr),
     screenshot_function_(nullptr),  launch_config_function_(nullptr),
     launch_lexpair_dialog_function_(nullptr),
-    current_tcp_msecs_(0), xpdf_port_(0),
+    current_tcp_msecs_(0), application_model_(nullptr),
+    //xpdf_port_(0),
     current_index_(-1), max_index_(0),
     current_volume_(50), current_group_index_(-1),
     current_open_group_(nullptr),
@@ -755,6 +756,19 @@ void ScignStage_Ling_Dialog::show_full_sentence(Language_Sample* samp)
    full_sentence_plain_text_edit_->setPlainText(samp->text());
  full_sentence_post_label_->setText(samp->postcomment());
 }
+
+void ScignStage_Ling_Dialog::expand_sample(int index)
+{
+ Language_Sample_Group* g  = groups_->at(current_group_index_);
+
+ if(QTreeWidgetItem* twi = twi_by_group_.value(g))
+ {
+  current_group_index_ = index;
+  check_expand(twi);
+ }
+
+}
+
 
 void ScignStage_Ling_Dialog::find_sample_down(Language_Sample_Group* start,
   QSet<QString>* temp_filters)

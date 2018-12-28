@@ -29,6 +29,7 @@
 
 #include "ScignStage-ling/ScignStage-ling-dialog.h"
 
+#include "application-model/application-model.h"
 
 #include <QTextStream>
 
@@ -104,6 +105,13 @@ void test_msgbox(ScignStage_Ling_Dialog* dlg, QString msg)
  dlg->test_msgbox(msg);
 }
 
+void expand_sample(ScignStage_Ling_Dialog* dlg, int index)
+{
+ if(Application_Model* appm = static_cast<Application_Model*>(dlg->application_model()))
+ {
+  appm->expand_sample(dlg, index);
+ }
+}
 
 void init_test_functions(void* origin, Kauvir_Code_Model& kcm,
   Phaon_Channel_Group_Table& table, Phaon_Symbol_Scope& pss)
