@@ -27,7 +27,6 @@ KPH_Command_Package::KPH_Command_Package()
 
 }
 
-
 void operator<<(QDataStream& qds, KPH_Carrier* cs)
 {
  QByteArray qba;
@@ -56,6 +55,8 @@ void KPH_Command_Package::supply_data(QByteArray& qba) const
 
  qds << carriers_;
  qds << pins_;
+
+ qds << docus_;
 }
 
 
@@ -71,6 +72,8 @@ void KPH_Command_Package::absorb_data(const QByteArray& qba)
 
  qds >> carriers_;
  qds >> pins_;
+
+ qds >> docus_;
 
 }
 
@@ -155,12 +158,11 @@ void KPH_Command_Package::parse_from_string_list(QString path, const QStringList
 void KPH_Command_Package::parse_from_string_list(QString path, const QStringList& qsl,
   QMap<int, QString>& channel_names, int& current_expression_code)
 {
-
  for(QString qs : qsl)
  {
   switch(qs[0].toLatin1())
   {
-  case '-' : break; // comment
+  case '-' : break; // // comment
 
   case '~' :
    {
@@ -168,7 +170,7 @@ void KPH_Command_Package::parse_from_string_list(QString path, const QStringList
     parse_from_file_list(path, files, channel_names, current_expression_code);
    }
    break;
-  case ';' : // channel name
+  case ';' : // // channel name
    {
     int index = qs.indexOf(':');
     QString channel_name = qs.mid(1, index - 1);
@@ -176,13 +178,13 @@ void KPH_Command_Package::parse_from_string_list(QString path, const QStringList
     channel_names[code] = channel_name;
    }
    break;
-  case '#' : // expression
+  case '#' : // // expression
    {
     if(qs[1] != '#')
       current_expression_code = qs.mid(1).toInt();
    }
    break;
-  case '@' : // type name
+  case '@' : // // type name
    {
     int index = qs.indexOf(':');
     QString type_name = qs.mid(1, index - 1);
@@ -192,32 +194,51 @@ void KPH_Command_Package::parse_from_string_list(QString path, const QStringList
     type_names_[code] = {type_name, mode};
    }
    break;
-  case '&' : // fn name
+  case '&' : // // fn name
    {
     int index = qs.indexOf(':');
     fn_code_ = qs.mid(1, index - 1).toInt();
     fn_name_ = qs.mid(index + 1);
    }
    break;
-  case '+' : // pins
+  case '+' : // // pins
    {
     pins_.push_back(qs.mid(1));
    }
    break;
-  default : // carrier
+  case '%' : // // documentation
    {
+    int index = qs.indexOf(':');
+    if(index != -1)
+    {
+     docus_[qs.mid(1, index - 1)] = qs.mid(index + 1);
+    }
+   }
+   break;
+  default : // // carrier
+   {
+    // // field order:
+     //    channel (numeric index code)
+     //    keyword (for function parameter)
+     //    position (carrier's position in channel)
+     //    mode (modifier on carrier; spec on carrier state
+     //    type code (numeric code)
+     //    expression ref (numeric code if carrier holds expression result)
+     //    symbolic ref (if carrier holds symbol in lieu of value)
+     //    value (if carrier holds actual value)
+
     int index = qs.indexOf(':');
     int channel = qs.left(index).toInt();
     int index1 = qs.indexOf(':', index + 1);
-    int pos = qs.mid(index + 1, index1 - index - 1).toInt();
+    QString kw = qs.mid(index + 1, index1 - index - 1);
     int index2 = qs.indexOf(':', index1 + 1);
-    QString mode = qs.mid(index1 + 1, index2 - index1 - 1);
+    int pos = qs.mid(index1 + 1, index2 - index1 - 1).toInt();
     int index3 = qs.indexOf(':', index2 + 1);
-    int typec = qs.mid(index2 + 1, index3 - index2 - 1).toInt();
+    QString mode = qs.mid(index2 + 1, index3 - index2 - 1);
     int index4 = qs.indexOf(':', index3 + 1);
-    QString kw = qs.mid(index4 + 1, index4 - index3 - 1);
+    int typec = qs.mid(index3 + 1, index4 - index3 - 1).toInt();
     int index5 = qs.indexOf(':', index4 + 1);
-    int expref = qs.mid(index5 + 1, index5 - index4 - 1).toInt();
+    int expref = qs.mid(index4 + 1, index5 - index4 - 1).toInt();
     int index6 = qs.indexOf(':', index5 + 1);
     QString symref = qs.mid(index5 + 1, index6 - index5 - 1);
     QString value = qs.mid(index6 + 1);

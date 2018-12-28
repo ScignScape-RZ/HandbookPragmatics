@@ -113,6 +113,14 @@ void expand_sample(ScignStage_Ling_Dialog* dlg, int index)
  }
 }
 
+void launch_lexpair_dialog(ScignStage_Ling_Dialog* dlg, QString s)
+{
+ if(Application_Model* appm = static_cast<Application_Model*>(dlg->application_model()))
+ {
+  appm->launch_lexpair_dialog(dlg, s);
+ }
+}
+
 void init_test_functions(void* origin, Kauvir_Code_Model& kcm,
   Phaon_Channel_Group_Table& table, Phaon_Symbol_Scope& pss)
 {
@@ -152,6 +160,38 @@ void init_test_functions(void* origin, Kauvir_Code_Model& kcm,
     );
 
   table.init_phaon_function(g1, pss, "test_msgbox", 710, &test_msgbox);
+
+  g1.clear_all();
+ }
+
+ {
+  g1.add_sigma_carrier(
+    {kcm.get_kcm_type_by_type_name("ScignStage_Ling_Dialog*"), nullptr},
+     QString()
+    );
+
+  g1.add_lambda_carrier(
+    {kcm.get_kcm_type_by_kauvir_type_object( &type_system->type_object__u32() ), nullptr},
+     QString()
+    );
+
+  table.init_phaon_function(g1, pss, "expand_sample", 710, &expand_sample);
+
+  g1.clear_all();
+ }
+
+ {
+  g1.add_sigma_carrier(
+    {kcm.get_kcm_type_by_type_name("ScignStage_Ling_Dialog*"), nullptr},
+     QString()
+    );
+
+  g1.add_lambda_carrier(
+    {kcm.get_kcm_type_by_kauvir_type_object( &type_system->type_object__str() ), nullptr},
+     QString()
+    );
+
+  table.init_phaon_function(g1, pss, "launch_lexpair_dialog", 710, &launch_lexpair_dialog);
 
   g1.clear_all();
  }

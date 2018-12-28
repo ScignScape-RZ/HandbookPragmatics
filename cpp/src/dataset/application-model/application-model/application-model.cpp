@@ -26,12 +26,12 @@ Application_Model::Application_Model(ScignStage_Ling_Dialog* ling_dialog)
 
 void Application_Model::expand_sample(ScignStage_Ling_Dialog* dlg, int index)
 {
- dlg->expand_sample(index);
+ dlg->expand_sample(index - 1);
 }
 
-void Application_Model::launch_lexpair_dialog(ScignStage_Ling_Dialog* dlg, QString code)
+void Application_Model::launch_lexpair_dialog(ScignStage_Ling_Dialog* dlg, QString s)
 {
-
+ dlg->launch_lexpair_dialog(s);
 }
 
 Application_Model::~Application_Model() {}

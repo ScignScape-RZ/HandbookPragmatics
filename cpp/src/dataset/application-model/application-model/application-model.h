@@ -29,7 +29,7 @@ class Application_Model : public QObject
 public:
 
 
- Q_INVOKABLE void launch_lexpair_dialog(ScignStage_Ling_Dialog* dlg, QString code);
+ Q_INVOKABLE void launch_lexpair_dialog(ScignStage_Ling_Dialog* dlg, QString s);
  Q_INVOKABLE void expand_sample(ScignStage_Ling_Dialog* dlg, int index);
 
  Application_Model(ScignStage_Ling_Dialog* ling_dialog);

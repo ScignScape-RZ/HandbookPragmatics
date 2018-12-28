@@ -40,13 +40,16 @@ void KPH_Generator::close_line(QTextStream& qts)
  qts << "\n.\n";
 }
 
-void KPH_Generator::encode(KCM_Channel_Group& kcg, QString fn)
+void KPH_Generator::encode(KCM_Channel_Group& kcg, QMap<QString, QString> docus,
+  QString fn)
 {
  KCM_Command_Package kcp(kcg);
- encode(kcp, fn);
+ encode(kcp, docus, fn);
 }
 
-void KPH_Generator::encode(KCM_Command_Package& kcp, QString fn)
+
+void KPH_Generator::encode(KCM_Command_Package& kcp, QMap<QString, QString> docus,
+  QString fn)
 {
  QString fuxe_name = fn;
  QMap<QString, QPair<int, const KCM_Channel*>> channel_codes;
@@ -55,6 +58,14 @@ void KPH_Generator::encode(KCM_Command_Package& kcp, QString fn)
  QTextStream qts(&text_);
  qts << "-\nAuto Generated";
  close_line(qts);
+
+ QMapIterator<QString, QString> dit(docus);
+ while(dit.hasNext())
+ {
+  dit.next();
+  qts << "%" << dit.key() << ": " << dit.value();
+  close_line(qts);
+ }
 
  QString args;
  QTextStream aqts(&args);
@@ -92,11 +103,23 @@ void KPH_Generator::encode(KCM_Command_Package& kcp, QString fn)
      close_line(tqts);
      ++tyc;
     }
+
+    // // field order:
+     //    channel (numeric index code)
+     //    keyword (for function parameter)
+     //    position (carrier's position in channel)
+     //    mode (modifier on carrier; spec on carrier state
+     //    type code (numeric code)
+     //    expression ref (numeric code if carrier holds expression result)
+     //    symbolic ref (if carrier holds symbol in lieu of value)
+     //    value (if carrier holds actual value)
+
     QString src_val = subs_? subs_->get_src_value(it.key(), car, c - 1)
       : car.get_src_value();
-    aqts << chc << ':' << QString::number(c) << "::"
-      << QString::number(ty) << "::::"
+    aqts << chc << " :: " << QString::number(c) << " :: "
+      << QString::number(ty) << " ::: "
       << src_val;
+    ++c;
     close_line(aqts);
    }
   }

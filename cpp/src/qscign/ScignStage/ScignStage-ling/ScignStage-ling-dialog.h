@@ -265,6 +265,7 @@ public:
  // //  Kernel Application Interface
  void test_msgbox(QString msg);
  void expand_sample(int index);
+ void launch_lexpair_dialog(QString s);
 
  void find_sample_down(Language_Sample_Group* start,
    QSet<QString>* temp_filters);

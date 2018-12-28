@@ -539,8 +539,7 @@ ScignStage_Ling_Dialog::ScignStage_Ling_Dialog(XPDF_Bridge* xpdf_bridge,
     },
     [this](QString s)
     {
-     if(launch_lexpair_dialog_function_)
-       launch_lexpair_dialog_function_(s);
+     launch_lexpair_dialog(s);
     },
     [](QStringList qsl)
     {
@@ -621,6 +620,12 @@ ScignStage_Ling_Dialog::ScignStage_Ling_Dialog(XPDF_Bridge* xpdf_bridge,
  }
 #endif // USING_XPDF
 
+}
+
+void ScignStage_Ling_Dialog::launch_lexpair_dialog(QString s)
+{
+ if(launch_lexpair_dialog_function_)
+   launch_lexpair_dialog_function_(s);
 }
 
 void ScignStage_Ling_Dialog::highlight(QTreeWidgetItem* twi,
@@ -759,7 +764,7 @@ void ScignStage_Ling_Dialog::show_full_sentence(Language_Sample* samp)
 
 void ScignStage_Ling_Dialog::expand_sample(int index)
 {
- Language_Sample_Group* g  = groups_->at(current_group_index_);
+ Language_Sample_Group* g  = groups_->at(index);
 
  if(QTreeWidgetItem* twi = twi_by_group_.value(g))
  {
