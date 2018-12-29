@@ -388,6 +388,7 @@ ScignStage_Ling_Dialog::ScignStage_Ling_Dialog(XPDF_Bridge* xpdf_bridge,
 
  select_chapter_combo_box_ = new QComboBox(this);
  select_chapter_combo_box_->addItem("<select>");
+ select_chapter_combo_box_->addItem("Cancel");
 
  for(int i = 1; i <= 32; ++i)
  {
@@ -398,16 +399,25 @@ ScignStage_Ling_Dialog::ScignStage_Ling_Dialog(XPDF_Bridge* xpdf_bridge,
   select_chapter_combo_box_->addItem(QString::number(i));
  }
 
+ select_chapter_combo_box_->setItemData(0, QBrush(Qt::gray), Qt::TextColorRole);
+ select_chapter_combo_box_->setItemData(1, QBrush(Qt::white), Qt::TextColorRole);
+ select_chapter_combo_box_->setItemData(1, QBrush(Qt::gray), Qt::BackgroundColorRole);
+
  connect(select_chapter_combo_box_, QOverload<int>::of(&QComboBox::currentIndexChanged),
    [this](int index)
  {
   QSignalBlocker qsb(select_chapter_combo_box_);
   for(QMenu* qm : popped_up_menus_)
     qm->close();
-  select_chapter_combo_box_->setCurrentIndex(0);
-  current_chapter_number_ = index;
-  handle_chapter_start();
+  if(index > 1)
+  {
+   current_chapter_number_ = index - 1;
+   handle_chapter_start();
+   select_chapter_combo_box_->setCurrentIndex(0);
+  }
  });
+
+ select_chapter_frame_->hide();
 
  select_chapter_layout_->addWidget(select_chapter_label_);
 
@@ -422,6 +432,7 @@ ScignStage_Ling_Dialog::ScignStage_Ling_Dialog(XPDF_Bridge* xpdf_bridge,
   {
    QMenu* qm = new QMenu(this);
    QWidgetAction* qwa = new QWidgetAction(this);
+   select_chapter_frame_->show();
    qwa->setDefaultWidget(select_chapter_frame_);
    qm->addAction(qwa);
    popped_up_menus_.push(qm);
