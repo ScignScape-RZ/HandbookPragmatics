@@ -7,7 +7,15 @@ kenv \= (envv _$);
 
 fnd -> init kenv;
 
-,play_sample ::: .[ScignStage_Audio_Dialog*] .(int)  $-> extern;
+,expand_sample ::: .[ScignStage_Ling_Dialog*] .(int)  $-> extern;
 
-fnd -> kph-gen  "play_sample" "3";
+fnd -> hold-function-name  "expand_sample";
 
+fnd -> add-documentation  "test:  
+  This test should result in the third sample 
+  (ordered by index) being expanded, with a highlight 
+  color, and nested rows revealed.";
+  
+fnd -> add-documentation  "origin: @scripts/rz-kph";
+
+fnd -> kph-gen "3";

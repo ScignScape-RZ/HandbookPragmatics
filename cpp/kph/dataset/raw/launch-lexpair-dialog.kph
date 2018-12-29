@@ -1,6 +1,11 @@
 - 
 
 .
+%test: This test should result in the Lexpair Dialog 
+  being launched with a sentenced defined in the test script.
+.
+%origin: @scripts/rz-kph
+.
 ;sigma:1
 .
 ;lambda:2
