@@ -35,6 +35,11 @@ Application_Config_Model::Application_Config_Model()
          {},
          {} }}},
 
+     { "ppc",
+      {{{"dataset/pdf-pull/pdf-pull-console"},
+         {},
+         {} }}},
+
     { "ss3d",
       {{ }}},
 
@@ -108,6 +113,12 @@ void Application_Config_Model::parse_config_code(QString cc)
   insert_text_.remove("ro");
  }
 
+
+ if(!cc.contains('p'))
+ {
+  insert_text_.remove("pp");
+ }
+
  if(!cc.contains('3'))
  {
   insert_text_.remove("ss3d");
@@ -119,6 +130,7 @@ void Application_Config_Model::parse_config_code(QString cc)
  {"", "dataset/dsmain/dsmain"},
  {"", "dataset/pdf-pull/pdf-pull"},
 
+ {"ppc", "*"},
  {"ro", "*"},
  {"ss3d", "*"},
  {"xpdf", "*"},

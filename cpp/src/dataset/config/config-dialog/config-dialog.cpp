@@ -116,11 +116,15 @@ Config_Dialog::Config_Dialog(QWidget* parent)
  main_button_group_->addButton(ss3d_check_box_);
  main_button_group_->addButton(kph_check_box_);
 
+ pdf_pull_check_box_ = new QCheckBox("Build PDF Scraper (pdf-pull-console) Console (Admin)", this);
+ compile_options_grid_layout_->addWidget(pdf_pull_check_box_, 3, 0, 1, 3);
+ pdf_pull_check_box_->setEnabled(false);
+
  roic_check_box_ = new QCheckBox("Build Research Object Information Console", this);
- compile_options_grid_layout_->addWidget(roic_check_box_, 3, 0, 1, 3);
+ compile_options_grid_layout_->addWidget(roic_check_box_, 4, 0, 1, 3);
 
  xx_check_box_ = new QCheckBox("Build External XPDF Application", this);
- compile_options_grid_layout_->addWidget(xx_check_box_, 4, 0, 1, 3);
+ compile_options_grid_layout_->addWidget(xx_check_box_, 5, 0, 1, 3);
 
  main_button_group_->addButton(roic_check_box_);
  main_button_group_->addButton(xx_check_box_);
@@ -136,7 +140,7 @@ Config_Dialog::Config_Dialog(QWidget* parent)
   check_proceed_possible();
  });
 
- compile_options_grid_layout_->addWidget(gen_test_check_box_, 5, 0, 1, 3, Qt::AlignRight);
+ compile_options_grid_layout_->addWidget(gen_test_check_box_, 6, 0, 1, 3, Qt::AlignRight);
 
  //main_layout_->addWidget(gen_test_check_box_);
 
@@ -192,7 +196,7 @@ Config_Dialog::Config_Dialog(QWidget* parent)
  reset_button_layout_->addWidget(reset_button_);
  reset_button_layout_->addWidget(reset_button_label_);
 
- compile_options_grid_layout_->addLayout(reset_button_layout_, 6, 0, 1, 3);
+ compile_options_grid_layout_->addLayout(reset_button_layout_, 7, 0, 1, 3);
 
  compile_options_group_box_->setLayout(compile_options_grid_layout_);
  main_layout_->addWidget(compile_options_group_box_);
@@ -227,6 +231,7 @@ Config_Dialog::Config_Dialog(QWidget* parent)
     reset_button_->setEnabled(b);
     reset_button_label_->setEnabled(b);
     gen_test_check_box_->setEnabled(b);
+    pdf_pull_check_box_->setEnabled(b);
    });
   }
 
@@ -340,6 +345,8 @@ void Config_Dialog::autofill_5()
 void Config_Dialog::autofill_6()
 {
  autofill_2(false, true, false, true);
+ if(pdf_pull_check_box_->isEnabled())
+   pdf_pull_check_box_->setChecked(true);
 }
 
 QString Config_Dialog::get_role_code()
@@ -365,6 +372,9 @@ QString Config_Dialog::get_apply_code()
    result += "k";
  if(ss3d_check_box_->isChecked())
    result += "3";
+
+ if(pdf_pull_check_box_->isEnabled() && pdf_pull_check_box_->isChecked())
+   result += "p";
 
  if(gen_test_check_box_->isEnabled() && gen_test_check_box_->isChecked())
    result.prepend("gen_test__");
