@@ -4,6 +4,10 @@
 #     (See accompanying file LICENSE_1_0.txt or copy at
 #           http://www.boost.org/LICENSE_1_0.txt)
 
-PROJECT_GROUP = application-model
 
-include(../build-proset.pri)
+PROJECT_NAME = application-model-test-dialog
+
+include(../build-group.pri)
+
+include(../../../../both/$$PROJECT_SET/$$PROJECT_GROUP/$$PROJECT_NAME/$${PROJECT_NAME}.pri)
+

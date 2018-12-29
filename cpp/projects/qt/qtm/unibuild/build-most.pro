@@ -26,6 +26,7 @@ SUBDIRS += \
   kauvir/kcm-runtime-eval/kcm-direct-eval \
   tests-kph/kauvir-phaon/kauvir-phaon \
 
+
 SUBDIRS += \
   qscign/ScignStage/ScignStage-ling \
   qscign/LexPair/lexpair \
@@ -35,14 +36,18 @@ SUBDIRS += \
 SUBDIRS += \
   dataset/application-model/application-model \
   dataset/config/config-dialog \
+  dataset/application-model/application-model-test-dialog \
+  dataset/application-model/amtd-console \
 
 
 SUBDIRS += \
   phaon/phaon/phaon-console \
   tests-kph/kauvir-phaon/kauvir-phaon-console \
 
+
 SUBDIRS += \
   dataset/dsmain/_run__dsmain-console \
+
 
 SUBDIRS += \
   tests-kph/kauvir-phaon/kph-tcp-console \
