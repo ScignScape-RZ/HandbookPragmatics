@@ -13,6 +13,12 @@ SUBDIRS += \
 
 SUBDIRS += \
   qscign/ScignStage/ScignStage-ling \
+
+SUBDIRS += \
+  dataset/application-model/application-model \
+  dataset/config/config-dialog \
+
+SUBDIRS += \
   qscign/LexPair/lexpair \
   dataset/dsmain/_run__dsmain-console \
 

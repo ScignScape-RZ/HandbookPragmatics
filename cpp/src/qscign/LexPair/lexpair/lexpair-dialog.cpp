@@ -374,13 +374,8 @@ Lexpair_Dialog::Lexpair_Dialog(QStringList sent, QWidget* parent)
  main_layout_->addWidget(sentence_frame_);
 
  add_layout_ = new QHBoxLayout;
-// multi_button_ = new QPushButton("Multi", this);
-// multi_button_->setCheckable(true);
-// multi_button_->setChecked(false);
-// add_layout_->addWidget(multi_button_);
 
  add_button_ = new QPushButton("Add", this);
-// add_button_->setAutoDefault(false);
  add_button_->setDefault(false);
  add_label_ = new QLabel(this);
  add_label_->setText("(Pair/Triple)");
@@ -596,9 +591,6 @@ Lexpair_Dialog::Lexpair_Dialog(QStringList sent, QWidget* parent)
  pairs_table_widget_->verticalHeader()->setDragEnabled(true);
  pairs_table_widget_->verticalHeader()->setDragDropMode(QAbstractItemView::InternalMove);
 
-// QTableWidgetItem* twi_vi = new QTableWidgetItem(QString::number(pairs_count_));
-// pairs_table_widget_->setVerticalHeaderItem(pairs_count_, twi_vi);
-
  connect(pairs_table_widget_->verticalHeader(), &QHeaderView::sectionMoved,
     [this](int li, int ovi, int nvi)
  {
@@ -634,12 +626,6 @@ Lexpair_Dialog::Lexpair_Dialog(QStringList sent, QWidget* parent)
   qm->popup(pairs_table_widget_->verticalHeader()->mapToGlobal(qp));
  });
 
-// pairs_table_widget_->setDragDropOverwriteMode(false);
-// pairs_table_widget_->setDragEnabled(true);
-// pairs_table_widget_->setDragDropMode(QAbstractItemView::InternalMove);
-
- //item->setFlags(item->flags() & ~(Qt::ItemIsDropEnabled));
-
  pairs_table_widget_->setColumnCount(12);
 
  pairs_table_widget_->setHorizontalHeaderLabels({"", "Pivot", "lg:Source\nExpectation",
@@ -652,13 +638,13 @@ Lexpair_Dialog::Lexpair_Dialog(QStringList sent, QWidget* parent)
                          });
 
  for(int i = 1; i < 8; ++i)
-   pairs_table_widget_->setColumnWidth(i, 75);
+   pairs_table_widget_->setColumnWidth(i, 92);
 
  pairs_table_widget_->setColumnWidth(8, 19);
  pairs_table_widget_->setColumnWidth(9, 16);
 
- pairs_table_widget_->setColumnWidth(10, 110);
- pairs_table_widget_->setColumnWidth(11, 110);
+ pairs_table_widget_->setColumnWidth(10, 118);
+ pairs_table_widget_->setColumnWidth(11, 118);
 
  main_layout_->addWidget(pairs_table_widget_);
 

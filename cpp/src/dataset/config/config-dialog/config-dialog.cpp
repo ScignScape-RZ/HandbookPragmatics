@@ -89,6 +89,7 @@ Config_Dialog::Config_Dialog(QWidget* parent)
 
  ss3d_check_box_ = new QCheckBox("Use 3d graphics", this);
  compile_options_grid_layout_->addWidget(ss3d_check_box_, 0, 0);
+ ss3d_check_box_->setEnabled(false);
 
  kph_check_box_ = new QCheckBox("Use Kauvir/Phaon and TCP (for tests)", this);
  compile_options_grid_layout_->addWidget(kph_check_box_, 0, 1, 1, 2);
@@ -306,7 +307,10 @@ void Config_Dialog::autofill_2(bool ss3d, bool kph, bool xx, bool roic)
 {
  const QSignalBlocker mbl(main_button_group_);
  const QSignalBlocker qsbl(qs_button_group_);
- ss3d_check_box_->setChecked(ss3d);
+
+ if(ss3d_check_box_->isEnabled())
+   ss3d_check_box_->setChecked(ss3d);
+
  kph_check_box_->setChecked(kph);
  xpdf_check_box_->setChecked(true);
  xpdf_qt_libs_check_box_->setEnabled(true);

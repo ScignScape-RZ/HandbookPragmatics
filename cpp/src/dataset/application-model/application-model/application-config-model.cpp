@@ -131,8 +131,8 @@ void Application_Config_Model::parse_config_code(QString cc)
  {"", "qscign/LexPair/lexpair"},
  {"", "dataset/application-model/application-model"},
 
-// {"kph", "dataset/application-model/application-model-test-dialog"},
-// {"kph", "dataset/application-model/amtd-console"},
+ {"kph", "dataset/application-model/application-model-test-dialog"},
+ {"kph", "dataset/application-model/amtd-console"},
 
  {"", "dataset/dsmain/_run__dsmain-console"},
  })
