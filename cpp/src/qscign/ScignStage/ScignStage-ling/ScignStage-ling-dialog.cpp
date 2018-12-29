@@ -387,29 +387,29 @@ ScignStage_Ling_Dialog::ScignStage_Ling_Dialog(XPDF_Bridge* xpdf_bridge,
  select_chapter_label_ = new QLabel("Jump to Chapter", this);
 
  select_chapter_combo_box_ = new QComboBox(this);
- select_chapter_combo_box_->addItems({
-   "<select>",
-   QString::number(1),
-   QString::number(2),
-   QString::number(3),
-   QString::number(4)});
+ select_chapter_combo_box_->addItem("<select>");
+
+ for(int i = 1; i <= 32; ++i)
+ {
+  if(i == 20)
+    continue;
+  if(i == 31)
+    continue;
+  select_chapter_combo_box_->addItem(QString::number(i));
+ }
 
  connect(select_chapter_combo_box_, QOverload<int>::of(&QComboBox::currentIndexChanged),
    [this](int index)
  {
-  qDebug() << index;
   QSignalBlocker qsb(select_chapter_combo_box_);
   for(QMenu* qm : popped_up_menus_)
     qm->close();
   select_chapter_combo_box_->setCurrentIndex(0);
+  current_chapter_number_ = index;
+  handle_chapter_start();
  });
 
-// select_chapter_line_edit_ = new QLineEdit(this);
-// select_chapter_line_edit_->setPlaceholderText("#");
-
  select_chapter_layout_->addWidget(select_chapter_label_);
-
- //select_chapter_layout_->addWidget(select_chapter_line_edit_);
 
  select_chapter_layout_->addWidget(select_chapter_combo_box_);
 
@@ -421,21 +421,12 @@ ScignStage_Ling_Dialog::ScignStage_Ling_Dialog(XPDF_Bridge* xpdf_bridge,
   if(col == 5)
   {
    QMenu* qm = new QMenu(this);
-//   qm->addAction("Skip to Chapter",
-//      [this, col]()
-//   {
-//    qDebug() << col;
-//   });
-
    QWidgetAction* qwa = new QWidgetAction(this);
    qwa->setDefaultWidget(select_chapter_frame_);
    qm->addAction(qwa);
-
    popped_up_menus_.push(qm);
-
    qm->popup(main_tree_widget_->header()->mapToGlobal(qp));
   }
-  qDebug() << col;
  });
 
  int c = 0;

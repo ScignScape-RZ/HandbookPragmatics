@@ -147,7 +147,6 @@ class ScignStage_Ling_Dialog : public QDialog
 
  QFrame* select_chapter_frame_;
  QLabel* select_chapter_label_;
- //QLineEdit* select_chapter_line_edit_;
  QComboBox* select_chapter_combo_box_;
  QHBoxLayout* select_chapter_layout_;
 
