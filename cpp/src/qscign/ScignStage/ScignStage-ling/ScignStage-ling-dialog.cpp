@@ -37,6 +37,8 @@
 #include <QTextStream>
 
 #include <QTreeWidget>
+#include <QWidgetAction>
+#include <QComboBox>
 
 #include <QtMultimedia/QMediaPlayer>
 
@@ -377,6 +379,64 @@ ScignStage_Ling_Dialog::ScignStage_Ling_Dialog(XPDF_Bridge* xpdf_bridge,
 
  main_tree_widget_->header()->setStretchLastSection(false);
  main_tree_widget_->header()->setSectionResizeMode(0, QHeaderView::Stretch);
+
+ main_tree_widget_->header()->setContextMenuPolicy(Qt::CustomContextMenu);
+
+ select_chapter_layout_ = new QHBoxLayout;
+ select_chapter_frame_ = new QFrame(this);
+ select_chapter_label_ = new QLabel("Jump to Chapter", this);
+
+ select_chapter_combo_box_ = new QComboBox(this);
+ select_chapter_combo_box_->addItems({
+   "<select>",
+   QString::number(1),
+   QString::number(2),
+   QString::number(3),
+   QString::number(4)});
+
+ connect(select_chapter_combo_box_, QOverload<int>::of(&QComboBox::currentIndexChanged),
+   [this](int index)
+ {
+  qDebug() << index;
+  QSignalBlocker qsb(select_chapter_combo_box_);
+  for(QMenu* qm : popped_up_menus_)
+    qm->close();
+  select_chapter_combo_box_->setCurrentIndex(0);
+ });
+
+// select_chapter_line_edit_ = new QLineEdit(this);
+// select_chapter_line_edit_->setPlaceholderText("#");
+
+ select_chapter_layout_->addWidget(select_chapter_label_);
+
+ //select_chapter_layout_->addWidget(select_chapter_line_edit_);
+
+ select_chapter_layout_->addWidget(select_chapter_combo_box_);
+
+ select_chapter_frame_->setLayout(select_chapter_layout_);
+
+ connect(main_tree_widget_->header(), &QHeaderView::customContextMenuRequested, [this](const QPoint& qp)
+ {
+  int col = main_tree_widget_->header()->logicalIndexAt(qp);
+  if(col == 5)
+  {
+   QMenu* qm = new QMenu(this);
+//   qm->addAction("Skip to Chapter",
+//      [this, col]()
+//   {
+//    qDebug() << col;
+//   });
+
+   QWidgetAction* qwa = new QWidgetAction(this);
+   qwa->setDefaultWidget(select_chapter_frame_);
+   qm->addAction(qwa);
+
+   popped_up_menus_.push(qm);
+
+   qm->popup(main_tree_widget_->header()->mapToGlobal(qp));
+  }
+  qDebug() << col;
+ });
 
  int c = 0;
  for(Language_Sample_Group* group : *groups_)

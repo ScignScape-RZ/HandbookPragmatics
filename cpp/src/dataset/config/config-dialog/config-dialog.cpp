@@ -126,6 +126,7 @@ Config_Dialog::Config_Dialog(QWidget* parent)
  xx_check_box_ = new QCheckBox("Build External XPDF Application", this);
  compile_options_grid_layout_->addWidget(xx_check_box_, 5, 0, 1, 3);
 
+ main_button_group_->addButton(pdf_pull_check_box_);
  main_button_group_->addButton(roic_check_box_);
  main_button_group_->addButton(xx_check_box_);
 

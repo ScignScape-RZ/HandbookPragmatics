@@ -13,6 +13,8 @@
 #include <QMetaType>
 
 #include <QList>
+#include <QStack>
+
 
 #include <QPoint>
 
@@ -58,6 +60,7 @@ class QTreeWidget;
 class QTreeWidgetItem;
 class QAbstractButton;
 class QSplitter;
+class QComboBox;
 
 class ScignStage_Clickable_Label;
 
@@ -140,6 +143,15 @@ class ScignStage_Ling_Dialog : public QDialog
  QVBoxLayout* show_original_version_layout_;
  QPushButton* show_original_version_button_;
  QGroupBox* show_original_version_group_box_;
+
+
+ QFrame* select_chapter_frame_;
+ QLabel* select_chapter_label_;
+ //QLineEdit* select_chapter_line_edit_;
+ QComboBox* select_chapter_combo_box_;
+ QHBoxLayout* select_chapter_layout_;
+
+ QStack<QMenu*> popped_up_menus_;
 
  void show_full_sentence(Language_Sample_Group* g);
  void show_full_sentence(Language_Sample* samp);
