@@ -1,9 +1,9 @@
 -
 Auto Generated
 .
-;lambda:1
+;lambda:2
 .
-;sigma:2
+;sigma:1
 .
 @u32::1
 .
@@ -13,18 +13,18 @@ Auto Generated
 .
 &:expand_sample
 .
-1 :: 1 :: 1 :::
+2 :: 1 :: 1 :::
 .
-2 :: 1 :: 2 :::
+1 :: 1 :: 2 :::
 .
 ##
 .
 -
 Auto Generated
 .
-;lambda:1
+;lambda:2
 .
-;sigma:2
+;sigma:1
 .
 @QString::1
 .
@@ -34,23 +34,50 @@ Auto Generated
 .
 &:test_msgbox
 .
-1 :: 1 :: 1 :::
+2 :: 1 :: 1 :::
 .
-2 :: 1 :: 2 :::
+1 :: 1 :: 2 :::
 .
 ##
 .
 -
 Auto Generated
 .
+;lambda:2
+.
 ;sigma:1
 .
-@ScignStage_Ling_Dialog*::1
+@QString::1
+.
+@ScignStage_Ling_Dialog*::2
 .
 #1
 .
 &:launch_lexpair_dialog
 .
-1 :: 1 :: 1 :::
+2 :: 1 :: 1 :::
+.
+1 :: 1 :: 2 :::
+.
+##
+.
+-
+Auto Generated
+.
+;lambda:2
+.
+;sigma:1
+.
+@QString::1
+.
+@Lexpair_Dialog*::2
+.
+#1
+.
+&:read_sxpr
+.
+2 :: 1 :: 1 :::
+.
+1 :: 1 :: 2 :::
 .
 -

@@ -9,12 +9,15 @@ fnm -> init kenv;
 
 ,expand_sample ::: .[ScignStage_Ling_Dialog*] .(int)  $-> extern;
 ,test_msgbox ::: .[ScignStage_Ling_Dialog*] .(QString)  $-> extern;
-,launch_lexpair_dialog ::: .[ScignStage_Ling_Dialog*]  $-> extern;
+,launch_lexpair_dialog ::: .[ScignStage_Ling_Dialog*] .(QString)   $-> extern;
 
+,read_sxpr ::: .[Lexpair_Dialog*] .(QString)  $-> extern;
 
 fnm -> read "expand_sample";
 fnm -> read "test_msgbox";
 fnm -> read "launch_lexpair_dialog";
+
+fnm -> read "read_sxpr";
 
 fnm -> kph-gen-multi  "@/cpp/kph/gen-multi/t1.kph";
 

@@ -55,7 +55,7 @@ int main(int argc, char* argv[])
  while(it.hasNext())
  {
   it.next();
-  for(KPH_Command_Package* kcp: kcps)
+  for(KPH_Command_Package* kcp: it.value())
   {
    sigs[it.key()] += kcp->moc_signature() + "\n";
   }
@@ -63,6 +63,9 @@ int main(int argc, char* argv[])
 
  save_file(DEFAULT_KPH_FOLDER "/dataset/gen-multi/t1.kph.sigs",
    sigs["ScignStage_Ling_Dialog*"]);
+
+ save_file(DEFAULT_KPH_FOLDER "/dataset/gen-multi/t1.kph.lexpair.sigs",
+   sigs["Lexpair_Dialog*"]);
 
  return 0;
 }
