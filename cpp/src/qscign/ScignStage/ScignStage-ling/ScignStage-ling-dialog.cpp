@@ -628,6 +628,26 @@ void ScignStage_Ling_Dialog::launch_lexpair_dialog(QString s)
    launch_lexpair_dialog_function_(s);
 }
 
+void ScignStage_Ling_Dialog::highlight(QTreeWidgetItem* twi)
+{
+ if(current_open_group_)
+ {
+  QTreeWidgetItem* twi = twi_by_group_[current_open_group_];
+  twi->setExpanded(false);
+  clear_group_foreground(twi);
+  if(current_peer_index_)
+  {
+   clear_child_group_foreground(twi);
+   current_peer_index_ = 0;
+  }
+ }
+ current_open_group_ = twi->data(0, Qt::UserRole).value<Language_Sample_Group*>();
+ show_full_sentence(current_open_group_);
+ current_chapter_number_ = current_open_group_->chapter();
+ //set_group_foreground(twi_by_group_[current_open_group_]);
+ set_group_foreground(twi);
+}
+
 void ScignStage_Ling_Dialog::highlight(QTreeWidgetItem* twi,
   Language_Sample_Group* g, int* index)
 {
@@ -660,7 +680,6 @@ void ScignStage_Ling_Dialog::highlight(QTreeWidgetItem* twi,
  check_expand(twi);
 
  set_group_foreground(twi_by_group_[current_open_group_]);
-
 }
 
 void ScignStage_Ling_Dialog::checked_label_change(QAbstractButton* qab, bool checked)
@@ -769,9 +788,9 @@ void ScignStage_Ling_Dialog::expand_sample(int index)
  if(QTreeWidgetItem* twi = twi_by_group_.value(g))
  {
   current_group_index_ = index;
-  check_expand(twi);
+  expand(twi);
+  highlight(twi);
  }
-
 }
 
 
@@ -848,13 +867,8 @@ void ScignStage_Ling_Dialog::handle_user_expand(QTreeWidgetItem* twi)
    show_full_sentence(g);
 }
 
-void ScignStage_Ling_Dialog::check_expand(QTreeWidgetItem* twi)
+void ScignStage_Ling_Dialog::expand(QTreeWidgetItem* twi)
 {
- if(no_auto_expand_)
- {
-  twi->setExpanded(false);
-  return;
- }
  twi->setExpanded(true);
  int cc = twi->childCount();
  while(cc)
@@ -863,9 +877,17 @@ void ScignStage_Ling_Dialog::check_expand(QTreeWidgetItem* twi)
   QTreeWidgetItem* stwi = twi->child(cc);
   stwi->setExpanded(true);
  }
-
 }
 
+void ScignStage_Ling_Dialog::check_expand(QTreeWidgetItem* twi)
+{
+ if(no_auto_expand_)
+ {
+  twi->setExpanded(false);
+  return;
+ }
+ expand(twi);
+}
 
 void ScignStage_Ling_Dialog::handle_chapter_end()
 {

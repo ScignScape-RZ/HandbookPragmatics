@@ -219,8 +219,11 @@ class ScignStage_Ling_Dialog : public QDialog
  void run_group_message(const QPoint& p, int col);
 
  void check_expand(QTreeWidgetItem* twi);
+ void expand(QTreeWidgetItem* twi);
 
  void handle_user_expand(QTreeWidgetItem* twi);
+
+ void highlight(QTreeWidgetItem* twi);
 
  void highlight(QTreeWidgetItem* twi,
    Language_Sample_Group* g, int* index = nullptr);
