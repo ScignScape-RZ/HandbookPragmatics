@@ -40,5 +40,22 @@ LIBS += -L$$TARGETSDIR -lkph-generator
 LIBS += -L$$TARGETSDIR -lPhaonLib -lkauvir-code-model -lkauvir-type-system \
    -lkcm-command-package -lkcm-direct-eval -lkcm-scopes -lkauvir-phaon
 
+
+contains(CHOICE_FEATURES, "kcm_ecl") \#/
+{
+ message(DEFINE\'ing USING_ECL)
+ include(../../../../find-ecl-sexp.pri)
+}
+
+contains(CHOICE_FEATURES, "iso-choice") \#/
+{
+ exists($$CPP_ROOT_DIR/targets/$$CHOICE_CODE/kauvir--kauvir-kcm--kcm-lisp-bridge) \#/
+ {
+  message(DEFINE\'ing USING_ECL)
+  include(../../../../find-ecl-sexp.pri)
+ }
+}
+
+
 message(choice: $$CPP_ROOT_DIR/targets/$$CHOICE_CODE/$$PROJECT_SET--$$PROJECT_GROUP--$$PROJECT_NAME)
 mkpath($$CPP_ROOT_DIR/targets/$$CHOICE_CODE/$$PROJECT_SET--$$PROJECT_GROUP--$$PROJECT_NAME)
