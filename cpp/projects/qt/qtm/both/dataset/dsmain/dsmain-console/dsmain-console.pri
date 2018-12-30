@@ -57,6 +57,7 @@ LIBS += -L$$TARGETSDIR -llexpair
 contains(CHOICE_FEATURES, "xpdf") \#/
 {
  LIBS += -L$$TARGETSDIR -lxpdf
+ LIBS +=  -L$$TARGETSDIR -lpdf-pull
 }
 
 contains(CHOICE_FEATURES, "kph") \#/
@@ -68,16 +69,11 @@ contains(CHOICE_FEATURES, "kph") \#/
 
 contains(CHOICE_FEATURES, "kcm_ecl") \#/
 {
- message(DEFINE\'ing USING_ECL)
+ LIBS += -L$$TARGETSDIR -lkcm-lisp-bridge -lrz-dynamo-generator
+#? message(DEFINE\'ing USING_ECL)
  include(../../../../find-ecl-sexp.pri)
- LIBS += -L$$ECL_DIR
- message($$ECL_DIR)
-
-# LIBS += -L$$TARGETSDIR -lkcm-lisp-bridge -lrz-dynamo-generator
-# message(DEFINE\'ing USING_ECL)
-# include(../../../../find-ecl-sexp.pri)
-# LIBS += -L$$ECL_DIR -lecl
-# LIBS += -L$$CL_CXX_DIR/install/lib64 -lcl_cxx
+ LIBS += -L$$ECL_DIR -lecl
+ LIBS += -L$$CL_CXX_DIR/install/lib64 -lcl_cxx
 # message($$ECL_DIR)
 }
 
@@ -85,15 +81,15 @@ contains(CHOICE_FEATURES, "iso-choice") \#/
 {
  exists($$CPP_ROOT_DIR/targets/$$CHOICE_CODE/external--xpdf--xpdf) \#/
  {
-  message(DEFINE\'ing USING_XPDF)
-  DEFINES += USING_XPDF
+  message(DEFINE\'ing ISO_USING_XPDF)
+  DEFINES += ISO_USING_XPDF
   LIBS += -L$$TARGETSDIR -lxpdf -lpdf-pull
  }
 
  exists($$CPP_ROOT_DIR/targets/$$CHOICE_CODE/tests-kph--kauvir-phaon--kauvir-phaon) \#/
  {
-  message(DEFINE\'ing USING_KPH)
-  DEFINES += USING_KPH
+  message(DEFINE\'ing ISO_USING_KPH)
+  DEFINES += ISO_USING_KPH
   LIBS += -L$$TARGETSDIR -lkcm-direct-eval -lkcm-scopes  \
     -lkauvir-phaon -lPhaonLib -lkauvir-code-model \
     -lkcm-command-runtime -lkcm-command-package -lkauvir-type-system
@@ -101,7 +97,8 @@ contains(CHOICE_FEATURES, "iso-choice") \#/
 
  exists($$CPP_ROOT_DIR/targets/$$CHOICE_CODE/kauvir--kauvir-kcm--kcm-lisp-bridge) \#/
  {
-  message(DEFINE\'ing USING_ECL)
+  message(DEFINE\'ing ISO_USING_ECL)
+  DEFINES += ISO_USING_ECL
   include(../../../../find-ecl-sexp.pri)
   LIBS += -L$$ECL_DIR
   message($$ECL_DIR)

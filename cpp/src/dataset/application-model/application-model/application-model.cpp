@@ -7,7 +7,7 @@
 
 #include "application-model.h"
 
-#include "ScignStage-ling/scignstage-ling-dialog.h"
+#include "ScignStage-ling/ScignStage-ling-dialog.h"
 
 #include "kauvir-phaon/kph-command-package.h"
 

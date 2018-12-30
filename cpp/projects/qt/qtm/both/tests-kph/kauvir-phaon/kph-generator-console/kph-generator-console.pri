@@ -38,21 +38,29 @@ SOURCES += \
 LIBS += -L$$TARGETSDIR -lkph-generator
 
 LIBS += -L$$TARGETSDIR -lPhaonLib -lkauvir-code-model -lkauvir-type-system \
-   -lkcm-command-package -lkcm-direct-eval -lkcm-scopes -lkauvir-phaon
+   -lkcm-command-package -lkcm-direct-eval -lkcm-scopes -lkauvir-phaon -lkcm-command-runtime
 
 
 contains(CHOICE_FEATURES, "kcm_ecl") \#/
 {
- message(DEFINE\'ing USING_ECL)
+ LIBS += -L$$TARGETSDIR -lkcm-lisp-bridge -lrz-dynamo-generator
+ #?message(DEFINE\'ing USING_ECL)
  include(../../../../find-ecl-sexp.pri)
+ LIBS += -L$$ECL_DIR -lecl
+ LIBS += -L$$CL_CXX_DIR/install/lib64 -lcl_cxx
 }
+
 
 contains(CHOICE_FEATURES, "iso-choice") \#/
 {
  exists($$CPP_ROOT_DIR/targets/$$CHOICE_CODE/kauvir--kauvir-kcm--kcm-lisp-bridge) \#/
  {
-  message(DEFINE\'ing USING_ECL)
+  LIBS += -L$$TARGETSDIR -lkcm-lisp-bridge -lrz-dynamo-generator
+  message(DEFINE\'ing ISO__USING_ECL)
+  DEFINES += ISO__USING_ECL
   include(../../../../find-ecl-sexp.pri)
+  LIBS += -L$$ECL_DIR -lecl
+  LIBS += -L$$CL_CXX_DIR/install/lib64 -lcl_cxx
  }
 }
 
