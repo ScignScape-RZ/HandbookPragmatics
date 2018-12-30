@@ -45,9 +45,8 @@ LIBS += -L$$TARGETSDIR -lPhaonLib -lkauvir-code-model -lkauvir-type-system \
 
 contains(CHOICE_FEATURES, "kcm_ecl") \#/
 {
- message(DEFINE\'ing USING_ECL)
- include(../../../../find-ecl-sexp.pri)
  LIBS += -L$$TARGETSDIR -lkcm-lisp-bridge -lrz-dynamo-generator
+ include(../../../../find-ecl-sexp.pri)
  LIBS += -L$$ECL_DIR -lecl
  LIBS += -L$$CL_CXX_DIR/install/lib64 -lcl_cxx
 }
