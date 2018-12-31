@@ -40,14 +40,14 @@ DEFINES += USE_RZNS
 
 
 HEADERS += \
-  $$SRC_DIR/scignstage-ling-dialog.h \
+  $$SRC_DIR/ScignStage-ling-dialog.h \
   $$SRC_DIR/nav-protocols/nav-ling-1d-panel.h \
   $$SRC_DIR/subwindows/scignstage-clickable-label.h \
   $$SRC_DIR/xpdf-bridge.h \
 
 
 SOURCES += \
-  $$SRC_DIR/scignstage-ling-dialog.cpp \
+  $$SRC_DIR/ScignStage-ling-dialog.cpp \
   $$SRC_DIR/nav-protocols/nav-ling-1d-panel.cpp \
   $$SRC_DIR/subwindows/scignstage-clickable-label.cpp \
   $$SRC_DIR/xpdf-bridge.cpp \
