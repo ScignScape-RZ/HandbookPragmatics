@@ -28,29 +28,16 @@ KANS_(KDMI)
 
 class KDMI_Model
 {
- QString file_;
  QVector<Language_Sample*> samples_;
-
- QVector<int> chapter_pages_;
-
- QMap<QString, Language_Sample_Group*> groups_by_text_;
- typedef QMap<QString, Language_Sample_Group*> groups_by_text_type;
-
  QVector<Language_Sample_Group*> groups_;
-
- QStringList issues_;
- QStringList forms_;
 
 public:
 
  KDMI_Model();
 
  ACCESSORS__RGET(QVector<Language_Sample*> ,samples)
- ACCESSORS__RGET(groups_by_text_type ,groups_by_text)
  ACCESSORS__RGET(QVector<Language_Sample_Group*> ,groups)
 
- ACCESSORS__RGET(QStringList ,issues)
- ACCESSORS__RGET(QStringList ,forms)
 
  void init_from_files(QString s, QString g);
 

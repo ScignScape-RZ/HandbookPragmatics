@@ -27,8 +27,8 @@ class Dataset
 
  QVector<int> chapter_pages_;
 
- QMap<QString, Language_Sample_Group*> groups_by_text_;
- typedef QMap<QString, Language_Sample_Group*> groups_by_text_type;
+// QMap<QString, Language_Sample_Group*> groups_by_text_;
+// typedef QMap<QString, Language_Sample_Group*> groups_by_text_type;
 
  QVector<Language_Sample_Group*> groups_;
 
@@ -40,7 +40,7 @@ public:
  Dataset(QString file);
 
  ACCESSORS__RGET(QVector<Language_Sample*> ,samples)
- ACCESSORS__RGET(groups_by_text_type ,groups_by_text)
+//? ACCESSORS__RGET(groups_by_text_type ,groups_by_text)
  ACCESSORS__RGET(QVector<Language_Sample_Group*> ,groups)
 
  ACCESSORS__RGET(QStringList ,issues)
