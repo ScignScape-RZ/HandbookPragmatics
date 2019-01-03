@@ -19,3 +19,21 @@
 USING_KANS(KDMI)
 USING_KANS(DSM)
 USING_KANS(TextIO)
+
+KDMI_Model::KDMI_Model()
+{
+
+}
+
+// DATA_FOLDER "/chapters/all.g.txt"
+// DATA_FOLDER "/chapters/all.txt"
+
+void KDMI_Model::init_from_files(QString s, QString g)
+{
+ Language_Sample_Group::read_groups_from_file
+   (g, groups_);
+
+ Language_Sample::read_samples_from_file
+   (s, samples_, groups_);
+}
+

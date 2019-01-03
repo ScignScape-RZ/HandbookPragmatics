@@ -20,10 +20,13 @@ KANS_CLASS_DECLARE(DSM, Language_Sample)
 KANS_CLASS_DECLARE(DSM, Language_Sample_Group)
 
 
+USING_KANS(DSM)
+
+
 KANS_(KDMI)
 
 
-class Dataset
+class KDMI_Model
 {
  QString file_;
  QVector<Language_Sample*> samples_;
@@ -40,7 +43,7 @@ class Dataset
 
 public:
 
- Dataset(QString file);
+ KDMI_Model();
 
  ACCESSORS__RGET(QVector<Language_Sample*> ,samples)
  ACCESSORS__RGET(groups_by_text_type ,groups_by_text)
@@ -49,12 +52,9 @@ public:
  ACCESSORS__RGET(QStringList ,issues)
  ACCESSORS__RGET(QStringList ,forms)
 
- void save_raw_file(QString text, int page, int num);
- void parse_to_samples(QString text, int page, int num);
- int get_chapter_number_from_page(int page);
+ void init_from_files(QString s, QString g);
 
- void save_to_file();
- void get_serialization(QString& text, QString& gtext);
+
 };
 
 
