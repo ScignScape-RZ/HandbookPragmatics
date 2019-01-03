@@ -15,6 +15,6 @@ USING_KANS(KDMI)
 int main(int argc, char **argv)
 {
  KDMI_Model kdm;
- kdm.init_from_files(DATA_FOLDER "/chapters/all.g.txt", DATA_FOLDER "/chapters/all.txt");
+ kdm.init_from_files(DATA_FOLDER "/chapters/all.txt", DATA_FOLDER "/chapters/all.g.txt");
  return 0;
 }
