@@ -46,60 +46,9 @@ SOURCES += \
   $$SRC_DIR/main.cpp \
 
 
-LIBS += -L$$TARGETSDIR  -ldsmain  -lScignStage-ling \
-  -lapplication-model  -lconfig-dialog
-
-LIBS += -L$$TARGETSDIR -llexpair
+LIBS += -L$$TARGETSDIR  -ldsmain  -lds-kdmi
 
 
-contains(CHOICE_FEATURES, "xpdf") \#/
-{
- LIBS += -L$$TARGETSDIR -lxpdf
- LIBS += -L$$TARGETSDIR -lpdf-pull
-}
-
-contains(CHOICE_FEATURES, "kph") \#/
-{
- LIBS += -L$$TARGETSDIR -lkcm-direct-eval -lkcm-scopes  \
-   -lkauvir-phaon -lPhaonLib -lkauvir-code-model \
-   -lkcm-command-runtime -lkcm-command-package -lkauvir-type-system
-}
-
-contains(CHOICE_FEATURES, "kcm_ecl") \#/
-{
- LIBS += -L$$TARGETSDIR -lkcm-lisp-bridge -lrz-dynamo-generator
- include(../../../../find-ecl-sexp.pri)
- LIBS += -L$$ECL_DIR -lecl
- LIBS += -L$$CL_CXX_DIR/install/lib64 -lcl_cxx
-}
-
-contains(CHOICE_FEATURES, "iso-choice") \#/
-{
- exists($$CPP_ROOT_DIR/targets/$$CHOICE_CODE/external--xpdf--xpdf) \#/
- {
-  message(DEFINE\'ing ISO__USING_XPDF)
-  DEFINES += ISO__USING_XPDF
-  LIBS += -L$$TARGETSDIR -lxpdf -lpdf-pull
- }
-
- exists($$CPP_ROOT_DIR/targets/$$CHOICE_CODE/tests-kph--kauvir-phaon--kauvir-phaon) \#/
- {
-  message(DEFINE\'ing ISO__USING_KPH)
-  DEFINES += ISO__USING_KPH
-  LIBS += -L$$TARGETSDIR -lkcm-direct-eval -lkcm-scopes  \
-    -lkauvir-phaon -lPhaonLib -lkauvir-code-model \
-    -lkcm-command-runtime -lkcm-command-package -lkauvir-type-system
- }
-
- exists($$CPP_ROOT_DIR/targets/$$CHOICE_CODE/kauvir--kauvir-kcm--kcm-lisp-bridge) \#/
- {
-  message(DEFINE\'ing ISO__USING_ECL)
-  DEFINES += ISO__USING_ECL
-  include(../../../../find-ecl-sexp.pri)
-  LIBS += -L$$ECL_DIR
-  LIBS += -L$$CL_CXX_DIR/install/lib64 -lcl_cxx
- }
-}
 
 message(choice: $$CPP_ROOT_DIR/targets/$$CHOICE_CODE/$$PROJECT_SET--$$PROJECT_GROUP--$$PROJECT_NAME)
 mkpath($$CPP_ROOT_DIR/targets/$$CHOICE_CODE/$$PROJECT_SET--$$PROJECT_GROUP--$$PROJECT_NAME)

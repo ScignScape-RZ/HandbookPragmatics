@@ -25,8 +25,6 @@ KDMI_Model::KDMI_Model()
 
 }
 
-// DATA_FOLDER "/chapters/all.g.txt"
-// DATA_FOLDER "/chapters/all.txt"
 
 void KDMI_Model::init_from_files(QString s, QString g)
 {
