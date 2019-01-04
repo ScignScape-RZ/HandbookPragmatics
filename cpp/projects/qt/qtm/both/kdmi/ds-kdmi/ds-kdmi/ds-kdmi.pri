@@ -25,10 +25,12 @@ DEFINES += USE_RZNS
 
 HEADERS += \
   $$SRC_DIR/ds-kdmi-model.h \
+  $$SRC_DIR/ds-kdmi-model-qobject.h \
 
 
 SOURCES += \
   $$SRC_DIR/ds-kdmi-model.cpp \
+  $$SRC_DIR/ds-kdmi-model-qobject.cpp \
 
 
 LIBS += -L$$TARGETSDIR  -ldsmain
