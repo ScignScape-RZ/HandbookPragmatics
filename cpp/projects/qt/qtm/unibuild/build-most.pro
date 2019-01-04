@@ -10,6 +10,13 @@ SUBDIRS = \
 
 
 SUBDIRS += \
+  kdmi/ds-kdmi/ds-kdmi \
+  kdmi/ds-kdmi/ds-kdmi-console \
+  kdmi/kdmi-bridge/kdmi-bridge \
+  kdmi/kdmi-bridge/kdmi-bridge-console \
+
+
+SUBDIRS += \
   dataset/pdf-pull/pdf-pull \
   dataset/pdf-pull/pdf-pull-console \
 

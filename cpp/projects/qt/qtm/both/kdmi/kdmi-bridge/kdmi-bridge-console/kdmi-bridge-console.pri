@@ -46,7 +46,7 @@ SOURCES += \
   $$SRC_DIR/main.cpp \
 
 
-LIBS += -L$$TARGETSDIR  -ldsmain  -lds-kdmi
+LIBS += -L$$TARGETSDIR  -ldsmain  -lds-kdmi  -lkdmi-bridge
 
 
 
