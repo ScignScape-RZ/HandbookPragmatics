@@ -59,6 +59,7 @@ int main(int argc, char **argv)
   Application_Config_Model acm;
   //qs.prepend("gen_test__");
   acm.parse_config_code(qs);
+
   {
    QString result;
    QString f = acm.insert_to_defines(DEFINES_SRC_FOLDER "/UNIBUILD-custom_defines.h", result);

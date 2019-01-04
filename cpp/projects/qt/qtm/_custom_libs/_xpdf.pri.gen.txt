@@ -1,7 +1,7 @@
 
 #__CUSTOM_LIBS__#
 
-LIBS +=  -lpng  -lfreetype 
+LIBS +=  -llibqtpng  -llibqtfreetyped 
 
 #__END_INSERT__#
 

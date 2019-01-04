@@ -1,7 +1,7 @@
 
 #__CHOICE_FEATURES__#
 
-CHOICE_FEATURES = kph ppc ro xpdf xx
+CHOICE_FEATURES = kdmi ppc ro xpdf
 
 #__END_INSERT__#
 
