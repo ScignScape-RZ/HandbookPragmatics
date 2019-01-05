@@ -29,16 +29,6 @@
  namespace KA { namespace X { class C; } }
 
 
-#ifndef INNER_NS_
-#define INNER_NS_(X) \
- namespace X{
-#endif
-
-#ifndef _INNER_NS
-#define _INNER_NS(X) \
- }
-#endif
-
 
 #define USING_KANS(x) \
  using namespace KA::x;
@@ -49,10 +39,6 @@
 #define KANS_(X) \
 
 #define _KANS(X) \
-
-#define INNER_NS_(X) \
-
-#define END_INNER_NS(X) \
 
 #define USING_KANS(x) \
 

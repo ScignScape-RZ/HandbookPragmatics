@@ -145,6 +145,8 @@ void launch_config_dialog(Config_Dialog*& dlg, QWidget* parent)
 int main(int argc, char **argv)
 {
  QApplication qapp(argc, argv);
+ qapp.setWindowIcon(QIcon(DEFAULT_ICON_FOLDER "/yes.png"));
+
  Dataset ds (DATA_FOLDER "/chapters/all.txt");
  QVector<Language_Sample*>& samps = ds.samples();
 

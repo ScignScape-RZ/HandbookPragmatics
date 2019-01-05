@@ -27,17 +27,6 @@
 #define RZNS_CLASS_DECLARE(X ,C) \
  namespace RZ { namespace X { class C; } }
 
-#ifndef INNER_NS_
-#define INNER_NS_(X) \
- namespace X{
-#endif
-
-
-#ifndef _INNER_NS
-#define _INNER_NS(X) \
- }
-#endif
-
 
 #define USING_RZNS(x) \
  using namespace RZ::x;
@@ -48,10 +37,6 @@
 #define RZNS_(X) \
 
 #define _RZNS(X) \
-
-#define INNER_NS_(X) \
-
-#define END_INNER_NS(X) \
 
 #define USING_RZNS(x) \
 

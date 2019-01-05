@@ -39,6 +39,8 @@ int main(int argc, char **argv)
 
  QApplication qapp(argc, argv);
 
+ qapp.setWindowIcon(QIcon(DEFAULT_ICON_FOLDER "/yes.png"));
+
  Lexpair_Dialog dlg(Lexpair_Dialog::split(
    "The home team won very quickly"), nullptr);
 

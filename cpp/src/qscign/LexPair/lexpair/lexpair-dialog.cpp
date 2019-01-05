@@ -871,7 +871,12 @@ Lexpair_Dialog::Lexpair_Dialog(QStringList sent, QWidget* parent)
 
  minimize_layout_ = add_minimize_frame(button_box_, [this]()
  {
-  this->setWindowState(Qt::WindowMinimized);
+#ifdef USE_UBUNTU_MINIMIZE
+   this->setWindowFlags(Qt::Window);
+   showMinimized();
+#else
+   setWindowState(Qt::WindowMinimized);
+#endif);
  });
  mw_layout_->addWidget(mw_);
  mw_layout_->addLayout(minimize_layout_);
@@ -1610,7 +1615,12 @@ void Lexpair_Dialog::show_lg_info(QString text)
  qmb->addButton("Ok", QMessageBox::YesRole);
  add_minimize_frame(qmb, [qmb]()
  {
-  qmb->setWindowState(Qt::WindowMinimized);
+#ifdef USE_UBUNTU_MINIMIZE
+   qmb->setWindowFlags(Qt::Window);
+   qmb->showMinimized();
+#else
+   qmb->setWindowState(Qt::WindowMinimized);
+#endif
  });
  qmb->setModal(false);
  qmb->open(this, "");
@@ -1649,7 +1659,12 @@ void Lexpair_Dialog::show_dg_info(QString text)
  qmb->addButton("Ok", QMessageBox::YesRole);
  add_minimize_frame(qmb, [qmb]()
  {
-  qmb->setWindowState(Qt::WindowMinimized);
+#ifdef USE_UBUNTU_MINIMIZE
+   qmb->setWindowFlags(Qt::Window);
+   qmb->showMinimized();
+#else
+   qmb->setWindowState(Qt::WindowMinimized);
+#endif
  });
  qmb->setModal(false);
  qmb->open(this, "");

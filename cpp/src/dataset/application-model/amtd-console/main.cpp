@@ -14,7 +14,7 @@
 
 #include "kans.h"
 
-#include <QThread>
+#include <QIcon>
 
 
 USING_KANS(DSM)
@@ -23,6 +23,8 @@ USING_KANS(DSM)
 int main(int argc, char **argv)
 {
  QApplication qapp(argc, argv);
+
+ qapp.setWindowIcon(QIcon(DEFAULT_ICON_FOLDER "/yes.png"));
 
  Application_Test_Model apptm;
 

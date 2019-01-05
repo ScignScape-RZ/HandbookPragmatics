@@ -186,11 +186,11 @@ class Lexpair_Dialog : public QDialog
 
  struct Pair_Triple
  {
-  quint8 left;
-  quint8 right;
-  quint8 mid;
+  qint8 left;
+  qint8 right;
+  qint8 mid;
 
-  QPair<quint8, QPair<quint8, quint8>> to_pr_pr() const
+  QPair<qint8, QPair<qint8, quint8>> to_pr_pr() const
   {
    return {left, {right, mid}};
   }

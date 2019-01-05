@@ -30,6 +30,7 @@ DEFINES += USE_RZNS
 
 
 DEFINES += RZ_DIR=\\\"$$ROOT_DIR/scripts/rz\\\"
+DEFINES += DEFAULT_ICON_FOLDER=\\\"$$CPP_ROOT_DIR/assets/icons\\\"
 
 
 SOURCES += \

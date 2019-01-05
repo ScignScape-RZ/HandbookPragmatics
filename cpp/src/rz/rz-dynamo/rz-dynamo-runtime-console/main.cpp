@@ -25,10 +25,10 @@
 #include "fn-doc/fn-doc.h"
 #include "kcm-env/kcm-env.h"
 
-#include <QApplication>
+//?#include <QApplication>
 
 #include <QDebug>
-
+#include <QIcon>
 
 USING_KANS(KCM)
 USING_KANS(KCL)
@@ -36,7 +36,9 @@ USING_KANS(KCL)
 
 int main(int argc, char **argv)
 {
- QApplication qapp(argc, argv);
+// QApplication qapp(argc, argv);
+
+// qapp.setWindowIcon(QIcon(DEFAULT_ICON_FOLDER "/yes.png"));
 
  qRegisterMetaType<KCM_Lisp_Bridge>();
  qRegisterMetaType<KCM_Lisp_Bridge*>();

@@ -666,7 +666,12 @@ ScignStage_Ling_Dialog::ScignStage_Ling_Dialog(XPDF_Bridge* xpdf_bridge,
 
  minimize_layout_ = add_minimize_frame(button_box_, [this]
  {
-  setWindowState(Qt::WindowMinimized);
+#ifdef USE_UBUNTU_MINIMIZE
+   this->setWindowFlags(Qt::Window);
+   showMinimized();
+#else
+   setWindowState(Qt::WindowMinimized);
+#endif
  });
 
  main_layout_->addLayout(minimize_layout_);

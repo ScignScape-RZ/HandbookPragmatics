@@ -22,15 +22,6 @@
 #define QSNS_CLASS_DECLARE(X ,C) \
  namespace QScign { namespace X { class C; } }
 
-#ifndef INNER_NS_
-#define INNER_NS_(X) \
- namespace X{
-#endif
-
-#ifndef _INNER_NS
-#define _INNER_NS(X) \
- }
-#endif
 
 
 #define USING_QSNS(x) \
@@ -43,10 +34,6 @@
 
 #define _QSNS(X) \
 
-#define INNER_NS_(X) \
-
-#define END_INNER_NS(X) \
-
 #define USING_QSNS(x) \
 
 #define QSNS_CLASS_DECLARE(X ,C) \
@@ -55,4 +42,4 @@
 #endif
 
 
-#endif // NS__H
+#endif // QSNS__H
