@@ -13,7 +13,7 @@ SUBDIRS = \
   dataset/dsmain/data-model-console \
   dataset/ro-info/ro-info \
   dataset/ro-info/ro-info-console \
-
+  dataset/config/config-dialog \
 
 SUBDIRS += \
   dataset/pdf-pull/pdf-pull \
@@ -53,9 +53,10 @@ SUBDIRS += \
 
 SUBDIRS += \
   dataset/application-model/application-model \
-  dataset/config/config-dialog \
   dataset/application-model/application-model-test-dialog \
   dataset/application-model/amtd-console \
+  dataset/config/config-dialog-console \
+
 
 SUBDIRS += \
   phaon/phaon/phaon-console \

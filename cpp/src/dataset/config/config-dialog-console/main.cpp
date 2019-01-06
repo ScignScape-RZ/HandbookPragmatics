@@ -10,6 +10,7 @@
 
 #include <QApplication>
 #include <QDebug>
+#include <QIcon>
 
 #include "kans.h"
 
@@ -36,6 +37,7 @@ int main(int argc, char **argv)
 {
  QApplication qapp(argc, argv);
 
+ qapp.setWindowIcon(QIcon(DEFAULT_ICON_FOLDER "/app-icon.png"));
 
  Config_Dialog dlg(nullptr);
 

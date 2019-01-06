@@ -37,7 +37,8 @@ DEFINES += CHOICES_PRI_FOLDER=\\\"$$CPP_ROOT_DIR/projects/qt/qtm/_choices\\\"
 DEFINES += CUSTOM_LIBS_PRI_FOLDER=\\\"$$CPP_ROOT_DIR/projects/qt/qtm/_custom_libs\\\"
 DEFINES += UNIBUILD_PRI_FOLDER=\\\"$$CPP_ROOT_DIR/projects/qt/qtm/unibuild\\\"
 
-INCLUDEPATH += $$APPLICATION_MODEL_SRC_GROUP_DIR
+
+DEFINES += DEFAULT_ICON_FOLDER=\\\"$$CPP_ROOT_DIR/assets/icons\\\"
 
 
 HEADERS += \
@@ -47,7 +48,24 @@ SOURCES += \
   $$SRC_DIR/main.cpp \
 
 
-LIBS += -L$$TARGETSDIR -lapplication-model -lconfig-dialog
+LIBS += -L$$TARGETSDIR -lapplication-model -lconfig-dialog -ldsmain  \
+
+
+
+contains(CHOICE_FEATURES, "xpdf") \#/
+{
+ #? message(DEFINE\'ing USING_XPDF)
+#?  DEFINES += USING_XPDF
+ LIBS += -L$$TARGETSDIR -lxpdf
+}
+
+
+contains(CHOICE_FEATURES, "kph") \#/
+{
+ LIBS += -L$$TARGETSDIR -lkcm-direct-eval -lkcm-scopes  -lkauvir-phaon \
+   -lPhaonLib -lkauvir-code-model -lkcm-command-runtime -lkcm-command-package \
+   -lkauvir-type-system
+}
 
 
 message(choice: $$CPP_ROOT_DIR/targets/$$CHOICE_CODE/$$PROJECT_SET--$$PROJECT_GROUP--$$PROJECT_NAME)

@@ -7,6 +7,7 @@ SUBDIRS = \
   dataset/dsmain/data-model-console \
   dataset/ro-info/ro-info \
   dataset/ro-info/ro-info-console \
+  dataset/config/config-dialog \
 
 
 SUBDIRS += \
@@ -42,9 +43,9 @@ SUBDIRS += \
 
 SUBDIRS += \
   dataset/application-model/application-model \
-  dataset/config/config-dialog \
   dataset/application-model/application-model-test-dialog \
   dataset/application-model/amtd-console \
+  dataset/config/config-dialog-console \
 
 
 SUBDIRS += \
