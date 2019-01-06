@@ -38,7 +38,7 @@ int main(int argc, char **argv)
 {
 // QApplication qapp(argc, argv);
 
-// qapp.setWindowIcon(QIcon(DEFAULT_ICON_FOLDER "/app-icon.svg"));
+// qapp.setWindowIcon(QIcon(DEFAULT_ICON_FOLDER "/app-icon.png"));
 
  qRegisterMetaType<KCM_Lisp_Bridge>();
  qRegisterMetaType<KCM_Lisp_Bridge*>();

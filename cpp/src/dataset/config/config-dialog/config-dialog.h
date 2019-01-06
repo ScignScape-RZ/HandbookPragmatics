@@ -46,7 +46,7 @@ class QPlainTextEdit;
 class QBoxLayout;
 class QButtonGroup;
 class QGroupBox;
-
+class QComboBox;
 class QCheckBox;
 
 
@@ -66,6 +66,13 @@ class Config_Dialog : public QDialog
 
  QGroupBox* compile_options_group_box_;
  QGroupBox* roles_group_box_;
+
+ QGroupBox* os_group_box_;
+ QHBoxLayout* os_layout_;
+ QComboBox* os_combo_box_;
+ QCheckBox* b32_checkbox_;
+ QCheckBox* b64_checkbox_;
+ QButtonGroup* b3264_;
 
  QVBoxLayout* main_layout_;
 
