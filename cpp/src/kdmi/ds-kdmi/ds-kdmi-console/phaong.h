@@ -75,9 +75,17 @@ public:
 
  };
 
+ struct Hyperedge
+ {
+  Hypernode* head;
+  Hypernode* tail;
+  Hypernode* extra;
+ };
+
 private:
 
  std::function<void(phaong&, Hypernode*)> node_add_function_;
+ std::function<void(phaong&, Hyperedge*)> edge_add_function_;
  void* user_data_;
 
  Hyponode* get_hyponode(Hypernode* hn, numeric_index_type ind)
@@ -132,10 +140,12 @@ private:
 
 public:
 
- phaong() : node_add_function_(nullptr), user_data_(nullptr)
+ phaong() : node_add_function_(nullptr), edge_add_function_(nullptr),
+   user_data_(nullptr)
  {}
 
  ACCESSORS(PASTE_EXPRESSION(std::function<void(phaong&, Hypernode*)>) ,node_add_function)
+ ACCESSORS(PASTE_EXPRESSION(std::function<void(phaong&, Hyperedge*)>) ,edge_add_function)
  ACCESSORS(void* ,user_data)
 
  template<typename T>
@@ -200,7 +210,15 @@ public:
   fn(ho->hypoval);
  }
 
-
+ Hyperedge* new_hyperedge(Hypernode* hnh, Hypernode* hnt, Hypernode* hne = nullptr)
+ {
+  Hyperedge* result = new Hyperedge{hnh, hnt, hne};
+  if(edge_add_function_)
+  {
+   edge_add_function_(*this, result);
+  }
+  return result;
+ }
 
 
 };
