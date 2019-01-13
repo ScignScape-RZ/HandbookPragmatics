@@ -18,8 +18,6 @@ USING_KANS(KDMI)
 
 typedef phaong_galaxy<QString> pgs_t;
 
-
-
 int main(int argc, char **argv)
 {
  phaong<pgs_t> pgs;
@@ -35,7 +33,7 @@ int main(int argc, char **argv)
 
  phaong<pgs_t>::Hypernode* hn = pgs.new_hypernode(-8);
 
- pgs.set_data(hn, 13, "xx");
+ pgs.set_data(hn, 13, "xx", "QString");
 
  pgs.get_data(hn, 13, [](QString& qs)
  {
