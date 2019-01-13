@@ -412,6 +412,7 @@ QString Config_Dialog::get_apply_code()
 
  if(pdf_pull_check_box_->isEnabled() && pdf_pull_check_box_->isChecked())
    result += "p";
+
  if(kdmi_check_box_->isChecked())
    result += "d";
 

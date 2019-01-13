@@ -40,7 +40,7 @@ DEFINES += USE_QSNS
 
 
 HEADERS += \
-
+  $$SRC_DIR/phaong.h \
 
 SOURCES += \
   $$SRC_DIR/main.cpp \
