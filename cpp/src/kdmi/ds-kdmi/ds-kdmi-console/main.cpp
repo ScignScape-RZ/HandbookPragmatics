@@ -35,9 +35,9 @@ int main(int argc, char **argv)
 
  phaong<pgs_t>::Hypernode* hn = pgs.new_hypernode(8);
 
- pgs.set_data(hn, 3, "xx");
+ pgs.set_data(hn, 13, "xx");
 
- pgs.get_data(hn, 3, [](QString& qs)
+ pgs.get_data(hn, 13, [](QString& qs)
  {
   qDebug() << qs;
  });

@@ -55,6 +55,18 @@ public:
   {
   }
 
+  numeric_index_type cell_size()
+  {
+   if(size_ < 0)
+     return -size_;
+   return size_;
+  }
+
+  bool fixed_size()
+  {
+   return size_ > 0;
+  }
+
  };
 
 private:
@@ -64,10 +76,28 @@ private:
 
  void _set_data(Hypernode* hn, numeric_index_type ind, hyponode_value_type& val)
  {
-  int cell_index = ind % hn->size_;
-  int cell_order = ind / hn->size_;
+  int cell_index = ind % hn->cell_size();
+  int cell_order = hn->fixed_size()? 0 :
+    ind / hn->cell_size();
 
   Hypocell* hc = hn->first_cell_;
+
+  if(cell_order > 0)
+  {
+   int cc = 0;
+   while(cc < cell_order)
+   {
+    if(!hc->next)
+    {
+     Hyponode* hns = new Hyponode[hn->cell_size()];
+     Hypocell* nhc = new Hypocell{hns, nullptr};
+     hc->next = nhc;
+     hc = nhc;
+     ++cc;
+    }
+   }
+  }
+
 
   (hc->hyponodes)[cell_index].hypoval = val;
  }
@@ -114,10 +144,27 @@ public:
  void get_data(Hypernode* hn, numeric_index_type ind,
    std::function<void(hyponode_value_type&)> fn)
  {
-  int cell_index = ind % hn->size_;
-  int cell_order = ind / hn->size_;
+  int cell_index = ind % hn->cell_size();
+  int cell_order = hn->fixed_size()? 0 :
+    ind / hn->cell_size();
 
   Hypocell* hc = hn->first_cell_;
+
+  if(cell_order > 0)
+  {
+   int cc = 0;
+   while(cc < cell_order)
+   {
+    if(!hc->next)
+    {
+     Hyponode* hns = new Hyponode[hn->cell_size()];
+     Hypocell* nhc = new Hypocell{hns, nullptr};
+     hc->next = nhc;
+     hc = nhc;
+     ++cc;
+    }
+   }
+  }
 
   fn((hc->hyponodes)[cell_index].hypoval);
  }
