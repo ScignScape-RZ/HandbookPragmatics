@@ -33,7 +33,7 @@ int main(int argc, char **argv)
   hh->push_back(hn);
  });
 
- phaong<pgs_t>::Hypernode* hn = pgs.new_hypernode(8);
+ phaong<pgs_t>::Hypernode* hn = pgs.new_hypernode(-8);
 
  pgs.set_data(hn, 13, "xx");
 
